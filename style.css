@@ -1,0 +1,28 @@
+body {
+    width: 100%;
+    font-family: "Gill Sans", sans-serif;
+    margin-top: 1in;
+}
+
+table {
+    margin: auto;
+}
+
+h1 { text-align: center; }
+
+tr {
+    height: 75px;
+}
+td {
+    padding: 1em;
+    margin: 1em;
+}
+
+td { border: 1px solid grey; text-align: center; }
+
+td.off { background: grey; }
+
+
+tr.ap-exams {
+    background: rgba(0,0,0, 0.1);
+}
