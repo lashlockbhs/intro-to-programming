@@ -25,3 +25,7 @@ tidy:
 
 pretty:
 	prettier -w *.js
+
+
+serve:
+	./node_modules/.bin/esbuild web.js --servedir=. --outdir=./js --bundle --sourcemap
