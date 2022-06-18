@@ -1,0 +1,145 @@
+- Intro to Intro (1)
+
+  - Things we can do with computers
+
+    - Count stuff, i.e. Math
+
+    - Text
+
+    - Graphics
+
+    - Video
+
+    - Games
+
+    - Communicate (with text, graphics, video, etc.)
+
+    - What else?
+
+  - What is programming?
+
+    - Why is it fun?
+
+    - Why is it hard?
+
+    - What can you do when you can program?
+
+      - Understand, at least a bit, how all this stuff around us works?
+
+      - Build tools to make your life better.
+
+- What is data? (1)
+
+  - What can we do with it?
+
+    - Render it: play a video, display text, etc. (0.5)
+
+    - Store it
+
+    - Send and receive it
+
+    - Combine and transform it to make new data
+
+  - What is a data type?
+
+    - A set of possible values
+
+    - Syntax - how you write it
+
+    - Operators - what you can do with it
+
+    - Expressions - combinatios of values and operators
+
+- First three data types (3)
+
+  - Numbers
+
+    - Possible values
+
+    - Syntax
+
+  - Strings
+
+    - Possible values
+
+    - Syntax
+
+  - Booleans
+
+    - Possible values
+
+    - Syntax
+
+  - Operators
+
+    - On numbers: +, -, *, /
+
+    - On strings: +, []
+
+    - On booleans: &&, ||, !
+
+    - Between types, e.g. ===, <, etc.
+
+- Expressions (1)
+
+  - Simple expressions
+
+    - A single value
+
+    - Two values an an operator
+
+  - Complex expressions
+
+    - Precedence
+
+    - Grouping: ()
+
+  - Types of expressions
+
+  - Values of expressions
+
+- Arrays (5)
+
+  - Possible values
+
+  - Syntax
+
+  - A collection of values
+
+  - Indexing (like strings)
+
+  - Length
+
+- Functions (10)
+
+- Variables (5)
+
+  - Function parameters
+
+  - Simplifying expressions with constant variables - names for values
+
+  - Variable variables - names that can change
+
+  - Scope of variables.
+
+- Function as values (5)
+
+- Control constructs (5)
+
+  - if
+
+  - while
+
+  - for
+
+- Objects (10)
+
+- 2D Graphics with Canvas (2)
+
+- Project: 2D Graphics (3)
+
+- Animation (5)
+
+- HTML Basics (4)
+
+- Classes (10)
