@@ -32,7 +32,7 @@
 
   - What can we do with it?
 
-    - Render it: play a video, display text, etc. (0.5)
+    - Render it: play a video, display text, etc.
 
     - Store it
 
@@ -80,7 +80,7 @@
 
     - Between types, e.g. ===, <, etc.
 
-- Expressions (1)
+- Expressions (5)
 
   - Simple expressions
 
@@ -98,7 +98,9 @@
 
   - Values of expressions
 
-- Arrays (5)
+- Functions I (5)
+
+- Arrays (4)
 
   - Possible values
 
@@ -110,7 +112,7 @@
 
   - Length
 
-- Functions (10)
+- Functions II (5)
 
 - Variables (5)
 
@@ -122,8 +124,6 @@
 
   - Scope of variables.
 
-- Function as values (5)
-
 - Control constructs (5)
 
   - if
@@ -132,14 +132,24 @@
 
   - for
 
-- Objects (10)
+- Function as values (5)
+
+- Objects (9)
+
+  - Properties
+
+  - Methods
 
 - 2D Graphics with Canvas (2)
 
-- Project: 2D Graphics (3)
+- Project: 2D Graphics (7)
 
-- Animation (5)
+- Animation (9)
 
-- HTML Basics (4)
+- HTML Basics (5)
+
+- Project: HTML document (5)
+
+- CSS: make it pretty (5)
 
 - Classes (10)
