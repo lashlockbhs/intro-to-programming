@@ -1,8 +1,12 @@
 import { Calendar } from "./calendar.js";
 
+const pat = /^(.*)\s+\((\d+)\)$/;
+
 const loadData = (calendar, syllabus) => {
   Promise.all([
-    fetch(calendar).then(jsonOrBarf),
+    fetch(calendar)
+      .then(jsonOrBarf)
+      .then((data) => new Calendar(data)),
     fetch(syllabus).then(jsonOrBarf),
   ]).then((values) => fillTable(...values));
 };
@@ -15,24 +19,40 @@ const jsonOrBarf = (r) => {
 };
 
 const fillTable = (calendar, syllabus) => {
-  console.log(calendar);
-  console.log(syllabus);
-
   const tbody = document.getElementById("body");
 
-  new Calendar(calendar).elements.forEach((e) => {
+  calendar.elements.forEach((e) => {
     if ("weekstring" in e) {
-      tbody.appendChild(weekRow(e, syllabus));
+      tbody.appendChild(weekRow(e, calendar, syllabus));
     } else {
       tbody.appendChild(vacationRow(e));
     }
   });
 };
 
-const weekRow = (w, syllabus) => {
+const parseSyllabus = (data) => {
+  return data
+    .split(/\r?\n/)
+    .map((line) => {
+      if (line) {
+        const found = line.match(pat);
+        return { title: found[1], days: parseInt(found[2], 10) };
+      }
+    })
+    .filter((x) => x);
+};
+
+const isAP = (w, calendar) =>
+  w.start.equals(calendar.apExams.start) || w.end.equals(calendar.apExams.end);
+
+const weekRow = (w, calendar, syllabus) => {
   const tr = document.createElement("tr");
 
-  tr.appendChild(td(w.datesOfWeek(), {class: "week"}));
+  if (isAP(w, calendar)) {
+    tr.classList.add("ap-exams");
+  }
+
+  tr.appendChild(td(w.datesOfWeek(), { class: "week" }));
 
   if (w.start.dayOfWeek == 2) dayOff(tr);
 
@@ -43,7 +63,7 @@ const weekRow = (w, syllabus) => {
     const consumed = Math.min(days, item.days);
 
     if (item.title) {
-      scheduled(tr, item.title, consumed);
+      scheduled(tr, item, consumed);
     } else {
       unscheduled(tr, consumed);
     }
@@ -61,8 +81,9 @@ const dayOff = (tr) => {
   tr.appendChild(td("", { class: "off" }));
 };
 
-const scheduled = (tr, title, days) => {
-  tr.appendChild(td(title, { class: "scheduled", colspan: days }));
+const scheduled = (tr, item, days) => {
+  const c = "scheduled" + ("type" in item ? ` ${item.type}` : "");
+  tr.appendChild(td(item.title, { class: c, colspan: days }));
 };
 
 const unscheduled = (tr, days) => {

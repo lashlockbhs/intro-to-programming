@@ -5,31 +5,49 @@ body {
 }
 
 table {
-    margin: auto;
+    margin: .5in auto;
 }
 
-h1 { text-align: center; }
-
-tr {
-    /*height: 75px;*/
+h1 {
+    text-align: center;
 }
+
 td {
     padding: 1em;
     margin: 1em;
+    border: 1px solid grey;
+    text-align: center;
 }
 
-td { border: 1px solid grey; text-align: center; }
-td.week { background: #64c; }
+td.week {
+    background: rgba(128, 128, 255, 0.2);
+}
 
-td.off { background: grey; }
+td.off {
+    background: grey;
+}
 
-td.scheduled { background: #408; color: white; }
-td.unscheduled { background: #eeeeef; }
+td.scheduled {
+    background: #408;
+    color: white;
+}
+
+td.unscheduled {
+    background: #eeeeef;
+}
+
+td.project {
+    background: #40b;
+}
 
 tr.ap-exams {
-    background: rgba(0,0,0, 0.1);
+    background: rgba(0, 0, 255, 0.5);
 }
 
-tr.vacation { padding: 20px 0; }
+tr.vacation {
+    padding: 20px 0;
+}
 
-td.scheduled[colspan="1"] { font-size: 80%; }
+td.scheduled[colspan="1"] {
+    font-size: 80%;
+}

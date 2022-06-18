@@ -20,14 +20,18 @@ const dayName = (d) => DAY_NAMES[d.dayOfWeek - 1];
 
 const monthName = (d) => MONTH_NAMES[d.month - 1];
 
+const date = Temporal.PlainDate.from;
+
 class Calendar {
   constructor(data) {
-    this.firstDay = Temporal.PlainDate.from(data.firstDay);
-    this.lastDay = Temporal.PlainDate.from(data.lastDay);
+    this.firstDay = date(data.firstDay);
+    this.lastDay = date(data.lastDay);
     this.startOfSummer = this.lastDay.add({ days: 1 });
-    this.holidays = new Set(
-      data.holidays.map((d) => Temporal.PlainDate.from(d).toString())
-    );
+    this.apExams = {
+      start: date(data.apExams.start),
+      end: date(data.apExams.end),
+    };
+    this.holidays = new Set(data.holidays.map((d) => date(d).toString()));
     this.elements = this.parseYear();
   }
 
@@ -38,11 +42,11 @@ class Calendar {
     let startOfSummer = this.lastDay.add({ days: 1 });
 
     let elements = [];
-
+    let w = 1;
     while (!d.equals(startOfSummer)) {
       if (this.isSchoolday(d)) {
         if (daysOff > 0) {
-          elements.push(new Week(days));
+          elements.push(new Week(days, w++));
           days = [];
           if (daysOff > 3) {
             elements.push(new Vacation(daysOff, d));
@@ -73,10 +77,12 @@ class Calendar {
 }
 
 class Week {
-  constructor(days) {
+  constructor(days, number) {
     this.days = days;
+    this.number = number;
     this.start = days[0];
     this.end = days[days.length - 1];
+    this.isWeek = true;
   }
 
   weekstring() {

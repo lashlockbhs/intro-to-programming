@@ -12,7 +12,36 @@
     "days": 10
   },
   {
+    "title": "Simplifying expressions with constant variables",
+    "days": 4
+  },
+  {
+    "title": "Functions as values",
+    "days": 5
+  },
+  {
     "title": "Arrays",
+    "days": 10
+  },
+  {
+    "title": "Filter/Map/Reduce",
     "days": 9
+  },
+  {
+    "title": "2D Graphics with Canvas",
+    "days": 2
+  },
+  {
+    "title": "2D Graphics with Canvas",
+    "days": 3,
+    "type": "project"
+  },
+  {
+    "title": "HTML Basics",
+    "days": 4
+  },
+  {
+    "title": "Animation",
+    "days": 5
   }
 ]
