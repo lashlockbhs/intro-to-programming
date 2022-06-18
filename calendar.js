@@ -79,15 +79,15 @@ class Week {
     this.end = days[days.length - 1];
   }
 
-  weekstring(days) {
-    return `${this.daysOfWeek(days)} (${this.datesOfWeek(days)})`;
+  weekstring() {
+    return `${this.daysOfWeek()} (${this.datesOfWeek()})`;
   }
 
-  daysOfWeek(days) {
+  daysOfWeek() {
     return `${dayName(this.start)}-${dayName(this.end)}`;
   }
 
-  datesOfWeek(days) {
+  datesOfWeek() {
     return this.start.month === this.end.month
       ? `${monthName(this.start)} ${this.start.day}-${this.end.day}`
       : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${
