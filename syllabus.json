@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Intro to Intro",
+    "days": 1
+  },
+  {
+    "title": "First three datatypes",
+    "days": 3
+  },
+  {
+    "title": "Something advanced",
+    "start": 19,
+    "days": 5
+  }
+]
