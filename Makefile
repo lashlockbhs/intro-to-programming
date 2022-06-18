@@ -21,7 +21,7 @@ check:
 
 
 tidy:
-	tidy -i -w 80 -m *.html
+	tidy -i -w 80 -m --gnu-emacs yes --quiet yes *.html
 
 pretty:
 	prettier -w *.js
