@@ -42,10 +42,15 @@ const weekRow = (w, calendar, syllabus) => {
   const tr = document.createElement("tr");
 
   if (w.isAP) {
-    tr.classList.add("ap-exams");
+    //tr.classList.add("ap-exams");
+    const cell = td("", {class: "week"});
+    cell.innerHTML = w.datesOfWeek() + "<br><span class='extra'>AP exams</span>";
+    tr.appendChild(cell);
+  } else {
+    tr.appendChild(td(w.datesOfWeek(), { class: "week" }));
   }
 
-  tr.appendChild(td(w.datesOfWeek(), { class: "week" }));
+
 
   if (w.start.dayOfWeek == 2) dayOff(tr);
 
@@ -71,7 +76,7 @@ const weekRow = (w, calendar, syllabus) => {
 };
 
 const dayOff = (tr) => {
-  tr.appendChild(td("", { class: "off" }));
+  tr.appendChild(td("No school", { class: "off" }));
 };
 
 const scheduled = (tr, item, days) => {

@@ -25,6 +25,7 @@ td.week {
 
 td.off {
     background: grey;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 td.scheduled {
@@ -48,6 +49,10 @@ tr.vacation {
     padding: 20px 0;
 }
 
-td.scheduled[colspan="1"] {
+td.scheduled[colspan="1"], td.off {
     font-size: 80%;
+}
+
+.extra {
+    font-size: 60%;
 }
