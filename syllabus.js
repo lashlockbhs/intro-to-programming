@@ -1,6 +1,6 @@
 const peek = (stack) => stack[stack.length - 1];
 
-const lines = (data) => data.split(/\r?\n/).filter(s => s.length > 0);
+const lines = (data) => data.split(/\r?\n/).filter((s) => s.length > 0);
 
 const parseLine = (s) => {
   const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+)\))?\s*$/);
@@ -9,16 +9,15 @@ const parseLine = (s) => {
     const parsed = {
       level: indent.length,
       text: text,
-    }
+    };
     if (days) {
       parsed.days = Number.parseFloat(days, 10);
-    };
+    }
     return parsed;
   }
 };
 
 const buildSyllabus = (text) => {
-
   let indent = 0;
 
   // Stack contains the objects currenly being built with their level of
@@ -30,22 +29,21 @@ const buildSyllabus = (text) => {
   // item now at the top of the stack and push it on the stack.
 
   // Dummy item that is less indented than all actual lines.
-  let stack = [{level: -1, item: {children: []}}];
+  let stack = [{ level: -1, item: { children: [] } }];
 
-  lines(text).forEach(line => {
-
+  lines(text).forEach((line) => {
     const p = parseLine(line);
 
     while (peek(stack).level >= p.level) {
       stack.pop();
     }
-    const item = {title: p.text, days: p.days};
+    const item = { title: p.text, days: p.days };
     const top = peek(stack).item;
-    if (!('children' in top)) {
+    if (!("children" in top)) {
       top.children = [];
     }
     top.children.push(item);
-    stack.push({level: p.level, item: item})
+    stack.push({ level: p.level, item: item });
   });
 
   while (peek(stack).level >= 0) {
@@ -53,8 +51,6 @@ const buildSyllabus = (text) => {
   }
 
   return peek(stack).item.children;
-
 };
-
 
 export { buildSyllabus };
