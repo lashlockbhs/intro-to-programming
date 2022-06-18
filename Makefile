@@ -19,7 +19,6 @@ typecheck:
 check:
 	python -m  pytest $(PYTEST_OPTIONS)
 
-
 tidy:
 	tidy -i -w 80 -m --gnu-emacs yes --quiet yes *.html
 
