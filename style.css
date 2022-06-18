@@ -22,7 +22,11 @@ td { border: 1px solid grey; text-align: center; }
 
 td.off { background: grey; }
 
+td.scheduled { background: #408; color: white; }
+td.unscheduled { background: #eeeeef; }
 
 tr.ap-exams {
     background: rgba(0,0,0, 0.1);
 }
+
+tr.vacation { padding: 20px 0; }

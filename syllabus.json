@@ -5,11 +5,14 @@
   },
   {
     "title": "First three datatypes",
-    "days": 3
+    "days": 4
   },
   {
-    "title": "Something advanced",
-    "start": 19,
-    "days": 5
+    "title": "Functions",
+    "days": 10
+  },
+  {
+    "title": "Arrays",
+    "days": 9
   }
 ]
