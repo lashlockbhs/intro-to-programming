@@ -11,7 +11,7 @@ table {
 h1 { text-align: center; }
 
 tr {
-    height: 75px;
+    /*height: 75px;*/
 }
 td {
     padding: 1em;
@@ -19,6 +19,7 @@ td {
 }
 
 td { border: 1px solid grey; text-align: center; }
+td.week { background: #64c; }
 
 td.off { background: grey; }
 
@@ -30,3 +31,5 @@ tr.ap-exams {
 }
 
 tr.vacation { padding: 20px 0; }
+
+td.scheduled[colspan="1"] { font-size: 80%; }

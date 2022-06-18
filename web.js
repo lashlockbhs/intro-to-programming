@@ -32,7 +32,7 @@ const fillTable = (calendar, syllabus) => {
 const weekRow = (w, syllabus) => {
   const tr = document.createElement("tr");
 
-  tr.appendChild(td(w.datesOfWeek(), {}));
+  tr.appendChild(td(w.datesOfWeek(), {class: "week"}));
 
   if (w.start.dayOfWeek == 2) dayOff(tr);
 
