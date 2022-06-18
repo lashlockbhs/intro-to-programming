@@ -30,25 +30,10 @@ const fillTable = (calendar, syllabus) => {
   });
 };
 
-const parseSyllabus = (data) => {
-  return data
-    .split(/\r?\n/)
-    .map((line) => {
-      if (line) {
-        const found = line.match(pat);
-        return { title: found[1], days: parseInt(found[2], 10) };
-      }
-    })
-    .filter((x) => x);
-};
-
-const isAP = (w, calendar) =>
-  w.start.equals(calendar.apExams.start) || w.end.equals(calendar.apExams.end);
-
 const weekRow = (w, calendar, syllabus) => {
   const tr = document.createElement("tr");
 
-  if (isAP(w, calendar)) {
+  if (w.isAP) {
     tr.classList.add("ap-exams");
   }
 

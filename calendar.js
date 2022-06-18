@@ -22,6 +22,10 @@ const monthName = (d) => MONTH_NAMES[d.month - 1];
 
 const date = Temporal.PlainDate.from;
 
+const between = (start, d, end) =>
+  Temporal.PlainDate.compare(start, d) <= 0 &&
+  Temporal.PlainDate.compare(d, end) <= 0;
+
 class Calendar {
   constructor(data) {
     this.firstDay = date(data.firstDay);
@@ -46,7 +50,7 @@ class Calendar {
     while (!d.equals(startOfSummer)) {
       if (this.isSchoolday(d)) {
         if (daysOff > 0) {
-          elements.push(new Week(days, w++));
+          elements.push(new Week(days, w++, this.apExams));
           days = [];
           if (daysOff > 3) {
             elements.push(new Vacation(daysOff, d));
@@ -59,7 +63,7 @@ class Calendar {
       }
       d = d.add({ days: 1 });
     }
-    elements.push(new Week(days));
+    elements.push(new Week(days, w, this.apExams));
     return elements;
   }
 
@@ -77,11 +81,12 @@ class Calendar {
 }
 
 class Week {
-  constructor(days, number) {
+  constructor(days, number, apExams) {
     this.days = days;
     this.number = number;
     this.start = days[0];
     this.end = days[days.length - 1];
+    this.isAP = days.some((d) => between(apExams.start, d, apExams.end));
     this.isWeek = true;
   }
 
