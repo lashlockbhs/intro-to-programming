@@ -4,3 +4,9 @@ pretty:
 
 serve:
 	./node_modules/.bin/esbuild web.js --servedir=. --outdir=./js --bundle --sourcemap
+
+build:
+	./node_modules/.bin/esbuild web.js --outdir=./js --bundle --sourcemap
+
+clean:
+	rm -rf ./js
