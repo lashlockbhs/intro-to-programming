@@ -2,6 +2,7 @@ files := index.html
 files += style.css
 files += calendar.json
 files += outline.txt
+files += $(wildcard *.png)
 files += js
 
 pretty:
