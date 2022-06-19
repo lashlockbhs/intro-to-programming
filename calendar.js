@@ -39,7 +39,7 @@ class Calendar {
     this.elements = this.parseYear();
   }
 
-  parseYear() {
+  parseYear = () => {
     let daysOff = 0;
     let days = [];
     let d = this.firstDay;
@@ -65,19 +65,13 @@ class Calendar {
     }
     elements.push(new Week(days, w, this.apExams));
     return elements;
-  }
+  };
 
-  isHoliday(d) {
-    return this.holidays.has(d.toString());
-  }
+  isHoliday = (d) => this.holidays.has(d.toString());
 
-  isWeekend(d) {
-    return d.dayOfWeek > 5;
-  }
+  isWeekend = (d) => d.dayOfWeek > 5;
 
-  isSchoolday(d) {
-    return !(this.isHoliday(d) || this.isWeekend(d));
-  }
+  isSchoolday = (d) => !(this.isHoliday(d) || this.isWeekend(d));
 }
 
 class Week {
@@ -90,24 +84,20 @@ class Week {
     this.isWeek = true;
   }
 
-  weekstring() {
-    return `${this.daysOfWeek()} (${this.datesOfWeek()})`;
-  }
+  weekstring = () => `${this.daysOfWeek()} (${this.datesOfWeek()})`;
 
-  daysOfWeek() {
-    return `${dayName(this.start)}-${dayName(this.end)}`;
-  }
+  daysOfWeek = () => `${dayName(this.start)}-${dayName(this.end)}`;
 
-  datesOfWeek() {
-    return this.start.month === this.end.month
+  datesOfWeek = () =>
+    this.start.month === this.end.month
       ? `${monthName(this.start)} ${this.start.day}-${this.end.day}`
       : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${
           this.end.day
         }`;
-  }
-  dump(dumper) {
+
+  dump = (dumper) => {
     dumper.week(this);
-  }
+  };
 }
 
 class Vacation {
@@ -117,11 +107,9 @@ class Vacation {
     this.isWeek = false;
   }
 
-  vacationString() {
-    return `${this.vacationLabel()} (${this.daysOff} days)`;
-  }
+  vacationString = () => `${this.vacationLabel()} (${this.daysOff} days)`;
 
-  vacationLabel() {
+  vacationLabel = () => {
     switch (this.dayAfter.month) {
       case 11:
         return "THANKSGIVING BREAK";
@@ -132,11 +120,11 @@ class Vacation {
       default:
         return "SPRING BREAK";
     }
-  }
+  };
 
-  dump(dumper) {
+  dump = (dumper) => {
     dumper.vacation(this);
-  }
+  };
 }
 
 export { Calendar };
