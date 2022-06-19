@@ -49,7 +49,10 @@ tr.vacation {
     padding: 20px 0;
 }
 
-td.scheduled[colspan="1"], td.off {
+td.scheduled[colspan="1"],
+td.scheduled[colspan="2"],
+td.off
+{
     font-size: 80%;
 }
 
