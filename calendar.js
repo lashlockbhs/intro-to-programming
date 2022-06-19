@@ -1,6 +1,7 @@
 import { Temporal } from "@js-temporal/polyfill";
 
 const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const dayName = (d) => DAY_NAMES[d.dayOfWeek - 1];
@@ -9,7 +10,9 @@ const monthName = (d) => MONTH_NAMES[d.month - 1];
 
 const date = Temporal.PlainDate.from;
 
-const between = (start, d, end) => Temporal.PlainDate.compare(start, d) <= 0 && Temporal.PlainDate.compare(d, end) <= 0;
+const compare = Temporal.PlainDate.compare;
+
+const between = (start, d, end) => compare(start, d) <= 0 && compare(d, end) <= 0;
 
 class Calendar {
   constructor(data) {
@@ -66,8 +69,9 @@ class Week {
     this.start = days[0];
     this.end = days[days.length - 1];
     this.isAP = days.some((d) => between(apExams.start, d, apExams.end));
-    this.isWeek = true;
   }
+
+  isWeek = true;
 
   weekstring = () => `${this.daysOfWeek()} (${this.datesOfWeek()})`;
 
@@ -87,8 +91,9 @@ class Vacation {
   constructor(daysOff, dayAfter) {
     this.daysOff = daysOff;
     this.dayAfter = dayAfter;
-    this.isWeek = false;
   }
+
+  isWeek = false;
 
   vacationString = () => `${this.vacationLabel()} (${this.daysOff} days)`;
 
