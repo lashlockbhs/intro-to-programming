@@ -1,14 +1,17 @@
 body {
-    width: 100%;
     font-family: "Gill Sans", sans-serif;
-    margin-top: 1in;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#container {
+    display: inline-block;
+    background: rgba(196, 128, 196, 0.1);
+    padding: 50px;
 }
 
 table {
-    margin: .5in auto;
-}
-
-h1 {
+    margin-top: 0.5in;
     text-align: center;
 }
 
@@ -58,4 +61,9 @@ td.off
 
 .extra {
     font-size: 60%;
+}
+
+p.codeLink {
+    text-align: right;
+    font-size: 80%;
 }
