@@ -1,5 +1,5 @@
 import { Calendar } from "./calendar.js";
-import { buildSyllabus } from "./syllabus.js";
+import { buildSyllabus, schedule } from "./syllabus.js";
 
 const pat = /^(.*)\s+\((\d+)\)$/;
 
@@ -8,7 +8,9 @@ const loadData = (calendar, syllabus) => {
     fetch(calendar)
       .then(jsonOrBarf)
       .then((data) => new Calendar(data)),
-    fetch(syllabus).then(textOrBarf).then(buildSyllabus),
+    fetch(syllabus)
+      .then(textOrBarf)
+      .then((x) => schedule(buildSyllabus(x))),
   ]).then((values) => fillTable(...values));
 };
 
@@ -43,14 +45,12 @@ const weekRow = (w, calendar, syllabus) => {
 
   if (w.isAP) {
     //tr.classList.add("ap-exams");
-    const cell = td("", {class: "week"});
+    const cell = td("", { class: "week" });
     cell.innerHTML = w.datesOfWeek() + "<br><span class='extra'>AP exams</span>";
     tr.appendChild(cell);
   } else {
     tr.appendChild(td(w.datesOfWeek(), { class: "week" }));
   }
-
-
 
   if (w.start.dayOfWeek == 2) dayOff(tr);
 
@@ -66,7 +66,7 @@ const weekRow = (w, calendar, syllabus) => {
       unscheduled(tr, consumed);
     }
     if (consumed < item.days) {
-      syllabus.unshift({ title: item.title, days: item.days - consumed });
+      syllabus.unshift(Object.assign(item, { days: item.days - consumed }));
     }
     days -= consumed;
   }
