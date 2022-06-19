@@ -11,5 +11,5 @@ mkdir -p "$webdir"
 cp -R "$@" $webdir
 cd $webdir
 git add .
-#git commit -m "Publish $dir $sha" .
+git commit -m "Publish $dir $sha" .
 git push
