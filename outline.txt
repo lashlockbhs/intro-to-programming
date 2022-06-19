@@ -80,15 +80,15 @@
 
     - Between types, e.g. ===, <, etc.
 
-- Expressions (5)
+- Expressions
 
-  - Simple expressions
+  - Simple (2)
 
     - A single value
 
     - Two values an an operator
 
-  - Complex expressions
+  - Complex (3)
 
     - Precedence
 
@@ -98,31 +98,61 @@
 
   - Values of expressions
 
-- Functions I (5)
+- Functions
 
-- Arrays (4)
+  - What are they? (1)
 
-  - Possible values
+  - Numeric (1)
 
-  - Syntax
+    - Various math functions: area of circle, volume of sphere, quadratic equation.
 
-  - A collection of values
+  - Boolean (1)
 
-  - Indexing (like strings)
+    - Random logical expressions like sleep_in
 
-  - Length
+  - String (1)
 
-- Functions II (5)
+    - Combining strings
 
-- Variables (5)
+    - Extracting characters from strings.
 
-  - Function parameters
+  - Combined (1)
 
-  - Simplifying expressions with constant variables - names for values
+- Arrays
 
-  - Variable variables - names that can change
+  - Values and syntax (1)
 
-  - Scope of variables.
+    - Indexing (1)
+
+      - Zero based
+
+      - .length property
+
+      - Up to .length - 1
+
+  - Looping over arrays (1)
+
+  - filter/map/reduce patters (2)
+
+- Functions
+
+  - Testing (5)
+
+- Variables
+
+  - Function parameters (1)
+
+  - Constant (1)
+
+    - Names for values
+
+    - Used to simplify expressions
+
+  - Changing (2)
+
+    - Names that can change
+
+  - Scope of variables. (1)
 
 - Control constructs (5)
 
@@ -138,18 +168,32 @@
 
   - Properties
 
+    - .length on strings and arrays is a property
+
   - Methods
 
 - 2D Graphics with Canvas (2)
 
+  - Reading docs at MDN
+
+  - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+
 - Project: 2D Graphics (7)
 
-- Animation (9)
+- Animation (4)
 
-- HTML Basics (5)
+- Project: Animation (5)
 
-- Project: HTML document (5)
+- HTML Basics (1)
 
-- CSS: make it pretty (5)
+- Project: HTML document (4)
+
+- CSS: make it pretty (1)
+
+- Project: Pretty document (4)
+
+- Dynamic HTML (1)
+
+- Project: Dynamic document (4)
 
 - Classes (10)
