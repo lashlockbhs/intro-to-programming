@@ -63,7 +63,12 @@ td.off
     font-size: 60%;
 }
 
-p.codeLink {
+div.codeLink {
     text-align: right;
-    font-size: 80%;
+    font-size: 12px;
+    margin-top: 1em;
+}
+
+div.codeLink * {
+    vertical-align: middle;
 }
