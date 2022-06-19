@@ -21,12 +21,11 @@ const buildSyllabus = (text) => {
   let indent = 0;
 
   // Stack contains the objects currenly being built with their level of
-  // indentation. When we see a new line if it is more deeply indented we add it
-  // as a child of the item at the top of the stack and then push it on the
-  // stack. When we see a new line with less then or the same indentation is the
-  // current top of the stack, we pop items off the stack until the top of the
-  // stack is less indented than the current line, and add it as a child to the
-  // item now at the top of the stack and push it on the stack.
+  // indentation. When we see a new line we want to add it to the first item on
+  // the stack that is less indented than the current line. So we pop items off
+  // the stack until the top of the stack meets that criteria and then add the
+  // item representing the current line as a child of the current top of the
+  // stack and then push this item (with it's indentation) onto the stack.
 
   // Dummy item that is less indented than all actual lines.
   let stack = [{ level: -1, item: { children: [] } }];
@@ -37,20 +36,40 @@ const buildSyllabus = (text) => {
     while (peek(stack).level >= p.level) {
       stack.pop();
     }
-    const item = { title: p.text, days: p.days };
+
+    const newItem = { title: p.text, days: p.days };
+    if (newItem.title.match(/^Project: /)) {
+      newItem.type = "project";
+    }
     const top = peek(stack).item;
     if (!("children" in top)) {
       top.children = [];
     }
-    top.children.push(item);
-    stack.push({ level: p.level, item: item });
+    top.children.push(newItem);
+    stack.push({ level: p.level, item: newItem });
   });
 
+  // Clear stack to dummy
   while (peek(stack).level >= 0) {
     stack.pop();
   }
-
   return peek(stack).item.children;
 };
 
-export { buildSyllabus };
+const schedule = (full) => full.flatMap((x) => topLevelItems(x, ""));
+
+const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
+
+const topLevelItems = (item, prefix) =>
+  item.days
+    ? [forSchedule(item, prefix)]
+    : item.children
+    ? item.children.flatMap((x) =>
+        topLevelItems(x, prefixed(prefix, item.title))
+      )
+    : [];
+
+const forSchedule = (item, prefix) =>
+  Object.assign(item, { title: prefixed(prefix, item.title) });
+
+export { buildSyllabus, schedule };
