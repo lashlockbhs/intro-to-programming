@@ -48,4 +48,4 @@ const showCalendar = (datafile, dumper) => {
   });
 };
 
-showCalendar("calendar.json", new Html());
+showCalendar("calendar.json", new Text());

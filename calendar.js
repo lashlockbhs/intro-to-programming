@@ -1,20 +1,7 @@
 import { Temporal } from "@js-temporal/polyfill";
 
 const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const MONTH_NAMES = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const dayName = (d) => DAY_NAMES[d.dayOfWeek - 1];
 
@@ -22,9 +9,7 @@ const monthName = (d) => MONTH_NAMES[d.month - 1];
 
 const date = Temporal.PlainDate.from;
 
-const between = (start, d, end) =>
-  Temporal.PlainDate.compare(start, d) <= 0 &&
-  Temporal.PlainDate.compare(d, end) <= 0;
+const between = (start, d, end) => Temporal.PlainDate.compare(start, d) <= 0 && Temporal.PlainDate.compare(d, end) <= 0;
 
 class Calendar {
   constructor(data) {
@@ -91,9 +76,7 @@ class Week {
   datesOfWeek = () =>
     this.start.month === this.end.month
       ? `${monthName(this.start)} ${this.start.day}-${this.end.day}`
-      : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${
-          this.end.day
-        }`;
+      : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${this.end.day}`;
 
   dump = (dumper) => {
     dumper.week(this);

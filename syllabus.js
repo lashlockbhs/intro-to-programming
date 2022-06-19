@@ -64,12 +64,9 @@ const topLevelItems = (item, prefix) =>
   item.days
     ? [forSchedule(item, prefix)]
     : item.children
-    ? item.children.flatMap((x) =>
-        topLevelItems(x, prefixed(prefix, item.title))
-      )
+    ? item.children.flatMap((x) => topLevelItems(x, prefixed(prefix, item.title)))
     : [];
 
-const forSchedule = (item, prefix) =>
-  Object.assign(item, { title: prefixed(prefix, item.title) });
+const forSchedule = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
 
 export { buildSyllabus, schedule };
