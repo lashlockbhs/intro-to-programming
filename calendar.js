@@ -1,4 +1,4 @@
-import { Temporal } from "@js-temporal/polyfill";
+import { Temporal } from "./js/@js-temporal/polyfill/dist/index.esm.js";
 
 const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
