@@ -1,6 +1,28 @@
 const peek = (stack) => stack[stack.length - 1];
 
-const lines = (data) => data.split(/\r?\n/).filter((s) => s.length > 0);
+function* lines(data) {
+  let current = null;
+  let m = null;
+  let continuation = null;
+
+  const raw = data.split(/\r?\n/).filter((s) => s.length > 0);
+
+  for (let line of raw) {
+    if ((m = line.match(/^(\s*)-\s+(.*?)\s*$/))) {
+      // Matches the beginning of an item
+      if (current !== null) yield current;
+      const [_, indent, text] = m;
+      current = `${indent}- ${text}`;
+      continuation = new RegExp(String.raw`^${indent} ( \S.*)\s*$`);
+    } else if (continuation !== null && (m = line.match(continuation))) {
+      // Matches a continuation of the current item.
+      const [_, text] = m;
+      current += text;
+    }
+    // Everything else is ignored.
+  }
+  if (current !== null) yield current;
+}
 
 const parseLine = (s) => {
   const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+)\))?\s*$/);
@@ -30,7 +52,7 @@ const buildSyllabus = (text) => {
   // Dummy item that is less indented than all actual lines.
   let stack = [{ level: -1, item: { children: [] } }];
 
-  lines(text).forEach((line) => {
+  for (const line of lines(text)) {
     const p = parseLine(line);
 
     while (peek(stack).level >= p.level) {
@@ -47,7 +69,7 @@ const buildSyllabus = (text) => {
     }
     top.children.push(newItem);
     stack.push({ level: p.level, item: newItem });
-  });
+  }
 
   // Clear stack to dummy
   while (peek(stack).level >= 0) {
