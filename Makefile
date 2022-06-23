@@ -21,7 +21,7 @@ pretty:
 	prettier -w *.js
 	tidy -i -w 80 -m --gnu-emacs yes --quiet yes *.html
 
-publish: build
+publish: all
 	./publish.sh $(files)
 
 clean:
