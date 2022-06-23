@@ -18,8 +18,8 @@ js/%.js: ./node_modules/%.js
 	$(esbuild) $< $(esbuild_opts) --outfile=$@
 
 pretty:
-	prettier -w *.js
-	tidy -i -w 80 -m --gnu-emacs yes --quiet yes *.html
+	prettier -w *.js *.css
+	tidy -config .tidyconfig *.html
 
 publish: all
 	./publish.sh $(files)

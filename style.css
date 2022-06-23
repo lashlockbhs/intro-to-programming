@@ -1,74 +1,73 @@
 body {
-    font-family: "Gill Sans", sans-serif;
-    margin-top: 50px;
-    text-align: center;
+  font-family: "Gill Sans", sans-serif;
+  margin-top: 50px;
+  text-align: center;
 }
 
 #container {
-    display: inline-block;
-    background: rgba(196, 128, 196, 0.1);
-    padding: 50px;
+  display: inline-block;
+  background: rgba(196, 128, 196, 0.1);
+  padding: 50px;
 }
 
 table {
-    margin-top: 0.5in;
-    text-align: center;
+  margin-top: 0.5in;
+  text-align: center;
 }
 
 td {
-    padding: 1em;
-    margin: 1em;
-    border: 1px solid grey;
-    text-align: center;
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid grey;
+  text-align: center;
 }
 
 td.week {
-    background: rgba(128, 128, 255, 0.2);
+  background: rgba(128, 128, 255, 0.2);
 }
 
 td.off {
-    background: grey;
-    color: rgba(255, 255, 255, 0.7);
+  background: grey;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 td.scheduled {
-    background: #408;
-    color: white;
+  background: #408;
+  color: white;
 }
 
 td.unscheduled {
-    background: #eeeeef;
+  background: #eeeeef;
 }
 
 td.project {
-    background: #40b;
+  background: #40b;
 }
 
 tr.ap-exams {
-    background: rgba(0, 0, 255, 0.5);
+  background: rgba(0, 0, 255, 0.5);
 }
 
 tr.vacation {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 td.scheduled[colspan="1"],
 td.scheduled[colspan="2"],
-td.off
-{
-    font-size: 80%;
+td.off {
+  font-size: 80%;
 }
 
 .extra {
-    font-size: 60%;
+  font-size: 60%;
 }
 
 div.codeLink {
-    text-align: right;
-    font-size: 12px;
-    margin-top: 1em;
+  text-align: right;
+  font-size: 12px;
+  margin-top: 1em;
 }
 
 div.codeLink * {
-    vertical-align: middle;
+  vertical-align: middle;
 }
