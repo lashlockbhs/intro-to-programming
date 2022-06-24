@@ -1,6 +1,9 @@
 const peek = (stack) => stack[stack.length - 1];
 
 function* lines(data) {
+  // Translate raw lines into virtual lines that allow for wrapped lines
+  // indented the way Emacs indents them.
+
   let current = null;
   let m = null;
   let continuation = null;
@@ -25,6 +28,8 @@ function* lines(data) {
 }
 
 const parseLine = (s) => {
+  // Parse a virtual line returned by lines into an item.
+
   const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+)\))?\s*$/);
   if (match) {
     const [_, indent, text, days] = match;
@@ -71,7 +76,7 @@ const buildSyllabus = (text) => {
     stack.push({ level: p.level, item: newItem });
   }
 
-  // Clear stack to dummy
+  // Close all open items by clearing the stack back down to dummy item.
   while (peek(stack).level >= 0) {
     stack.pop();
   }
