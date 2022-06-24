@@ -1,5 +1,46 @@
 - Intro to Intro (1)
 
+  - Introductions
+
+    - Me to you
+
+    - You to me. Index card with:
+
+      - Preferred name on one side in big letters
+
+      - Answers to questions on the board on the back.
+
+  - Class policies
+
+    - No phones out during class. (Theory: buy 10-slot charging station. (e.g.
+      https://www.amazon.com/Adjustable-Dividers-Charging-Multiple-Organizer/dp/B01AW9Z9ZE/)
+      First-come, first-served. All other phones must stay in pocket or bag
+      during class or will be taken and not charged.)
+
+    - No games and no social media. Computer is for doing work and research
+      related to your work.
+
+    - Grades:
+
+    - Homework:
+
+    - Collaboration
+
+      - You will work in pairs a lot. It is important to switch between
+        "driving" and "navigating".
+
+      - Recurse Center rules.
+
+    - Coding, open source, and working together:
+
+      - Write your own code.
+
+      - If you find useful snippets of code on the internet, cite it in a comment.
+
+    - No food near computers.
+
+    - Masks: encouraged and school policies will be enforced.
+
   - Things we can do with computers
 
     - Count stuff, i.e. Math
@@ -22,7 +63,13 @@
 
     - Why is it hard?
 
-    - What can you do when you can program?
+      - There are a lot of details that you have to get right
+
+      - It is very abstract.
+
+      - Those two things are usually at the opposite end of the mental spectrum.
+
+    - What can you do when you know how to program?
 
       - Understand, at least a bit, how all this stuff around us works?
 
@@ -134,9 +181,41 @@
 
   - filter/map/reduce patters (2)
 
-- Functions
+    - count item
 
-  - Testing (5)
+    - min
+
+    - max
+
+    - select vowels
+
+    - select not vowels
+
+    - select even indices
+
+    - collect pairs (hmmm, this is hard to do with f/m/r functions)
+
+    - count predicate, e.g. vowels
+
+- Testing (5)
+
+- Project: Caesar Cipher (5)
+
+  - Function that handles a single character rotation.
+
+  - Function that handles a string of only lowercase letters.
+
+  - Add support for uppercase latters.
+
+  - Allow non-letter characters which are passed through unchanged.
+
+  - Write encrypt/decrypt function that work off the same key.
+
+  - Use a string key rather than a single number where each key letter is added to the plaintext letter, cycling.
+
+  - Any other enhancements to encoding, decoding. (Must be roundtrip.)
+
+  - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
 
 - Variables
 
@@ -154,7 +233,7 @@
 
   - Scope of variables. (1)
 
-- Control constructs (5)
+- Control constructs (3)
 
   - if
 
@@ -162,7 +241,9 @@
 
   - for
 
-- Function as values (5)
+- Writing clear code (2)
+
+- Function as values (4)
 
 - Objects (9)
 
@@ -197,3 +278,5 @@
 - Project: Dynamic document (4)
 
 - Classes (10)
+
+- APIs
