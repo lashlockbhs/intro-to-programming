@@ -27,7 +27,7 @@ class Calendar {
     this.elements = this.parseYear();
   }
 
-  parseYear = () => {
+  parseYear() {
     let daysOff = 0;
     let days = [];
     let d = this.firstDay;
@@ -53,13 +53,15 @@ class Calendar {
     }
     elements.push(new Week(days, w, this.apExams));
     return elements;
-  };
+  }
 
-  isHoliday = (d) => this.holidays.has(d.toString());
+  isHoliday(d) {
+    return this.holidays.has(d.toString());
+  }
 
-  isWeekend = (d) => d.dayOfWeek > 5;
-
-  isSchoolday = (d) => !(this.isHoliday(d) || this.isWeekend(d));
+  isSchoolday(d) {
+    return d.dayOfWeek < 6 && !this.isHoliday(d);
+  }
 }
 
 class Week {
@@ -73,18 +75,23 @@ class Week {
 
   isWeek = true;
 
-  weekstring = () => `${this.daysOfWeek()} (${this.datesOfWeek()})`;
+  weekstring() {
+    return `${this.daysOfWeek()} (${this.datesOfWeek()})`;
+  }
 
-  daysOfWeek = () => `${dayName(this.start)}-${dayName(this.end)}`;
+  daysOfWeek() {
+    return `${dayName(this.start)}-${dayName(this.end)}`;
+  }
 
-  datesOfWeek = () =>
-    this.start.month === this.end.month
+  datesOfWeek() {
+    return this.start.month === this.end.month
       ? `${monthName(this.start)} ${this.start.day}-${this.end.day}`
       : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${this.end.day}`;
+  }
 
-  dump = (dumper) => {
+  dump(dumper) {
     dumper.week(this);
-  };
+  }
 }
 
 class Vacation {
@@ -95,9 +102,11 @@ class Vacation {
 
   isWeek = false;
 
-  vacationString = () => `${this.vacationLabel()} (${this.daysOff} days)`;
+  vacationString() {
+    return `${this.vacationLabel()} (${this.daysOff} days)`;
+  }
 
-  vacationLabel = () => {
+  vacationLabel() {
     switch (this.dayAfter.month) {
       case 11:
         return "THANKSGIVING BREAK";
@@ -108,11 +117,11 @@ class Vacation {
       default:
         return "SPRING BREAK";
     }
-  };
+  }
 
-  dump = (dumper) => {
+  dump(dumper) {
     dumper.vacation(this);
-  };
+  }
 }
 
 export { Calendar };
