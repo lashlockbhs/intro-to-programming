@@ -245,7 +245,7 @@
 
 - Function as values (4)
 
-- Objects (9)
+- Objects (5)
 
   - Properties
 
@@ -277,6 +277,6 @@
 
 - Project: Dynamic document (4)
 
-- Classes (10)
+- Classes (9)
 
 - APIs
