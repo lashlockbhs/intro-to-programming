@@ -85,8 +85,6 @@ const buildSyllabus = (text) => {
 
 const schedule = (full) => full.flatMap((x) => topLevelItems(x, ""));
 
-const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
-
 const topLevelItems = (item, prefix) =>
   item.days
     ? [forSchedule(item, prefix)]
@@ -95,5 +93,7 @@ const topLevelItems = (item, prefix) =>
     : [];
 
 const forSchedule = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
+
+const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
 
 export { buildSyllabus, schedule };
