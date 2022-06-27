@@ -3,15 +3,8 @@ import { buildSyllabus, schedule } from "./syllabus.js";
 
 const pat = /^(.*)\s+\((\d+)\)$/;
 
-const loadData = (calendar, syllabus) => {
-  Promise.all([
-    fetch(calendar)
-      .then(jsonOrBarf)
-      .then((data) => new Calendar(data)),
-    fetch(syllabus)
-      .then(textOrBarf)
-      .then((x) => schedule(buildSyllabus(x))),
-  ]).then((values) => fillTable(...values));
+const loadData = async (calendar, syllabus) => {
+  fillTable(await toCalendar(fetch(calendar)), await toSchedule(fetch(syllabus)));
 };
 
 const jsonOrBarf = (r) => {
@@ -27,6 +20,10 @@ const textOrBarf = (r) => {
   }
   return r.text();
 };
+
+const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calendar(x));
+
+const toSchedule = (fetched) => fetched.then(textOrBarf).then((x) => schedule(buildSyllabus(x)));
 
 const fillTable = (calendar, syllabus) => {
   const tbody = document.getElementById("body");
