@@ -1,12 +1,13 @@
 const peek = (stack) => stack[stack.length - 1];
 
+/*
+ * Translate raw lines into virtual lines that allow for wrapped lines indented
+ * the way Emacs indents them.
+ */
 function* lines(data) {
-  // Translate raw lines into virtual lines that allow for wrapped lines
-  // indented the way Emacs indents them.
-
   let current = null;
   let m = null;
-  let continuation = null;
+  let continuationPat = null;
 
   const raw = data.split(/\r?\n/).filter((s) => s.length > 0);
 
@@ -16,8 +17,8 @@ function* lines(data) {
       if (current !== null) yield current;
       const [_, indent, text] = m;
       current = `${indent}- ${text}`;
-      continuation = new RegExp(String.raw`^${indent} ( \S.*)\s*$`);
-    } else if (continuation !== null && (m = line.match(continuation))) {
+      continuationPat = new RegExp(String.raw`^${indent} ( \S.*)\s*$`);
+    } else if (continuationPat !== null && (m = line.match(continuationPat))) {
       // Matches a continuation of the current item.
       const [_, text] = m;
       current += text;
@@ -27,9 +28,10 @@ function* lines(data) {
   if (current !== null) yield current;
 }
 
+/*
+ * Parse a virtual line returned by lines into an item.
+ */
 const parseLine = (s) => {
-  // Parse a virtual line returned by lines into an item.
-
   const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+)\))?\s*$/);
   if (match) {
     const [_, indent, text, days] = match;
@@ -44,7 +46,10 @@ const parseLine = (s) => {
   }
 };
 
-const buildSyllabus = (text) => {
+/*
+ * Build the full outline by parsing the given text.
+ */
+const outline = (text) => {
   let indent = 0;
 
   // Stack contains the objects currenly being built with their level of
@@ -83,17 +88,20 @@ const buildSyllabus = (text) => {
   return peek(stack).item.children;
 };
 
-const schedule = (full) => full.flatMap((x) => topLevelItems(x, ""));
+/*
+ * From the full outline, build a schedule of the items with days specified.
+ */
+const schedule = (full) => full.flatMap((x) => withDays(x, ""));
 
-const topLevelItems = (item, prefix) =>
+const withDays = (item, prefix) =>
   item.days
-    ? [forSchedule(item, prefix)]
+    ? [addPrefix(item, prefix)]
     : item.children
-    ? item.children.flatMap((x) => topLevelItems(x, prefixed(prefix, item.title)))
+    ? item.children.flatMap((x) => withDays(x, prefixed(prefix, item.title)))
     : [];
 
-const forSchedule = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
+const addPrefix = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
 
 const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
 
-export { buildSyllabus, schedule };
+export { outline, schedule };

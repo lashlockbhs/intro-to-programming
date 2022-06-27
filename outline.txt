@@ -197,9 +197,9 @@
 
     - count predicate, e.g. vowels
 
-- Testing (5)
+- Debugging and Testing (1)
 
-- Project: Caesar Cipher (5)
+- Project: Caesar Cipher (4)
 
   - Function that handles a single character rotation.
 
@@ -280,3 +280,13 @@
 - Classes (9)
 
 - APIs
+
+- Debugging (5)
+
+- Project: Genetic Art (9)
+
+- Project: Monte Carlo Simulation (10)
+
+- Events (4)
+
+- Project: Video Game (9)

@@ -1,5 +1,5 @@
 import { Calendar } from "./calendar.js";
-import { buildSyllabus, schedule } from "./syllabus.js";
+import { outline, schedule } from "./syllabus.js";
 
 const pat = /^(.*)\s+\((\d+)\)$/;
 
@@ -23,7 +23,7 @@ const textOrBarf = (r) => {
 
 const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calendar(x));
 
-const toSchedule = (fetched) => fetched.then(textOrBarf).then((x) => schedule(buildSyllabus(x)));
+const toSchedule = (fetched) => fetched.then(textOrBarf).then((x) => schedule(outline(x)));
 
 const fillTable = (calendar, syllabus) => {
   const tbody = document.getElementById("body");
