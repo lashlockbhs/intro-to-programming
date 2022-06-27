@@ -62,12 +62,26 @@ td.off {
   font-size: 60%;
 }
 
-div.codeLink {
-  text-align: right;
+#footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#footer div {
+  flex-grow: 1;
   font-size: 12px;
   margin-top: 1em;
 }
 
-div.codeLink * {
+#footer div * {
   vertical-align: middle;
+}
+
+div.codeLink {
+  text-align: right;
+}
+
+#length {
+  text-align: left;
 }

@@ -55,6 +55,14 @@ class Calendar {
     return elements;
   }
 
+  get weeks() {
+    return this.elements.reduce((acc, w) => acc + (w.isWeek ? 1 : 0), 0);
+  }
+
+  get schoolDays() {
+    return this.elements.reduce((acc, w) => acc + (w.isWeek ? w.schoolDays : 0), 0);
+  }
+
   isHoliday(d) {
     return this.holidays.has(d.toString());
   }
@@ -71,6 +79,7 @@ class Week {
     this.start = days[0];
     this.end = days[days.length - 1];
     this.isAP = days.some((d) => between(apExams.start, d, apExams.end));
+    this.schoolDays = days.length;
   }
 
   isWeek = true;

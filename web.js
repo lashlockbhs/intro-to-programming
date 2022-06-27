@@ -35,6 +35,8 @@ const fillTable = (calendar, syllabus) => {
       tbody.appendChild(vacationRow(e));
     }
   });
+
+  document.getElementById("length").innerText = `${calendar.weeks} weeks; ${calendar.schoolDays} days`;
 };
 
 const weekRow = (w, calendar, syllabus) => {
