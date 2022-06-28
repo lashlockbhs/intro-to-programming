@@ -1,8 +1,6 @@
 import { Calendar } from "./calendar.js";
 import { outline, schedule } from "./syllabus.js";
 
-const pat = /^(.*)\s+\((\d+)\)$/;
-
 const loadData = async (calendar, syllabus) => {
   fillTable(await toCalendar(fetch(calendar)), await toSchedule(fetch(syllabus)));
 };
@@ -29,27 +27,20 @@ const fillTable = (calendar, syllabus) => {
   const tbody = document.getElementById("body");
 
   calendar.elements.forEach((e) => {
-    if ("weekstring" in e) {
+    if (e.isWeek) {
       tbody.appendChild(weekRow(e, calendar, syllabus));
     } else {
       tbody.appendChild(vacationRow(e));
     }
   });
 
-  document.getElementById("length").innerText = `${calendar.weeks} weeks; ${calendar.schoolDays} days`;
+  document.getElementById("length").innerText = `${calendar.weeks} school weeks; ${calendar.schoolDays} school days`;
 };
 
 const weekRow = (w, calendar, syllabus) => {
   const tr = document.createElement("tr");
 
-  if (w.isAP) {
-    //tr.classList.add("ap-exams");
-    const cell = td("", { class: "week" });
-    cell.innerHTML = w.datesOfWeek() + "<br><span class='extra'>AP exams</span>";
-    tr.appendChild(cell);
-  } else {
-    tr.appendChild(td(w.datesOfWeek(), { class: "week" }));
-  }
+  tr.appendChild(dateCell(w));
 
   if (w.start.dayOfWeek == 2) dayOff(tr);
 
@@ -72,6 +63,16 @@ const weekRow = (w, calendar, syllabus) => {
   if (days > 0) unscheduled(tr, days);
   if (w.end.dayOfWeek == 4) dayOff(tr);
   return tr;
+};
+
+const dateCell = (w) => {
+  if (w.isAP) {
+    const cell = td("", { class: "week" });
+    cell.innerHTML = w.datesOfWeek() + "<br><span class='extra'>AP exams</span>";
+    return cell;
+  } else {
+    return td(w.datesOfWeek(), { class: "week" });
+  }
 };
 
 const dayOff = (tr) => {
