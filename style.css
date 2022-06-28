@@ -53,7 +53,21 @@ tr.ap-exams {
 }
 
 tr.vacation {
-  padding: 20px 0;
+  padding: 20px;
+}
+
+tr.unit {
+  padding: 0;
+}
+
+tr.spacer {
+  height: 20px;
+}
+
+tr.unit td {
+  padding: 3px;
+  background: rgba(0, 0, 255, 0.25);
+  color: #00007f;
 }
 
 td.scheduled[colspan="1"],

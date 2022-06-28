@@ -30,7 +30,7 @@ const fillTable = (calendar, syllabus, units) => {
 
   const weeks = calendar.elements;
 
-  units.forEach((unit, i) => {
+  units.forEach((unit, unitNum) => {
     let toFill = [];
     let count = 0;
     while (count < unit.weeks) {
@@ -41,16 +41,23 @@ const fillTable = (calendar, syllabus, units) => {
 
     const lessons = [...unit.children];
 
-    toFill.forEach((e) => {
+    let first = true;
+    toFill.forEach((e, i) => {
       if (e.isWeek) {
-        tbody.appendChild(weekRow(e, calendar, lessons));
+        if (first) {
+          tbody.appendChild(spacerRow());
+          tbody.appendChild(unitRow(unit));
+        }
+        tbody.appendChild(weekRow(e, calendar, lessons, unit, first));
+        first = false;
       } else {
+        tbody.appendChild(spacerRow());
         tbody.appendChild(vacationRow(e));
       }
     });
 
     if (lessons.length > 0) {
-      alert(`Overflow in unit ${i + 1}: ${JSON.stringify(lessons)}`);
+      alert(`Overflow in unit ${unitNum + 1}: ${JSON.stringify(lessons)}`);
     }
   });
 
@@ -59,7 +66,20 @@ const fillTable = (calendar, syllabus, units) => {
   document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
-const weekRow = (w, calendar, lessons) => {
+const spacerRow = () => {
+  const tr = document.createElement("tr");
+  tr.setAttribute("class", "spacer");
+  return tr;
+};
+
+const unitRow = (unit) => {
+  const tr = document.createElement("tr");
+  tr.setAttribute("class", "unit");
+  tr.appendChild(td(unit.title, { colspan: "6" }));
+  return tr;
+};
+
+const weekRow = (w, calendar, lessons, unit, isFirst) => {
   const tr = document.createElement("tr");
 
   tr.appendChild(dateCell(w));
