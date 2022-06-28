@@ -32,15 +32,20 @@ function* lines(data) {
  * Parse a virtual line returned by lines into an item.
  */
 const parseLine = (s) => {
-  const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+)\))?\s*$/);
+  const match = s.match(/^(\s*)-\s+(.*?)(?: \(((?:0\.)?\d+(?: (weeks))?)\))?\s*$/);
   if (match) {
-    const [_, indent, text, days] = match;
+    const [_, indent, text, days, weeks] = match;
     const parsed = {
       level: indent.length,
       text: text,
     };
     if (days) {
-      parsed.days = Number.parseFloat(days, 10);
+      if (weeks) {
+        parsed.weeks = Number.parseFloat(days, 10);
+        console.log(`Setting weeks to ${parsed.weeks}`);
+      } else {
+        parsed.days = Number.parseFloat(days, 10);
+      }
     }
     return parsed;
   }
@@ -69,7 +74,7 @@ const outline = (text) => {
       stack.pop();
     }
 
-    const newItem = { title: p.text, days: p.days };
+    const newItem = { title: p.text, days: p.days, weeks: p.weeks };
     if (newItem.title.match(/^Project: /)) {
       newItem.type = "project";
     }
