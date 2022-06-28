@@ -1,292 +1,306 @@
-- Intro to Intro (1)
+- Unit: Beginning Javascript (7 weeks)
 
-  - Introductions
+  - Intro to Intro (1)
 
-    - Me to you
+    - Introductions
 
-    - You to me. Index card with:
+      - Me to you
 
-      - Preferred name on one side in big letters
+      - You to me. Index card with:
 
-      - Answers to questions on the board on the back.
+        - Preferred name on one side in big letters
 
-  - Class policies
+        - Answers to questions on the board on the back.
 
-    - No phones out during class. (Theory: buy 10-slot charging station. (e.g.
-      https://www.amazon.com/Adjustable-Dividers-Charging-Multiple-Organizer/dp/B01AW9Z9ZE/)
-      First-come, first-served. All other phones must stay in pocket or bag
-      during class or will be taken and not charged.)
+    - Class policies
 
-    - No games and no social media. Computer is for doing work and research
-      related to your work.
+      - No phones out during class. (Theory: buy 10-slot charging station. (e.g.
+        https://www.amazon.com/Adjustable-Dividers-Charging-Multiple-Organizer/dp/B01AW9Z9ZE/)
+        First-come, first-served. All other phones must stay in pocket or bag
+        during class or will be taken and not charged.)
 
-    - Grades:
+      - No games and no social media. Computer is for doing work and research
+        related to your work.
 
-    - Homework:
+      - Grades:
 
-    - Collaboration
+      - Homework:
 
-      - You will work in pairs a lot. It is important to switch between
-        "driving" and "navigating".
+      - Collaboration
 
-      - Recurse Center rules.
+        - You will often work in pairs a lot. It is important to switch between
+          "driving" and "navigating".
 
-    - Coding, open source, and working together:
+        - Recurse Center rules. https://www.recurse.com/social-rules
 
-      - Write your own code.
+      - Coding, open source, and working together:
 
-      - If you find useful snippets of code on the internet, cite it in a comment.
+        - Write your own code. (When pairing, pair turns in the same code.)
 
-    - No food near computers.
+        - If you find useful snippets of code on the internet, cite it in a comment.
 
-    - Masks: encouraged and school policies will be enforced.
+      - No food near computers.
 
-  - Things we can do with computers
+      - Masks: encouraged and school policies will be enforced.
 
-    - Count stuff, i.e. Math
+    - Things we can do with computers
 
-    - Text
+      - Count stuff, i.e. Math
 
-    - Graphics
+      - Text
 
-    - Video
+      - Graphics
 
-    - Games
+      - Video
 
-    - Communicate (with text, graphics, video, etc.)
+      - Games
 
-    - What else?
+      - Communicate (with text, graphics, video, etc.)
 
-  - What is programming?
+      - What else?
 
-    - Why is it fun?
+    - What is programming?
 
-    - Why is it hard?
+      - Why is it fun?
 
-      - There are a lot of details that you have to get right
+      - Why is it hard?
 
-      - It is very abstract.
+        - There are a lot of details that you have to get right
 
-      - Those two things are usually at the opposite end of the mental spectrum.
+        - It is very abstract.
 
-    - What can you do when you know how to program?
+        - Those two things are usually at the opposite end of the mental spectrum.
 
-      - Understand, at least a bit, how all this stuff around us works?
+      - What can you do when you know how to program?
 
-      - Build tools to make your life better.
+        - Understand, at least a bit, how all this stuff around us works?
 
-- What is data? (1)
+        - Build tools to make your life better.
 
-  - What can we do with it?
+  - What is data? (1)
 
-    - Render it: play a video, display text, etc.
+    - What can we do with it?
 
-    - Store it
+      - Render it: play a video, display text, etc.
 
-    - Send and receive it
+      - Store it
 
-    - Combine and transform it to make new data
+      - Send and receive it
 
-  - What is a data type?
+      - Combine and transform it to make new data
 
-    - A set of possible values
+    - What is a data type?
 
-    - Syntax - how you write it
+      - A set of possible values
 
-    - Operators - what you can do with it
+      - Syntax - how you write it
 
-    - Expressions - combinatios of values and operators
+      - Operators - what you can do with it
 
-- First three data types (3)
+      - Expressions - combinatios of values and operators
 
-  - Numbers
+  - First three data types (3)
 
-    - Possible values
+    - Numbers
 
-    - Syntax
+      - Possible values
 
-  - Strings
+      - Syntax
 
-    - Possible values
+    - Strings
 
-    - Syntax
+      - Possible values
 
-  - Booleans
+      - Syntax
 
-    - Possible values
+    - Booleans
 
-    - Syntax
+      - Possible values
 
-  - Operators
+      - Syntax
 
-    - On numbers: +, -, *, /
+    - Operators
 
-    - On strings: +, []
+      - On numbers: +, -, *, /
 
-    - On booleans: &&, ||, !
+      - On strings: +, []
 
-    - Between types, e.g. ===, <, etc.
+      - On booleans: &&, ||, !
 
-- Expressions
+      - Between types, e.g. ===, <, etc.
 
-  - Simple (2)
+  - Expressions
 
-    - A single value
+    - Simple (2)
 
-    - Two values an an operator
+      - A single value
 
-  - Complex (3)
+      - Two values an an operator
 
-    - Precedence
+    - Complex (3)
 
-    - Grouping: ()
+      - Precedence
 
-  - Types of expressions
+      - Grouping: ()
 
-  - Values of expressions
+    - Types of expressions
 
-- Functions
+    - Values of expressions
 
-  - What are they? (1)
+  - Functions
 
-  - Numeric (1)
+    - What are they? (1)
 
-    - Various math functions: area of circle, volume of sphere, quadratic equation.
+    - Numeric (1)
 
-  - Boolean (1)
+      - Various math functions: area of circle, volume of sphere, quadratic equation.
 
-    - Random logical expressions like sleep_in
+    - Boolean (1)
 
-  - String (1)
+      - Random logical expressions like sleep_in
 
-    - Combining strings
+    - String (1)
 
-    - Extracting characters from strings.
+      - Combining strings
 
-  - Combined (1)
+      - Extracting characters from strings.
 
-- Arrays
+    - Combined (1)
 
-  - Values and syntax (1)
+  - Arrays
 
-    - Indexing (1)
+    - Values and syntax (1)
 
-      - Zero based
+      - Indexing (1)
 
-      - .length property
+        - Zero based
 
-      - Up to .length - 1
+        - .length property
 
-  - Looping over arrays (1)
+        - Up to .length - 1
 
-  - filter/map/reduce patters (2)
+    - Looping over arrays (1)
 
-    - count item
+    - filter/map/reduce patters (2)
 
-    - min
+      - count item
 
-    - max
+      - min
 
-    - select vowels
+      - max
 
-    - select not vowels
+      - select vowels
 
-    - select even indices
+      - select not vowels
 
-    - collect pairs (hmmm, this is hard to do with f/m/r functions)
+      - select even indices
 
-    - count predicate, e.g. vowels
+      - collect pairs (hmmm, this is hard to do with f/m/r functions)
 
-- Debugging and Testing (1)
+      - count predicate, e.g. vowels
 
-- Project: Caesar Cipher (4)
+  - Variables
 
-  - Function that handles a single character rotation.
+    - Function parameters (1)
 
-  - Function that handles a string of only lowercase letters.
+    - Constant (1)
 
-  - Add support for uppercase latters.
+      - Names for values
 
-  - Allow non-letter characters which are passed through unchanged.
+      - Used to simplify expressions
 
-  - Write encrypt/decrypt function that work off the same key.
+    - Changing (2)
 
-  - Use a string key rather than a single number where each key letter is added to the plaintext letter, cycling.
+      - Names that can change
 
-  - Any other enhancements to encoding, decoding. (Must be roundtrip.)
+    - Scope of variables. (1)
 
-  - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
+  - Debugging and Testing (1)
 
-- Variables
+  - Project: Caesar Cipher (4)
 
-  - Function parameters (1)
+    - Function that handles a single character rotation.
 
-  - Constant (1)
+    - Function that handles a string of only lowercase letters.
 
-    - Names for values
+    - Add support for uppercase latters.
 
-    - Used to simplify expressions
+    - Allow non-letter characters which are passed through unchanged.
 
-  - Changing (2)
+    - Write encrypt/decrypt function that work off the same key.
 
-    - Names that can change
+    - Use a string key rather than a single number where each key letter is added to the plaintext letter, cycling.
 
-  - Scope of variables. (1)
+    - Any other enhancements to encoding, decoding. (Must be roundtrip.)
 
-- Control constructs (3)
+    - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
 
-  - if
+  - Control constructs (3)
 
-  - while
+    - if
 
-  - for
+    - while
 
-- Writing clear code (2)
+    - for
 
-- Function as values (4)
+  - Writing clear code (2)
 
-- Objects (5)
+- Unit: More Javascript (7 weeks)
 
-  - Properties
+  - Functions as values (4)
 
-    - .length on strings and arrays is a property
+  - Objects (5)
 
-  - Methods
+    - Properties
 
-- 2D Graphics with Canvas (2)
+      - .length on strings and arrays is a property
 
-  - Reading docs at MDN
+    - Methods
 
-  - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+  - 2D Graphics with Canvas (2)
 
-- Project: 2D Graphics (7)
+    - Reading docs at MDN
 
-- Animation (4)
+    - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 
-- Project: Animation (5)
+  - Project: 2D Graphics (7)
 
-- HTML Basics (1)
+  - Animation (4)
 
-- Project: HTML document (4)
+  - Project: Animation (5)
 
-- CSS: make it pretty (1)
+- Unit: The Web (3 weeks)
 
-- Project: Pretty document (4)
+  - HTML Basics (1)
 
-- Dynamic HTML (1)
+  - Project: HTML document (4)
 
-- Project: Dynamic document (4)
+  - CSS: make it pretty (1)
 
-- Classes (9)
+  - Project: Pretty document (4)
 
-- APIs
+  - Dynamic HTML (1)
 
-- Debugging (5)
+  - Project: Dynamic document (4)
 
-- Project: Genetic Art (9)
+- Unit: Object orientation (7 weeks)
 
-- Project: Monte Carlo Simulation (10)
+  - Classes (9)
 
-- Events (4)
+  - APIs
 
-- Project: Video Game (9)
+  - Debugging (5)
+
+  - Project: Genetic Art (9)
+
+  - Recursion (5)
+
+  - Project: Monte Carlo Simulation (10)
+
+  - Events (4)
+
+- Unit: ??? (6 weeks)
+
+- Unit: ??? (8 weeks)
+
+  - Project: Video Game (9)
