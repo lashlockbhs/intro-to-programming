@@ -65,7 +65,7 @@ tr.spacer {
 }
 
 tr.unit td {
-  padding: 3px;
+  padding: 6px 20px;
   background: rgba(0, 0, 255, 0.25);
   color: #00007f;
 }

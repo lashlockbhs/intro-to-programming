@@ -66,6 +66,8 @@ const outline = (text) => {
   // Dummy item that is less indented than all actual lines.
   let stack = [{ level: -1, item: { children: [] } }];
 
+  let unitNum = 1;
+
   for (const line of lines(text)) {
     const p = parseLine(line);
 
@@ -77,6 +79,13 @@ const outline = (text) => {
     if (newItem.title.match(/^Project: /)) {
       newItem.type = "project";
     }
+
+    if (newItem.title.match(/^Unit: /)) {
+      newItem.type = "unit";
+      newItem.unit = unitNum++;
+      newItem.title = newItem.title.substring("Unit: ".length);
+    }
+
     const top = peek(stack).item;
     if (!("children" in top)) {
       top.children = [];

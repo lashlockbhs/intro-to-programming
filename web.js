@@ -75,7 +75,7 @@ const spacerRow = () => {
 const unitRow = (unit) => {
   const tr = document.createElement("tr");
   tr.setAttribute("class", "unit");
-  tr.appendChild(td(unit.title, { colspan: "6" }));
+  tr.appendChild(td(`Unit ${unit.unit}: ${unit.title}`, { colspan: "6" }));
   return tr;
 };
 
