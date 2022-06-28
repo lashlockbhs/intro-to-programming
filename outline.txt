@@ -28,7 +28,7 @@
 
       - Collaboration
 
-        - You will often work in pairs a lot. It is important to switch between
+        - You will often work in pairs. It is important to switch between
           "driving" and "navigating".
 
         - Recurse Center rules. https://www.recurse.com/social-rules
@@ -295,11 +295,11 @@
 
   - Recursion (5)
 
+- Unit: Simulation (6 weeks)
+
   - Project: Monte Carlo Simulation (10)
 
   - Events (4)
-
-- Unit: ??? (6 weeks)
 
 - Unit: ??? (8 weeks)
 

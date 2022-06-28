@@ -42,7 +42,6 @@ const parseLine = (s) => {
     if (days) {
       if (weeks) {
         parsed.weeks = Number.parseFloat(days, 10);
-        console.log(`Setting weeks to ${parsed.weeks}`);
       } else {
         parsed.days = Number.parseFloat(days, 10);
       }
@@ -94,9 +93,11 @@ const outline = (text) => {
 };
 
 /*
- * From the full outline, build a schedule of the items with days specified.
+ * From the full outline, build a schedule of those items with days specified.
  */
-const schedule = (full) => full.flatMap((x) => withDays(x, ""));
+const schedule = (items) => items.flatMap((x) => withDays(x, ""));
+
+const units = (full) => full.map((unit) => Object.assign(unit, { children: schedule(unit.children || []) }));
 
 const withDays = (item, prefix) =>
   item.days
@@ -109,4 +110,4 @@ const addPrefix = (item, prefix) => Object.assign(item, { title: prefixed(prefix
 
 const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
 
-export { outline, schedule };
+export { outline, schedule, units };

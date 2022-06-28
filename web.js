@@ -1,8 +1,8 @@
 import { Calendar } from "./calendar.js";
-import { outline, schedule } from "./syllabus.js";
+import { outline, schedule, units } from "./syllabus.js";
 
 const loadData = async (calendar, syllabus) => {
-  fillTable(await toCalendar(fetch(calendar)), await toSchedule(fetch(syllabus)));
+  fillTable(await toCalendar(fetch(calendar)), await toSchedule(fetch(syllabus)), await toUnits(fetch(syllabus)));
 };
 
 const jsonOrBarf = (r) => {
@@ -23,21 +23,43 @@ const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calenda
 
 const toSchedule = (fetched) => fetched.then(textOrBarf).then((x) => schedule(outline(x)));
 
-const fillTable = (calendar, syllabus) => {
+const toUnits = (fetched) => fetched.then(textOrBarf).then((x) => units(outline(x)));
+
+const fillTable = (calendar, syllabus, units) => {
   const tbody = document.getElementById("body");
 
-  calendar.elements.forEach((e) => {
-    if (e.isWeek) {
-      tbody.appendChild(weekRow(e, calendar, syllabus));
-    } else {
-      tbody.appendChild(vacationRow(e));
+  const weeks = calendar.elements;
+
+  units.forEach((unit, i) => {
+    let toFill = [];
+    let count = 0;
+    while (count < unit.weeks) {
+      const w = weeks.shift();
+      if (w.isWeek) count++;
+      toFill.push(w);
+    }
+
+    const lessons = [...unit.children];
+
+    toFill.forEach((e) => {
+      if (e.isWeek) {
+        tbody.appendChild(weekRow(e, calendar, lessons));
+      } else {
+        tbody.appendChild(vacationRow(e));
+      }
+    });
+
+    if (lessons.length > 0) {
+      alert(`Overflow in unit ${i + 1}: ${JSON.stringify(lessons)}`);
     }
   });
 
-  document.getElementById("length").innerText = `${calendar.weeks} school weeks; ${calendar.schoolDays} school days`;
+  const { schoolWeeks, schoolDays } = calendar;
+
+  document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
-const weekRow = (w, calendar, syllabus) => {
+const weekRow = (w, calendar, lessons) => {
   const tr = document.createElement("tr");
 
   tr.appendChild(dateCell(w));
@@ -46,8 +68,8 @@ const weekRow = (w, calendar, syllabus) => {
 
   let days = w.days.length;
 
-  while (days > 0 && syllabus.length > 0) {
-    const item = syllabus.shift();
+  while (days > 0 && lessons.length > 0) {
+    const item = lessons.shift();
     const consumed = Math.min(days, item.days);
 
     if (item.title) {
@@ -56,7 +78,7 @@ const weekRow = (w, calendar, syllabus) => {
       unscheduled(tr, consumed);
     }
     if (consumed < item.days) {
-      syllabus.unshift(Object.assign(item, { days: item.days - consumed }));
+      lessons.unshift(Object.assign(item, { days: item.days - consumed }));
     }
     days -= consumed;
   }

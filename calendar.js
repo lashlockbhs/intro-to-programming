@@ -55,7 +55,7 @@ class Calendar {
     return elements;
   }
 
-  get weeks() {
+  get schoolWeeks() {
     return this.elements.reduce((acc, w) => acc + (w.isWeek ? 1 : 0), 0);
   }
 
