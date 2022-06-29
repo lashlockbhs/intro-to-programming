@@ -82,7 +82,7 @@ const outline = (text) => {
 
     if (newItem.title.match(/^Unit: /)) {
       newItem.type = "unit";
-      newItem.unit = unitNum++;
+      newItem.number = unitNum++;
       newItem.title = newItem.title.substring("Unit: ".length);
     }
 
