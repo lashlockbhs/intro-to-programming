@@ -24,7 +24,7 @@ const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calenda
 const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
 const fillTable = (calendar, outline) => {
-  const weeks = calendar.elements;
+  const weeks = [...calendar.elements];
 
   units(outline).forEach((unit) => {
     let tbody = document.createElement("tbody");
