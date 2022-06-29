@@ -60,7 +60,8 @@ tr.ap-exams {
 }
 
 tr.vacation {
-  padding: 20px;
+    padding: 20px;
+    background: #eeccee;
 }
 
 tr.unit {
