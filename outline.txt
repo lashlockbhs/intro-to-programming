@@ -12,6 +12,14 @@
 
         - Answers to questions on the board on the back.
 
+          - Why are you taking this class?
+
+          - What do hope to learn?
+
+          - Do you have any prior experience programming? If so describe briefly.
+
+          - Where did you go to middle school?
+
     - Class policies
 
       - No phones out during class. (Theory: buy 10-slot charging station. (e.g.
@@ -65,7 +73,7 @@
 
       - Why is it hard?
 
-        - There are a lot of details that you have to get right
+        - There are a lot of details that you have to get right.
 
         - It is very abstract.
 
@@ -215,9 +223,7 @@
 
     - Scope of variables. (1)
 
-  - Debugging and Testing (1)
-
-  - Project: Caesar Cipher (4)
+  - Project: Caesar Cipher (5)
 
     - Function that handles a single character rotation.
 
@@ -243,9 +249,11 @@
 
     - for
 
-  - Writing clear code (2)
-
 - Unit: More Javascript (7 weeks)
+
+  - Debugging and Testing (2)
+
+  - Writing clear code (2)
 
   - Functions as values (4)
 
@@ -295,7 +303,7 @@
 
   - Recursion (5)
 
-- Unit: Simulation (6 weeks)
+- Unit: Building tools (6 weeks)
 
   - Project: Monte Carlo Simulation (10)
 
@@ -303,4 +311,6 @@
 
 - Unit: ??? (8 weeks)
 
-  - Project: Video Game (9)
+  - Project: Video Game (10)
+
+  - Project: Adventure (10)
