@@ -1,8 +1,8 @@
 import { Calendar } from "./calendar.js";
-import { outline, schedule, units } from "./syllabus.js";
+import { outline, units } from "./syllabus.js";
 
 const loadData = async (calendar, syllabus) => {
-  fillTable(await toCalendar(fetch(calendar)), await toSchedule(fetch(syllabus)), await toUnits(fetch(syllabus)));
+  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(syllabus)));
 };
 
 const jsonOrBarf = (r) => {
@@ -21,16 +21,14 @@ const textOrBarf = (r) => {
 
 const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calendar(x));
 
-const toSchedule = (fetched) => fetched.then(textOrBarf).then((x) => schedule(outline(x)));
+const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
-const toUnits = (fetched) => fetched.then(textOrBarf).then((x) => units(outline(x)));
-
-const fillTable = (calendar, syllabus, units) => {
+const fillTable = (calendar, outline) => {
   const tbody = document.getElementById("body");
 
   const weeks = calendar.elements;
 
-  units.forEach((unit, unitNum) => {
+  units(outline).forEach((unit) => {
     let toFill = [];
     let count = 0;
     while (count < unit.weeks) {
@@ -48,7 +46,7 @@ const fillTable = (calendar, syllabus, units) => {
           tbody.appendChild(spacerRow());
           tbody.appendChild(unitRow(unit));
         }
-        tbody.appendChild(weekRow(e, calendar, lessons, unit, first));
+        tbody.appendChild(weekRow(e, calendar, lessons));
         first = false;
       } else {
         tbody.appendChild(spacerRow());
@@ -57,7 +55,7 @@ const fillTable = (calendar, syllabus, units) => {
     });
 
     if (lessons.length > 0) {
-      alert(`Overflow in unit ${unitNum + 1}: ${JSON.stringify(lessons)}`);
+      alert(`Overflow in unit ${unit.number}: ${JSON.stringify(lessons)}`);
     }
   });
 
@@ -75,11 +73,11 @@ const spacerRow = () => {
 const unitRow = (unit) => {
   const tr = document.createElement("tr");
   tr.setAttribute("class", "unit");
-  tr.appendChild(td(`Unit ${unit.unit}: ${unit.title}`, { colspan: "6" }));
+  tr.appendChild(td(`Unit ${unit.number}: ${unit.title}`, { colspan: "6" }));
   return tr;
 };
 
-const weekRow = (w, calendar, lessons, unit, isFirst) => {
+const weekRow = (w, calendar, lessons) => {
   const tr = document.createElement("tr");
 
   tr.appendChild(dateCell(w));
