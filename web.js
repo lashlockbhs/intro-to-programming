@@ -2,7 +2,7 @@ import { Calendar } from "./calendar.js";
 import { outline, units } from "./syllabus.js";
 
 const loadData = async (calendar, syllabus) => {
-  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(syllabus)));
+  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(syllabus, { cache: "no-cache" })));
 };
 
 const jsonOrBarf = (r) => {
