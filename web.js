@@ -24,11 +24,11 @@ const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calenda
 const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
 const fillTable = (calendar, outline) => {
-  const tbody = document.getElementById("body");
-
   const weeks = calendar.elements;
 
   units(outline).forEach((unit) => {
+    let tbody = document.createElement("tbody");
+
     let toFill = [];
     let count = 0;
     while (count < unit.weeks) {
@@ -43,20 +43,25 @@ const fillTable = (calendar, outline) => {
     toFill.forEach((e, i) => {
       if (e.isWeek) {
         if (first) {
-          tbody.appendChild(spacerRow());
           tbody.appendChild(unitRow(unit));
         }
         tbody.appendChild(weekRow(e, calendar, lessons));
         first = false;
       } else {
-        tbody.appendChild(spacerRow());
+        if (tbody.children.length > 0) {
+          document.getElementById("table").appendChild(tbody);
+          tbody = document.createElement("tbody");
+        }
         tbody.appendChild(vacationRow(e));
+        document.getElementById("table").appendChild(tbody);
+        tbody = document.createElement("tbody");
       }
     });
 
     if (lessons.length > 0) {
       alert(`Overflow in unit ${unit.number}: ${JSON.stringify(lessons)}`);
     }
+    document.getElementById("table").appendChild(tbody);
   });
 
   const { schoolWeeks, schoolDays } = calendar;

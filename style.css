@@ -17,6 +17,13 @@ body {
 table {
   margin-top: 0.5in;
   text-align: center;
+  border-collapse: collapse;
+}
+
+tbody::before {
+  height: 20px;
+  display: table-row;
+  content: "";
 }
 
 td {
