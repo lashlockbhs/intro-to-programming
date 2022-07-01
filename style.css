@@ -2,7 +2,7 @@ body {
   font-family: "Gill Sans", sans-serif;
   margin-top: 50px;
   text-align: center;
-  background-image: url(bhs-mascot.png);
+  background-image: url(jac.png);
   background-size: 33vw;
   background-color: rgba(255, 0, 0, 0.1);
 }
@@ -60,8 +60,8 @@ tr.ap-exams {
 }
 
 tr.vacation {
-    padding: 20px;
-    background: #eeccee;
+  padding: 20px;
+  background: #eeccee;
 }
 
 tr.unit {
