@@ -106,7 +106,11 @@ const outline = (text) => {
  */
 const schedule = (items) => items.flatMap((x) => withDays(x, ""));
 
-const units = (full) => full.map((unit) => Object.assign(unit, { children: schedule(unit.children || []) }));
+const units = (full) => {
+  return full
+    .filter((u) => u.type == "unit")
+    .map((unit) => Object.assign(unit, { children: schedule(unit.children || []) }));
+};
 
 const withDays = (item, prefix) =>
   item.days
