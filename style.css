@@ -68,6 +68,11 @@ tr.unit {
   padding: 0;
 }
 
+tr.unit a {
+  text-decoration: none;
+  color: inherit;
+}
+
 tr.spacer {
   height: 20px;
 }

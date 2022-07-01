@@ -72,9 +72,11 @@ const fillTable = (calendar, outline) => {
 };
 
 const unitRow = (unit) => {
-  const content = element("a", `Unit ${unit.number}: ${unit.title}`, {name: `unit-${unit.number}`});
+  const name = `unit-${unit.number}`;
+  const href = `#${name}`;
+  const content = element("a", `Unit ${unit.number}: ${unit.title}`, { name, href });
   return tr(td(content, { colspan: "6" }), { class: "unit" });
-}
+};
 
 const weekRow = (w, calendar, lessons) => {
   const row = tr(dateCell(w));
