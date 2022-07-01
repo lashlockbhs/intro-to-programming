@@ -29,8 +29,12 @@ tbody::before {
 td {
   padding: 1em;
   margin: 1em;
-  border: 1px solid grey;
   text-align: center;
+}
+
+td,
+#toc > a {
+  border: 1px solid grey;
 }
 
 td.week {
@@ -79,6 +83,10 @@ tr.spacer {
 
 tr.unit td {
   padding: 6px 20px;
+}
+
+tr.unit > td,
+#toc > a {
   background: rgba(0, 0, 255, 0.25);
   color: #00007f;
 }
@@ -115,4 +123,10 @@ div.codeLink {
 
 #length {
   text-align: left;
+}
+
+#toc > a {
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
 }

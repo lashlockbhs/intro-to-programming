@@ -43,8 +43,11 @@ const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
 const fillTable = (calendar, outline) => {
   const weeks = [...calendar.elements];
+  const toc = document.getElementById("toc");
 
   units(outline).forEach((unit) => {
+    toc.appendChild(element("a", `Unit ${unit.number}`, { href: `#unit-${unit.number}` }));
+
     let tbody = element("tbody");
 
     let toFill = [];
@@ -83,7 +86,6 @@ const fillTable = (calendar, outline) => {
   });
 
   const { schoolWeeks, schoolDays } = calendar;
-
   document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
