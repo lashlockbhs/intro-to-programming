@@ -69,7 +69,10 @@ const fillTable = (calendar, outline) => {
   document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
-const unitRow = (unit) => tr(td(`Unit ${unit.number}: ${unit.title}`, { colspan: "6" }), { class: unit });
+const unitRow = (unit) => {
+  const content = element("a", `Unit ${unit.number}: ${unit.title}`, {name: `unit-${unit.number}`});
+  return tr(td(content, { colspan: "6" }), { class: "unit" });
+}
 
 const weekRow = (w, calendar, lessons) => {
   const row = tr(dateCell(w));
