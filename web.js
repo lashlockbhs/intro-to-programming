@@ -1,9 +1,6 @@
 import { Calendar } from "./calendar.js";
 import { outline, units } from "./outline.js";
 
-// Hack to adjust position when we go to an internal link so it's not so ugly.
-window.onhashchange = () => window.scrollTo(window.pageXOffset, window.pageYOffset - 20);
-
 const loadData = async (calendar, outline) => {
   fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
 
@@ -19,7 +16,6 @@ const loadData = async (calendar, outline) => {
   if (window.location.hash) {
     // Need to reset location now that the anchors are defined.
     window.location = window.location;
-    window.onhashchange();
   }
 };
 
@@ -41,12 +37,16 @@ const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calenda
 
 const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
+const tocLink = (unit) => {
+  return element("a", `Unit ${unit.number}`, { class: "internal-link", href: `#unit-${unit.number}` });
+};
+
 const fillTable = (calendar, outline) => {
   const weeks = [...calendar.elements];
   const toc = document.getElementById("toc");
 
   units(outline).forEach((unit) => {
-    toc.appendChild(element("a", `Unit ${unit.number}`, { class: "internal-link", href: `#unit-${unit.number}` }));
+    toc.appendChild(tocLink(unit));
 
     let tbody = element("tbody");
 
@@ -90,10 +90,19 @@ const fillTable = (calendar, outline) => {
 };
 
 const unitRow = (unit) => {
+  const cell = td(unitAnchor(unit), { colspan: "6" });
+  cell.append(unitSelfLink(unit));
+  return tr(cell, { class: "unit" });
+};
+
+const unitAnchor = (unit) => {
   const name = `unit-${unit.number}`;
-  const href = `#${name}`;
-  const content = element("a", `Unit ${unit.number}: ${unit.title}`, { class: "internal-link", name, href });
-  return tr(td(content, { colspan: "6" }), { class: "unit" });
+  return element("a", "", { class: "anchor", name });
+};
+
+const unitSelfLink = (unit) => {
+  const href = `#unit-${unit.number}`;
+  return element("a", `Unit ${unit.number}: ${unit.title}`, { class: "internal-link", href });
 };
 
 const weekRow = (w, calendar, lessons) => {

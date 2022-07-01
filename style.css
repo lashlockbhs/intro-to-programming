@@ -76,6 +76,15 @@ tr.unit {
   padding: 0;
 }
 
+/* Next two rules to make link target bigger. */
+tr.unit td a.internal-link {
+  display: inline-block;
+}
+
+tr.unit * {
+  width: 100%;
+}
+
 tr.spacer {
   height: 20px;
 }
@@ -127,4 +136,11 @@ div.codeLink {
 a.internal-link {
   text-decoration: none;
   color: inherit;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -25px;
+  visibility: hidden;
 }
