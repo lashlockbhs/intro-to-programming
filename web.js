@@ -27,7 +27,7 @@ const fillTable = (calendar, outline) => {
   const weeks = [...calendar.elements];
 
   units(outline).forEach((unit) => {
-    let tbody = document.createElement("tbody");
+    let tbody = element("tbody");
 
     let toFill = [];
     let count = 0;
@@ -50,11 +50,11 @@ const fillTable = (calendar, outline) => {
       } else {
         if (tbody.children.length > 0) {
           document.getElementById("table").appendChild(tbody);
-          tbody = document.createElement("tbody");
+          tbody = element("tbody");
         }
         tbody.appendChild(vacationRow(e));
         document.getElementById("table").appendChild(tbody);
-        tbody = document.createElement("tbody");
+        tbody = element("tbody");
       }
     });
 
@@ -69,25 +69,12 @@ const fillTable = (calendar, outline) => {
   document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
-const spacerRow = () => {
-  const tr = document.createElement("tr");
-  tr.setAttribute("class", "spacer");
-  return tr;
-};
-
-const unitRow = (unit) => {
-  const tr = document.createElement("tr");
-  tr.setAttribute("class", "unit");
-  tr.appendChild(td(`Unit ${unit.number}: ${unit.title}`, { colspan: "6" }));
-  return tr;
-};
+const unitRow = (unit) => tr(td(`Unit ${unit.number}: ${unit.title}`, { colspan: "6" }), { class: unit });
 
 const weekRow = (w, calendar, lessons) => {
-  const tr = document.createElement("tr");
+  const row = tr(dateCell(w));
 
-  tr.appendChild(dateCell(w));
-
-  if (w.start.dayOfWeek == 2) dayOff(tr);
+  if (w.start.dayOfWeek == 2) dayOff(row);
 
   let days = w.days.length;
 
@@ -96,18 +83,18 @@ const weekRow = (w, calendar, lessons) => {
     const consumed = Math.min(days, item.days);
 
     if (item.title) {
-      scheduled(tr, item, consumed);
+      scheduled(row, item, consumed);
     } else {
-      unscheduled(tr, consumed);
+      unscheduled(row, consumed);
     }
     if (consumed < item.days) {
       lessons.unshift(Object.assign(item, { days: item.days - consumed }));
     }
     days -= consumed;
   }
-  if (days > 0) unscheduled(tr, days);
-  if (w.end.dayOfWeek == 4) dayOff(tr);
-  return tr;
+  if (days > 0) unscheduled(row, days);
+  if (w.end.dayOfWeek == 4) dayOff(row);
+  return row;
 };
 
 const dateCell = (w) => {
@@ -133,16 +120,21 @@ const unscheduled = (tr, days) => {
   tr.appendChild(td("Unscheduled", { class: "unscheduled", colspan: days }));
 };
 
-const vacationRow = (v) => {
-  const tr = document.createElement("tr");
-  tr.setAttribute("class", "vacation");
-  tr.appendChild(td(v.vacationString(), { colspan: "6" }));
-  return tr;
-};
+const vacationRow = (v) => tr(td(v.vacationString(), { colspan: "6" }), { class: "vacation" });
 
-const td = (text, attributes) => {
-  const e = document.createElement("td");
-  e.innerText = text;
+const td = (content, attributes) => element("td", content, attributes);
+
+const tr = (content, attributes) => element("tr", content, attributes);
+
+const element = (tag, content, attributes = {}) => {
+  const e = document.createElement(tag);
+  if (content) {
+    if (typeof content === "string") {
+      e.innerText = content;
+    } else {
+      e.appendChild(content);
+    }
+  }
   for (const name in attributes) {
     e.setAttribute(name, attributes[name]);
   }
