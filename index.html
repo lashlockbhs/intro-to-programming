@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
+  <meta charset="utf-8">
   <title>Calendar</title>
-  <meta name="generator" content=
-  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
-  <meta http-equiv='content-type' content='text/html; charset=utf-8'>
   <link href='style.css' media='all' rel='stylesheet' type='text/css'>
-  <script type="module" src="./js/web.js"></script>
+  <script src="./web.js" type="module"></script>
 </head>
 <body>
   <div id="container">
-    <h1>2022-23 Intro to Programming</h1>
-    <table>
+    <h1>BHS 2022-23 Intro to Programming</h1>
+    <div id="toc"></div>
+    <table id="table">
       <colgroup>
         <col style="width: 150px">
         <col style="width: 100px">
@@ -30,12 +29,14 @@
           <th>Fri</th>
         </tr>
       </thead>
-      <tbody id="body"></tbody>
     </table>
-    <div class="codeLink">
-      <a href="https://github.com/gigamonkey/course-calendar"><img src=
-      "GitHub-Mark-32px.png" width="12" height="12" alt="GitHub"></a> <a href=
-      "https://github.com/gigamonkey/course-calendar">https://github.com/gigamonkey/course-calendar</a>
+    <div id="footer">
+      <div id="length"></div>
+      <div class="codeLink">
+        <a href="https://github.com/gigamonkey/course-calendar"><img alt="GitHub" height="12" src=
+        "GitHub-Mark-32px.png" width="12"></a> <a href=
+        "https://github.com/gigamonkey/course-calendar">https://github.com/gigamonkey/course-calendar</a>
+      </div>
     </div>
   </div>
 </body>

@@ -1,199 +1,424 @@
-- Intro to Intro (1)
+- Unit: Getting started with Javascript (7 weeks)
 
-  - Things we can do with computers
+  - Intro to Intro (1)
 
-    - Count stuff, i.e. Math
+    - Introductions
 
-    - Text
+      - Me to you
 
-    - Graphics
+      - You to me. Index card with:
 
-    - Video
+        - Preferred name on one side in big letters
 
-    - Games
+        - Answers to questions on the board on the back.
 
-    - Communicate (with text, graphics, video, etc.)
+          - Why are you taking this class?
 
-    - What else?
+          - What do hope to learn?
 
-  - What is programming?
+          - Do you have any prior experience programming? If so describe briefly.
 
-    - Why is it fun?
+          - Where did you go to middle school?
 
-    - Why is it hard?
+    - Class policies
 
-    - What can you do when you can program?
+      - No phones out during class. First-come, first-served access to 10 slots
+        in charging station. All other phones must stay in pocket or bag during
+        class or will be taken and not charged.)
 
-      - Understand, at least a bit, how all this stuff around us works?
+      - No games and no social media. Computer is for doing work and research
+        related to your work.
 
-      - Build tools to make your life better.
+      - Grades:
 
-- What is data? (1)
+        - Portfolio (60%)
 
-  - What can we do with it?
+        - Journal (20%)
 
-    - Render it: play a video, display text, etc.
+        - Collaboration (20%)
 
-    - Store it
+        - Based primarily on coding exercises and projects.
 
-    - Send and receive it
+        - Also points for being on focused on task and a helpful partner.
 
-    - Combine and transform it to make new data
+      - Homework:
 
-  - What is a data type?
+        - Very little. Maybe sometimes some reading. You can work on your
+          programs outside of class but it should not be necessary.
 
-    - A set of possible values
+      - Collaboration
 
-    - Syntax - how you write it
+        - You will often work in pairs. It is important to switch between
+          "driving" and "navigating".
 
-    - Operators - what you can do with it
+        - Recurse Center rules. https://www.recurse.com/social-rules
 
-    - Expressions - combinatios of values and operators
+      - Coding, open source, and working together:
 
-- First three data types (3)
+        - Write your own code. (When pairing, pair turns in the same code.)
 
-  - Numbers
+        - If you find useful snippets of code on the internet, cite it in a comment.
 
-    - Possible values
+      - No food near computers.
 
-    - Syntax
+      - Masks: encouraged and school policies will be enforced.
 
-  - Strings
+    - Things we can do with computers
 
-    - Possible values
+      - Count stuff, i.e. Math
 
-    - Syntax
+      - Text
 
-  - Booleans
+      - Graphics
 
-    - Possible values
+      - Video
 
-    - Syntax
+      - Games
 
-  - Operators
+      - Communicate (with text, graphics, video, etc.)
 
-    - On numbers: +, -, *, /
+      - What else?
 
-    - On strings: +, []
+    - What is programming?
 
-    - On booleans: &&, ||, !
+      - Why is it fun?
 
-    - Between types, e.g. ===, <, etc.
+      - Why is it hard?
 
-- Expressions
+        - There are a lot of details that you have to get right.
 
-  - Simple (2)
+        - It is very abstract.
 
-    - A single value
+        - Those two things are usually at the opposite end of the mental spectrum.
 
-    - Two values an an operator
+      - What can you do when you know how to program?
 
-  - Complex (3)
+        - Understand, at least a bit, how all this stuff around us works?
 
-    - Precedence
+        - Build tools to make your life better.
 
-    - Grouping: ()
+  - What is data? (1)
 
-  - Types of expressions
+    - What can we do with it?
 
-  - Values of expressions
+      - Render it: play a video, display text, etc.
 
-- Functions
+      - Store it
 
-  - What are they? (1)
+      - Send and receive it
 
-  - Numeric (1)
+      - Combine and transform it to make new data
 
-    - Various math functions: area of circle, volume of sphere, quadratic equation.
+    - What is a data type?
 
-  - Boolean (1)
+      - A set of possible values
 
-    - Random logical expressions like sleep_in
+      - Syntax - how you write it
 
-  - String (1)
+      - Operators - what you can do with it
 
-    - Combining strings
+      - Expressions - combinations of values and operators
 
-    - Extracting characters from strings.
+    - First three data types
 
-  - Combined (1)
+      - Numbers
 
-- Arrays
+        - Possible values
 
-  - Values and syntax (1)
+        - Syntax
 
-    - Indexing (1)
+        - Operators: +, -, *, /
 
-      - Zero based
+      - Strings
 
-      - .length property
+        - Possible values
 
-      - Up to .length - 1
+        - Syntax
 
-  - Looping over arrays (1)
+        - Operators: +, []
 
-  - filter/map/reduce patters (2)
+      - Booleans
 
-- Functions
+        - Possible values
 
-  - Testing (5)
+        - Syntax
 
-- Variables
+        - Operators: &&, ||, !
 
-  - Function parameters (1)
+      - Some operators between types
 
-  - Constant (1)
+        - Equality: ===, !==
 
-    - Names for values
+        - Comparison: <, >, <=, >=,
 
-    - Used to simplify expressions
+  - Expressions
 
-  - Changing (2)
+    - Goals:
 
-    - Names that can change
+      - Understand and recognize the types of different values.
 
-  - Scope of variables. (1)
+      - Be able to mentally evaluate simple expressions with both literal values and variables.
 
-- Control constructs (5)
+      - Be able to construct expressions that produce certain values.
 
-  - if
+    - Types (1)
 
-  - while
+      - Single values
 
-  - for
+      - Simple homogenous experessions (e.g. 1 + 2)
 
-- Function as values (5)
+      - Simple heterogenous expressions (e.g. 1 < 2)
 
-- Objects (9)
+      - Complex homogenous expressions (e.g. 1 + 2 * 3)
 
-  - Properties
+      - Complex heterogenous expressions (e.g. 1 < 2 && 4 !== 5)
 
-    - .length on strings and arrays is a property
+      - Type of holes in expressions (e.g. 10 + <hole>)
 
-  - Methods
+    - Evaluating (1)
 
-- 2D Graphics with Canvas (2)
+      - Discuss: Precedence and grouping
 
-  - Reading docs at MDN
+      - Simple expressions, multiple choice
 
-  - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+      - Complex expressions, multiple choice
 
-- Project: 2D Graphics (7)
+      - Simple and complex expressions, free response.
 
-- Animation (4)
+    - Boolean bingo (1)
 
-- Project: Animation (5)
+    - Constructing
 
-- HTML Basics (1)
+      - Given value from blocks
 
-- Project: HTML document (4)
+      - Given value, free response with specific values and operators given
 
-- CSS: make it pretty (1)
+      - Given value, free response with specific values but no operators given.
 
-- Project: Pretty document (4)
+  - Expressions
 
-- Dynamic HTML (1)
+    - named values (2)
 
-- Project: Dynamic document (4)
+      - const
 
-- Classes (10)
+      - assignment
+
+    - with literals and variables (3)
+
+  - Functions
+
+    - defining & using (1)
+
+    - numeric and boolean (4)
+
+      - Various math functions: area of circle, volume of sphere, quadratic equation.
+
+      - Random logical expressions like sleep_in
+
+    - String
+
+      - Combining strings
+
+      - Extracting characters from strings.
+
+  - Variables
+
+    - Function parameters
+
+    - Constant
+
+      - Names for values
+
+      - Used to simplify expressions
+
+    - Changing
+
+      - Names that can change
+
+    - Scope of variables.
+
+  - Project: Number guessing game (4)
+
+    - You guess a number the computer has picked.
+
+    - Computer guesses your number.
+
+  - Strings (2)
+
+    - length property
+
+    - substring() method
+
+  - Control constructs (3)
+
+    - if
+
+    - return
+
+    - while
+
+    - for
+
+    - break
+
+  - Arrays
+
+    - Values and syntax (1)
+
+      - Indexing (1)
+
+        - Zero based
+
+        - .length property
+
+        - Up to .length - 1
+
+    - Looping over arrays (1)
+
+    - Search (1)
+
+      - Use of while loops (while (!found) { lookForThing
+
+    - filter/map/reduce patterns (2)
+
+      - count item
+
+      - min
+
+      - max
+
+      - select vowels
+
+      - select not vowels
+
+      - select even indices
+
+      - collect pairs (hmmm, this is hard to do with f/m/r functions)
+
+      - count predicate, e.g. vowels
+
+      - bowling score from number of pins per frame.
+
+  - Project: Caesar Cipher (5)
+
+    - Preliminaries
+
+      - ASCII and Unicode
+
+      - s.charCodeAt(i)
+
+      - String.fromCharCode(code)
+
+      - Modular arithmetic.
+
+      - console.log debugging
+
+    - Function that handles a single character rotation.
+
+    - Function that handles a string of only lowercase letters.
+
+    - Add support for uppercase latters.
+
+    - Allow non-letter characters which are passed through unchanged.
+
+    - Write encrypt/decrypt function that work off the same key.
+
+    - Use a string key rather than a single number where each key letter is added to the plaintext letter, cycling.
+
+    - Any other enhancements to encoding, decoding. (Must be roundtrip.)
+
+    - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
+
+- Unit: Graphics (7 weeks)
+
+  - What is an API and reading documentation (1)
+
+    - Reading docs at MDN
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+
+  - Project: Make some art (4)
+
+    - Explore the MDN docs for Canvas and 2D context and experiment with different methods and properties.
+
+    - Journal about what you find.
+
+    - Turn in various graphics.
+
+  - Building an animation loop (1)
+
+    - How an animation loop works
+
+    - Setting up a simple loop in Javascript with requestAnimationFrame
+
+  - Project: Animation (3)
+
+  - Conway's Game of Life (1)
+
+  - Project: Game of Life (4)
+
+  - Randomness and variation (1)
+
+  - Project: Genetic Art (3)
+
+  - Genetic algorithms (1)
+
+  - Project: Phrase Matcher (4)
+
+  - More complex GA (1)
+
+  - Project: Image Matcher (8)
+
+- Unit: The Web (3 weeks)
+
+  - HTML Basics (1)
+
+  - Project: HTML document (4)
+
+  - CSS: make it pretty (1)
+
+  - Project: Pretty document (4)
+
+  - Dynamic HTML (1)
+
+    - Buliding and styling HTML with code
+
+    - Responding to events
+
+  - Project: Dynamic document (4)
+
+- Unit: Object orientation (7 weeks)
+
+  - Classes (9)
+
+  - APIs
+
+  - Debugging (5)
+
+  - Recursion (5)
+
+- Unit: Building tools (6 weeks)
+
+  - Project: Monte Carlo Simulation (10)
+
+  - Events and closures (4)
+
+- Unit: ??? (8 weeks)
+
+  - Project: Video Game (10)
+
+  - Project: Adventure (10)
+
+  - Debugging and Testing (2)
+
+  - Writing clear code (2)
+
+  - Functions as values (2)
+
+  - Objects (5)
+
+    - Properties
+
+      - .length on strings and arrays is a property
+
+    - Methods

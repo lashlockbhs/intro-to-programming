@@ -1,4 +1,4 @@
-import { Temporal } from "@js-temporal/polyfill";
+import { Temporal } from "./js/@js-temporal/polyfill/dist/index.esm.js";
 
 const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -27,7 +27,7 @@ class Calendar {
     this.elements = this.parseYear();
   }
 
-  parseYear = () => {
+  parseYear() {
     let daysOff = 0;
     let days = [];
     let d = this.firstDay;
@@ -53,13 +53,23 @@ class Calendar {
     }
     elements.push(new Week(days, w, this.apExams));
     return elements;
-  };
+  }
 
-  isHoliday = (d) => this.holidays.has(d.toString());
+  get schoolWeeks() {
+    return this.elements.reduce((acc, w) => acc + (w.isWeek ? 1 : 0), 0);
+  }
 
-  isWeekend = (d) => d.dayOfWeek > 5;
+  get schoolDays() {
+    return this.elements.reduce((acc, w) => acc + (w.isWeek ? w.schoolDays : 0), 0);
+  }
 
-  isSchoolday = (d) => !(this.isHoliday(d) || this.isWeekend(d));
+  isHoliday(d) {
+    return this.holidays.has(d.toString());
+  }
+
+  isSchoolday(d) {
+    return d.dayOfWeek < 6 && !this.isHoliday(d);
+  }
 }
 
 class Week {
@@ -69,22 +79,28 @@ class Week {
     this.start = days[0];
     this.end = days[days.length - 1];
     this.isAP = days.some((d) => between(apExams.start, d, apExams.end));
+    this.schoolDays = days.length;
   }
 
   isWeek = true;
 
-  weekstring = () => `${this.daysOfWeek()} (${this.datesOfWeek()})`;
+  weekstring() {
+    return `${this.daysOfWeek()} (${this.datesOfWeek()})`;
+  }
 
-  daysOfWeek = () => `${dayName(this.start)}-${dayName(this.end)}`;
+  daysOfWeek() {
+    return `${dayName(this.start)}-${dayName(this.end)}`;
+  }
 
-  datesOfWeek = () =>
-    this.start.month === this.end.month
+  datesOfWeek() {
+    return this.start.month === this.end.month
       ? `${monthName(this.start)} ${this.start.day}-${this.end.day}`
       : `${monthName(this.start)} ${this.start.day}-${monthName(this.end)} ${this.end.day}`;
+  }
 
-  dump = (dumper) => {
+  dump(dumper) {
     dumper.week(this);
-  };
+  }
 }
 
 class Vacation {
@@ -95,9 +111,11 @@ class Vacation {
 
   isWeek = false;
 
-  vacationString = () => `${this.vacationLabel()} (${this.daysOff} days)`;
+  vacationString() {
+    return `${this.vacationLabel()} (${this.daysOff} days)`;
+  }
 
-  vacationLabel = () => {
+  vacationLabel() {
     switch (this.dayAfter.month) {
       case 11:
         return "THANKSGIVING BREAK";
@@ -108,11 +126,11 @@ class Vacation {
       default:
         return "SPRING BREAK";
     }
-  };
+  }
 
-  dump = (dumper) => {
+  dump(dumper) {
     dumper.vacation(this);
-  };
+  }
 }
 
 export { Calendar };
