@@ -1,10 +1,26 @@
 import { Calendar } from "./calendar.js";
 import { outline, units } from "./outline.js";
 
+// Hack to adjust position when we go to an internal link so it's not so ugly.
+window.onhashchange = () => window.scrollTo(window.pageXOffset, window.pageYOffset - 20);
+
 const loadData = async (calendar, outline) => {
   fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
-  // In case we have an anchor ref in the location.
-  window.location = window.location;
+
+  // Hack to prevent highlighting the A element when we load the page. Maybe better fixed via CSS?
+  document.querySelectorAll("a").forEach(
+    (a) =>
+      (a.onfocus = (e) => {
+        e.preventDefault();
+        e.currentTarget.blur();
+      })
+  );
+
+  if (window.location.hash) {
+    // Need to reset location now that the anchors are defined.
+    window.location = window.location;
+    window.onhashchange();
+  }
 };
 
 const jsonOrBarf = (r) => {
