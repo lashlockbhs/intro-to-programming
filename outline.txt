@@ -1,4 +1,4 @@
-- Unit: Beginning Javascript (7 weeks)
+- Unit: Getting started with Javascript (7 weeks)
 
   - Intro to Intro (1)
 
@@ -22,17 +22,23 @@
 
     - Class policies
 
-      - No phones out during class. (Theory: buy 10-slot charging station. (e.g.
-        https://www.amazon.com/Adjustable-Dividers-Charging-Multiple-Organizer/dp/B01AW9Z9ZE/)
-        First-come, first-served. All other phones must stay in pocket or bag
-        during class or will be taken and not charged.)
+      - No phones out during class. First-come, first-served access to 10 slots
+        in charging station. All other phones must stay in pocket or bag during
+        class or will be taken and not charged.)
 
       - No games and no social media. Computer is for doing work and research
         related to your work.
 
       - Grades:
 
+        - Based primarily on coding exercises and projects.
+
+        - Also points for being on focused on task and a helpful partner.
+
       - Homework:
+
+        - Very little. Maybe sometimes some reading. You can work on your
+          programs outside of class but it should not be necessary.
 
       - Collaboration
 
@@ -105,75 +111,149 @@
 
       - Operators - what you can do with it
 
-      - Expressions - combinatios of values and operators
+      - Expressions - combinations of values and operators
 
-  - First three data types (3)
+    - First three data types
 
-    - Numbers
+      - Numbers
 
-      - Possible values
+        - Possible values
 
-      - Syntax
+        - Syntax
 
-    - Strings
+        - Operators: +, -, *, /
 
-      - Possible values
+      - Strings
 
-      - Syntax
+        - Possible values
 
-    - Booleans
+        - Syntax
 
-      - Possible values
+        - Operators: +, []
 
-      - Syntax
+      - Booleans
 
-    - Operators
+        - Possible values
 
-      - On numbers: +, -, *, /
+        - Syntax
 
-      - On strings: +, []
+        - Operators: &&, ||, !
 
-      - On booleans: &&, ||, !
+      - Some operators between types
 
-      - Between types, e.g. ===, <, etc.
+        - Equality: ===, !==
+
+        - Comparison: <, >, <=, >=,
 
   - Expressions
 
-    - Simple (2)
+    - Goals:
 
-      - A single value
+      - Understand and recognize the types of different values.
 
-      - Two values an an operator
+      - Be able to mentally evaluate simple expressions with both literal values and variables.
 
-    - Complex (3)
+      - Be able to construct expressions that produce certain values.
 
-      - Precedence
+    - Types (1)
 
-      - Grouping: ()
+      - Single values
 
-    - Types of expressions
+      - Simple homogenous experessions (e.g. 1 + 2)
 
-    - Values of expressions
+      - Simple heterogenous expressions (e.g. 1 < 2)
+
+      - Complex homogenous expressions (e.g. 1 + 2 * 3)
+
+      - Complex heterogenous expressions (e.g. 1 < 2 && 4 !== 5)
+
+      - Type of holes in expressions (e.g. 10 + <hole>)
+
+    - Evaluating (1)
+
+      - Discuss: Precedence and grouping
+
+      - Simple expressions, multiple choice
+
+      - Complex expressions, multiple choice
+
+      - Simple and complex expressions, free response.
+
+    - Boolean bingo (1)
+
+    - Constructing
+
+      - Given value from blocks
+
+      - Given value, free response with specific values and operators given
+
+      - Given value, free response with specific values but no operators given.
+
+  - Expressions
+
+    - named values (2)
+
+      - const
+
+      - assignment
+
+    - with literals and variables (3)
 
   - Functions
 
-    - What are they? (1)
+    - defining & using (1)
 
-    - Numeric (1)
+    - numeric and boolean (4)
 
       - Various math functions: area of circle, volume of sphere, quadratic equation.
 
-    - Boolean (1)
-
       - Random logical expressions like sleep_in
 
-    - String (1)
+    - String
 
       - Combining strings
 
       - Extracting characters from strings.
 
-    - Combined (1)
+  - Variables
+
+    - Function parameters
+
+    - Constant
+
+      - Names for values
+
+      - Used to simplify expressions
+
+    - Changing
+
+      - Names that can change
+
+    - Scope of variables.
+
+  - Project: Number guessing game (4)
+
+    - You guess a number the computer has picked.
+
+    - Computer guesses your number.
+
+  - Strings (2)
+
+    - length property
+
+    - substring() method
+
+  - Control constructs (3)
+
+    - if
+
+    - return
+
+    - while
+
+    - for
+
+    - break
 
   - Arrays
 
@@ -189,7 +269,11 @@
 
     - Looping over arrays (1)
 
-    - filter/map/reduce patters (2)
+    - Search (1)
+
+      - Use of while loops (while (!found) { lookForThing
+
+    - filter/map/reduce patterns (2)
 
       - count item
 
@@ -207,23 +291,21 @@
 
       - count predicate, e.g. vowels
 
-  - Variables
-
-    - Function parameters (1)
-
-    - Constant (1)
-
-      - Names for values
-
-      - Used to simplify expressions
-
-    - Changing (2)
-
-      - Names that can change
-
-    - Scope of variables. (1)
+      - bowling score from number of pins per frame.
 
   - Project: Caesar Cipher (5)
+
+    - Preliminaries
+
+      - ASCII and Unicode
+
+      - s.charCodeAt(i)
+
+      - String.fromCharCode(code)
+
+      - Modular arithmetic.
+
+      - console.log debugging
 
     - Function that handles a single character rotation.
 
@@ -241,41 +323,45 @@
 
     - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
 
-  - Control constructs (3)
+- Unit: Graphics (7 weeks)
 
-    - if
-
-    - while
-
-    - for
-
-- Unit: More Javascript (7 weeks)
-
-  - Debugging and Testing (2)
-
-  - Writing clear code (2)
-
-  - Functions as values (4)
-
-  - Objects (5)
-
-    - Properties
-
-      - .length on strings and arrays is a property
-
-    - Methods
-
-  - 2D Graphics with Canvas (2)
+  - What is an API and reading documentation (1)
 
     - Reading docs at MDN
 
     - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 
-  - Project: 2D Graphics (7)
+  - Project: Make some art (4)
 
-  - Animation (4)
+    - Explore the MDN docs for Canvas and 2D context and experiment with different methods and properties.
 
-  - Project: Animation (5)
+    - Journal about what you find.
+
+    - Turn in various graphics.
+
+  - Building an animation loop (1)
+
+    - How an animation loop works
+
+    - Setting up a simple loop in Javascript with requestAnimationFrame
+
+  - Project: Animation (3)
+
+  - Conway's Game of Life (1)
+
+  - Project: Game of Life (4)
+
+  - Randomness and variation (1)
+
+  - Project: Genetic Art (3)
+
+  - Genetic algorithms (1)
+
+  - Project: Phrase Matcher (4)
+
+  - More complex GA (1)
+
+  - Project: Image Matcher (8)
 
 - Unit: The Web (3 weeks)
 
@@ -289,6 +375,10 @@
 
   - Dynamic HTML (1)
 
+    - Buliding and styling HTML with code
+
+    - Responding to events
+
   - Project: Dynamic document (4)
 
 - Unit: Object orientation (7 weeks)
@@ -299,18 +389,30 @@
 
   - Debugging (5)
 
-  - Project: Genetic Art (9)
-
   - Recursion (5)
 
 - Unit: Building tools (6 weeks)
 
   - Project: Monte Carlo Simulation (10)
 
-  - Events (4)
+  - Events and closures (4)
 
 - Unit: ??? (8 weeks)
 
   - Project: Video Game (10)
 
   - Project: Adventure (10)
+
+  - Debugging and Testing (2)
+
+  - Writing clear code (2)
+
+  - Functions as values (2)
+
+  - Objects (5)
+
+    - Properties
+
+      - .length on strings and arrays is a property
+
+    - Methods
