@@ -3,6 +3,8 @@ import { outline, units } from "./outline.js";
 
 const loadData = async (calendar, outline) => {
   fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
+  // In case we have an anchor ref in the location.
+  window.location = window.location;
 };
 
 const jsonOrBarf = (r) => {
