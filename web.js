@@ -1,8 +1,8 @@
 import { Calendar } from "./calendar.js";
-import { outline, units } from "./syllabus.js";
+import { outline, units } from "./outline.js";
 
-const loadData = async (calendar, syllabus) => {
-  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(syllabus, { cache: "no-cache" })));
+const loadData = async (calendar, outline) => {
+  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
 };
 
 const jsonOrBarf = (r) => {
