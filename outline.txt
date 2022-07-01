@@ -31,6 +31,12 @@
 
       - Grades:
 
+        - Portfolio (60%)
+
+        - Journal (20%)
+
+        - Collaboration (20%)
+
         - Based primarily on coding exercises and projects.
 
         - Also points for being on focused on task and a helpful partner.
