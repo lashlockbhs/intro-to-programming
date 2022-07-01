@@ -46,7 +46,7 @@ const fillTable = (calendar, outline) => {
   const toc = document.getElementById("toc");
 
   units(outline).forEach((unit) => {
-    toc.appendChild(element("a", `Unit ${unit.number}`, { href: `#unit-${unit.number}` }));
+    toc.appendChild(element("a", `Unit ${unit.number}`, { class: "internal-link", href: `#unit-${unit.number}` }));
 
     let tbody = element("tbody");
 
@@ -92,7 +92,7 @@ const fillTable = (calendar, outline) => {
 const unitRow = (unit) => {
   const name = `unit-${unit.number}`;
   const href = `#${name}`;
-  const content = element("a", `Unit ${unit.number}: ${unit.title}`, { name, href });
+  const content = element("a", `Unit ${unit.number}: ${unit.title}`, { class: "internal-link", name, href });
   return tr(td(content, { colspan: "6" }), { class: "unit" });
 };
 

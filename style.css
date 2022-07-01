@@ -14,8 +14,16 @@ body {
   padding: 50px;
 }
 
+#toc {
+  margin: 30px 0;
+}
+
+#toc > a {
+  padding: 5px;
+  margin: 5px;
+}
+
 table {
-  margin-top: 0.5in;
   text-align: center;
   border-collapse: collapse;
 }
@@ -59,10 +67,6 @@ td.project {
   background: #40b;
 }
 
-tr.ap-exams {
-  background: rgba(0, 0, 255, 0.5);
-}
-
 tr.vacation {
   padding: 20px;
   background: #eeccee;
@@ -70,11 +74,6 @@ tr.vacation {
 
 tr.unit {
   padding: 0;
-}
-
-tr.unit a {
-  text-decoration: none;
-  color: inherit;
 }
 
 tr.spacer {
@@ -125,8 +124,7 @@ div.codeLink {
   text-align: left;
 }
 
-#toc > a {
-  padding: 5px;
-  margin: 5px;
+a.internal-link {
   text-decoration: none;
+  color: inherit;
 }
