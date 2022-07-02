@@ -102,25 +102,48 @@ const outline = (text) => {
 };
 
 /*
- * From the full outline, build a schedule of those items with days specified.
+ * From a list of items build a schedule of those items with days specified.
  */
-const schedule = (items) => items.flatMap((x) => withDays(x, ""));
+const schedule = (items) => {
+  const withDays = (item, prefix) =>
+    item.days
+      ? [addPrefix(item, prefix)]
+      : item.children
+      ? item.children.flatMap((x) => withDays(x, prefixed(prefix, item.title)))
+      : [];
 
+  return items.flatMap((x) => withDays(x, ""));
+};
+
+/*
+ * Get the top-level units and their scheduled children.
+ */
 const units = (full) => {
   return full
     .filter((u) => u.type == "unit")
     .map((unit) => Object.assign(unit, { children: schedule(unit.children || []) }));
 };
 
-const withDays = (item, prefix) =>
-  item.days
-    ? [addPrefix(item, prefix)]
-    : item.children
-    ? item.children.flatMap((x) => withDays(x, prefixed(prefix, item.title)))
-    : [];
+/*
+ * Strip the tree down to only those items that are not scheduled. An item is
+ * considered scheduled if it has days assigned or if all its children are
+ * scheduled, recursively.
+ */
+const unscheduled = (nodes) => {
+  const removeScheduledChildren = (n) => {
+    if ("children" in n) {
+      const children = unscheduled(n.children);
+      return children.length > 0 ? [Object.assign({}, n, { children })] : [];
+    } else {
+      return [n];
+    }
+  };
+
+  return nodes.flatMap((n) => (n.days ? [] : removeScheduledChildren(n)));
+};
 
 const addPrefix = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
 
 const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
 
-export { outline, schedule, units };
+export { outline, schedule, units, unscheduled };
