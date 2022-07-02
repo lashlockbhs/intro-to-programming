@@ -92,6 +92,7 @@ const fillTable = (calendar, outline) => {
 const unitRow = (unit) => {
   const cell = td(unitAnchor(unit), { colspan: "6" });
   cell.append(unitSelfLink(unit));
+  cell.append(element("a", "↑", { href: "#", class: "up" }));
   return tr(cell, { class: "unit" });
 };
 
@@ -122,7 +123,7 @@ const weekRow = (w, calendar, lessons) => {
       unscheduled(row, consumed);
     }
     if (consumed < item.days) {
-      lessons.unshift(Object.assign(item, { days: item.days - consumed }));
+      lessons.unshift(Object.assign(item, { days: item.days - consumed, continuation: true }));
     }
     days -= consumed;
   }
@@ -146,7 +147,9 @@ const dayOff = (tr) => {
 };
 
 const scheduled = (tr, item, days) => {
-  const c = "scheduled" + ("type" in item ? ` ${item.type}` : "");
+  let c = "scheduled";
+  if ("type" in item) c += ` ${item.type}`;
+  if (item.continuation) c += " continuation";
   tr.appendChild(td(item.title, { class: c, colspan: days }));
 };
 

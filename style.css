@@ -59,6 +59,14 @@ td.scheduled {
   color: white;
 }
 
+td.continuation {
+  font-size: 80%;
+}
+
+td.continuation::after {
+  content: " continued.";
+}
+
 td.unscheduled {
   background: #eeeeef;
 }
@@ -81,8 +89,13 @@ tr.unit td a.internal-link {
   display: inline-block;
 }
 
-tr.unit * {
+tr.unit > td {
   width: 100%;
+}
+
+a.up {
+  text-decoration: none;
+  float: right;
 }
 
 tr.spacer {
