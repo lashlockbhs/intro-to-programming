@@ -78,6 +78,7 @@ const outline = (text) => {
     const newItem = { title: p.text, days: p.days, weeks: p.weeks };
     if (newItem.title.match(/^Project: /)) {
       newItem.type = "project";
+      newItem.title = newItem.title.substring("Project: ".length);
     }
 
     if (newItem.title.match(/^Unit: /)) {
