@@ -172,14 +172,6 @@
 
   - Expressions
 
-    - Goals:
-
-      - Understand and recognize the types of different values.
-
-      - Be able to mentally evaluate simple expressions with both literal values and variables.
-
-      - Be able to construct expressions that produce certain values.
-
     - Types (1)
 
       - Single values
@@ -318,7 +310,9 @@
 
       - bowling score from number of pins per frame.
 
-  - Project: Caesar Cipher (5)
+  - Divide and conquer (1)
+
+  - Project: Caesar Cipher (4)
 
     - Preliminaries
 
@@ -498,30 +492,42 @@
 
   - Project: Adventure (10)
 
-- Misc topics not in calendar
+- Extra
 
-  - Project: Encode your name
+  - Topics
 
-  - Classes
+    - Classes
 
-  - Debugging
+    - Debugging
 
-  - Data driven programming
+    - Data driven programming
 
-  - Breaking down problems into parts
+    - Debugging and Testing
 
-  - Debugging and Testing
+    - Writing clear code
 
-  - Writing clear code
+    - Functions as values
 
-  - Functions as values
+    - Objects
 
-  - Objects
+      - Properties
 
-    - Properties
+        - .length on strings and arrays is a property
 
-      - .length on strings and arrays is a property
+      - Methods
 
-    - Methods
+  - Projects
 
-  - Project: Monte Carlo Simulation
+    - Project: Encode your name
+
+    - Project: Monte Carlo Simulation
+
+  - Goals
+
+    - Expressions
+
+      - Understand and recognize the types of different values.
+
+      - Be able to mentally evaluate simple expressions with both literal values and variables.
+
+      - Be able to construct expressions that produce certain values.
