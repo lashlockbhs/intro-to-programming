@@ -23,8 +23,8 @@
     - Class policies
 
       - No phones out during class. First-come, first-served access to 10 slots
-        in charging station. All other phones must stay in pocket or bag during
-        class or will be taken and not charged.)
+        in the Phone Spa All other phones must stay in pocket or bag during
+        class or will be taken and not charged.
 
       - No games and no social media. Computer is for doing work and research
         related to your work.
@@ -33,13 +33,26 @@
 
         - Portfolio (60%)
 
+          - The collection of all the code you wrote over the year.
+
+          - You will have an opportunity at the end of the year to go back and
+            work on earlier projects
+
+          - The focus of your portfolio will be a small number of programs that
+            you pick as the best representation of your work.
+
         - Journal (20%)
 
-        - Collaboration (20%)
+          - Daily journal of what you worked on, what problems you ran into, and
+            how you got unstuck.
 
-        - Based primarily on coding exercises and projects.
+        - Collaboration and dilligence (20%)
 
-        - Also points for being on focused on task and a helpful partner.
+          - Being a helpful partner
+
+          - Being on task
+
+          - Lose points by being disruptive to others.
 
       - Homework:
 
@@ -96,6 +109,12 @@
         - Understand, at least a bit, how all this stuff around us works?
 
         - Build tools to make your life better.
+
+      - If you're not stuck, you're not programming.
+
+        - Expect to be stuck
+
+        - When you get unstuck is when you learn the most
 
   - What is data? (1)
 
@@ -385,25 +404,49 @@
 
     - Responding to events
 
+    - Closures
+
   - Project: Dynamic document (4)
 
-- Unit: Object orientation (7 weeks)
+- Unit: Text (7 weeks)
 
-  - Classes (9)
+  - Advanced string manipulation including regular expressions. (4)
 
-  - APIs
+  - Project: Text manipulation tools (5)
 
-  - Debugging (5)
+    - See https://nimbletext.com/howto/ManipulateText for ideas.
 
-  - Recursion (5)
+    - Maybe some Advent of Code style puzzles?
 
-- Unit: Building tools (6 weeks)
+    - Count lines
+
+    - Word count
+
+    - Word frequency
+
+    - Find lines matching
+
+    - Name generator
+
+    - Smart quotes
+
+  - Markov models (1)
+
+  - Project: Markov model (3)
+
+  - Bot basics (1)
+
+    - Eliza
+
+    - AIML (https://en.wikipedia.org/wiki/AIML)
+
+  - Project: Bot (9)
+
+- Unit: Simulation (6 weeks)
 
   - Project: Monte Carlo Simulation (10)
 
-  - Events and closures (4)
-
-- Unit: ??? (8 weeks)
+- Unit: Portfolio development (8 weeks)
 
   - Project: Video Game (10)
 
@@ -422,3 +465,17 @@
       - .length on strings and arrays is a property
 
     - Methods
+
+- Misc topics not in calendar
+
+  - Project: Encode your name
+
+  - Classes
+
+  - APIs
+
+  - Debugging
+
+  - Recursion
+
+  - Data driven programming
