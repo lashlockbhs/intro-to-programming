@@ -206,14 +206,6 @@
 
     - Boolean bingo (1)
 
-    - Constructing
-
-      - Given value from blocks
-
-      - Given value, free response with specific values and operators given
-
-      - Given value, free response with specific values but no operators given.
-
   - Expressions
 
     - named values (2)
@@ -222,25 +214,39 @@
 
       - assignment
 
-    - with literals and variables (3)
+    - with literals and variables (2)
+
+    - Constructing (1)
+
+      - Given value from blocks
+
+      - Given value, free response with specific values and operators given
+
+      - Given value, free response with specific values but no operators given.
 
   - Functions
 
     - defining & using (1)
 
-    - numeric and boolean (4)
+    - numeric and boolean (3)
 
       - Various math functions: area of circle, volume of sphere, quadratic equation.
 
       - Random logical expressions like sleep_in
 
-    - String
+    - String (1)
 
       - Combining strings
 
       - Extracting characters from strings.
 
-  - Variables
+  - Project: Number guessing game (4)
+
+    - You guess a number the computer has picked.
+
+    - Computer guesses your number.
+
+  - Variables (1)
 
     - Function parameters
 
@@ -256,19 +262,7 @@
 
     - Scope of variables.
 
-  - Project: Number guessing game (4)
-
-    - You guess a number the computer has picked.
-
-    - Computer guesses your number.
-
-  - Strings (2)
-
-    - length property
-
-    - substring() method
-
-  - Control constructs (3)
+  - Control constructs (2)
 
     - if
 
@@ -279,6 +273,12 @@
     - for
 
     - break
+
+  - More about strings (2)
+
+    - length property
+
+    - substring() method
 
   - Arrays
 
@@ -348,7 +348,7 @@
 
     - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
 
-- Unit: Graphics (7 weeks)
+- Unit: Graphics (4 weeks)
 
   - What is an API and reading documentation (1)
 
@@ -378,15 +378,7 @@
 
   - Randomness and variation (1)
 
-  - Project: Genetic Art (3)
-
-  - Genetic algorithms (1)
-
-  - Project: Phrase Matcher (4)
-
-  - More complex GA (1)
-
-  - Project: Image Matcher (8)
+  - Project: Generative art (3)
 
 - Unit: The Web (3 weeks)
 
@@ -396,7 +388,7 @@
 
   - CSS: make it pretty (1)
 
-  - Project: Pretty document (4)
+  - Project: Pretty document (3)
 
   - Dynamic HTML (1)
 
@@ -408,7 +400,17 @@
 
   - Project: Dynamic document (4)
 
-- Unit: Text (7 weeks)
+- Unit: Genetic algorithms (3 weeks)
+
+  - Genetic algorithms (1)
+
+  - Project: Phrase Matcher (4)
+
+  - More complex GA (1)
+
+  - Project: Image Matcher (9)
+
+- Unit: Text (3 weeks)
 
   - Advanced string manipulation including regular expressions. (4)
 
@@ -434,17 +436,61 @@
 
   - Project: Markov model (3)
 
-  - Bot basics (1)
+- Unit: Search (4 weeks)
+
+  - Recursion (5)
+
+    - Fibonacci
+
+    - Change counting
+
+    - Towers of Hanoi
+
+  - Depth-first and Breadth-first search (1)
+
+  - Project: Maze solver (4)
+
+    - https://en.wikipedia.org/wiki/Maze-solving_algorithm#Recursive_algorithm
+
+  - Game search (1)
+
+  - Project: Board games (4)
+
+    - Nim
+
+    - Tic Tac Toe
+
+    - Connect 4
+
+    - Gomoku
+
+  - Search with constraints (1)
+
+  - Project: Sudoku Solver (3)
+
+- Unit: Simulation (6 weeks)
+
+  - Chatbot basics (1)
 
     - Eliza
 
     - AIML (https://en.wikipedia.org/wiki/AIML)
 
-  - Project: Bot (9)
+  - Project: Chatbot (8)
 
-- Unit: Simulation (6 weeks)
+  - Simulating physics (1)
 
-  - Project: Monte Carlo Simulation (10)
+  - Project: Boucing ball, billiards, and rockets. (9)
+
+    - Bouncing ball
+
+    - Boids
+
+    - Rocket in space
+
+  - Artifical life (1)
+
+  - Project: Boids, Ants, and Slime (9)
 
 - Unit: Portfolio development (8 weeks)
 
@@ -452,13 +498,25 @@
 
   - Project: Adventure (10)
 
-  - Debugging and Testing (2)
+- Misc topics not in calendar
 
-  - Writing clear code (2)
+  - Project: Encode your name
 
-  - Functions as values (2)
+  - Classes
 
-  - Objects (5)
+  - Debugging
+
+  - Data driven programming
+
+  - Breaking down problems into parts
+
+  - Debugging and Testing
+
+  - Writing clear code
+
+  - Functions as values
+
+  - Objects
 
     - Properties
 
@@ -466,16 +524,4 @@
 
     - Methods
 
-- Misc topics not in calendar
-
-  - Project: Encode your name
-
-  - Classes
-
-  - APIs
-
-  - Debugging
-
-  - Recursion
-
-  - Data driven programming
+  - Project: Monte Carlo Simulation
