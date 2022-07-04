@@ -154,6 +154,7 @@ div.codeLink {
 a.internal-link {
   text-decoration: none;
   color: inherit;
+  width: 80%;
 }
 
 a.anchor {
