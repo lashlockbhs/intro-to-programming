@@ -7,10 +7,10 @@ const loadData = async (calendar, outline) => {
   // Hack to prevent highlighting the A element when we load the page. Maybe better fixed via CSS?
   document.querySelectorAll("a").forEach(
     (a) =>
-      (a.onfocus = (e) => {
-        e.preventDefault();
-        e.currentTarget.blur();
-      })
+    (a.onfocus = (e) => {
+      e.preventDefault();
+      e.currentTarget.blur();
+    })
   );
 
   if (window.location.hash) {
@@ -123,7 +123,7 @@ const weekRow = (w, calendar, lessons) => {
       unscheduled(row, consumed);
     }
     if (consumed < item.days) {
-      lessons.unshift(Object.assign(item, { days: item.days - consumed, continuation: true }));
+      lessons.unshift({ ...item, days: item.days - consumed, continuation: true });
     }
     days -= consumed;
   }
