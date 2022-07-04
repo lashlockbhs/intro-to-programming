@@ -59,12 +59,7 @@
         - Very little. Maybe sometimes some reading. You can work on your
           programs outside of class but it should not be necessary.
 
-      - Collaboration
-
-        - You will often work in pairs. It is important to switch between
-          "driving" and "navigating".
-
-        - Recurse Center rules. https://www.recurse.com/social-rules
+      - Recurse Center rules. https://www.recurse.com/social-rules
 
       - Coding, open source, and working together:
 
@@ -115,6 +110,8 @@
         - Expect to be stuck
 
         - When you get unstuck is when you learn the most
+
+      - Writing clear code
 
   - What is data? (1)
 
@@ -396,7 +393,7 @@
 
 - Unit: Genetic algorithms (3 weeks)
 
-  - Genetic algorithms (1)
+  - Objects & Genetic algorithms (1)
 
   - Project: Phrase Matcher (4)
 
@@ -470,15 +467,17 @@
 
     - AIML (https://en.wikipedia.org/wiki/AIML)
 
+`   - Data driven programming
+
   - Project: Chatbot (8)
 
   - Simulating physics (1)
 
-  - Project: Boucing ball, billiards, and rockets. (9)
+  - Project: Boucing balls, billiards, and balistics. (9)
 
-    - Bouncing ball
+    - Bouncing balls
 
-    - Boids
+    - Billiards table
 
     - Rocket in space
 
@@ -500,11 +499,7 @@
 
     - Debugging
 
-    - Data driven programming
-
     - Debugging and Testing
-
-    - Writing clear code
 
     - Functions as values
 
@@ -515,6 +510,8 @@
         - .length on strings and arrays is a property
 
       - Methods
+
+  - Typescript
 
   - Projects
 
