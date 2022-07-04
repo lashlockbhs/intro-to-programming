@@ -10,7 +10,7 @@
 
         - Preferred name on one side in big letters
 
-        - Answers to questions on the board on the back.
+        - Answers to questions on the board on the other side.
 
           - Why are you taking this class?
 
@@ -21,6 +21,8 @@
           - Where did you go to middle school?
 
           - Pronouns if you don't want me to guess
+
+        - When you're done, put the card name side up on your desk.
 
     - Class policies
 
@@ -40,8 +42,8 @@
           - You will have an opportunity at the end of the year to go back and
             work on earlier projects
 
-          - The focus of your portfolio will be a small number of programs that
-            you pick as the best representation of your work.
+          - You will also get to pick a small number of programs as the best
+            representation of your work.
 
         - Journal (20%)
 
@@ -50,7 +52,7 @@
 
         - Collaboration and dilligence (20%)
 
-          - Being a helpful partner
+          - Being a helpful partner and teammate
 
           - Being on task
 
@@ -58,8 +60,9 @@
 
       - Homework:
 
-        - Very little. Maybe sometimes some reading. You can work on your
-          programs outside of class but it should not be necessary.
+        - Very little. Maybe sometimes some reading or watching a brief video.
+          You can work on your programs outside of class but it should not be
+          necessary.
 
       - Recurse Center rules. https://www.recurse.com/social-rules
 
@@ -71,7 +74,7 @@
 
       - No food near computers.
 
-      - Masks: encouraged and school policies will be enforced.
+      - Masks: encouraged and I will enforce school policies.
 
     - Things we can do with computers
 
@@ -113,13 +116,13 @@
 
         - When you get unstuck is when you learn the most
 
-      - Some themes
+    - Some themes
 
-        - Designing programs
+      - Designing programs
 
-        - Debugging
+      - Debugging
 
-        - Writing clear code
+      - Writing clear code
 
   - What is data? (1)
 
@@ -423,6 +426,8 @@
 
   - Advanced string manipulation including regular expressions. (4)
 
+    - How text is represented in the computer.
+
   - Project: Text manipulation tools (5)
 
     - See https://nimbletext.com/howto/ManipulateText for ideas.
@@ -540,4 +545,3 @@
     - SEND + MORE = MONEY
 
     - Zebra problem
-
