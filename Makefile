@@ -26,3 +26,6 @@ publish: all
 
 clean:
 	rm -rf ./js
+
+pristine:
+	git clean -fdx
