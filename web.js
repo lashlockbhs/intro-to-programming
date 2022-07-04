@@ -61,7 +61,7 @@ const fillTable = (calendar, outline) => {
     const lessons = [...unit.children];
 
     let first = true;
-    toFill.forEach((e, i) => {
+    toFill.forEach((e) => {
       if (e.isWeek) {
         if (first) {
           tbody.appendChild(unitRow(unit));
@@ -90,7 +90,7 @@ const fillTable = (calendar, outline) => {
 };
 
 const unitRow = (unit) => {
-  const cell = td(unitAnchor(unit), { colspan: "6" });
+  const cell = td(unitAnchor(unit), { colspan: "100%" });
   cell.append(unitSelfLink(unit));
   cell.append(element("a", "↑", { href: "#", class: "up" }));
   return tr(cell, { class: "unit" });
@@ -157,7 +157,7 @@ const unscheduled = (tr, days) => {
   tr.appendChild(td("Unscheduled", { class: "unscheduled", colspan: days }));
 };
 
-const vacationRow = (v) => tr(td(v.vacationString(), { colspan: "6" }), { class: "vacation" });
+const vacationRow = (v) => tr(td(v.vacationString(), { colspan: "100%" }), { class: "vacation" });
 
 const td = (content, attributes) => element("td", content, attributes);
 
