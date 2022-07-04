@@ -467,7 +467,7 @@
 
     - AIML (https://en.wikipedia.org/wiki/AIML)
 
-`   - Data driven programming
+   - Data driven programming
 
   - Project: Chatbot (8)
 
@@ -487,6 +487,8 @@
 
 - Unit: Portfolio development (8 weeks)
 
+  - Classes (5)
+
   - Project: Video Game (10)
 
   - Project: Adventure (10)
@@ -495,13 +497,11 @@
 
   - Topics
 
-    - Classes
-
     - Debugging
 
     - Debugging and Testing
 
-    - Functions as values
+    - Higher order functions
 
     - Objects
 
@@ -511,7 +511,7 @@
 
       - Methods
 
-  - Typescript
+    - Typescript
 
   - Projects
 
