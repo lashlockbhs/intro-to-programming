@@ -20,6 +20,8 @@
 
           - Where did you go to middle school?
 
+          - Pronouns if you don't want me to guess
+
     - Class policies
 
       - No phones out during class. First-come, first-served access to 10 slots
@@ -111,7 +113,13 @@
 
         - When you get unstuck is when you learn the most
 
-      - Writing clear code
+      - Some themes
+
+        - Designing programs
+
+        - Debugging
+
+        - Writing clear code
 
   - What is data? (1)
 
@@ -237,6 +245,8 @@
 
   - Variables (1)
 
+    - Binding vs assignment
+
     - Function parameters
 
     - Constant
@@ -343,6 +353,10 @@
 
   - What is an API and reading documentation (1)
 
+    - Properties
+
+    - Methods
+
     - Reading docs at MDN
 
     - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
@@ -364,6 +378,10 @@
   - Project: Animation (3)
 
   - Conway's Game of Life (1)
+
+    - 2D arrays
+
+    - Nested loops.
 
   - Project: Game of Life (4)
 
@@ -491,7 +509,9 @@
 
   - Project: Video Game (10)
 
-  - Project: Adventure (10)
+  - Higher order functions (5)
+
+  - Project: Adventure (9)
 
 - Extra
 
@@ -499,32 +519,25 @@
 
     - Debugging
 
-    - Debugging and Testing
-
-    - Higher order functions
-
-    - Objects
-
-      - Properties
-
-        - .length on strings and arrays is a property
-
-      - Methods
+    - Testing
 
     - Typescript
 
   - Projects
 
-    - Project: Encode your name
+    - Encode your name
 
-    - Project: Monte Carlo Simulation
+    - Monte Carlo Simulation
 
-  - Goals
+    - Wordle
 
-    - Expressions
+    - 2048
 
-      - Understand and recognize the types of different values.
+    - Boggle
 
-      - Be able to mentally evaluate simple expressions with both literal values and variables.
+    - Hangman
 
-      - Be able to construct expressions that produce certain values.
+    - SEND + MORE = MONEY
+
+    - Zebra problem
+
