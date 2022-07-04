@@ -2,9 +2,14 @@ body {
   font-family: "Gill Sans", sans-serif;
   margin-top: 50px;
   text-align: center;
-  background-image: url(jac.png);
-  background-size: 33vw;
-  background-color: rgba(255, 0, 0, 0.1);
+}
+
+@media screen {
+  body {
+    background-image: url(jac.png);
+    background-size: 33vw;
+    background-color: rgba(255, 0, 0, 0.1);
+  }
 }
 
 #container {
