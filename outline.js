@@ -120,9 +120,7 @@ const schedule = (items) => {
  * Get the top-level units and their scheduled children.
  */
 const units = (full) => {
-  return full
-    .filter((u) => u.type == "unit")
-    .map((unit) => Object.assign(unit, { children: schedule(unit.children || []) }));
+  return full.filter((u) => u.type == "unit").map((unit) => ({ ...unit, children: schedule(unit.children || []) }));
 };
 
 /*
@@ -134,7 +132,7 @@ const unscheduled = (nodes) => {
   const removeScheduledChildren = (n) => {
     if ("children" in n) {
       const children = unscheduled(n.children);
-      return children.length > 0 ? [Object.assign({}, n, { children })] : [];
+      return children.length > 0 ? [{ ...n, children }] : [];
     } else {
       return [n];
     }
@@ -143,7 +141,7 @@ const unscheduled = (nodes) => {
   return nodes.flatMap((n) => (n.days ? [] : removeScheduledChildren(n)));
 };
 
-const addPrefix = (item, prefix) => Object.assign(item, { title: prefixed(prefix, item.title) });
+const addPrefix = (item, prefix) => ({ ...item, title: prefixed(prefix, item.title) });
 
 const prefixed = (prefix, text) => (prefix ? `${prefix}: ${text}` : text);
 
