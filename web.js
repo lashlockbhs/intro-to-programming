@@ -1,16 +1,18 @@
 import { Calendar } from "./calendar.js";
 import { outline, units } from "./outline.js";
 
+const ITEM = Symbol("item");
+
 const loadData = async (calendar, outline) => {
   fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
 
   // Hack to prevent highlighting the A element when we load the page. Maybe better fixed via CSS?
   document.querySelectorAll("a").forEach(
     (a) =>
-    (a.onfocus = (e) => {
-      e.preventDefault();
-      e.currentTarget.blur();
-    })
+      (a.onfocus = (e) => {
+        e.preventDefault();
+        e.currentTarget.blur();
+      })
   );
 
   if (window.location.hash) {
@@ -150,11 +152,49 @@ const scheduled = (tr, item, days) => {
   let c = "scheduled";
   if ("type" in item) c += ` ${item.type}`;
   if (item.continuation) c += " continuation";
-  tr.appendChild(td(item.title, { class: c, colspan: days }));
+  const cell = td(item.title, { class: c, colspan: days });
+  tr.appendChild(cell);
+  cell[ITEM] = item;
+  cell.onclick = showDetails;
+};
+
+const fillDetails = (item, div) => {
+  const h1 = document.createElement("h1");
+  h1.innerText = item.title;
+  div.append(h1);
+
+  if (item.children) {
+    div.append(itemsDetails(item.children));
+  } else {
+    const p = document.createElement("p");
+    p.innerText = "No details.";
+    div.append(p);
+  }
+};
+
+const itemsDetails = (items) => {
+  if (items) {
+    const ul = document.createElement("ul");
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerText = item.title;
+      const kids = itemsDetails(item.children);
+      if (kids) li.append(kids);
+      ul.appendChild(li);
+    });
+    return ul;
+  }
 };
 
 const unscheduled = (tr, days) => {
   tr.appendChild(td("Unscheduled", { class: "unscheduled", colspan: days }));
+};
+
+const showDetails = (e) => {
+  const details = document.getElementById("details");
+  details.replaceChildren();
+  fillDetails(e.target[ITEM], details);
+  details.style.display = "block";
 };
 
 const vacationRow = (v) => tr(td(v.vacationString(), { colspan: "100%" }), { class: "vacation" });
@@ -176,6 +216,13 @@ const element = (tag, content, attributes = {}) => {
     e.setAttribute(name, attributes[name]);
   }
   return e;
+};
+
+details.onclick = (e) => (details.style.display = "none");
+window.onkeydown = (e) => {
+  if (e.key === "Escape" && details.style.display !== "none") {
+    details.style.display = "none";
+  }
 };
 
 loadData("calendar.json", "outline.txt");
