@@ -311,6 +311,8 @@ const hasToken = () => getToken() !== null;
  * Connect to Github, get the current, and wrap it all up in a wrapper object.
  */
 const connect = async (siteId, retries = 3) => {
+  // Retry in case our token has gone bad, e.g. been revoked in which case we
+  // want to forget about the one we have and try logging back in.
   if (retries > 0) {
     const octokit = await token(siteId).then((t) => new Octokit({ auth: t }));
     return octokit
