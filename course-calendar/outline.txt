@@ -1,0 +1,565 @@
+-*- mode: outline; outline-regexp: " *- " -*-
+
+- Unit: Getting started with Javascript (7 weeks)
+
+  - Intro to Intro (1)
+
+    - Introductions
+
+      - Me to you
+
+      - You to me. Index card with:
+
+        - Preferred name on one side in big letters
+
+        - Answers to questions on the board on the other side.
+
+          - Why are you taking this class?
+
+          - What do hope to learn?
+
+          - Do you have any prior experience programming? If so describe briefly.
+
+          - Where did you go to middle school?
+
+          - Pronouns if you don't want me to guess
+
+        - When you're done, put the card name side up on your desk.
+
+    - Class policies
+
+      - No phones out during class. First-come, first-served access to 10 slots
+        in the Phone Spa All other phones must stay in pocket or bag during
+        class or will be taken and not charged.
+
+      - No games and no social media. Computer is for doing work and research
+        related to your work.
+
+      - Grades:
+
+        - Portfolio (60%)
+
+          - The collection of all the code you wrote over the year.
+
+          - You will have an opportunity at the end of the year to go back and
+            work on earlier projects
+
+          - You will also get to pick a small number of programs as the best
+            representation of your work.
+
+        - Journal (20%)
+
+          - Daily journal of what you worked on, what problems you ran into, and
+            how you got unstuck.
+
+        - Collaboration and dilligence (20%)
+
+          - Being a helpful partner and teammate
+
+          - Being on task
+
+          - Lose points by being disruptive to others.
+
+      - Homework:
+
+        - Very little. Maybe sometimes some reading or watching a brief video.
+          You can work on your programs outside of class but it should not be
+          necessary.
+
+      - Recurse Center rules. https://www.recurse.com/social-rules
+
+      - Coding, open source, and working together:
+
+        - Write your own code. (When pairing, pair turns in the same code.)
+
+        - If you find useful snippets of code on the internet, cite it in a comment.
+
+      - No food near computers.
+
+      - Masks: encouraged and I will enforce school policies.
+
+    - Things we can do with computers
+
+      - Count stuff, i.e. Math
+
+      - Text
+
+      - Graphics
+
+      - Video
+
+      - Games
+
+      - Communicate (with text, graphics, video, etc.)
+
+      - What else?
+
+    - What is programming?
+
+      - Why is it fun?
+
+      - Why is it hard?
+
+        - There are a lot of details that you have to get right.
+
+        - It is very abstract.
+
+        - Those two things are usually at the opposite end of the mental spectrum.
+
+      - What can you do when you know how to program?
+
+        - Understand, at least a bit, how all this stuff around us works?
+
+        - Build tools to make your life better.
+
+      - If you're not stuck, you're not programming.
+
+        - Expect to be stuck
+
+        - When you get unstuck is when you learn the most
+
+    - Some themes
+
+      - Designing programs
+
+      - Classic How to Solve It cycle:
+
+        - Understand the problem.
+
+        - Devise a plan.
+
+        - Carry out the plan.
+
+        - Examine the solution and think about how it could be better.
+
+      - Debugging
+
+      - Writing clear code
+
+  - Let's write a program (1)
+
+  - What is data? (1)
+
+    - What can we do with it?
+
+      - Render it: play a video, display text, etc.
+
+      - Store it
+
+      - Send and receive it
+
+      - Combine and transform it to make new data
+
+    - What is a data type?
+
+      - A set of possible values
+
+      - Syntax - how you write it
+
+      - Operators - what you can do with it
+
+      - Expressions - combinations of values and operators
+
+    - First three data types
+
+      - Numbers
+
+        - Possible values
+
+        - Syntax
+
+        - Operators: +, -, *, /
+
+      - Strings
+
+        - Possible values
+
+        - Syntax
+
+        - Operators: +, []
+
+      - Booleans
+
+        - Possible values
+
+        - Syntax
+
+        - Operators: &&, ||, !
+
+      - Some operators between types
+
+        - Equality: ===, !==
+
+        - Comparison: <, >, <=, >=,
+
+  - Expressions
+
+    - Expression games (1)
+
+      - Single values
+
+      - Simple homogenous experessions (e.g. 1 + 2)
+
+      - Simple heterogenous expressions (e.g. 1 < 2)
+
+      - Complex homogenous expressions (e.g. 1 + 2 * 3)
+
+      - Complex heterogenous expressions (e.g. 1 < 2 && 4 !== 5)
+
+      - Type of holes in expressions (e.g. 10 + <hole>)
+
+      - Discuss: Precedence and grouping
+
+      - Simple expressions, multiple choice
+
+      - Complex expressions, multiple choice
+
+      - Simple and complex expressions, free response.
+
+    - Boolean bingo (1)
+
+  - Expressions
+
+    - named values (2)
+
+      - const
+
+      - assignment
+
+    - with literals and variables (2)
+
+    - Constructing (1)
+
+      - Given value from blocks
+
+      - Given value, free response with specific values and operators given
+
+      - Given value, free response with specific values but no operators given.
+
+  - Functions
+
+    - defining & using (1)
+
+    - numeric and boolean (3)
+
+      - Various math functions: area of circle, volume of sphere, quadratic equation.
+
+      - Random logical expressions like sleep_in
+
+    - String (1)
+
+      - Combining strings
+
+      - Extracting characters from strings.
+
+  - Project: Number guessing game (4)
+
+    - You guess a number the computer has picked.
+
+    - Computer guesses your number.
+
+  - Variables (1)
+
+    - Binding vs assignment
+
+    - Function parameters
+
+    - Constant
+
+      - Names for values
+
+      - Used to simplify expressions
+
+    - Changing
+
+      - Names that can change
+
+    - Scope of variables.
+
+  - Control constructs (2)
+
+    - if
+
+    - return
+
+    - while
+
+    - for
+
+    - break
+
+  - More about strings (2)
+
+    - length property
+
+    - substring() method
+
+  - Arrays
+
+    - Values and syntax (1)
+
+      - Indexing (1)
+
+        - Zero based
+
+        - .length property
+
+        - Up to .length - 1
+
+    - Looping over arrays (1)
+
+    - Search (1)
+
+      - Use of while loops (while (!found) { lookForThing
+
+    - filter/map/reduce patterns (2)
+
+      - count item
+
+      - min
+
+      - max
+
+      - select vowels
+
+      - select not vowels
+
+      - select even indices
+
+      - collect pairs (hmmm, this is hard to do with f/m/r functions)
+
+      - count predicate, e.g. vowels
+
+      - bowling score from number of pins per frame.
+
+  - Divide and conquer (1)
+
+  - Project: Caesar Cipher (4)
+
+    - Preliminaries
+
+      - ASCII and Unicode
+
+      - s.charCodeAt(i)
+
+      - String.fromCharCode(code)
+
+      - Modular arithmetic.
+
+      - console.log debugging
+
+    - Function that handles a single character rotation.
+
+    - Function that handles a string of only lowercase letters.
+
+    - Add support for uppercase latters.
+
+    - Allow non-letter characters which are passed through unchanged.
+
+    - Write encrypt/decrypt function that work off the same key.
+
+    - Use a string key rather than a single number where each key letter is added to the plaintext letter, cycling.
+
+    - Any other enhancements to encoding, decoding. (Must be roundtrip.)
+
+    - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
+
+      - Assume perhaps you have a list of the 1000 most common words in English.
+
+      - One approach: decrypt the ciphertext with each key and check for words
+
+      - Another approach: encrypt the top words with each key and check for the ciphertext version in the given ciphertext
+
+- Unit: Graphics (4 weeks)
+
+  - What is an API and reading documentation (1)
+
+    - Properties
+
+    - Methods
+
+    - Reading docs at MDN
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+
+  - Project: Make some art (4)
+
+    - Explore the MDN docs for Canvas and 2D context and experiment with different methods and properties.
+
+    - Journal about what you find.
+
+    - Turn in various graphics.
+
+  - Building an animation loop (1)
+
+    - How an animation loop works
+
+    - Setting up a simple loop in Javascript with requestAnimationFrame
+
+  - Project: Animation (3)
+
+  - Conway's Game of Life (1)
+
+    - 2D arrays
+
+    - Nested loops.
+
+  - Project: Game of Life (4)
+
+  - Randomness and variation (1)
+
+  - Project: Generative art (3)
+
+- Unit: The Web (3 weeks)
+
+  - HTML Basics (1)
+
+  - Project: HTML document (4)
+
+  - CSS: make it pretty (1)
+
+  - Project: Pretty document (3)
+
+  - Dynamic HTML (1)
+
+    - Buliding and styling HTML with code
+
+    - Responding to events
+
+    - Closures
+
+  - Project: Dynamic document (4)
+
+- Unit: Genetic algorithms (3 weeks)
+
+  - Objects & Genetic algorithms (1)
+
+  - Project: Phrase Matcher (4)
+
+  - More complex GA (1)
+
+  - Project: Image Matcher (9)
+
+- Unit: Text (3 weeks)
+
+  - Advanced string manipulation including regular expressions. (4)
+
+    - How text is represented in the computer.
+
+  - Project: Text manipulation tools (5)
+
+    - See https://nimbletext.com/howto/ManipulateText for ideas.
+
+    - Maybe some Advent of Code style puzzles?
+
+    - Count lines
+
+    - Word count
+
+    - Word frequency
+
+    - Find lines matching
+
+    - Name generator
+
+    - Smart quotes
+
+  - Markov models (1)
+
+  - Project: Markov model (3)
+
+- Unit: Search (4 weeks)
+
+  - Recursion (5)
+
+    - Fibonacci
+
+    - Change counting
+
+    - Towers of Hanoi
+
+  - Depth-first and Breadth-first search (1)
+
+  - Project: Maze solver (4)
+
+    - https://en.wikipedia.org/wiki/Maze-solving_algorithm#Recursive_algorithm
+
+  - Game search (1)
+
+  - Project: Board games (4)
+
+    - Nim
+
+    - Tic Tac Toe
+
+    - Connect 4
+
+    - Gomoku
+
+  - Search with constraints (1)
+
+  - Project: Sudoku Solver (3)
+
+- Unit: Simulation (6 weeks)
+
+  - Chatbot basics (1)
+
+    - Eliza
+
+    - AIML (https://en.wikipedia.org/wiki/AIML)
+
+   - Data driven programming
+
+  - Project: Chatbot (8)
+
+  - Simulating physics (1)
+
+  - Project: Boucing balls, billiards, and balistics. (9)
+
+    - Bouncing balls
+
+    - Billiards table
+
+    - Rocket in space
+
+  - Artifical life (1)
+
+  - Project: Boids, Ants, and Slime (9)
+
+- Unit: Portfolio development (8 weeks)
+
+  - Classes (5)
+
+  - Project: Video Game (10)
+
+  - Higher order functions (5)
+
+  - Project: Adventure (9)
+
+- Extra
+
+  - Topics
+
+    - Debugging
+
+    - Testing
+
+    - Typescript
+
+  - Projects
+
+    - Encode your name
+
+    - Monte Carlo Simulation
+
+    - Wordle
+
+    - 2048
+
+    - Boggle
+
+    - Hangman
+
+    - SEND + MORE = MONEY
+
+    - Zebra problem
