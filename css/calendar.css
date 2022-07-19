@@ -6,7 +6,7 @@ body {
 
 @media screen {
   body {
-    background-image: url(jac.png);
+    background-image: url(../img/jac.png);
     background-size: 33vw;
     background-color: rgba(255, 0, 0, 0.1);
   }

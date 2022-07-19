@@ -30,6 +30,7 @@ to_publish := $(shell git ls-files *.html)
 to_publish += css/
 to_publish += img/
 to_publish += js/
+to_publish += calendar/
 to_publish += demo/
 to_publish += assignments/
 to_publish += favicon.ico

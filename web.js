@@ -1,5 +1,5 @@
-import { Calendar } from "./calendar.js";
-import { outline, units } from "./outline.js";
+import { Calendar } from "./modules/calendar";
+import { outline, units } from "./modules/outline";
 
 const ITEM = Symbol("item");
 
