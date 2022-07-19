@@ -1,6 +1,6 @@
-- Templatize
+- Consolidate in root directory of new repo.
 
-- Incorporate course calendar repo.
+- Templatize
 
 - Inject run-tests.js into the iframe if testing is on rather than requiring a
   frame to specify it.
