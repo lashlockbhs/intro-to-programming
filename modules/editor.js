@@ -9,20 +9,20 @@ window.MonacoEnvironment = {
   getWorkerUrl(moduleId, label) {
     switch (label) {
       case 'json':
-        return `js/vs/language/json/json.worker.js`;
+        return `/js/vs/language/json/json.worker.js`;
       case 'css':
       case 'scss':
       case 'less':
-        return `js/vs/language/css/css.worker.js`;
+        return `/js/vs/language/css/css.worker.js`;
       case 'html':
       case 'handlebars':
       case 'razor':
-        return `js/vs/language/html/html.worker.js`;
+        return `/js/vs/language/html/html.worker.js`;
       case 'typescript':
       case 'javascript':
-        return `js/vs/language/typescript/ts.worker.js`;
+        return `/js/vs/language/typescript/ts.worker.js`;
       default:
-        return `js/vs/editor/editor.worker.js`;
+        return `/js/vs/editor/editor.worker.js`;
     }
   },
 };
