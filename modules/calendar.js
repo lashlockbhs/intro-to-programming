@@ -1,16 +1,27 @@
-import { Temporal } from "@js-temporal/polyfill";
+import { Temporal } from '@js-temporal/polyfill';
 
-const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTH_NAMES = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
 const dayName = (d) => DAY_NAMES[d.dayOfWeek - 1];
 
 const monthName = (d) => MONTH_NAMES[d.month - 1];
 
-const date = Temporal.PlainDate.from;
-
-const compare = Temporal.PlainDate.compare;
+const { from: date, compare } = Temporal.PlainDate;
 
 const between = (start, d, end) => compare(start, d) <= 0 && compare(d, end) <= 0;
 
@@ -28,12 +39,13 @@ class Calendar {
   }
 
   parseYear() {
+    const startOfSummer = this.lastDay.add({ days: 1 });
+    const elements = [];
+
     let daysOff = 0;
     let days = [];
     let d = this.firstDay;
-    let startOfSummer = this.lastDay.add({ days: 1 });
 
-    let elements = [];
     let w = 1;
     while (!d.equals(startOfSummer)) {
       if (this.isSchoolday(d)) {
@@ -118,13 +130,13 @@ class Vacation {
   vacationLabel() {
     switch (this.dayAfter.month) {
       case 11:
-        return "THANKSGIVING BREAK";
+        return 'THANKSGIVING BREAK';
       case 1:
-        return "WINTER BREAK";
+        return 'WINTER BREAK';
       case 2:
-        return "PRESIDENTS’ DAY WEEKEND";
+        return 'PRESIDENTS’ DAY WEEKEND';
       default:
-        return "SPRING BREAK";
+        return 'SPRING BREAK';
     }
   }
 
@@ -133,4 +145,4 @@ class Vacation {
   }
 }
 
-export { Calendar };
+export default Calendar;

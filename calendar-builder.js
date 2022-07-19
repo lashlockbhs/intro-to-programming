@@ -1,36 +1,42 @@
-import { Calendar } from "./modules/calendar";
-import { outline, units } from "./modules/outline";
+import Calendar from './modules/calendar';
+import { outline, units } from './modules/outline';
 
-const ITEM = Symbol("item");
+const ITEM = Symbol('item');
+
+const details = document.getElementById('details');
 
 const loadData = async (calendar, outline) => {
-  fillTable(await toCalendar(fetch(calendar)), await toOutline(fetch(outline, { cache: "no-cache" })));
-
-  // Hack to prevent highlighting the A element when we load the page. Maybe better fixed via CSS?
-  document.querySelectorAll("a").forEach(
-    (a) =>
-      (a.onfocus = (e) => {
-        e.preventDefault();
-        e.currentTarget.blur();
-      })
+  fillTable(
+    await toCalendar(fetch(calendar)),
+    await toOutline(fetch(outline, { cache: 'no-cache' })),
   );
 
+  // Hack to prevent highlighting the A element when we load the page. Maybe better fixed via CSS?
+  document.querySelectorAll('a').forEach((a) => {
+    a.onfocus = (e) => {
+      e.preventDefault();
+      e.currentTarget.blur();
+    };
+  });
+
   if (window.location.hash) {
+    /* eslint-disable no-self-assign */
     // Need to reset location now that the anchors are defined.
     window.location = window.location;
+    /* eslint-enable */
   }
 };
 
 const jsonOrBarf = (r) => {
   if (!r.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    throw new Error(`HTTP error! Status: ${r.status}`);
   }
   return r.json();
 };
 
 const textOrBarf = (r) => {
   if (!r.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    throw new Error(`HTTP error! Status: ${r.status}`);
   }
   return r.text();
 };
@@ -39,20 +45,23 @@ const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calenda
 
 const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
 
-const tocLink = (unit) => {
-  return element("a", `Unit ${unit.number}`, { class: "internal-link", href: `#unit-${unit.number}` });
-};
+const tocLink = (unit) =>
+  element('a', `Unit ${unit.number}`, {
+    class: 'internal-link',
+    href: `#unit-${unit.number}`,
+  });
 
 const fillTable = (calendar, outline) => {
   const weeks = [...calendar.elements];
-  const toc = document.getElementById("toc");
+  const toc = document.getElementById('toc');
+  const table = document.getElementById('table');
 
   units(outline).forEach((unit) => {
     toc.appendChild(tocLink(unit));
 
-    let tbody = element("tbody");
+    let tbody = element('tbody');
 
-    let toFill = [];
+    const toFill = [];
     let count = 0;
     while (count < unit.weeks) {
       const w = weeks.shift();
@@ -72,46 +81,51 @@ const fillTable = (calendar, outline) => {
         first = false;
       } else {
         if (tbody.children.length > 0) {
-          document.getElementById("table").appendChild(tbody);
-          tbody = element("tbody");
+          table.appendChild(tbody);
+          tbody = element('tbody');
         }
         tbody.appendChild(vacationRow(e));
-        document.getElementById("table").appendChild(tbody);
-        tbody = element("tbody");
+        table.appendChild(tbody);
+        tbody = element('tbody');
       }
     });
 
     if (lessons.length > 0) {
-      alert(`Overflow in unit ${unit.number}: ${JSON.stringify(lessons)}`);
+      const p = document.createElement('p');
+      p.classList.add('overflow-warning');
+      p.innerText = `Overflow in unit ${unit.number}: ${JSON.stringify(lessons)}`;
+      table.after(p);
     }
-    document.getElementById("table").appendChild(tbody);
+    table.appendChild(tbody);
   });
 
   const { schoolWeeks, schoolDays } = calendar;
-  document.getElementById("length").innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
+  document.getElementById(
+    'length',
+  ).innerText = `${schoolWeeks} school weeks; ${schoolDays} school days`;
 };
 
 const unitRow = (unit) => {
-  const cell = td(unitAnchor(unit), { colspan: "100%" });
+  const cell = td(unitAnchor(unit), { colspan: '100%' });
   cell.append(unitSelfLink(unit));
-  cell.append(element("a", "↑", { href: "#", class: "up" }));
-  return tr(cell, { class: "unit" });
+  cell.append(element('a', '↑', { href: '#', class: 'up' }));
+  return tr(cell, { class: 'unit' });
 };
 
 const unitAnchor = (unit) => {
   const name = `unit-${unit.number}`;
-  return element("a", "", { class: "anchor", name });
+  return element('a', '', { class: 'anchor', name });
 };
 
 const unitSelfLink = (unit) => {
   const href = `#unit-${unit.number}`;
-  return element("a", `Unit ${unit.number}: ${unit.title}`, { class: "internal-link", href });
+  return element('a', `Unit ${unit.number}: ${unit.title}`, { class: 'internal-link', href });
 };
 
 const weekRow = (w, calendar, lessons) => {
   const row = tr(dateCell(w));
 
-  if (w.start.dayOfWeek == 2) dayOff(row);
+  if (w.start.dayOfWeek === 2) dayOff(row);
 
   let days = w.days.length;
 
@@ -130,28 +144,28 @@ const weekRow = (w, calendar, lessons) => {
     days -= consumed;
   }
   if (days > 0) unscheduled(row, days);
-  if (w.end.dayOfWeek == 4) dayOff(row);
+  if (w.end.dayOfWeek === 4) dayOff(row);
   return row;
 };
 
 const dateCell = (w) => {
   if (w.isAP) {
-    const cell = td("", { class: "week" });
-    cell.innerHTML = w.datesOfWeek() + "<br><span class='extra'>AP exams</span>";
+    const cell = td('', { class: 'week' });
+    cell.innerHTML = `${w.datesOfWeek()}<br><span class='extra'>AP exams</span>`;
     return cell;
   } else {
-    return td(w.datesOfWeek(), { class: "week" });
+    return td(w.datesOfWeek(), { class: 'week' });
   }
 };
 
 const dayOff = (tr) => {
-  tr.appendChild(td("No school", { class: "off" }));
+  tr.appendChild(td('No school', { class: 'off' }));
 };
 
 const scheduled = (tr, item, days) => {
-  let c = "scheduled";
-  if ("type" in item) c += ` ${item.type}`;
-  if (item.continuation) c += " continuation";
+  let c = 'scheduled';
+  if ('type' in item) c += ` ${item.type}`;
+  if (item.continuation) c += ' continuation';
   const cell = td(item.title, { class: c, colspan: days });
   tr.appendChild(cell);
   cell[ITEM] = item;
@@ -159,70 +173,71 @@ const scheduled = (tr, item, days) => {
 };
 
 const fillDetails = (item, div) => {
-  const h1 = document.createElement("h1");
+  const h1 = document.createElement('h1');
   h1.innerText = item.title;
   div.append(h1);
 
   if (item.children) {
     div.append(itemsDetails(item.children));
   } else {
-    const p = document.createElement("p");
-    p.innerText = "No details.";
+    const p = document.createElement('p');
+    p.innerText = 'No details.';
     div.append(p);
   }
 };
 
 const itemsDetails = (items) => {
-  if (items) {
-    const ul = document.createElement("ul");
-    items.forEach((item) => {
-      const li = document.createElement("li");
-      li.innerText = item.title;
-      const kids = itemsDetails(item.children);
-      if (kids) li.append(kids);
-      ul.appendChild(li);
-    });
-    return ul;
-  }
+  const ul = document.createElement('ul');
+  items.forEach((item) => {
+    const li = document.createElement('li');
+    li.innerText = item.title;
+    if (item.children) {
+      li.append(itemsDetails(item.children));
+    }
+    ul.appendChild(li);
+  });
+  return ul;
 };
 
 const unscheduled = (tr, days) => {
-  tr.appendChild(td("Unscheduled", { class: "unscheduled", colspan: days }));
+  tr.appendChild(td('Unscheduled', { class: 'unscheduled', colspan: days }));
 };
 
 const showDetails = (e) => {
-  const details = document.getElementById("details");
   details.replaceChildren();
   fillDetails(e.target[ITEM], details);
-  details.style.display = "block";
+  details.style.display = 'block';
 };
 
-const vacationRow = (v) => tr(td(v.vacationString(), { colspan: "100%" }), { class: "vacation" });
+const vacationRow = (v) => tr(td(v.vacationString(), { colspan: '100%' }), { class: 'vacation' });
 
-const td = (content, attributes) => element("td", content, attributes);
+const td = (content, attributes) => element('td', content, attributes);
 
-const tr = (content, attributes) => element("tr", content, attributes);
+const tr = (content, attributes) => element('tr', content, attributes);
 
 const element = (tag, content, attributes = {}) => {
   const e = document.createElement(tag);
   if (content) {
-    if (typeof content === "string") {
+    if (typeof content === 'string') {
       e.innerText = content;
     } else {
       e.appendChild(content);
     }
   }
-  for (const name in attributes) {
-    e.setAttribute(name, attributes[name]);
-  }
+  Object.entries(attributes).forEach(([name, value]) => {
+    e.setAttribute(name, value);
+  });
   return e;
 };
 
-details.onclick = (e) => (details.style.display = "none");
+details.onclick = () => {
+  details.style.display = 'none';
+};
+
 window.onkeydown = (e) => {
-  if (e.key === "Escape" && details.style.display !== "none") {
-    details.style.display = "none";
+  if (e.key === 'Escape' && details.style.display !== 'none') {
+    details.style.display = 'none';
   }
 };
 
-loadData("calendar.json", "outline.txt");
+loadData('calendar.json', 'outline.txt');

@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 300;
   width: 100%;
@@ -190,7 +190,6 @@ h2 {
   padding: 0;
 }
 
-
 #left,
 #right {
   display: flex;
@@ -210,10 +209,10 @@ iframe {
 
 #repl {
   /* Grabbed this font stack from down in the bowels of Monaco to try and make the REPL look like the editor. */
-  font-family: "SF Mono", Monaco, Menlo, Consolas, "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, 'Ubuntu Mono', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Courier New', monospace;
   font-size: 12px;
 }
-
 
 iframe.canvas,
 iframe.test-cases {

@@ -1,7 +1,7 @@
 @import url('base.css');
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin-top: 50px;
   text-align: center;
 }
@@ -38,7 +38,7 @@ table {
 tbody::before {
   height: 20px;
   display: table-row;
-  content: "";
+  content: '';
 }
 
 td {
@@ -71,7 +71,7 @@ td.continuation {
 }
 
 td.continuation::after {
-  content: " continued.";
+  content: ' continued.';
 }
 
 td.unscheduled {
@@ -119,8 +119,8 @@ tr.unit > td,
   color: #00007f;
 }
 
-td.scheduled[colspan="1"],
-td.scheduled[colspan="2"],
+td.scheduled[colspan='1'],
+td.scheduled[colspan='2'],
 td.off {
   font-size: 80%;
 }
@@ -179,4 +179,11 @@ a.anchor {
   border: 2px solid white;
   text-align: left;
   overflow: scroll;
+}
+
+.overflow-warning {
+  font-size: 80%;
+  color: red;
+  background: black;
+  padding: 4px;
 }

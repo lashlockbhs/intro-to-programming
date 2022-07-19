@@ -5,7 +5,7 @@ import makeEvaluator from './modules/evaluator';
 import monaco from './modules/editor';
 import replize from './modules/repl';
 import testing from './modules/testing';
-import { jsonIfOk, textIfOk } from './modules/fetch-helpers';
+import { jsonIfOk } from './modules/fetch-helpers';
 
 const GITHUB_ORG = 'gigamonkeys'; // FIXME: load this from config file from website.
 const TEMPLATE_OWNER = 'gigamonkey';
@@ -233,14 +233,13 @@ const maybeSetupTesting = (config) => {
 };
 
 const setup = async () => {
-
   const config = await configuration();
   const storage = await makeStorage();
   const evaluator = makeEvaluator(config.iframe, config.script, repl, message);
 
   const testingCallback = maybeSetupTesting(config);
 
-  const filename = config.files[0];
+  const [filename] = config.files;
 
   // Put code in editor and evaluate it.
   const fillEditor = (code) => {

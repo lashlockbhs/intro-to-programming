@@ -11,8 +11,25 @@
     "no-console": "off",
     "no-else-return": "off",
     "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": true,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": true
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
     "spaced-comment": [
       "error",
       "always",

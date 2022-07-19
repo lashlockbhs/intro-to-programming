@@ -16,6 +16,7 @@ class Login {
     this.profileURL = profileURL;
   }
 
+  /* eslint-disable class-methods-use-this */
   get anonymous() {
     const v = sessionStorage.getItem(KEY);
     if (v === null) {
@@ -39,7 +40,7 @@ class Login {
       sessionStorage.removeItem(KEY);
     }
   }
-
+  /* eslint-enable */
 
   get isLoggedIn() {
     return this.username !== null;
