@@ -1,0 +1,58 @@
+{
+  "files": ["code.js"],
+  "testing": {
+    "id": "#testing",
+    "cases": [
+      {
+        "name": "add",
+        "description": "A function that takes two numbers and returns their sum.",
+        "cases": [
+          { "args": [0, 0], "expected": 0 },
+          { "args": [0, 10], "expected": 10 },
+          { "args": [10, 0], "expected": 10 },
+          { "args": [10, 11], "expected": 21 },
+          { "args": [1, 2], "expected": 3 }
+        ]
+      },
+      {
+        "name": "subtract",
+        "description": "A function that takes two numbers and returns their difference.",
+        "cases": [
+          { "args": [0, 0], "expected": 0 },
+          { "args": [0, 10], "expected": -10 },
+          { "args": [10, 0], "expected": 10 },
+          { "args": [10, 11], "expected": -1 },
+          { "args": [1, 2], "expected": -1 }
+        ]
+      },
+      {
+        "name": "multiply",
+        "description": "A function that takes two numbers and returns their product.",
+        "cases": [
+          { "args": [0, 0], "expected": 0 },
+          { "args": [0, 10], "expected": 0 },
+          { "args": [10, 0], "expected": 0 },
+          { "args": [10, 11], "expected": 110 },
+          { "args": [1, 2], "expected": 2 },
+          { "args": [2, 3], "expected": 6 }
+        ]
+      },
+      {
+        "name": "divide",
+        "description": [
+          "A function that takes two numbers and returns their quotient.",
+          "You can assume the second argument (the divisor) is not 0."],
+        "cases": [
+          { "args": [0, 10], "expected": 0 },
+          { "args": [10, 2], "expected": 5 },
+          { "args": [1, 2], "expected": 0.5 },
+          { "args": [1, 1], "expected": 1 }
+        ]
+      }
+    ]
+  },
+  "iframe": {
+    "src": "assignments/test-cases-01/frame.html",
+    "hidden": true
+  }
+}

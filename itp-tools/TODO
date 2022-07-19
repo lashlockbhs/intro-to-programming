@@ -1,0 +1,79 @@
+- Templatize
+
+- Incorporate course calendar repo.
+
+- Inject run-tests.js into the iframe if testing is on rather than requiring a
+  frame to specify it.
+
+- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
+
+- Break out DOM manipulation stuff into module.
+
+- Look into setting branch protection rule on main.
+
+- Add README to itp-template
+
+- Move itp-template into gigamonkeys org
+
+- Fix pretty printer
+
+- Create top-level index.html with useful links.
+
+- Give a way to explicitly save with a comment so the branches aren't 100% "Updating".
+
+- Rename gigamonkeys org or make new one.
+
+- Sort out logged out storage situation or rip it out. Goal should be to at
+  least allow evaluating new code while logged out. Maybe not necessary to save
+  it. (In fact no point in saving it unless we actually then save it all when
+  logged in. Which seems maybe too complicated.)
+
+- Fix styling (again) to keep everything on the page.
+
+- Finish new-repl and replace REPL with it.
+
+- Show stack traces (see error.stack also
+  https://github.com/stacktracejs/stacktrace.js)
+
+- Support multiple files in a project/assignment.
+
+- Move "Saving" indicator into web page.
+
+- Write function to check that you're ready to go: logged into GitHub, repo
+  exists, and repo well formed.
+
+- Figure out how to be robust (or at least graceful) if token stored is
+  sessionStorage has been revoked. (Probably if any API requests fail, clear the
+  current token from sessionStorage and then show logged out state.)
+
+- Someday, should probably figure out if this thing should really be a GitHub
+  App for finer grained permissions plus maybe the ability to do stuff in the
+  org that the user doesn't have permission to do.
+
+# Fit and finish
+
+- Sort out the font situation: use web fonts probably.
+
+# Super polish
+
+- Make the clipboard icon in the banner move a bit when you press it.
+
+# Future directions/experiments
+
+- Can we use web workers for evaluation? They can only load from files, it
+  seems, which might be a problem. (Maybe just pass the code in as a string via
+  postMessage and `eval` or `Function()` it in the worker.)
+
+# Maybe not.
+
+- Investigate using data URLs to import editor code as module into REPL. (Idea
+  being: repl code is evaluated as a module but includes a line that does a
+  dynamic import of a data URL containing the current code from the editor. That
+  would mean that only exported things would be available in the REPL but that
+  might actually be good?)
+
+- Use netlify \_rewrite rule
+  (https://docs.netlify.com/routing/redirects/rewrites-proxies/) to have a
+  single page that handles all branches
+
+- Show SHA subtly somewhere in web page.
