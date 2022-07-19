@@ -1,3 +1,5 @@
+-*- mode: outline; outline-regexp: " *- " -*-
+
 - Unit: Getting started with Javascript (7 weeks)
 
   - Intro to Intro (1)
@@ -120,9 +122,21 @@
 
       - Designing programs
 
+      - Classic How to Solve It cycle:
+
+        - Understand the problem.
+
+        - Devise a plan.
+
+        - Carry out the plan.
+
+        - Examine the solution and think about how it could be better.
+
       - Debugging
 
       - Writing clear code
+
+  - Let's write a program (1)
 
   - What is data? (1)
 
@@ -180,7 +194,7 @@
 
   - Expressions
 
-    - Types (1)
+    - Expression games (1)
 
       - Single values
 
@@ -193,8 +207,6 @@
       - Complex heterogenous expressions (e.g. 1 < 2 && 4 !== 5)
 
       - Type of holes in expressions (e.g. 10 + <hole>)
-
-    - Evaluating (1)
 
       - Discuss: Precedence and grouping
 
@@ -351,6 +363,12 @@
     - Any other enhancements to encoding, decoding. (Must be roundtrip.)
 
     - Write a function that cracks simple caesar ciphers by brute force. (How to tell when you've got a crack?)
+
+      - Assume perhaps you have a list of the 1000 most common words in English.
+
+      - One approach: decrypt the ciphertext with each key and check for words
+
+      - Another approach: encrypt the top words with each key and check for the ciphertext version in the given ciphertext
 
 - Unit: Graphics (4 weeks)
 
