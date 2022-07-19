@@ -32,6 +32,7 @@ to_publish += img/
 to_publish += js/
 to_publish += demo/
 to_publish += assignments/
+to_publish += favicon.ico
 
 all:  build
 

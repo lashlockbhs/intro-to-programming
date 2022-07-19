@@ -5,7 +5,7 @@ set -x
 
 dir=$(basename "$(pwd)")
 sha=$(git log --pretty=tformat:%H -1);
-webdir=~/web/www.gigamonkeys.com/misc/$dir/
+webdir=~/web/intro.gigamonkeys.com/
 
 mkdir -p "$webdir"
 rsync --recursive --relative --delete --verbose "$@" $webdir
