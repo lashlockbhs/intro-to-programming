@@ -1,6 +1,8 @@
-- Put back the login button when logged out.
+- Look into setting branch protection rule on main in created repos.
 
-- Templatize
+- Add link to branch (or to create PR) from assignment pages. (Could maybe be
+  extra fancy and mark the assignment as turned in if the branch has been merged
+  to main.)
 
 - Inject run-tests.js into the iframe if testing is on rather than requiring a
   frame to specify it.
@@ -8,8 +10,6 @@
 - Componentize my editor (i.e. monaco plus the minibuffer, etc.)
 
 - Break out DOM manipulation stuff into module.
-
-- Look into setting branch protection rule on main in created repos.
 
 - Add README to itp-template
 
