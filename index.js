@@ -182,7 +182,7 @@ const connectToGithub = async () => {
   }
 
   if (repo !== null) {
-    login.repoURL = repo.html_url;
+    login.repoURL = repo.url;
   }
 
   showLoggedIn();

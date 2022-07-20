@@ -120,7 +120,8 @@ class RepoOwner {
         description: `Repo made from ${templateOwner}/${templateRepo}`,
         include_all_branches: true,
       })
-      .then(if200);
+      .then(if200)
+      .then((data) => new Repo(this.octokit, data));
   }
 
   async repoExists(name) {
