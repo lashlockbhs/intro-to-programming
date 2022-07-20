@@ -1,5 +1,3 @@
-- Look into setting branch protection rule on main in created repos.
-
 - Add link to branch (or to create PR) from assignment pages. (Could maybe be
   extra fancy and mark the assignment as turned in if the branch has been merged
   to main.)
