@@ -37,8 +37,17 @@ to_publish += favicon.ico
 
 all:  build
 
+static:
+	npx @11ty/eleventy
+
+clean_static:
+	rm -rf _site
+
+
 setup:
 	npm install
+
+workers: $(addprefix js/, $(worker_entry_points))
 
 js/%.js: ./node_modules/monaco-editor/esm/%.js
 	$(esbuild) $< $(esbuild_opts) --outbase=./node_modules/monaco-editor/esm/
