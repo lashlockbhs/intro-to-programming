@@ -45,4 +45,4 @@ pristine:
 	git clean -fdx
 
 
-.PHONY: setup pretty tidy lint fixmes ready strict_lint build serve publish clean pristine
+.PHONY: setup pretty tidy lint fixmes ready strict_lint serve publish clean pristine
