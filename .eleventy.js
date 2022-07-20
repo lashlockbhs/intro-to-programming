@@ -8,6 +8,7 @@ module.exports = function eleventyConfig(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/**/*.js");
   eleventyConfig.addPassthroughCopy("src/**/*.json");
   eleventyConfig.addPassthroughCopy("src/**/*.txt");
+  eleventyConfig.addPassthroughCopy("src/favicon.ico");
 
   return {
     dir: {
