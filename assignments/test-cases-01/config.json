@@ -52,7 +52,7 @@
     ]
   },
   "iframe": {
-    "src": "assignments/test-cases-01/frame.html",
+    "src": "frame.html",
     "hidden": true
   }
 }

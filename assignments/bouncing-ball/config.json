@@ -1,7 +1,7 @@
 {
   "files": ["code.js"],
   "iframe": {
-    "src": "assignments/bouncing-ball/frame.html",
+    "src": "frame.html",
     "hidden": false,
     "class": "canvas",
     "scrolling": "no",
