@@ -182,7 +182,7 @@ const connectToGithub = async () => {
   }
 
   if (repo !== null) {
-    login.repoURL = repo.url;
+    login.repoURL = repo.html_url;
   }
 
   showLoggedIn();
@@ -286,7 +286,9 @@ const setup = async () => {
 
   $('#login').onclick = attachToGithub;
   $('#anonymous').onclick = goAnonymous;
-  $('#toolbar-login').onclick = attachToGithub;
+  if ($('toolbar-login')) {
+    $('#toolbar-login').onclick = attachToGithub;
+  }
   $('#info-circle').onclick = toggleInfo;
   $('#banner svg.x').onclick = hideInfo;
   $('#submit').onclick = reevaluateCode;
