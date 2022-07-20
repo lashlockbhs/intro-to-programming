@@ -1,42 +1,46 @@
-- Add link to branch (or to create PR) from assignment pages. (Could maybe be
-  extra fancy and mark the assignment as turned in if the branch has been merged
-  to main.)
+# Top priority features and bugs
 
-- Inject run-tests.js into the iframe if testing is on rather than requiring a
-  frame to specify it.
-
-- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
-
-- Break out DOM manipulation stuff into module.
-
-- Add README to itp-template
-
-- Move itp-template into gigamonkeys org
+- Finish new-repl and replace REPL with it.
 
 - Fix REPL pretty printer
 
 - Give a way to explicitly save with a comment so the branches aren't 100% "Updating".
 
-- Rename gigamonkeys org or make new one.
-
-- Finish new-repl and replace REPL with it.
-
-- Move "Saving" indicator into web page.
-
-- Someday, should probably figure out if this thing should really be a GitHub
-  App for finer grained permissions plus maybe the ability to do stuff in the
-  org that the user doesn't have permission to do.
+- Add link to branch (or to create PR) from assignment pages. (Could maybe be
+  extra fancy and mark the assignment as turned in if the branch has been merged
+  to main.)
 
 - Support multiple files in a project/assignment.
 
+# Org stuff
+
+- Add README to itp-template
+
+- Move itp-template into gigamonkeys org
+
+- Rename gigamonkeys org or make new one.
+
 # Polish
+
+- Move "Saving" indicator into web page.
+
+- Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
+
+- Inject run-tests.js into the iframe if testing is on rather than requiring a
+  frame to specify it.
 
 - Show stack traces (see error.stack also
   https://github.com/stacktracejs/stacktrace.js)
 
 - Make the clipboard icon in the banner move a bit when you press it.
 
+- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
+
 # Future directions/experiments
+
+- Someday, should probably figure out if this thing should really be a GitHub
+  App for finer grained permissions plus maybe the ability to do stuff in the
+  org that the user doesn't have permission to do.
 
 - Can we use web workers for evaluation? They can only load from files, it
   seems, which might be a problem. (Maybe just pass the code in as a string via
