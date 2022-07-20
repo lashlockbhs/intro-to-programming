@@ -54,12 +54,10 @@ const message = (text, fade) => {
 };
 
 const showLoggedIn = () => {
+  const button = $('#toolbar-login');
+  const icon = $('#github-icon');
   const u = login.repoURL ? a(login.username, login.repoURL, '_blank') : text(login.username);
-  $('#username').replaceChildren(u);
-};
-
-const showLoggedOut = () => {
-  $('#username').replaceChildren(text('anonymous'));
+  button.parentNode.replaceChildren(icon, u);
 };
 
 const toggleInfo = () => {
@@ -125,12 +123,6 @@ const hideBanner = () => {
 
 const goAnonymous = () => {
   login.anonymous = true;
-  showLoggedOut();
-  showBanner();
-};
-
-const deanonymize = () => {
-  login.anonymous = false;
   showBanner();
 };
 
@@ -162,7 +154,7 @@ const configuration = async () => fetch(`${window.location.pathname}config.json`
 const connectToGithub = async () => {
   hideBanner();
 
-  const siteId = '1d7e043c-5d02-47fa-8ba8-9df0662ba82b';
+  const siteId = '6183282f-af29-4a93-a442-6c5bfb43a44f';
   const gh = await github.connect(siteId);
 
   login.logIn(gh.user.login, gh.user.html_url);
@@ -292,10 +284,9 @@ const setup = async () => {
     storage.load(filename).then(fillEditor);
   }
 
-  // N.B. some of these elements come from the dynamically added banner.
   $('#login').onclick = attachToGithub;
   $('#anonymous').onclick = goAnonymous;
-  $('#github-icon').onclick = deanonymize;
+  $('#toolbar-login').onclick = attachToGithub;
   $('#info-circle').onclick = toggleInfo;
   $('#banner svg.x').onclick = hideInfo;
   $('#submit').onclick = reevaluateCode;
