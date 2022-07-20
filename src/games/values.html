@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>Value types</title>
+  <link href="../style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="toolbar">
+    <span id="score"></span>
+    <svg id="toggle_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+    <svg id="toggle_results" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg>
+  <div id="info" style="display:none">
+    <div style="text-align: right">
+      <svg id="close_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#close"/></svg>
+    </div>
+    <div id="instructions">
+      <p>
+        This game is designed to help you make sure you understand four of the
+        main value types in Javascript: numbers, strings, booleans and arrays
+        and the operators that operate on them.
+      </p>
+
+      <p>
+        You will be presented with a question in the from of a Javascript
+        expression whose type (number, string, boolean, or array) you need to
+        determine. Click the button containing the correct type.
+      </p>
+
+      <p>
+        To see a log of all your answers, click the <svg id="github-icon"
+        class="bi"
+        fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg> icon
+        above. You can click it again to hide the log. N.B. the log and your
+        score are reset if you close or reload the page.
+      </p>
+    </div>
+  </div>
+  <div id="question"></div>
+  <div id="answers"></div>
+  <div id="commentary"></div>
+  <div id="tip">
+    Choose the type of the expression above. Click the <svg id="github-icon"
+    class="bi"
+    fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+    above for more info.
+  </div>
+  <div id="log" style="display: none">
+    <table>
+      <colgroup>
+        <col class="result">
+        <col class="question">
+        <col class="notes">
+      </colgroup>
+      <thead>
+        <tr>
+          <th id="results_header">All</th>
+          <th>Question</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+  </div>
+  <script src="../values.js" type="module"></script>
+</body>
+</html>

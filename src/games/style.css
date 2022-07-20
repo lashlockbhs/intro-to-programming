@@ -18,6 +18,12 @@ h2 {
   padding-bottom: 20px;
 }
 
+#toolbar svg {
+  width: 16px;
+  height: 16px;
+}
+
+
 #score {
   float: left;
 }

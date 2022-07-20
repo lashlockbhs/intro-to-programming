@@ -10,6 +10,11 @@ module.exports = function eleventyConfig(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assignments/**/*.js");
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
 
+  // Temporary kludge to get old js-games working without too much change.
+  eleventyConfig.addPassthroughCopy("src/games/**/*.js");
+  eleventyConfig.addPassthroughCopy("src/games/**/*.svg");
+
+
   return {
     dir: {
       input: "src",
