@@ -39,9 +39,9 @@ module.exports = class {
       loader: {
         '.ttf': 'file',
       },
-      minify: isProduction,
+      minify: true,
       outdir: `${OUTPUT}/js`,
-      sourcemap: !isProduction,
+      sourcemap: true,
       target: 'es6',
     });
 
@@ -52,10 +52,10 @@ module.exports = class {
       loader: {
         '.ttf': 'file',
       },
-      minify: isProduction,
+      minify: true,
       outdir: `${OUTPUT}/js`,
       outbase: './node_modules/monaco-editor/esm/',
-      sourcemap: !isProduction,
+      sourcemap: true,
       target: 'es6',
     });
   }

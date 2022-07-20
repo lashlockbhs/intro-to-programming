@@ -7,7 +7,8 @@ eslint_strict_opts := --rule 'no-console: 1'
 
 # Files
 
-all:  build
+all:
+	npx @11ty/eleventy
 
 setup:
 	npm install
@@ -26,11 +27,9 @@ fixmes:
 
 ready: pretty lint
 
+
 strict_lint:
 	npx eslint $(eslint_opts) $(eslint_strict_opts) *.js modules/*.js
-
-build:
-	npx @11ty/eleventy
 
 serve:
 	npx @11ty/eleventy --serve
