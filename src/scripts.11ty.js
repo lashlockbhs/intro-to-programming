@@ -1,7 +1,6 @@
 const esbuild = require('esbuild');
 const { NODE_ENV = 'production' } = process.env;
 
-const INPUT = 'src'; // has to match dir.input in .eleventy.js
 const OUTPUT = '_site'; // has to match dir.output in .eleventy.js
 
 const JS_FILES = [
@@ -34,7 +33,7 @@ module.exports = class {
 
     // Build our own JS code.
     await esbuild.build({
-      entryPoints: JS_FILES.map((f) => `${INPUT}/js/${f}`),
+      entryPoints: JS_FILES.map((f) => `js/${f}`),
       bundle: true,
       loader: {
         '.ttf': 'file',
