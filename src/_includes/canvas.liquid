@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>Bouncing Ball</title>
+  <link href="/css/style.css" media="all" rel="stylesheet" type="text/css">
+  <link href="/css/canvas.css" media="all" rel="stylesheet" type="text/css">
+  <link href="/js/index.css" media="all" rel="stylesheet" type="text/css">
+  <script src="/js/index.js" type="module"></script>
+</head>
+<body>
+
+  {% include 'banner' %}
+  {% include 'toolbar' %}
+
+  <div class="column big">
+    <p>
+      Welcome to your first programming exercise. We are going to walk through
+      this together in class so don't worry about not yet knowing what to do.
+      After this exercise quickly introduces a few topics, we’ll go back and
+      actually talk about each of them in more detail.
+    </p>
+
+    <div id="container" class="row">
+      <div id="left">
+        <h2>Put definitions here.</h2>
+        <div id="editor"></div>
+        <div id="toolbar">
+          <span id="minibuffer"></span>
+          <svg id="submit" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#arrow-clockwise"/></svg>
+        </div>
+      </div>
+
+      <div id="right">
+        <div class="instructions">
+          <p>
+            Our goal is to make an animation of a bouncing ball. Because this is
+            a first exercise, I’ve done some of the work for you. Behind the
+            scenes this page has already loaded some code that has set up the
+            image you see below and has defined several functions and variables
+            that we’ll use to make the animation. (What are functions and
+            variables, you ask? Stay tuned and all will be explained!)
+          </p>
+        </div>
+
+        <!-- placeholder for the iframe that will hold the canvas we'll draw on. -->
+        <iframe></iframe>
+
+        <div class="instructions">
+          <p>
+            The area below is called a REPL which is an acronym for Read Eval
+            Print Loop. You can type in Javascript expressions there and it will
+            evaluate them and print the results. This can be handy for doing small
+            experiments to understand your code. Try clicking in the REPL and then
+            when the cursor shows up, typing something like <code>1 + 2</code> and
+            hitting return.
+          </p>
+        </div>
+
+        <div id="repl"></div>
+        <p class="codeLink">
+          <a href="https://github.com/gigamonkey/repl">
+            <img alt="GitHub" height="12" src="/img/GitHub-Mark-32px.png" width="12">
+          </a>
+          <a href="https://github.com/gigamonkey/itp-tools">https://github.com/gigamonkey/itp-tools</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

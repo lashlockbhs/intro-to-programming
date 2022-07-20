@@ -3,12 +3,16 @@
 set -eou pipefail
 set -x
 
-sha=$(git log --pretty=tformat:%H -1);
+# Ensure dir ends in trailing slash for rsync.
+builddir="${1%/}/"
+
 webdir=~/web/intro.gigamonkeys.com/
 
+sha=$(git log --pretty=tformat:%H -1);
+
 mkdir -p "$webdir"
-rsync --recursive --relative --delete --verbose "$@" $webdir
-cd $webdir
+rsync --exclude .git --recursive --delete --verbose "$builddir" "$webdir"
+cd "$webdir"
 git add -A .
 git commit -m "Publish $sha" .
 git push

@@ -286,7 +286,7 @@ const setup = async () => {
 
   $('#login').onclick = attachToGithub;
   $('#anonymous').onclick = goAnonymous;
-  if ($('toolbar-login')) {
+  if ($('#toolbar-login')) {
     $('#toolbar-login').onclick = attachToGithub;
   }
   $('#info-circle').onclick = toggleInfo;

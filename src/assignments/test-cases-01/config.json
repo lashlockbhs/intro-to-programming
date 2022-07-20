@@ -52,7 +52,7 @@
     ]
   },
   "iframe": {
-    "src": "frame.html",
+    "src": "frame/",
     "hidden": true
   }
 }
