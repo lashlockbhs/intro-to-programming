@@ -18,13 +18,14 @@ module.exports = class {
   data() {
     return {
       permalink: false,
-      eleventyExcludeFromCollections: true
-    }
+      eleventyExcludeFromCollections: true,
+    };
   }
 
   async render(data) {
-
-    const jsFiles = await fs.promises.readdir('js').then((files) => files.filter((f) => f.endsWith(".js")));
+    const jsFiles = await fs.promises
+      .readdir('js')
+      .then((files) => files.filter((f) => f.endsWith('.js')));
 
     // Build our own JS code.
     await esbuild.build({

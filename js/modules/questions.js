@@ -1,21 +1,21 @@
-import { Value, Blank, BinaryOp, PrefixOp } from "./expressions";
-import { random as g } from "./random";
+import { Value, Blank, BinaryOp, PrefixOp } from './expressions';
+import { random as g } from './random';
 
-let allTypes = ["number", "string", "boolean", "array"];
+const allTypes = ['number', 'string', 'boolean', 'array'];
 
 /*
  * Our definition of the type of different kinds of values. Mostly the
  * same as Javascript's except we call arrays arrays rather than objects.
  */
 function type(value) {
-  let t = typeof value;
+  const t = typeof value;
   switch (t) {
-    case "number":
-    case "string":
-    case "boolean":
+    case 'number':
+    case 'string':
+    case 'boolean':
       return t;
     default:
-      return Array.isArray(value) ? "array" : "unknown";
+      return Array.isArray(value) ? 'array' : 'unknown';
   }
 }
 
@@ -28,33 +28,33 @@ function type(value) {
  * add them to boolean as we definitely don't want to model testing
  * boolean values for equality/inequality.
  */
-let operatorsForType = {
-  number: ["+", "-", "*", "/", "%", "<", "<=", ">", ">="],
-  string: ["+", "[]"],
-  boolean: ["&&", "||", "!"],
-  array: ["[]"],
+const operatorsForType = {
+  number: ['+', '-', '*', '/', '%', '<', '<=', '>', '>='],
+  string: ['+', '[]'],
+  boolean: ['&&', '||', '!'],
+  array: ['[]'],
 };
 
 function op(fn, factory) {
-  return { fn: fn, factory: factory };
+  return { fn, factory };
 }
 
 const ops = {
-  "+": op((a, b) => a + b, sameType),
-  "-": op((a, b) => a - b, numeric),
-  "*": op((a, b) => a * b, numeric),
-  "/": op((a, b) => a / b, divide),
-  "%": op((a, b) => a % b, modulus),
-  "<": op((a, b) => a < b, numeric),
-  "<=": op((a, b) => a <= b, numeric),
-  ">": op((a, b) => a > b, numeric),
-  ">=": op((a, b) => a >= b, numeric),
-  "===": op((a, b) => a === b, any),
-  "!==": op((a, b) => a !== b, any),
-  "[]": op((a, b) => a[b], index),
-  "&&": op((a, b) => a && b, boolean),
-  "||": op((a, b) => a || b, boolean),
-  "!": op((a) => !a, prefix),
+  '+': op((a, b) => a + b, sameType),
+  '-': op((a, b) => a - b, numeric),
+  '*': op((a, b) => a * b, numeric),
+  '/': op((a, b) => a / b, divide),
+  '%': op((a, b) => a % b, modulus),
+  '<': op((a, b) => a < b, numeric),
+  '<=': op((a, b) => a <= b, numeric),
+  '>': op((a, b) => a > b, numeric),
+  '>=': op((a, b) => a >= b, numeric),
+  '===': op((a, b) => a === b, any),
+  '!==': op((a, b) => a !== b, any),
+  '[]': op((a, b) => a[b], index),
+  '&&': op((a, b) => a && b, boolean),
+  '||': op((a, b) => a || b, boolean),
+  '!': op((a) => !a, prefix),
 };
 
 /*
@@ -77,14 +77,14 @@ function forBlank(blankValue) {
  * Make a random expression of one of the types given.
  */
 function valueExpression(maxDepth, types) {
-  if (maxDepth == 0) {
+  if (maxDepth === 0) {
     return new Value(g.oneOf(types));
   } else {
     // Pick a random op that can produce one of the desired types.
     // Figure out what kind of values the op needs. Generate random
     // values of the necessary types with depth one less than current
     // and build.
-    throw Error("nyi");
+    throw Error('nyi');
   }
 }
 
@@ -115,30 +115,30 @@ function blankOnRight(left, right, op, okTypes) {
 
 function sameType(op) {
   return (blankValue) => {
-    let blankType = type(blankValue);
+    const blankType = type(blankValue);
     return pickASide(blankValue, g.valueOf(blankType), op, [blankType]);
   };
 }
 
 function numeric(op) {
-  return (blankValue) => pickASide(blankValue, g.number(), op, ["number"]);
+  return (blankValue) => pickASide(blankValue, g.number(), op, ['number']);
 }
 
 function divide(op) {
   return (blankValue) => {
     if (blankValue === 0) {
-      return blankOnLeft(blankValue, g.nonZeroNumber(), op, ["number"]);
-    } else if (blankValue == 1) {
-      return blankOnLeft(blankValue, g.choice([2, 3, 4]), op, ["number"]);
+      return blankOnLeft(blankValue, g.nonZeroNumber(), op, ['number']);
+    } else if (blankValue === 1) {
+      return blankOnLeft(blankValue, g.choice([2, 3, 4]), op, ['number']);
     } else {
-      let factors = Array(blankValue)
+      const factors = Array(blankValue)
         .fill()
         .map((_, i) => i)
-        .filter((i) => i > 1 && blankValue % i == 0);
+        .filter((i) => i > 1 && blankValue % i === 0);
       if (factors.length > 0) {
-        return blankOnLeft(blankValue, g.choice(factors), op, ["number"]);
+        return blankOnLeft(blankValue, g.choice(factors), op, ['number']);
       } else {
-        return blankOnRight(g.choice([2, 3]) * blankValue, blankValue, op, ["number"]);
+        return blankOnRight(g.choice([2, 3]) * blankValue, blankValue, op, ['number']);
       }
     }
   };
@@ -147,9 +147,9 @@ function divide(op) {
 function modulus(op) {
   return (blankValue) => {
     if (blankValue < 2) {
-      return blankOnLeft(blankValue, g.nonZeroNumber(), op, ["number"]);
+      return blankOnLeft(blankValue, g.nonZeroNumber(), op, ['number']);
     } else {
-      return pickASide(blankValue, g.nonZeroNumber(), op, ["number"]);
+      return pickASide(blankValue, g.nonZeroNumber(), op, ['number']);
     }
   };
 }
@@ -160,22 +160,22 @@ function any(op) {
 
 function index(op) {
   return (blankValue) => {
-    let t = type(blankValue);
-    if (t === "string" || t === "array") {
-      return blankOnLeft(blankValue, g.int(0, blankValue.length), op, ["string", "array"]);
+    const t = type(blankValue);
+    if (t === 'string' || t === 'array') {
+      return blankOnLeft(blankValue, g.int(0, blankValue.length), op, ['string', 'array']);
     } else {
-      let otherValue = g.stringOrArray(Math.floor(blankValue * 1.5));
-      return blankOnRight(otherValue, blankValue, op, ["number"]);
+      const otherValue = g.stringOrArray(Math.floor(blankValue * 1.5));
+      return blankOnRight(otherValue, blankValue, op, ['number']);
     }
   };
 }
 
 function boolean(op) {
-  return (blankValue) => pickASide(blankValue, g.boolean(), op, ["boolean"]);
+  return (blankValue) => pickASide(blankValue, g.boolean(), op, ['boolean']);
 }
 
 function prefix(op) {
-  return (blankValue) => new PrefixOp(new Blank(blankValue), op, ops[op].fn, ["boolean"]);
+  return (blankValue) => new PrefixOp(new Blank(blankValue), op, ops[op].fn, ['boolean']);
 }
 
 export { forBlank, type, valueExpression, allTypes };

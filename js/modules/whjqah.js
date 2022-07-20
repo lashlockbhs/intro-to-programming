@@ -4,12 +4,12 @@
 
 function $(s, t) {
   if (s === undefined) {
-    return $("<i>", "undefined");
-  } else if (s[0] === "#") {
+    return $('<i>', 'undefined');
+  } else if (s[0] === '#') {
     return document.getElementById(s.substring(1));
-  } else if (s[0] === "<") {
+  } else if (s[0] === '<') {
     const e = document.createElement(s.substring(1, s.length - 1));
-    if (t != undefined) {
+    if (t !== undefined) {
       e.append($(t));
     }
     return e;
@@ -40,27 +40,29 @@ function withClass(className, e) {
  * Find a child matching a predicate.
  */
 function findChild(e, fn) {
-  for (let c of e.children) {
+  for (const c of e.children) {
     if (fn(c)) {
       return c;
     }
   }
+  return undefined;
 }
 
 /*
- * Find a child matching a predicate.
+ * Find a descendant matching a predicate.
  */
 function findDescendant(e, fn) {
-  for (let c of e.children) {
+  for (const c of e.children) {
     if (fn(c)) {
       return c;
     } else {
-      let x = findDescendant(c, fn);
+      const x = findDescendant(c, fn);
       if (x !== undefined) {
         return x;
       }
     }
   }
+  return undefined;
 }
 
 export { $, clear, findChild, findDescendant, withClass };

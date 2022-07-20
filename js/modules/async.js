@@ -35,7 +35,7 @@ class Link {
   }
 
   runAndThen(next) {
-    let me = this.possiblyDelayed(() => {
+    const me = this.possiblyDelayed(() => {
       this.fn();
       next();
     });

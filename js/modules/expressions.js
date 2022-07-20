@@ -1,6 +1,6 @@
-/*eslint no-unused-vars: ["error", { "args": "none" }]*/
+/* eslint no-unused-vars: ["error", { "args": "none" }]*/
 
-import { $, withClass } from "./whjqah";
+import { $, withClass } from './whjqah';
 
 /*
  * Expressions possibly containing a blanked out value.
@@ -10,14 +10,14 @@ class Expression {
    * Evaluate the expression producing an actual Javascript value.
    */
   evaluate() {
-    throw Error("Abstract method not implemented.");
+    throw Error('Abstract method not implemented.');
   }
 
   /*
    * Render the expression as HTML into the given parent element.
    */
   render(parent) {
-    throw Error("Abstract method not implemented.");
+    throw Error('Abstract method not implemented.');
   }
 
   /*
@@ -25,21 +25,21 @@ class Expression {
    * filled in with the given value.
    */
   fillBlank(value) {
-    throw Error("Abstract method not implemented.");
+    throw Error('Abstract method not implemented.');
   }
 
   /*
    * Return the blanked out value, if any, in this expression. Otherwise undefined.
    */
   blankValue() {
-    throw Error("Abstract method not implemented.");
+    throw Error('Abstract method not implemented.');
   }
 
   /*
    * Return the unblanked value, if any, in this expression. Otherwise undefined.
    */
   nonBlankValue() {
-    throw Error("Abstract method not implemented.");
+    throw Error('Abstract method not implemented.');
   }
 }
 
@@ -51,9 +51,11 @@ class Value extends Expression {
     super();
     this.value = value;
   }
+
   evaluate() {
     return this.value;
   }
+
   render(parent) {
     parent.append($(JSON.stringify(this.value)));
   }
@@ -69,6 +71,7 @@ class Value extends Expression {
   nonBlankValue() {
     return this.value;
   }
+
   stringify() {
     this.value = JSON.stringify(this.value);
   }
@@ -80,11 +83,13 @@ class Value extends Expression {
  */
 class Blank extends Value {
   render(parent) {
-    parent.append(withClass("hole", $("<span>", "???")));
+    parent.append(withClass('hole', $('<span>', '???')));
   }
+
   fillBlank(value) {
     return new Value(value);
   }
+
   blankValue() {
     return this.value;
   }
@@ -103,17 +108,19 @@ class BinaryOp extends Expression {
     this.fn = fn;
     this.okTypes = okTypes;
   }
+
   evaluate() {
     return this.fn(this.left.evaluate(), this.right.evaluate());
   }
+
   render(parent) {
     this.left.render(parent);
-    if (this.op === "[]") {
-      parent.append($("["));
+    if (this.op === '[]') {
+      parent.append($('['));
       this.right.render(parent);
-      parent.append($("]"));
+      parent.append($(']'));
     } else {
-      parent.append($(" " + this.op + " "));
+      parent.append($(` ${  this.op  } `));
       this.right.render(parent);
     }
   }
@@ -122,17 +129,23 @@ class BinaryOp extends Expression {
    * Produce a BinaryOp with the blank value filled in with the given value.
    */
   fillBlank(value) {
-    return new BinaryOp(this.left.fillBlank(value), this.right.fillBlank(value), this.op, this.fn, this.okTypes);
+    return new BinaryOp(
+      this.left.fillBlank(value),
+      this.right.fillBlank(value),
+      this.op,
+      this.fn,
+      this.okTypes,
+    );
   }
 
   blankValue() {
     // Old Chrome doesn't like ??
-    //return this.left.blankValue() ?? this.right.blankValue();
+    // return this.left.blankValue() ?? this.right.blankValue();
     return defined(this.left.blankValue(), this.right.blankValue());
   }
 
   nonBlankValue() {
-    //return this.left.nonBlankValue() ?? this.right.nonBlankValue();
+    // return this.left.nonBlankValue() ?? this.right.nonBlankValue();
     return defined(this.left.nonBlankValue(), this.right.nonBlankValue());
   }
 }

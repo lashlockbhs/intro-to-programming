@@ -1,8 +1,6 @@
-import { $, clear, findDescendant, withClass } from "./modules/whjqah";
-import { type, valueExpression, allTypes } from "./modules/questions";
-import { random as g } from "./modules/random";
-import { first } from "./modules/async";
-import { Value } from "./modules/expressions";
+import { $, clear, withClass } from './modules/whjqah';
+import { type, valueExpression, allTypes } from './modules/questions';
+import { first } from './modules/async';
 
 // level 0: single values
 // level 1: two values and an operator. Choose an operator. Choose value for the types.
@@ -10,10 +8,10 @@ import { Value } from "./modules/expressions";
 //////////////////////////////////////////////////////////////////////
 // HTML
 
-let model = {
+const model = {
   currentQuestion: null,
   answeredCorrectly: false,
-  currentFilter: "all",
+  currentFilter: 'all',
   level: 3, // N.B. we're not doing anything with this at the moment.
   correct: 0,
   asked: 0,
@@ -21,48 +19,49 @@ let model = {
 };
 
 function init() {
-  clear($("#results"));
-  $("#toggle_info").onclick = visibilityToggler("#info");
-  $("#close_info").onclick = (e) => ($("#info").style.display = "none");
-  $("#toggle_results").onclick = visibilityToggler("#log");
-  $("#results_header").onclick = changeFilter;
+  clear($('#results'));
+  $('#toggle_info').onclick = visibilityToggler('#info');
+  $('#close_info').onclick = () => { $('#info').style.display = 'none'; };
+  $('#toggle_results').onclick = visibilityToggler('#log');
+  $('#results_header').onclick = changeFilter;
   setQuestion();
 }
 
 function visibilityToggler(id) {
-  return function (e) {
+  const toggler =  () => {
     const element = $(id);
-    element.style.display = element.style.display == "none" ? "block" : "none";
+    element.style.display = element.style.display === 'none' ? 'block' : 'none';
   };
+  return toggler;
 }
 
-let filters = ["all", "pass", "fail"];
-let filterLabels = {
-  all: "All",
-  pass: "✅",
-  fail: "❌",
+const filters = ['all', 'pass', 'fail'];
+const filterLabels = {
+  all: 'All',
+  pass: '✅',
+  fail: '❌',
 };
 
 function changeFilter(e) {
-  let f = filters[(filters.indexOf(model.currentFilter) + 1) % filters.length];
-  let result = $("#results");
+  const f = filters[(filters.indexOf(model.currentFilter) + 1) % filters.length];
+  const result = $('#results');
   for (let row = result.firstChild; row; row = row.nextSibling) {
-    let c = row.className;
-    row.style.display = rowVisible(f, c) ? "table-row" : "none";
+    const c = row.className;
+    row.style.display = rowVisible(f, c) ? 'table-row' : 'none';
   }
   e.target.innerText = filterLabels[f];
   model.currentFilter = f;
 }
 
 function rowVisible(filter, className) {
-  return filter === "all" || filter === className;
+  return filter === 'all' || filter === className;
 }
 
 function typeTiles() {
-  clear($("#answers"));
-  for (let t of ["number", "string", "boolean", "array"]) {
+  clear($('#answers'));
+  ['number', 'string', 'boolean', 'array'].forEach((t) => {
     addTile(t);
-  }
+  });
 }
 
 function maybeSetQuestion() {
@@ -74,18 +73,18 @@ function maybeSetQuestion() {
 }
 
 function setQuestion() {
-  clear($("#commentary"));
+  clear($('#commentary'));
   typeTiles();
   model.asked++;
   model.answeredCorrectly = false;
-  let v = valueExpression(0, allTypes);
-  if (typeof v.value !== "string" && Math.random() < 0.2) v.stringify();
+  const v = valueExpression(0, allTypes);
+  if (typeof v.value !== 'string' && Math.random() < 0.2) v.stringify();
   model.currentQuestion = v;
-  showValue(v, clear($("#question")));
+  showValue(v, clear($('#question')));
 }
 
 function resetQuestion() {
-  showValue(model.currentQuestion, clear($("#question")));
+  showValue(model.currentQuestion, clear($('#question')));
 }
 
 function onAnswer(e) {
@@ -99,7 +98,7 @@ function onAnswer(e) {
     model.answeredCorrectly = true;
   }
   updateScore();
-  animateExpression(result, $("#question"));
+  animateExpression(result, $('#question'));
   logResult(result);
   maybeHideTip();
 }
@@ -107,46 +106,44 @@ function onAnswer(e) {
 function plural(word, n) {
   if (n === 1) {
     return word;
-  } else {
-    if (word[word.length - 1] == "y") {
-      return word.substring(0, word.length - 1) + "ies";
+  } else if (word[word.length - 1] === 'y') {
+      return `${word.substring(0, word.length - 1)  }ies`;
     } else {
-      return word + "s";
+      return `${word  }s`;
     }
-  }
 }
 
 function updateScore() {
-  let a = model.asked;
-  let c = model.correct;
-  let t = model.tries;
-  let accuracy = Math.round((100 * c) / t);
+  const a = model.asked;
+  const c = model.correct;
+  const t = model.tries;
+  const accuracy = Math.round((100 * c) / t);
 
-  $("#score").innerHTML = `${accuracy}% accuracy over ${a} ${plural("question", a)}.`;
+  $('#score').innerHTML = `${accuracy}% accuracy over ${a} ${plural('question', a)}.`;
 }
 
 function maybeHideTip() {
-  const tip = $("#tip");
+  const tip = $('#tip');
 
-  if (tip.style.display != "none") {
+  if (tip.style.display !== 'none') {
     let iters = 50;
     let h = tip.clientHeight;
     let w = tip.clientWidth;
-    let hd = h / iters;
-    let wd = w / iters;
+    const hd = h / iters;
+    const wd = w / iters;
 
     let id = null;
     function shrinkTip() {
-      tip.innerHTML = "";
-      if (iters == 0) {
-        tip.style.display = "none";
+      tip.innerHTML = '';
+      if (iters === 0) {
+        tip.style.display = 'none';
         clearInterval(id);
       } else {
         iters--;
         h -= hd;
         w -= wd;
-        tip.style.height = h + "px";
-        tip.style.width = w + "px";
+        tip.style.height = `${h}px`;
+        tip.style.width = `${w}px`;
       }
     }
     id = setInterval(shrinkTip, 10);
@@ -156,34 +153,34 @@ function maybeHideTip() {
 function processAnswer(question, answer) {
   return {
     expr: question,
-    answer: answer,
-    passed: type(question.evaluate()) == answer,
+    answer,
+    passed: type(question.evaluate()) === answer,
   };
 }
 
 function addCommentary(result, where, prefix) {
-  const p = $("<p>");
+  const p = $('<p>');
   if (prefix) p.append(prefix);
   where.append(p);
 
-  p.append(withClass("mono", $("<span>", result.answer)));
+  p.append(withClass('mono', $('<span>', result.answer)));
 
   if (result.passed) {
-    p.append($(" is correct!"));
+    p.append($(' is correct!'));
   } else {
-    p.append($(" is not correct."));
+    p.append($(' is not correct.'));
   }
 }
 
 function logResult(result) {
-  const row = $("#results").insertRow(0);
-  row.className = result.passed ? "pass" : "fail";
+  const row = $('#results').insertRow(0);
+  row.className = result.passed ? 'pass' : 'fail';
 
-  let [ok, question, notes] = Array(3)
+  const [ok, question, notes] = Array(3)
     .fill()
     .map(() => row.insertCell());
 
-  ok.append($(result.passed ? "✅" : "❌"));
+  ok.append($(result.passed ? '✅' : '❌'));
   showValue(result.expr, question);
   addCommentary(result, notes);
 }
@@ -191,9 +188,9 @@ function logResult(result) {
 function animateExpression(result, where) {
   function checkmark() {
     if (result.passed) {
-      where.append($(" ✅"));
+      where.append($(' ✅'));
     } else {
-      addCommentary(result, $("#commentary"), $("❌ "));
+      addCommentary(result, $('#commentary'), $('❌ '));
     }
   }
 
@@ -201,21 +198,21 @@ function animateExpression(result, where) {
 }
 
 function showValue(value, where) {
-  const s1 = withClass("mono", $("<span>"));
+  const s1 = withClass('mono', $('<span>'));
   value.render(s1);
   where.append(s1);
 }
 
 function addTile(v) {
-  let b = $("<button>", v);
+  const b = $('<button>', v);
   b.value = v;
   b.onclick = onAnswer;
-  $("#answers").append(b);
+  $('#answers').append(b);
 }
 
 function disableTile(t) {
-  t.className = "disabled";
+  t.className = 'disabled';
   t.onclick = null;
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener('DOMContentLoaded', init);

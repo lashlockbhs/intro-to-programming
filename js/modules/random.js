@@ -1,11 +1,11 @@
-let types = ["number", "string", "boolean", "array"];
+const types = ['number', 'string', 'boolean', 'array'];
 
-let alphabet = "abcdefghijklmnopqrstuvwxyz";
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-let minNumber = 0;
-let maxNumber = 10;
-let words = ["food", "orange", "duck", "computer", "grue"];
-let maxArrayLength = 3;
+const minNumber = 0;
+const maxNumber = 10;
+const words = ['food', 'orange', 'duck', 'computer', 'grue'];
+const maxArrayLength = 3;
 
 class Random {
   number() {
@@ -30,7 +30,7 @@ class Random {
   }
 
   stringOfLength(len) {
-    let r = "";
+    let r = '';
     for (let i = 0; i < len; i++) {
       r += alphabet[i % alphabet.length];
     }
