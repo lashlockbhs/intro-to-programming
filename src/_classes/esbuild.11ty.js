@@ -1,15 +1,8 @@
+const fs = require('fs');
 const esbuild = require('esbuild');
 const { NODE_ENV = 'production' } = process.env;
 
 const OUTPUT = '_site'; // has to match dir.output in .eleventy.js
-
-const JS_FILES = [
-  'calendar-builder.js',
-  'github-test.js',
-  'index.js',
-  'new-repl.js',
-  'test-repo-create.js',
-];
 
 const monaco_workers = [
   'vs/editor/editor.worker.js',
@@ -31,9 +24,11 @@ module.exports = class {
 
   async render(data) {
 
+    const jsFiles = await fs.promises.readdir('js').then((files) => files.filter((f) => f.endsWith(".js")));
+
     // Build our own JS code.
     await esbuild.build({
-      entryPoints: JS_FILES.map((f) => `js/${f}`),
+      entryPoints: jsFiles.map((f) => `js/${f}`),
       bundle: true,
       loader: {
         '.ttf': 'file',

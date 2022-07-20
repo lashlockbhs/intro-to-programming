@@ -1,5 +1,5 @@
-import { $ } from "./whjqah.js";
-import { Variable, BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals, BooleanNot } from "./booleans.js";
+import { $ } from "./modules/whjqah";
+import { Variable, BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals, BooleanNot } from "./modules/booleans";
 
 class Bingo {
   constructor(size) {

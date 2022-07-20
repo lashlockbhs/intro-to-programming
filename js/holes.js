@@ -1,7 +1,7 @@
-import { $, clear, findDescendant, withClass } from "./whjqah.js";
-import { forBlank, type } from "./questions.js";
-import { random as g } from "./random.js";
-import { first } from "./async.js";
+import { $, clear, findDescendant, withClass } from "./modules/whjqah";
+import { forBlank, type } from "./modules/questions";
+import { random as g } from "./modules/random";
+import { first } from "./modules/async.js";
 
 // Basic functionality:
 //

@@ -1,8 +1,8 @@
-import { $, clear, findDescendant, withClass } from "./whjqah.js";
-import { type, valueExpression, allTypes } from "./questions.js";
-import { random as g } from "./random.js";
-import { first } from "./async.js";
-import { Value } from "./expressions.js";
+import { $, clear, findDescendant, withClass } from "./modules/whjqah";
+import { type, valueExpression, allTypes } from "./modules/questions";
+import { random as g } from "./modules/random";
+import { first } from "./modules/async";
+import { Value } from "./modules/expressions";
 
 // level 0: single values
 // level 1: two values and an operator. Choose an operator. Choose value for the types.

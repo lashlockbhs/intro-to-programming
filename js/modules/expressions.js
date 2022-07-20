@@ -1,6 +1,6 @@
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
-import { $, withClass } from "./whjqah.js";
+import { $, withClass } from "./whjqah";
 
 /*
  * Expressions possibly containing a blanked out value.

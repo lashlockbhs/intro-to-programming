@@ -1,5 +1,5 @@
-import { Value, Blank, BinaryOp, PrefixOp } from "./expressions.js";
-import { random as g } from "./random.js";
+import { Value, Blank, BinaryOp, PrefixOp } from "./expressions";
+import { random as g } from "./random";
 
 let allTypes = ["number", "string", "boolean", "array"];
 
