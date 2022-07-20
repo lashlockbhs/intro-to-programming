@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/gigamonkey/intro-to-programming/issues"
   },
-  "homepage": "https://github.com/gigamonkey/itp-tools#readme",
+  "homepage": "https://github.com/gigamonkey/intro-to-programming#readme",
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.1",
     "@octokit/core": "^4.0.4",
