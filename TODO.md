@@ -12,6 +12,12 @@
 
 - Support multiple files in a project/assignment.
 
+# Code cleanup
+
+- Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
+
+- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
+
 # Org stuff
 
 - Add README to itp-template
@@ -24,8 +30,6 @@
 
 - Move "Saving" indicator into web page.
 
-- Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
-
 - Inject run-tests.js into the iframe if testing is on rather than requiring a
   frame to specify it.
 
@@ -33,8 +37,6 @@
   https://github.com/stacktracejs/stacktrace.js)
 
 - Make the clipboard icon in the banner move a bit when you press it.
-
-- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
 
 # Future directions/experiments
 
