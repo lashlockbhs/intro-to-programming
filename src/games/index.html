@@ -9,10 +9,15 @@
   <script src="script.js" type="module"></script><!-- Nice icons from https://icons.getbootstrap.com/ -->
 </head>
 <body>
-  <div id="toolbar"><span id="score"></span> <img alt="info icon" height="16" id="toggle_info" src="info.svg" width=
-  "16"> <img alt="list icon" height="16" id="toggle_results" src="list.svg" width="16"></div>
+  <div id="toolbar">
+    <span id="score"></span>
+    <svg id="toggle_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+    <svg id="toggle_results" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg>
+  </div>
   <div id="info" style="display:none">
-    <div style="text-align: right"><img alt="close icon" height="16" id="close_info" src="close.svg" width="16"></div>
+    <div style="text-align: right">
+      <svg id="close_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#x"/></svg>
+    </div>
     <div id="instructions">
       <p>This game is designed to help you make sure you understand four of the main value types in Javascript:
       numbers, strings, booleans and arrays and the operators that operate on them.</p>
@@ -24,8 +29,9 @@
       <p>If you choose a correct value (and sometimes there may be more than one) the question will briefly display the
       expression with your value filled in and a ✅ and then it will move on to a new question.</p>
       <p>If you choose a value that does not work, you will get a message about why it is not the right answer and you
-      will be able to pick a different value.</p>
-      <p>To see a log of all your answers, click the <img alt="list icon" height="14" src="list.svg" width="14"> icon
+        will be able to pick a different value.</p>
+
+      <p>To see a log of all your answers, click the <svg class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg> icon
       above. You can click it again to hide the log. N.B. the log and your score are reset if you close or reload the
       page.</p>
       <p>Note also that this game takes a stricter view of what types cane be used with what operators that Javascript
@@ -41,8 +47,12 @@
   <div id="answers"></div>
   <div id="commentary"></div>
   <div id="tip">
-    Click a value that causes the expression to evaluate to the given value. Note, there may be more than one correct
-    answer. Click the <img alt="info icon" height="14" src="info.svg" width="14"> above for more info.
+    <p>
+      Click a value that causes the expression to evaluate to the given value.
+      Note, there may be more than one correct answer. Click the <svg class="bi"
+      fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+      above for more info.
+    </p>
   </div>
   <div id="log" style="display: none">
     <table>

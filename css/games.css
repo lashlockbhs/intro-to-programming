@@ -23,6 +23,12 @@ h2 {
   height: 16px;
 }
 
+#info svg,
+p svg {
+  width: 1em;
+  height: 1em;
+}
+
 
 #score {
   float: left;
