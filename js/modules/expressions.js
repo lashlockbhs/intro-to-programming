@@ -120,7 +120,7 @@ class BinaryOp extends Expression {
       this.right.render(parent);
       parent.append($(']'));
     } else {
-      parent.append($(` ${  this.op  } `));
+      parent.append($(` ${this.op} `));
       this.right.render(parent);
     }
   }

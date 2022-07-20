@@ -12,6 +12,24 @@ const TEMPLATE_OWNER = 'gigamonkey';
 const TEMPLATE_REPO = 'itp-template';
 // const CANONICAL_VERSION = 'https://raw.githubusercontent.com/gigamonkey/itp-template/main/.version';
 
+// This is basically a null set of protections, just to get rid of that
+// annoying, "You haven't protected your main branch!" warning on the website.
+// We'd kinda like to require pull requests to main except that our own code
+// wants to directly create files in main. I think in theory if this was a
+// proper GitHub App, I might be able to allow the app to do it while otherwise
+// requiring PRs. Something to investigate later.
+const mainBranchProtections = {
+  required_status_checks: null,
+  enforce_admins: true,
+  restrictions: null,
+  required_pull_request_reviews: null,
+  required_linear_history: false,
+  allow_force_pushes: false,
+  allow_deletions: false,
+  block_creations: false,
+  required_conversation_resolution: false,
+};
+
 const $ = (selector) => document.querySelector(selector);
 
 const $$ = (selector) => document.querySelectorAll(selector);
@@ -171,6 +189,9 @@ const connectToGithub = async () => {
         repo = await gh
           .orgRepos(GITHUB_ORG)
           .makeRepoFromTemplate(login.username, TEMPLATE_OWNER, TEMPLATE_REPO);
+
+        await repo.updateBranchProtection('main', mainBranchProtections);
+
         // Record that we created the repo now so we can show a banner about it.
         login.createdRepo = true;
       } catch (e) {

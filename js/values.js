@@ -21,14 +21,16 @@ const model = {
 function init() {
   clear($('#results'));
   $('#toggle_info').onclick = visibilityToggler('#info');
-  $('#close_info').onclick = () => { $('#info').style.display = 'none'; };
+  $('#close_info').onclick = () => {
+    $('#info').style.display = 'none';
+  };
   $('#toggle_results').onclick = visibilityToggler('#log');
   $('#results_header').onclick = changeFilter;
   setQuestion();
 }
 
 function visibilityToggler(id) {
-  const toggler =  () => {
+  const toggler = () => {
     const element = $(id);
     element.style.display = element.style.display === 'none' ? 'block' : 'none';
   };
@@ -107,10 +109,10 @@ function plural(word, n) {
   if (n === 1) {
     return word;
   } else if (word[word.length - 1] === 'y') {
-      return `${word.substring(0, word.length - 1)  }ies`;
-    } else {
-      return `${word  }s`;
-    }
+    return `${word.substring(0, word.length - 1)}ies`;
+  } else {
+    return `${word}s`;
+  }
 }
 
 function updateScore() {

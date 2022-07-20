@@ -29,7 +29,9 @@ const model = {
 function init() {
   clear($('#results'));
   $('#toggle_info').onclick = visibilityToggler('#info');
-  $('#close_info').onclick = () => { $('#info').style.display = 'none'; };
+  $('#close_info').onclick = () => {
+    $('#info').style.display = 'none';
+  };
   $('#toggle_results').onclick = visibilityToggler('#log');
   $('#results_header').onclick = changeFilter;
   setQuestion();
@@ -115,10 +117,10 @@ function plural(word, n) {
   if (n === 1) {
     return word;
   } else if (word[word.length - 1] === 'y') {
-      return `${word.substring(0, word.length - 1)  }ies`;
-    } else {
-      return `${word  }s`;
-    }
+    return `${word.substring(0, word.length - 1)}ies`;
+  } else {
+    return `${word}s`;
+  }
 }
 
 function updateScore() {
@@ -210,7 +212,7 @@ function or(things) {
   } else if (things.length === 2) {
     return things.join(' or ');
   } else {
-    return `${things.slice(0, things.length - 1).join(', ')  }, or ${  things[things.length - 1]}`;
+    return `${things.slice(0, things.length - 1).join(', ')}, or ${things[things.length - 1]}`;
   }
 }
 
@@ -229,13 +231,13 @@ function addCommentary(result, where, prefix) {
       const expectation = or(result.expr.okTypes.map(a));
       p.append($(` is ${a(answerType)}, not ${expectation}.`));
     } else if (result.exactType) {
-        p.append($(" is the right type but isn't quite the right value. "));
-        showExpression(result.filled, p);
-      } else {
-        const needed = a(type(result.inBlank));
-        p.append($(`, ${a(answerType)}, is of an acceptable type for the operator `));
-        p.append(`but in this case you probably needed ${needed}.`);
-      }
+      p.append($(" is the right type but isn't quite the right value. "));
+      showExpression(result.filled, p);
+    } else {
+      const needed = a(type(result.inBlank));
+      p.append($(`, ${a(answerType)}, is of an acceptable type for the operator `));
+      p.append(`but in this case you probably needed ${needed}.`);
+    }
   }
 }
 

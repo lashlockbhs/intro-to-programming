@@ -247,6 +247,25 @@ class Repo {
     return this.makeRef(`heads/${name}`, p.object.sha);
   }
 
+  getBranchProtection(branch) {
+    const { owner, name } = this;
+    const url = 'GET /repos/{owner}/{name}/branches/{branch}/protection';
+    return this.octokit.request(url, { owner, name, branch }).then(if200);
+  }
+
+  updateBranchProtection(branch, protections) {
+    const { owner, name } = this;
+    const url = 'PUT /repos/{owner}/{name}/branches/{branch}/protection';
+    return this.octokit
+      .request(url, {
+        owner,
+        name,
+        branch,
+        ...protections,
+      })
+      .then(if200);
+  }
+
   getRef(ref) {
     const { owner, name } = this;
     const url = 'GET /repos/{owner}/{name}/git/ref/{ref}';

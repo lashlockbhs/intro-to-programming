@@ -17,11 +17,32 @@ const test = async () => {
   const r = await gh.orgRepos('gigamonkeys').getRepo('gigamonkey');
   out += toJSON(r);
 
-  out += '\n// Checking .version exists/\n';
+  out += '\n// Checking .version exists\n';
   out += toJSON(await r.fileExists('.version', 'main'));
 
-  out += '\n// Checking .garbage exists/\n';
+  out += '\n// Checking .garbage exists\n';
   out += toJSON(await r.fileExists('.garbage', 'main'));
+
+  out += `\n// Getting branch protection\n`;
+  out += toJSON(await r.getBranchProtection('main').catch(() => 'No branch protection.'));
+
+  out += `\n// Updating branch protection\n`;
+  out += toJSON(
+    await r.updateBranchProtection('main', {
+      required_status_checks: null,
+      enforce_admins: true,
+      restrictions: null,
+      required_pull_request_reviews: null,
+      required_linear_history: false,
+      allow_force_pushes: false,
+      allow_deletions: false,
+      block_creations: false,
+      required_conversation_resolution: false,
+    }),
+  );
+
+  //out += `\n// Updating branch pull request review protection\n`;
+  //out += toJSON(await r.updateBranchPullRequestReviewProtection('main'));
 
   document.getElementById('stuff').innerText = out;
 };
