@@ -34,7 +34,7 @@ module.exports = class {
       loader: {
         '.ttf': 'file',
       },
-      minify: true,
+      minify: false,
       outdir: `${OUTPUT}/js`,
       sourcemap: true,
       target: 'es6',
