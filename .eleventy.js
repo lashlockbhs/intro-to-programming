@@ -1,5 +1,6 @@
 const pageDirs = [
   'assignments',
+  'calendar',
   'demo',
 ];
 
