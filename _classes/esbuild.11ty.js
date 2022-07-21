@@ -23,7 +23,6 @@ module.exports = class {
   }
 
   async render(data) {
-
     // Build our own JS code.
     const jsFiles = await fs.promises
       .readdir('js')
