@@ -1,13 +1,28 @@
+const pageDirs = [
+  'assignments',
+  'demo',
+];
+
+const extensions = [
+  'css',
+  'js',
+  'json',
+  'txt',
+];
+
 module.exports = function eleventyConfig(eleventyConfig) {
   eleventyConfig.addWatchTarget('./js/')
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addPassthroughCopy("src/**/*.css");
-  eleventyConfig.addPassthroughCopy("src/**/*.json");
-  eleventyConfig.addPassthroughCopy("src/**/*.txt");
-  eleventyConfig.addPassthroughCopy("src/**/*.js");
-  eleventyConfig.addPassthroughCopy("src/favicon.ico");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+
+  // Copy through content used by iframes
+  pageDirs.forEach((dir) => {
+    extensions.forEach((ext) => {
+      eleventyConfig.addPassthroughCopy(`${dir}/**/*.${ext}`);
+    })
+  });
 
   return {
     dir: {
