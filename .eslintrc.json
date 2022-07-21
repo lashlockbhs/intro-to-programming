@@ -14,6 +14,13 @@
     "no-plusplus": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
+    "new-cap": [
+      "error",
+      {
+        "newIsCap": false,
+        "capIsNew": true
+      }
+    ],
     "prefer-destructuring": [
       "error",
       {
