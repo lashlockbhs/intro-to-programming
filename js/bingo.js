@@ -1,4 +1,6 @@
 import { $ } from './modules/whjqah';
+import { shuffled } from './modules/shuffle';
+
 import {
   Variable,
   BooleanAnd,
@@ -58,22 +60,6 @@ const correct = [];
 
 const bingos = new Bingo(4);
 
-const shuffled = (xs) => {
-  // Based on pseudo code from
-  // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_%22inside-out%22_algorithm
-
-  const shuffled = [];
-  for (let i = 0; i < xs.length; i++) {
-    const j = Math.floor(Math.random() * (i + 1)); // 0 <= j <= i
-    if (j !== i) {
-      // if j != i then j < i so this is safe.
-      shuffled[i] = shuffled[j];
-    }
-    shuffled[j] = xs[i];
-  }
-  return shuffled;
-};
-
 const fillBoard = () => {
   const cs = shuffled(choices);
 
@@ -84,28 +70,32 @@ const fillBoard = () => {
       const expr = cs[i * 4 + j];
       cell.classList.add('box');
       cell.innerText = expr.code();
-
-      cell.onclick = () => {
-        if (!cell.classList.contains('correct')) {
-          if (expr.evaluate(question) === question.want) {
-            cell.classList.add('correct');
-            bingos.track(i, j);
-            correct.push([i, j]);
-            if (bingos.hasBingo()) {
-              $('#question').innerText = 'Bingo!';
-            } else {
-              nextQuestion();
-            }
-          } else {
-            shake(cell);
-          }
-        }
-      };
+      cell.onclick = makeClickHandler(cell, expr, i, j);
       row.appendChild(cell);
     }
     board.appendChild(row);
   }
 };
+
+
+const makeClickHandler = (cell, expr, i, j) =>
+      () => {
+    if (!cell.classList.contains('correct')) {
+      if (expr.evaluate(question) === question.want) {
+        cell.classList.add('correct');
+        bingos.track(i, j);
+        correct.push([i, j]);
+        if (bingos.hasBingo()) {
+          $('#question').innerText = 'Bingo!';
+        } else {
+          nextQuestion();
+        }
+      } else {
+        shake(cell);
+      }
+    }
+      };
+
 
 const shake = (cell) => {
   const parent = cell.parentElement;
