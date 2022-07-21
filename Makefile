@@ -14,7 +14,7 @@ setup:
 	npm install
 
 pretty:
-	prettier -w js/**/*.js src/**/*.js src/**/*.css src/**/*.json
+	prettier --write **/*.js **/*.css **/*.json
 
 tidy:
 	tidy -config .tidyconfig src/**/*.html
