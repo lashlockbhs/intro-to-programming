@@ -14,7 +14,7 @@ setup:
 	npm install
 
 pretty:
-	prettier --write **/*.js **/*.css **/*.json
+	prettier --write .eleventy.js '**/*.js' '**/*.css' '**/*.json'
 
 tidy:
 	tidy -config .tidyconfig src/**/*.html
