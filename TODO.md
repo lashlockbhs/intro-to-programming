@@ -16,8 +16,6 @@
 
 - Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
 
-- Componentize my editor (i.e. monaco plus the minibuffer, etc.)
-
 # Org stuff
 
 - Add README to itp-template
@@ -64,8 +62,6 @@
 
 
 # In games
-
-- Fix bingo detection in boolean bingo.
 
 - Deal with array out of bounds rather than returning undefined.
 
