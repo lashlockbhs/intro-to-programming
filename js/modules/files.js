@@ -1,5 +1,9 @@
 import { textIfOk } from './fetch-helpers';
 
+/*
+ * A set of files tied to a specific directory which is mostly mapped to a
+ * specific branch of the same name.
+ */
 class Files {
   constructor(branch, repo) {
     this.branch = branch;
@@ -28,7 +32,7 @@ class Files {
     // Now we know the branch exists and the file had better because the branch
     // was made from main after the file was added there. If the file has been
     // deleted out of band or something this will throw which is probably right.
-    return this.loadFromGithub(file, this.branch);
+    return this.loadFromGithub(file);
   }
 
   /*
@@ -36,7 +40,7 @@ class Files {
    */
   async load(file) {
     if (this.repo !== null) {
-      return this.loadFromGithub(file, this.branch);
+      return this.loadFromGithub(file);
     } else {
       return this.loadFromWeb(file);
     }
@@ -55,12 +59,12 @@ class Files {
   }
 
   /*
-   * Get the file contents from Github.
+   * Get the file contents from Github from the default branch.
    */
-  loadFromGithub(file, branch) {
+  loadFromGithub(file) {
     const path = this.gitPath(file);
     console.log(`Loading from github: ${path}`);
-    return this.repo.getFile(path, branch).then((file) => atob(file.content));
+    return this.repo.getFile(path, this.branch).then((file) => atob(file.content));
   }
 
   /*
@@ -83,7 +87,9 @@ class Files {
    */
   saveToGithubOnBranch(file, content, branch) {
     const path = this.gitPath(file);
-    return this.repo.ensureFileContents(path, 'Creating', 'Updating', content, branch);
+    const creating = `Creating ${path}`;
+    const updating = `Updating ${path}`;
+    return this.repo.ensureFileContents(path, creating, updating, content, branch);
   }
 
   /*
