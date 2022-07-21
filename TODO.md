@@ -65,6 +65,8 @@
 
 # In games
 
+- Fix bingo detection in boolean bingo.
+
 - Deal with array out of bounds rather than returning undefined.
 
 - Show all the values that would have worked.
