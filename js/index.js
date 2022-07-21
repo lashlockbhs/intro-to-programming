@@ -190,8 +190,6 @@ const connectToGithub = async () => {
           .orgRepos(GITHUB_ORG)
           .makeRepoFromTemplate(login.username, TEMPLATE_OWNER, TEMPLATE_REPO);
 
-        await repo.updateBranchProtection('main', mainBranchProtections);
-
         // Record that we created the repo now so we can show a banner about it.
         login.createdRepo = true;
       } catch (e) {
@@ -203,6 +201,7 @@ const connectToGithub = async () => {
   }
 
   if (repo !== null) {
+    tryToProtectMain(repo);
     login.repoURL = repo.url;
   }
 
@@ -214,6 +213,18 @@ const connectToGithub = async () => {
 
   return repo;
 };
+
+// It seems that the process for adding a user as an admin for their own repo
+// happens asynchronously so immeediately after we made the repo they may not
+// yet have the permissions needed to change the branch protection. So we'll
+// just check that it's protected. (Kinda a bummer, I guess, that we check this
+// every time they go to a new page. Hmmm.)
+const tryToProtectMain = (repo) =>
+  repo.getBranchProtection('main').catch(() => {
+    repo.updateBranchProtection('main', mainBranchProtections).catch(() => {
+      console.log("Couldn't protect main. We'll try again later.");
+    });
+  });
 
 const makeStorage = async () => {
   let branch = window.location.pathname.substring(1);
