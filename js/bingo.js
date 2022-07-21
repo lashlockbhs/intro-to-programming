@@ -10,6 +10,7 @@ import {
 
 class Bingo {
   constructor(size) {
+    this.size = size;
     this.rows = Array(size).fill(0);
     this.columns = Array(size).fill(0);
     this.diagonals = Array(2).fill(0);
@@ -28,9 +29,9 @@ class Bingo {
 
   hasBingo() {
     return (
-      this.rows.some((r) => r === 4) ||
-      this.columns.some((c) => c === 4) ||
-      this.diagonals.some((d) => d === 4)
+      this.rows.some((r) => r === this.size) ||
+      this.columns.some((c) => c === this.size) ||
+      this.diagonals.some((d) => d === this.size)
     );
   }
 }
@@ -55,7 +56,7 @@ let question = null;
 // The positions that have been correctly identified
 const correct = [];
 
-const bingos = new Bingo();
+const bingos = new Bingo(4);
 
 const shuffled = (xs) => {
   // Based on pseudo code from
