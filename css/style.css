@@ -242,6 +242,17 @@ iframe.test-cases {
   flex: 2 0 0;
 }
 
+.editor-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.run-code {
+  fill: blue;
+  vertical-align: middle;
+}
+
 #repl {
   background: #fffffe;
   overflow-y: scroll;
