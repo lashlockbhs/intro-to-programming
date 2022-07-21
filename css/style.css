@@ -61,7 +61,7 @@ p {
   font-size: 16px;
 }
 
-.inline-svg {
+p svg {
   width: 1em;
   height: 1em;
 }
@@ -290,6 +290,7 @@ div.message {
   text-align: right;
   height: 20px;
   padding-top: 10px;
+  font-size: 12px;
 }
 
 .codeLink * {
@@ -325,7 +326,7 @@ div.message {
 }
 
 p {
-  line-height: 2em;
+  line-height: 1.5em;
   padding-top: 0.5em;
 }
 

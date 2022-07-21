@@ -2,3 +2,38 @@
 layout: testcases.liquid
 title: Test Cases 01
 ---
+
+  <div class="column big">
+    <p>
+      The goal of this exercise is to write functions in the editor to the left
+      that pass test cases for the functions shown below. Whenever you are ready
+      to run the tests, hit the <svg class="bi"
+      fill="#000"><use xlink:href="/img/bootstrap-icons.svg#arrow-clockwise"/></svg>
+      button below the editor. To see the specification for a function you are
+      supposed to write, click a button in the test panel. Once you have written
+      the function with the right name, the button will indicate whether the
+      test cases are all passing (green, with a ✅) or some are failing (red,
+      with an ❌) and clicking the button will show the results of the
+      individual test cases.
+    </p>
+
+    <div id="container" class="row">
+      <div id="left">
+        <h2>Put definitions here.</h2>
+        <div id="editor"></div>
+        <div id="toolbar">
+          <span id="minibuffer"></span>
+          <svg id="submit" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#arrow-clockwise"/></svg>
+        </div>
+      </div>
+
+      <div id="right">
+        <h2>Test results show up here.</h2>
+        <div id="testing"></div>
+        <h2>REPL</h2>
+        <div id="repl"></div>
+        {% include 'codelink' %}
+      </div>
+
+    </div>
+  </div>

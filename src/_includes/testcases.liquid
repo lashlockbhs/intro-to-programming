@@ -14,35 +14,7 @@
   {% include 'banner' %}
   {% include 'toolbar' %}
 
-  <div class="column big">
-    <p>
-      The goal of this exercise is to write functions in the editor to the left
-      that pass test cases for the functions shown below. To see the
-      specification for a function you are supposed to write, click the function
-      name. Once you have written the function with the right name, the button
-      will indicate whether the test cases are all passing (green, with a ✅) or
-      some are failing (red, with an ❌) and clicking the button will show the
-      results of the individual test cases.
-    </p>
+  {{ content }}
 
-    <div id="container" class="row">
-      <div id="left">
-        <h2>Put definitions here.</h2>
-        <div id="editor"></div>
-        <div id="toolbar">
-          <span id="minibuffer"></span>
-          <svg id="submit" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#arrow-clockwise"/></svg>
-        </div>
-      </div>
-      <div id="right">
-
-        <h2>Test results show up here.</h2>
-        <div id="testing"></div>
-
-        <div id="repl"></div>
-        {% include 'codelink' %}
-      </div>
-    </div>
-  </div>
 </body>
 </html>

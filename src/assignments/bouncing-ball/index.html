@@ -2,3 +2,41 @@
 layout: canvas.liquid
 title: Bouncing Ball
 ---
+  <div class="column big">
+    <p>
+      Welcome to your first programming exercise. We are going to walk through
+      this together in class so don't worry about not yet knowing what to do.
+      After this exercise quickly introduces a few topics, we’ll go back and
+      actually talk about each of them in more detail.
+    </p>
+
+    <p>
+      Our goal is to make an animation of a bouncing ball. Because this is a
+      first exercise, I’ve done some of the work for you. Behind the scenes this
+      page has already loaded some code that has set up the image you see below
+      and has defined several functions and variables that we’ll use to make the
+      animation. (What are functions and variables, you ask? Stay tuned and all
+      will be explained!)
+    </p>
+
+    <div id="container" class="row">
+      <div id="left">
+        <h2>Put definitions here.</h2>
+        <div id="editor"></div>
+        <div id="toolbar">
+          <span id="minibuffer"></span>
+          <svg id="submit" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#arrow-clockwise"/></svg>
+        </div>
+      </div>
+
+      <div id="right">
+
+        <!-- placeholder for the iframe that will hold the canvas we'll draw on. -->
+        <iframe></iframe>
+
+        <h2>REPL just in case you need it.</h2>
+        <div id="repl"></div>
+        {% include 'codelink' %}
+      </div>
+    </div>
+  </div>
