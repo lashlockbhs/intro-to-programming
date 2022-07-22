@@ -6,6 +6,8 @@ import monaco from './modules/editor';
 import replize from './modules/repl';
 import testing from './modules/testing';
 import { jsonIfOk } from './modules/fetch-helpers';
+import { choice } from './modules/shuffle';
+import fruit from './modules/fruit';
 
 const GITHUB_ORG = 'gigamonkeys'; // FIXME: load this from config file from website.
 const TEMPLATE_OWNER = 'gigamonkey';
@@ -254,6 +256,18 @@ const maybeSetupTesting = (config) => {
   } else {
     return () => console.log('no testing callback');
   }
+};
+
+const randomFruitBomb = () => {
+  const m = editor.getModel();
+  const line = Math.floor(Math.random() * m.getLineCount());
+  const column = Math.floor(Math.random() * m.getLineContent(line).length);
+  m.applyEdits([
+    {
+      range: { startLineNumber: line, endLineNumber: line, startColumn: column, endColumn: column },
+      text: choice(fruit),
+    },
+  ]);
 };
 
 const setup = async () => {
