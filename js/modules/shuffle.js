@@ -42,4 +42,6 @@ const shuffled = (xs) => {
  */
 const flip = () => Math.random() < 0.5;
 
-export { shuffle, shuffled, flip };
+const choice = (xs) => xs[Math.floor(Math.random() * xs.length)];
+
+export { shuffle, shuffled, flip, choice };
