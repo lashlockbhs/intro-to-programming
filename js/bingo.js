@@ -19,14 +19,12 @@ const CHOICES = [BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals].flatMap
 );
 
 class Bingo {
-  constructor(size, choices) {
+  constructor(size, easy, choices) {
     this.size = size;
-    this.choices = choices;
-
+    this.easy = easy;
     this.rows = Array(size).fill(0);
     this.columns = Array(size).fill(0);
     this.diagonals = Array(2).fill(0);
-
     this.cells = [];
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
@@ -65,10 +63,29 @@ class Bingo {
   }
 
   nextQuestion() {
-    question = { a: flip(), b: flip(), want: flip() };
-    renderQuestion(question);
+    const q = { a: flip(), b: flip() };
+    const values = this.cells.filter((c) => c.open).map((c) => c.evaluate(q));
+    const trues = values.reduce((acc, v) => acc + (v ? 1 : 0), 0);
+    const falses = values.length - trues;
+    this.question = { ...q, want: want(trues, falses, this.easy) };
+    renderQuestion(this.question);
   }
 }
+
+const want = (trues, falses, easy) => {
+  if (trues === 0) {
+    // If there are no trues, gotta use false, even in hard mode.
+    return false;
+  } else if (falses === 0) {
+    // And vice versa.
+    return true;
+  } else if (trues === falses) {
+    // No preference. Flip a coin.
+    return flip();
+  } else {
+    return easy === trues > falses;
+  }
+};
 
 class Cell {
   constructor(row, col, expr, bingo) {
@@ -76,7 +93,7 @@ class Cell {
     this.col = col;
     this.expr = expr;
     this.bingo = bingo;
-    this.played = false;
+    this.open = true;
 
     this.html = $('<span>');
     this.html.classList.add('box');
@@ -84,9 +101,15 @@ class Cell {
     this.html.onclick = () => this.clicked();
   }
 
+  evaluate(q) {
+    return this.expr.evaluate(q);
+  }
+
   clicked() {
-    if (!this.html.classList.contains('correct')) {
-      if (this.expr.evaluate(question) === question.want) {
+    if (this.open) {
+      const q = this.bingo.question;
+      if (this.evaluate(q) === q.want) {
+        this.open = false;
         this.html.classList.add('correct');
         this.bingo.track(this.row, this.col);
         if (this.bingo.hasBingo()) {
@@ -100,9 +123,6 @@ class Cell {
     }
   }
 }
-
-// The values of a and b and the desired value
-let question = null;
 
 const shake = (cell) => {
   const parent = cell.parentElement;
@@ -157,10 +177,10 @@ const renderQuestion = (q) => {
   const ab = $('<p>');
   const v = $('<p>');
   ab.innerHTML = `<code>a</code> is <code>${q.a}</code>; <code>b</code> is <code>${q.b}</code>`;
-  v.innerHTML = `Looking for <code>${question.want}</code>.`;
+  v.innerHTML = `Looking for <code>${q.want}</code>.`;
   $('#question').replaceChildren(ab, v);
 };
 
-const bingo = new Bingo(4, shuffled(CHOICES));
+const bingo = new Bingo(4, true, shuffled(CHOICES));
 bingo.fillBoard($('#board'));
 bingo.nextQuestion();
