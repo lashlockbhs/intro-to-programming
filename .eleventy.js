@@ -19,6 +19,8 @@ module.exports = function eleventyConfig(eleventyConfig) {
   return {
     dir: {
       input: '.',
+      includes: '_includes',
+      layouts: '_layouts',
       output: '_site',
     },
     templateFormats: ['md', '11ty.js', 'html'],
