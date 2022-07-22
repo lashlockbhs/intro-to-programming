@@ -1,7 +1,3 @@
-/*
- * Here's some starter code to play with.
- */
-
 // Warning! Do not call this function with numbers much bigger than 40 unless
 // you want to kill this tab.
 const fib = (n) => (n < 2 ? n : fib(n - 2) + fib(n - 1));
