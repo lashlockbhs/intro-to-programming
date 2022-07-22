@@ -1,5 +1,5 @@
 import { $ } from './modules/whjqah';
-import { shuffled } from './modules/shuffle';
+import { shuffled, flip } from './modules/shuffle';
 
 import {
   Variable,
@@ -10,12 +10,29 @@ import {
   BooleanNot,
 } from './modules/booleans';
 
+const xAndNotX = (x) => [x, new BooleanNot(x)];
+
+const CHOICES = [BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals].flatMap((op) =>
+  xAndNotX(new Variable('a')).flatMap((left) =>
+    xAndNotX(new Variable('b')).map((right) => new op(left, right)),
+  ),
+);
+
 class Bingo {
-  constructor(size) {
+  constructor(size, choices) {
     this.size = size;
+    this.choices = choices;
+
     this.rows = Array(size).fill(0);
     this.columns = Array(size).fill(0);
     this.diagonals = Array(2).fill(0);
+
+    this.cells = [];
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        this.cells.push(new Cell(r, c, choices[r * 4 + c], this));
+      }
+    }
   }
 
   track(row, col) {
@@ -36,66 +53,56 @@ class Bingo {
       this.diagonals.some((d) => d === this.size)
     );
   }
+
+  fillBoard(board) {
+    for (let r = 0; r < this.size; r++) {
+      const row = $('<div>');
+      for (let c = 0; c < this.size; c++) {
+        row.appendChild(this.cells[r * 4 + c].html);
+      }
+      board.appendChild(row);
+    }
+  }
+
+  nextQuestion() {
+    question = { a: flip(), b: flip(), want: flip() };
+    renderQuestion(question);
+  }
 }
 
-const ops = [BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals];
-const a = new Variable('a');
-const b = new Variable('b');
+class Cell {
+  constructor(row, col, expr, bingo) {
+    this.row = row;
+    this.col = col;
+    this.expr = expr;
+    this.bingo = bingo;
+    this.played = false;
 
-const andNot = (v) => [v, new BooleanNot(v)];
+    this.html = $('<span>');
+    this.html.classList.add('box');
+    this.html.innerText = expr.code();
+    this.html.onclick = () => this.clicked();
+  }
 
-const flip = () => Math.random() < 0.5;
-
-const choices = ops.flatMap((op) =>
-  andNot(a).flatMap((left) => andNot(b).map((right) => new op(left, right))),
-);
-
-const board = $('#board');
+  clicked() {
+    if (!this.html.classList.contains('correct')) {
+      if (this.expr.evaluate(question) === question.want) {
+        this.html.classList.add('correct');
+        this.bingo.track(this.row, this.col);
+        if (this.bingo.hasBingo()) {
+          $('#question').innerText = 'Bingo!';
+        } else {
+          this.bingo.nextQuestion();
+        }
+      } else {
+        shake(this.html);
+      }
+    }
+  }
+}
 
 // The values of a and b and the desired value
 let question = null;
-
-// The positions that have been correctly identified
-const correct = [];
-
-const bingos = new Bingo(4);
-
-const fillBoard = () => {
-  const cs = shuffled(choices);
-
-  for (let i = 0; i < 4; i++) {
-    const row = $('<div>');
-    for (let j = 0; j < 4; j++) {
-      const cell = $('<span>');
-      const expr = cs[i * 4 + j];
-      cell.classList.add('box');
-      cell.innerText = expr.code();
-      cell.onclick = makeClickHandler(cell, expr, i, j);
-      row.appendChild(cell);
-    }
-    board.appendChild(row);
-  }
-};
-
-
-const makeClickHandler = (cell, expr, i, j) =>
-      () => {
-    if (!cell.classList.contains('correct')) {
-      if (expr.evaluate(question) === question.want) {
-        cell.classList.add('correct');
-        bingos.track(i, j);
-        correct.push([i, j]);
-        if (bingos.hasBingo()) {
-          $('#question').innerText = 'Bingo!';
-        } else {
-          nextQuestion();
-        }
-      } else {
-        shake(cell);
-      }
-    }
-      };
-
 
 const shake = (cell) => {
   const parent = cell.parentElement;
@@ -146,16 +153,14 @@ const makeUnabsolute = (e) => {
   e.style.removeProperty('top');
 };
 
-const nextQuestion = () => {
-  $('#question').replaceChildren();
-  question = { a: flip(), b: flip(), want: flip() };
+const renderQuestion = (q) => {
   const ab = $('<p>');
-  ab.innerHTML = `<code>a</code> is <code>${question.a}</code>; <code>b</code> is <code>${question.b}</code>`;
   const v = $('<p>');
+  ab.innerHTML = `<code>a</code> is <code>${q.a}</code>; <code>b</code> is <code>${q.b}</code>`;
   v.innerHTML = `Looking for <code>${question.want}</code>.`;
-  $('#question').appendChild(ab);
-  $('#question').appendChild(v);
+  $('#question').replaceChildren(ab, v);
 };
 
-fillBoard();
-nextQuestion();
+const bingo = new Bingo(4, shuffled(CHOICES));
+bingo.fillBoard($('#board'));
+bingo.nextQuestion();

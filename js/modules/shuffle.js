@@ -37,4 +37,9 @@ const shuffled = (xs) => {
   return shuffled;
 };
 
-export { shuffle, shuffled };
+/*
+ * Flip a coin.
+ */
+const flip = () => Math.random() < 0.5;
+
+export { shuffle, shuffled, flip };
