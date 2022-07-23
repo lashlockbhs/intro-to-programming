@@ -4,10 +4,15 @@
   <meta charset="utf-8">
   <meta content="width=device-width,initial-scale=1" name="viewport">
   <title>{{ title }}</title>
-  <link href="/css/games.css" rel="stylesheet" type="text/css">
+
+  {% if style %}
+  <link href="/css/{{ style }}.css" rel="stylesheet" type="text/css">
+  {% endif %}
+
   {% if script %}
   <script src="/js/{{ script }}.js" type="module"></script>
   {% endif %}
+
 </head>
 <body>
 
