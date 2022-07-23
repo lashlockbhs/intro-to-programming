@@ -52,6 +52,14 @@ function findChild(e, fn) {
 }
 
 /*
+ * Fill an element under parent that matches selector with a number of elements.
+ */
+const fill = (parent, selector, ...what) => {
+  const e = parent.querySelector(selector);
+  e.replaceChildren(...what);
+};
+
+/*
  * Find a descendant matching a predicate.
  */
 function findDescendant(e, fn) {
@@ -68,4 +76,4 @@ function findDescendant(e, fn) {
   return undefined;
 }
 
-export { $, $$, clear, findChild, findDescendant, withClass };
+export { $, $$, clear, fill, findChild, findDescendant, withClass };

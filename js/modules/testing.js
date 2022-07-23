@@ -1,3 +1,5 @@
+import { $, fill, withClass } from './whjqah';
+
 /*
  * Turn a div we are given into a widget for displaying test results. We are not
  * responsible for actually running the tests because that happens off in the
@@ -5,35 +7,7 @@
  * let it register with the evaluator to be notified when code is loaded so it
  * can do it's thing. That's probably better. FIXME.)
  */
-
-/*
- * Poor man's jQuery.
- */
-function $(s, t) {
-  if (s === undefined) {
-    return $('<i>', 'undefined');
-  } else if (s[0] === '#') {
-    return document.getElementById(s.substring(1));
-  } else if (s[0] === '<') {
-    const e = document.createElement(s.substring(1, s.length - 1));
-    if (t !== undefined) {
-      e.append($(t));
-    }
-    return e;
-  } else {
-    return document.createTextNode(s);
-  }
-}
-
-const fill = (parent, selector, ...what) => {
-  const e = parent.querySelector(selector);
-  e.replaceChildren(...what);
-};
-
-function withClass(className, e) {
-  e.className = className;
-  return e;
-}
+const testing = (div, testCases) => new Testing(div, testCases);
 
 const makePills = (testCases) => {
   const pills = withClass('pills', $('<div>'));
@@ -198,7 +172,5 @@ class Testing {
     }
   }
 }
-
-const testing = (div, testCases) => new Testing(div, testCases);
 
 export default testing;
