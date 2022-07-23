@@ -8,6 +8,7 @@ import testing from './modules/testing';
 import { jsonIfOk } from './modules/fetch-helpers';
 import { choice } from './modules/shuffle';
 import fruit from './modules/fruit';
+import { $$ } from './modules/whjqah';
 
 const GITHUB_ORG = 'gigamonkeys'; // FIXME: load this from config file from website.
 const TEMPLATE_OWNER = 'gigamonkey';
@@ -33,8 +34,6 @@ const mainBranchProtections = {
 };
 
 const $ = (selector) => document.querySelector(selector);
-
-const $$ = (selector) => document.querySelectorAll(selector);
 
 const login = new Login();
 

@@ -18,6 +18,9 @@ function $(s, t) {
   }
 }
 
+const $$ = (selector) => document.querySelectorAll(selector);
+
+
 /*
  * Remove all the children from the given DOM element.
  */
@@ -65,4 +68,4 @@ function findDescendant(e, fn) {
   return undefined;
 }
 
-export { $, clear, findChild, findDescendant, withClass };
+export { $, $$, clear, findChild, findDescendant, withClass };
