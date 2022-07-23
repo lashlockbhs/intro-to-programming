@@ -1,7 +1,7 @@
 @import url('base.css');
 
 html {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
 
@@ -9,7 +9,6 @@ html {
   padding: 0;
   margin: 0;
 }
-
 
 body {
   max-width: 40em;
@@ -45,4 +44,34 @@ body {
   margin: 1em auto;
   text-align: center;
   border: 1px solid grey;
+}
+
+table.problems {
+  width: 100%;
+  font-size: 13px;
+}
+
+table.problems th,
+table.problems td {
+  text-align: center;
+}
+
+#completed table {
+  width: 100%;
+  font-size: 13px;
+}
+
+th.problem,
+td.problem {
+  text-align: left;
+}
+
+th.answer,
+td.answer {
+  text-align: left;
+}
+
+th.ok,
+td.ok {
+  text-align: center;
 }
