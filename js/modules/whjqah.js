@@ -20,7 +20,6 @@ function $(s, t) {
 
 const $$ = (selector) => document.querySelectorAll(selector);
 
-
 /*
  * Remove all the children from the given DOM element.
  */
