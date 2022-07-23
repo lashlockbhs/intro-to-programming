@@ -1,0 +1,48 @@
+@import url('base.css');
+
+html {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+  max-width: 40em;
+  margin: 50px auto;
+}
+
+.expressions {
+  border: 1px solid #aaa;
+  padding: 1em;
+}
+
+.expressions .marks {
+  text-align: center;
+  font-size: 2em;
+}
+
+.expressions .expression {
+  line-height: 2em;
+}
+
+.expressions .expression h1 {
+  font-size: 1.2em;
+}
+
+.expressions .input {
+  width: 100%;
+  text-align: center;
+}
+
+.expressions .input input {
+  font-size: 1.2em;
+  width: 75%;
+  margin: 1em auto;
+  text-align: center;
+  border: 1px solid grey;
+}
