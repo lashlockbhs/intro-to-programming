@@ -1,72 +1,49 @@
 ---
-layout: generic.liquid
+layout: expressions.liquid
 title: Expressions
-style: expressions
-script: expressions-game
 ---
 
-<div class="expressions">
+<div class="expression" data-variables="w:positive,h:positive" data-expression="w*h">
+  <h1>Area of rectangle</h1>
+  <p>
+    The area of a rectangle is its width times its height. Write an expression
+    for this area given width <code>w</code> and height <code>h</code>.
+  <p>
+</div>
 
-  <div class="questions">
+<div class="expression" data-variables="r:positive" data-expression="Math.PI*r*r">
+  <h1>Area of circle</h1>
+  <p>
+    The area of a rectangle is π times the square of the circle’s radius.
+    Write an expression for this area given radius <code>r.</code>. You can
+    use <code>Math.PI</code> to get a good approximation of π.
+  <p>
+</div>
 
-    <div class="expression" data-variables="w:positive,h:positive" data-expression="w*h">
-      <h1>Area of rectangle</h1>
-      <p>
-        The area of a rectangle is its width times its height. Write an expression
-        for this area given width <code>w</code> and height <code>h</code>.
-      <p>
-    </div>
+<div class="expression" data-variables="b:positive,h:positive" data-expression="b*h/2">
+  <h1>Area of triangle</h1>
+  <p>
+    The area of a triangle is half the base time the height. Write an
+    expression for this area given base <code>b</code> and
+    height <code>h</code>.
+  <p>
+</div>
 
-    <div class="expression" data-variables="r:positive" data-expression="Math.PI*r*r">
-      <h1>Area of circle</h1>
-      <p>
-        The area of a rectangle is pi times the radius squared. Write an
-        expression for this area given radius <code>r.</code>. You can
-        use <code>Math.PI</code> to get a good approximation of pi.
-      <p>
-    </div>
+<div class="expression" data-variables="s:positive" data-expression="s**2">
+  <h1>Area of square</h1>
+  <p>
+    The area of a square is the square of the length of one side. Write an
+    expression for this area given side <code>s</code>.
+  <p>
+</div>
 
-    <div class="expression" data-variables="b:positive,h:positive" data-expression="b*h/2">
-      <h1>Area of triangle</h1>
-      <p>
-        The area of a triangle is half the base time the height. Write an
-        expression for this area given base <code>b</code> and
-        height <code>h</code>.
-      <p>
-    </div>
-
-    <div class="expression" data-variables="s:positive" data-expression="s**2">
-      <h1>Area of square</h1>
-      <p>
-        The area of a square is the square of the length of one side. Write an
-        expression for this area given side <code>s</code>.
-      <p>
-    </div>
-
-    <div class="expression" data-variables="a:number,b:number" data-expression="a + (b - a) / 2">
-      <h1>Midpoint of line</h1>
-      <p>
-        Write an expression that, given two points on a line, <code>a</code>
-        and <code>b</code>, represented as numbers (imagine mile makers on a road
-        or something), evaluates to the midpoint between them. For instance
-        if <code>a</code> is 6 and <code>b</code> is 10, the midpoint is 8. You
-        can assume that <code>a</code> is not greater than <code>b</code>
-      <p>
-    </div>
-
-    <div class="input">
-      <input id="expression-input" type="text" placeholder="Type expression here"></input>
-    </div>
-  </div>
-
-  <div class="done" hidden="true">
-    All done! Good job!
-  </div>
-
-  <div class="marks"></div>
-
-  <div id="results" class="test-results"></div>
-
-  <div id="completed"></div>
-
+<div class="expression" data-variables="a:number,b:number" data-expression="a + (b - a) / 2">
+  <h1>Midpoint of line</h1>
+  <p>
+    Write an expression that, given two points on a line, <code>a</code>
+    and <code>b</code>, represented as numbers (imagine mile makers on a road
+    or something), evaluates to the midpoint between them. For instance
+    if <code>a</code> is 6 and <code>b</code> is 10, the midpoint is 8. You
+    can assume that <code>a</code> is not greater than <code>b</code>
+  <p>
 </div>

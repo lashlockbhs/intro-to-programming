@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <title>{{ title }}</title>
-  <link href="/css/games.css" rel="stylesheet" type="text/css">
-  {% if script %}
-  <script src="/js/{{ script }}.js" type="module"></script>
-  {% endif %}
-</head>
-<body>
+---
+layout: generic.liquid
+style: expressions
+script: expressions-game
+---
 
-  {{ content }}
+<div class="expressions">
 
-</body>
-</html>
+  <div class="questions">
+
+    {{ content }}
+
+    <div class="input">
+      <input id="expression-input" type="text" placeholder="Type expression here"></input>
+    </div>
+  </div>
+
+  <div class="done" hidden="true">
+    All done! Good job!
+  </div>
+  <div class="marks"></div>
+  <div id="results" class="test-results"></div>
+  <div id="completed"></div>
+
+</div>
