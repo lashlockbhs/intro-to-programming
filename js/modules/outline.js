@@ -24,7 +24,7 @@ function* lines(data) {
       const m = line.match(continuationPat);
       if (m) {
         // Matches a continuation of the current item.
-        const { text } = m.slice(1);
+        const [text] = m.slice(1);
         current += text;
       }
     }
