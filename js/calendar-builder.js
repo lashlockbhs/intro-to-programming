@@ -1,5 +1,6 @@
 import Calendar from './modules/calendar';
 import { outline, units } from './modules/outline';
+import { jsonIfOk, textIfOk } from './modules/fetch-helpers';
 
 const ITEM = Symbol('item');
 
@@ -27,23 +28,9 @@ const loadData = async (calendar, outline) => {
   }
 };
 
-const jsonOrBarf = (r) => {
-  if (!r.ok) {
-    throw new Error(`HTTP error! Status: ${r.status}`);
-  }
-  return r.json();
-};
+const toCalendar = (fetched) => fetched.then(jsonIfOk).then((x) => new Calendar(x));
 
-const textOrBarf = (r) => {
-  if (!r.ok) {
-    throw new Error(`HTTP error! Status: ${r.status}`);
-  }
-  return r.text();
-};
-
-const toCalendar = (fetched) => fetched.then(jsonOrBarf).then((x) => new Calendar(x));
-
-const toOutline = (fetched) => fetched.then(textOrBarf).then((x) => outline(x));
+const toOutline = (fetched) => fetched.then(textIfOk).then((x) => outline(x));
 
 const tocLink = (unit) =>
   element('a', `Unit ${unit.number}`, {
