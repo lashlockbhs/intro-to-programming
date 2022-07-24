@@ -41,8 +41,8 @@ const test = async () => {
     }),
   );
 
-  //out += `\n// Updating branch pull request review protection\n`;
-  //out += toJSON(await r.updateBranchPullRequestReviewProtection('main'));
+  // out += `\n// Updating branch pull request review protection\n`;
+  // out += toJSON(await r.updateBranchPullRequestReviewProtection('main'));
 
   document.getElementById('stuff').innerText = out;
 };
