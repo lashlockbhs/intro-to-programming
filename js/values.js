@@ -1,6 +1,7 @@
 import { $, clear, withClass } from './modules/whjqah';
 import { type, valueExpression, allTypes } from './modules/questions';
 import { first } from './modules/async';
+import { addToolbarButtons } from './modules/games';
 
 // level 0: single values
 // level 1: two values and an operator. Choose an operator. Choose value for the types.
@@ -20,21 +21,13 @@ const model = {
 
 function init() {
   clear($('#results'));
-  $('#toggle_info').onclick = visibilityToggler('#info');
+  addToolbarButtons();
+
   $('#close_info').onclick = () => {
     $('#info').style.display = 'none';
   };
-  $('#toggle_results').onclick = visibilityToggler('#log');
   $('#results_header').onclick = changeFilter;
   setQuestion();
-}
-
-function visibilityToggler(id) {
-  const toggler = () => {
-    const element = $(id);
-    element.style.display = element.style.display === 'none' ? 'block' : 'none';
-  };
-  return toggler;
 }
 
 const filters = ['all', 'pass', 'fail'];

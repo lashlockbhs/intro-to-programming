@@ -1,8 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@100;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
 
+/* light reset */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.5em;
+  padding-top: 0;
+}
+
+p + p {
+  padding-top: 0.5em;
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+}
+
+ul {
+  padding-left: 1.5em;
+}
+
 .logo {
   font-size: 40px;
   font-family: 'Alfa Slab One', cursive;
+  font-weight: 300;
 }
 
 .logo a {
@@ -14,8 +49,4 @@ p.logo {
   line-height: 1em;
   margin: 0;
   margin-bottom: 0.5em;
-}
-
-h1 {
-  font-weight: 500;
 }

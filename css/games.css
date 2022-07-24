@@ -1,11 +1,5 @@
 @import url('base.css');
 
-body {
-  margin: 0.5in;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-}
-
 div {
   text-align: center;
 }
@@ -23,16 +17,6 @@ h2 {
 #toolbar svg {
   width: 16px;
   height: 16px;
-}
-
-#info svg,
-p svg {
-  width: 1em;
-  height: 1em;
-}
-
-#score {
-  float: left;
 }
 
 #info {

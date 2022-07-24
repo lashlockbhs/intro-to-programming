@@ -5,9 +5,12 @@
   <meta content="width=device-width,initial-scale=1" name="viewport">
   <title>{{ title }}</title>
 
+
   {% if style %}
   <link href="/css/{{ style }}.css" rel="stylesheet" type="text/css">
   {% endif %}
+
+  <link href="/css/toolbar.css" rel="stylesheet" type="text/css">
 
   {% if script %}
   <script src="/js/{{ script }}.js" type="module"></script>
@@ -15,6 +18,9 @@
 
 </head>
 <body>
+
+  {% include 'banner' %}
+  {% include 'toolbar' %}
 
   {{ content }}
 

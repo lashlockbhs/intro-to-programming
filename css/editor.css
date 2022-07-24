@@ -1,0 +1,34 @@
+.itp-editor {
+}
+
+.itp-editor .toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.itp-editor .toolbar > * {
+  padding: 0 10px;
+  vertical-align: middle;
+}
+
+.itp-editor .toolbar .itp-run-code {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.itp-editor .toolbar > * {
+  flex-grow: 0;
+}
+
+.itp-editor .minibuffer {
+  padding: 6px;
+  width: 100px;
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.itp-run-code {
+  fill: blue;
+  vertical-align: middle;
+}

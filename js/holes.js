@@ -1,7 +1,8 @@
-import { $, clear, findDescendant, withClass } from './modules/whjqah';
+import { $, clear, findDescendant, icon, withClass } from './modules/whjqah';
 import { forBlank, type } from './modules/questions';
 import { random as g } from './modules/random';
 import { first } from './modules/async';
+import { addToolbarButtons } from './modules/games';
 
 // Basic functionality:
 //
@@ -28,20 +29,14 @@ const model = {
 
 function init() {
   clear($('#results'));
-  $('#toggle_info').onclick = visibilityToggler('#info');
+
+  addToolbarButtons();
+
   $('#close_info').onclick = () => {
     $('#info').style.display = 'none';
   };
-  $('#toggle_results').onclick = visibilityToggler('#log');
   $('#results_header').onclick = changeFilter;
   setQuestion();
-}
-
-function visibilityToggler(id) {
-  return function () {
-    const element = $(id);
-    element.style.display = element.style.display === 'none' ? 'block' : 'none';
-  };
 }
 
 const filters = ['all', 'pass', 'fail'];

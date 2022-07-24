@@ -1,0 +1,51 @@
+.itp-toolbar .logo {
+  font-size: 24px;
+}
+
+.itp-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  justify-content: space-between;
+}
+
+.itp-toolbar > * {
+  margin: 0 3px;
+  vertical-align: middle;
+  padding: 20px;
+}
+
+.itp-toolbar button {
+  background: #000;
+  color: #fff;
+  padding: 4px 9px;
+  border: 1px solid #000;
+  font-size: inherit;
+  vertical-align: middle;
+  border-radius: 6px;
+}
+
+.itp-toolbar button svg {
+  fill: #fff;
+}
+
+.itp-toolbar button * {
+  vertical-align: inherit;
+}
+
+.itp-toolbar .github-user a {
+  padding-left: 3px;
+}
+
+.itp-toolbar svg {
+  vertical-align: middle;
+  padding: 0;
+}
+
+.itp-toolbar .buttons > svg {
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0 4px;
+}

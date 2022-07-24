@@ -1,21 +1,8 @@
 @import url('base.css');
 
-html {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-body {
+.expressions {
   max-width: 40em;
   margin: 50px auto;
-}
-
-.expressions {
   padding: 1em;
 }
 

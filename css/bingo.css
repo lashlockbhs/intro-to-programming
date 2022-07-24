@@ -1,19 +1,5 @@
 @import url('base.css');
 
-html {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  width: 100%;
-}
-
 #container {
   margin: auto;
   width: fit-content;

@@ -1,12 +1,13 @@
-  <div id="top-toolbar">
-    <span class="logo padding"><a href="/">Intro to Programming</a></span>
-    <span class="padding">
-      <span class="github">
-        <button id="toolbar-login">
-          <svg id="github-icon" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#github"/></svg>
-          <span>Log in</span>
-        </button>
-      </span>
-      <svg id="info-circle" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+<div class="itp-toolbar">
+  <span class="logo"><a href="/">Intro to Programming</a></span>
+  <span class="buttons">
+    {% if githubButton == 'true' %}
+    <span class="github">
+      <button id="toolbar-login">
+        <svg id="github-icon" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#github"/></svg>
+        <span>Log in</span>
+      </button>
     </span>
-  </div>
+    {% endif %}
+  </span>
+</div>

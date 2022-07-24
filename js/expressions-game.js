@@ -1,24 +1,11 @@
 /* eslint no-new-func: "off" */
 
-import { $, $$ } from './modules/whjqah';
+import { $, $$, icon } from './modules/whjqah';
 import makeTable from './modules/table';
 
 const generators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
   number: () => -100 + Math.random() * 2 * 100,
-};
-
-const bootstrapIcon = (name) => {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  svg.classList.add('bi');
-  use.setAttributeNS(
-    'http://www.w3.org/1999/xlink',
-    'xlink:href',
-    `/img/bootstrap-icons.svg#${name}`,
-  );
-  svg.append(use);
-  return svg;
 };
 
 class Expressions {
@@ -59,7 +46,7 @@ class Expression {
     this.index = index;
 
     this.name = div.querySelector('h1').innerText;
-    this.marker = bootstrapIcon('circle');
+    this.marker = icon('circle');
     this.answer = null;
 
     const input = div.dataset.variables.split(',').map((s) => s.split(':'));

@@ -8,7 +8,7 @@ import testing from './modules/testing';
 import { jsonIfOk } from './modules/fetch-helpers';
 import { choice } from './modules/shuffle';
 import fruit from './modules/fruit';
-import { $$ } from './modules/whjqah';
+import { $$, githubLoginButton, icon } from './modules/whjqah';
 
 const GITHUB_ORG = 'gigamonkeys'; // FIXME: load this from config file from website.
 const TEMPLATE_OWNER = 'gigamonkey';
@@ -62,21 +62,26 @@ const url = (s) => {
 };
 
 const message = (text, fade) => {
-  $('#minibuffer').innerText = text;
+  $('.itp-editor .minibuffer').innerText = text;
   if (fade) {
     setTimeout(() => {
-      if ($('#minibuffer').innerText === text) {
-        $('#minibuffer').innerText = '';
+      if ($('.itp-editor .minibuffer').innerText === text) {
+        $('.itp-editor .minibuffer').innerText = '';
       }
     }, fade);
   }
 };
 
 const showLoggedIn = () => {
-  const button = $('#toolbar-login');
-  const icon = $('#github-icon');
-  const u = login.repoURL ? a(login.username, login.repoURL, '_blank') : text(login.username);
-  button.parentNode.replaceChildren(icon, u);
+  const button = document.querySelector('.itp-toolbar .buttons .github');
+  if (button) {
+    const span = document.createElement('span');
+    span.className = 'github-user';
+    const u = login.repoURL ? a(login.username, login.repoURL, '_blank') : text(login.username);
+    span.append(icon('github'));
+    span.append(u);
+    button.replaceWith(span);
+  }
 };
 
 const toggleInfo = () => {
@@ -269,6 +274,19 @@ const randomFruitBomb = () => {
   ]);
 };
 
+const setupToolbar = (attachToGithub) => {
+  const toolbarButtons = document.querySelector('.itp-toolbar .buttons');
+
+  const login = toolbarButtons.querySelector('.github');
+  if (login) {
+    login.onclick = attachToGithub;
+  }
+
+  const infoToggler = icon('info-circle');
+  infoToggler.onclick = toggleInfo;
+  toolbarButtons.append(infoToggler);
+};
+
 const setup = async () => {
   const config = await configuration();
   const storage = await makeStorage();
@@ -323,6 +341,8 @@ const setup = async () => {
     }
   };
 
+  setupToolbar(attachToGithub);
+
   if (storage.repo !== null) {
     storage.ensureFileInBranch(filename).then(fillEditor);
   } else {
@@ -334,12 +354,12 @@ const setup = async () => {
   if ($('#toolbar-login')) {
     $('#toolbar-login').onclick = attachToGithub;
   }
-  $('#info-circle').onclick = toggleInfo;
-  $('#banner svg.x').onclick = hideInfo;
-  $('#submit').onclick = reevaluateCode;
 
-  $('#minibuffer').onclick = () => {
-    $('#minibuffer').innerText = '';
+  $('#banner svg.x').onclick = hideInfo;
+  $('.itp-editor .itp-run-code').onclick = reevaluateCode;
+
+  $('.itp-editor .minibuffer').onclick = () => {
+    $('.itp-editor .minibuffer').innerText = '';
   };
 
   repl.focus();

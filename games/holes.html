@@ -4,65 +4,86 @@ title: Fill the hole
 style: games
 script: holes
 ---
-  <div id="toolbar">
-    <span id="score"></span>
-    <svg id="toggle_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
-    <svg id="toggle_results" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg>
+<div id="info" style="display:none">
+  <div style="text-align: right">
+    <svg id="close_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#x"/></svg>
   </div>
-  <div id="info" style="display:none">
-    <div style="text-align: right">
-      <svg id="close_info" class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#x"/></svg>
-    </div>
-    <div id="instructions">
-      <p>This game is designed to help you make sure you understand four of the main value types in Javascript:
-      numbers, strings, booleans and arrays and the operators that operate on them.</p>
-      <p>You will be presented with a question in the from of a Javascript expression with a hole that you need to fill
-      in marked with <span class="hole">???</span>, an arrow, and to the right of the arrow the value that the
-      expression should evaluate to. Below the question will be buttons containing values that you can use to fill the
-      hole in the expression. Click the button that you think will cause the expression to evaluate to the desired
-      value.</p>
-      <p>If you choose a correct value (and sometimes there may be more than one) the question will briefly display the
-      expression with your value filled in and a ✅ and then it will move on to a new question.</p>
-      <p>If you choose a value that does not work, you will get a message about why it is not the right answer and you
-        will be able to pick a different value.</p>
-
-      <p>To see a log of all your answers, click the <svg class="bi" fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg> icon
-      above. You can click it again to hide the log. N.B. the log and your score are reset if you close or reload the
-      page.</p>
-      <p>Note also that this game takes a stricter view of what types cane be used with what operators that Javascript
-      actually does. Since Javascript was originally designed to be used for small enhancements on web pages, its
-      designers designed it to be forgiving and to try to make sense even of not entirely sensical programs. Thus it
-      converts values from one type to another in many contexts allowing expressions like <span class="mono">10 *
-      "123"</span> since it can interpret the string <span class="mono">"123"</span> as the number <span class=
-      "mono">123</span>. But in this game you are expected to provide values of the actual appropriate types, without
-      relying on any automagic conversion happening under the covers.</p>
-    </div>
-  </div>
-  <div id="question"></div>
-  <div id="answers"></div>
-  <div id="commentary"></div>
-  <div id="tip">
+  <div id="instructions">
     <p>
-      Click a value that causes the expression to evaluate to the given value.
-      Note, there may be more than one correct answer. Click the <svg class="bi"
-      fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
-      above for more info.
+      This game is designed to help you make sure you understand four of the
+      main value types in Javascript: numbers, strings, booleans and arrays and
+      the operators that operate on them.
+    </p>
+
+    <p>
+      You will be presented with a question in the from of a Javascript
+      expression with a hole that you need to fill in marked
+      with <span class="hole">???</span>, an arrow, and to the right of the
+      arrow the value that the expression should evaluate to. Below the question
+      will be buttons containing values that you can use to fill the hole in the
+      expression. Click the button that you think will cause the expression to
+      evaluate to the desired value.
+    </p>
+
+    <p>
+      If you choose a correct value (and sometimes there may be more than one)
+      the question will briefly display the expression with your value filled in
+      and a ✅ and then it will move on to a new question.
+    </p>
+
+    <p>
+      If you choose a value that does not work, you will get a message about why
+      it is not the right answer and you will be able to pick a different value.
+    </p>
+
+    <p>
+      To see a log of all your answers, click the <svg class="bi"
+      fill="#000"><use xlink:href="/img/bootstrap-icons.svg#list"/></svg> icon
+      above. You can click it again to hide the log. N.B. the log and your score
+      are reset if you close or reload the page.
+    </p>
+
+    <p>
+      Note also that this game takes a stricter view of what types cane be used
+      with what operators that Javascript actually does. Since Javascript was
+      originally designed to be used for small enhancements on web pages, its
+      designers designed it to be forgiving and to try to make sense even of not
+      entirely sensical programs. Thus it converts values from one type to
+      another in many contexts allowing expressions like <span class="mono">10 *
+      "123"</span> since it can interpret the
+      string <span class="mono">"123"</span> as the number <span class=
+      "mono">123</span>. But in this game you are expected to provide values of
+      the actual appropriate types, without relying on any automagic conversion
+      happening under the covers.
     </p>
   </div>
-  <div id="log" style="display: none">
-    <table>
-      <colgroup>
-        <col class="result">
-        <col class="question">
-        <col class="notes">
-      </colgroup>
-      <thead>
-        <tr>
-          <th id="results_header">All</th>
-          <th>Question</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody id="results"></tbody>
-    </table>
-  </div>
+</div>
+<div id="question"></div>
+<div id="answers"></div>
+<div id="score"></div>
+<div id="commentary"></div>
+<div id="tip">
+  <p>
+    Click a value that causes the expression to evaluate to the given value.
+    Note, there may be more than one correct answer. Click the <svg class="bi"
+    fill="#000"><use xlink:href="/img/bootstrap-icons.svg#info-circle"/></svg>
+    above for more info.
+  </p>
+</div>
+<div id="log" style="display: none">
+  <table>
+    <colgroup>
+      <col class="result">
+      <col class="question">
+      <col class="notes">
+    </colgroup>
+    <thead>
+      <tr>
+        <th id="results_header">All</th>
+        <th>Question</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody id="results"></tbody>
+  </table>
+</div>
