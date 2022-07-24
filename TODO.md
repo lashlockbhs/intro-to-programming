@@ -10,7 +10,9 @@
   extra fancy and mark the assignment as turned in if the branch has been merged
   to main.)
 
-- Support multiple files in a project/assignment.
+# Site organization
+
+- Add toolbar to games pages.
 
 # Code cleanup
 
@@ -26,6 +28,8 @@
 
 # Polish
 
+- Work on responsive design, esp. for games.
+
 - Move "Saving" indicator into web page.
 
 - Inject run-tests.js into the iframe if testing is on rather than requiring a
@@ -37,6 +41,8 @@
 - Make the clipboard icon in the banner move a bit when you press it.
 
 # Future directions/experiments
+
+- Support multiple files in a project/assignment.
 
 - Someday, should probably figure out if this thing should really be a GitHub
   App for finer grained permissions plus maybe the ability to do stuff in the
