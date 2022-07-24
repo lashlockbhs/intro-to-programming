@@ -1,13 +1,24 @@
+/* eslint no-new-func: "off" */
+
 import { $, $$ } from './modules/whjqah';
 import makeTable from './modules/table';
-
-const circle = '⚬';
-const checkmark = '✓';
-const x = '×';
 
 const generators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
   number: () => -100 + Math.random() * 2 * 100,
+};
+
+const bootstrapIcon = (name) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  svg.classList.add('bi');
+  use.setAttributeNS(
+    'http://www.w3.org/1999/xlink',
+    'xlink:href',
+    `/img/bootstrap-icons.svg#${name}`,
+  );
+  svg.append(use);
+  return svg;
 };
 
 class Expressions {
@@ -37,7 +48,7 @@ class Expressions {
         return exp;
       }
     }
-    return void 0;
+    return undefined;
   }
 }
 
@@ -48,13 +59,13 @@ class Expression {
     this.index = index;
 
     this.name = div.querySelector('h1').innerText;
-    this.marker = $('<span>', circle);
+    this.marker = bootstrapIcon('circle');
     this.answer = null;
 
     const input = div.dataset.variables.split(',').map((s) => s.split(':'));
     this.variables = input.map((x) => x[0]);
     this.generators = input.map((x) => generators[x[1]]);
-    this.expectedFn = Function(this.variables, `return (${div.dataset.expression});`);
+    this.expectedFn = new Function(this.variables, `return (${div.dataset.expression});`);
 
     this.marker.onclick = () => expressions.switchTo(this);
   }
@@ -71,7 +82,13 @@ class Expression {
     this.answer = answer;
     this.results = Array(100).fill().map(this.checker(answer));
     this.correct = this.results.every((r) => r.passed);
-    this.marker.replaceChildren(document.createTextNode(this.correct ? checkmark : x));
+    if (this.correct) {
+      this.marker.childNodes[0].setAttributeNS(
+        'http://www.w3.org/1999/xlink',
+        'xlink:href',
+        `/img/bootstrap-icons.svg#circle-fill`,
+      );
+    }
     return this.correct;
   }
 
@@ -89,6 +106,25 @@ class Expression {
         return { args, expected, e, passed: false };
       }
     };
+  }
+
+  problems(limit) {
+    const t = makeTable();
+    t.table.className = 'problems';
+    this.variables.forEach((v) => t.addColumn(v, 'variable'));
+    t.addColumn('Expected', 'expected');
+    t.addColumn('Got', 'got');
+    this.results
+      .filter((r) => !r.passed)
+      .slice(0, limit)
+      .forEach((r) => {
+        t.addRow([...r.args, r.expected, r.got ?? r.e]);
+      });
+    return t.table;
+  }
+
+  numWrong() {
+    return this.results.filter((r) => !r.passed).length;
   }
 }
 
@@ -111,20 +147,6 @@ const completedTable = () => {
   return t;
 };
 
-const problems = (expr) => {
-  const t = makeTable();
-  t.table.className = 'problems';
-  expr.variables.forEach((v) => t.addColumn(v, 'variable'));
-  t.addColumn('Expected', 'expected');
-  t.addColumn('Got', 'got');
-  expr.results.forEach((r) => {
-    if (!r.passed) {
-      t.addRow([...r.args, r.expected, r.got ?? r.e]);
-    }
-  });
-  return t.table;
-};
-
 const completed = completedTable();
 
 $('#completed').replaceChildren(completed.table);
@@ -143,7 +165,15 @@ $('#expression-input').onchange = (e) => {
     expr.check(e.target.value);
 
     if (!expr.correct) {
-      $('#results').replaceChildren($('<p>', 'Uh, oh!'), problems(expr));
+      $('#results').replaceChildren(
+        $(
+          '<p>',
+          `Uh, oh! ${expr.numWrong()} of ${
+            expr.results.length
+          } test cases failed. Here’s a sample.`,
+        ),
+        expr.problems(5),
+      );
       completed.addRow([expr.name, expr.answer, '❌']);
     } else {
       $('#expression-input').value = '';
@@ -153,9 +183,10 @@ $('#expression-input').onchange = (e) => {
         expressions.switchTo(n);
         $('#results').replaceChildren();
       } else {
-        expr.hide();
-        $('#expression-input').hidden = true;
-        $('#results').replaceChildren(document.createTextNode('Good job!'));
+        $('#results').style.display = 'none';
+        document.querySelector('.expressions .marks').style.display = 'none';
+        document.querySelector('.expressions .questions').style.display = 'none';
+        document.querySelector('.expressions .done').hidden = false;
       }
     }
   } catch (e) {

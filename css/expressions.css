@@ -16,13 +16,32 @@ body {
 }
 
 .expressions {
+  padding: 1em;
+}
+
+.expressions .questions {
   border: 1px solid #aaa;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.expressions .done {
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
   padding: 1em;
 }
 
 .expressions .marks {
-  text-align: center;
-  font-size: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.expressions .marks svg {
+  width: 12px;
+  height: 12px;
+  margin: 0 3px;
 }
 
 .expressions .expression {
@@ -56,22 +75,32 @@ table.problems td {
   text-align: center;
 }
 
+#results p {
+  margin: 1em 0;
+}
+
+#completed {
+  margin-top: 20px;
+}
+
 #completed table {
   width: 100%;
-  font-size: 13px;
 }
 
 th.problem,
 td.problem {
   text-align: left;
+  width: 60%;
 }
 
 th.answer,
 td.answer {
   text-align: left;
+  width: 20%;
 }
 
 th.ok,
 td.ok {
   text-align: center;
+  width: 20%;
 }
