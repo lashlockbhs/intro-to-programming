@@ -78,6 +78,20 @@
 
       - Masks: encouraged and I will enforce school policies.
 
+    - What we're going to learn
+
+      - Programming
+
+      - Javascript
+
+      - Why Javascript?
+
+        - It’s incredibly popular and widely used.
+
+        - It’s a real language. Thus it has warts and oddities.
+
+        - Underneath, especially these days, it’s also a pretty clean language.
+
     - Let's write a program
 
       - Getting set up on Github.
