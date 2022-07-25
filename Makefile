@@ -34,7 +34,7 @@ strict_lint:
 serve:
 	npx @11ty/eleventy --serve
 
-publish: all
+publish: clean all
 	./publish.sh _site
 
 clean:
