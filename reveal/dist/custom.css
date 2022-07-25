@@ -1,0 +1,11 @@
+.repl {
+  margin: 0 auto;
+  width: fit-content;
+  text-align: left;
+  font-family: monospace;
+  text-transform: none;
+}
+
+span.prompt {
+  color: #666;
+}
