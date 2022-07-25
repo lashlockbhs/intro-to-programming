@@ -12,8 +12,6 @@
 
 # Site organization
 
-- Add toolbar to games pages.
-
 # Code cleanup
 
 - Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
@@ -65,7 +63,6 @@
   single page that handles all branches
 
 - Show SHA subtly somewhere in web page.
-
 
 # In games
 
