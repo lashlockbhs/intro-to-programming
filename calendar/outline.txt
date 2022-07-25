@@ -78,6 +78,18 @@
 
       - Masks: encouraged and I will enforce school policies.
 
+    - Let's write a program
+
+      - Getting set up on Github.
+
+      - Getting logged into Intro to Programming with your Github account.
+
+      - What is a REPL https://intro.gigamonkeys.com/demo/repl/
+
+      - Bouncing ball: https://intro.gigamonkeys.com/assignments/bouncing-ball/
+
+  - What is programming? (1)
+
     - Things we can do with computers
 
       - Count stuff, i.e. Math
@@ -135,8 +147,6 @@
       - Debugging
 
       - Writing clear code
-
-  - Let's write a program (1)
 
   - What is data? (1)
 
