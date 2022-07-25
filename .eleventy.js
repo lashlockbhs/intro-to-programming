@@ -7,6 +7,7 @@ module.exports = function eleventyConfig(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('css');
   eleventyConfig.addPassthroughCopy('img');
+  eleventyConfig.addPassthroughCopy('reveal');
   eleventyConfig.addPassthroughCopy('favicon.ico');
 
   // Copy through content used by iframes

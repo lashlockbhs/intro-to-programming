@@ -1,0 +1,116 @@
+-*- mode: markup; -*-
+
+* Numbers
+
+Our first data type!
+
+** Three ways of looking at numbers
+
+## fragments
+
+(And every other data type.)
+
+##.
+
+## fragments
+
+  # How they are represented internally
+
+  # The syntax for writing them in our langauge
+
+  # What we can do with them
+
+##.
+
+** How numbers are represented internally
+
+## fragments
+
+We don’t really have to worry about it.
+
+(Most of the time.)
+
+##.
+
+** How we write numbers
+
+** `0`, `1`, `2`, `3`, `1000000`, `9007199254740991`
+
+** `-1`, `-2`, `-3`, `-1000000`, `-9007199254740991`
+
+** `1_000_000_000`
+
+** `0.0`, `1.2`, `2.718281828459045`, `3.141592653589793`
+
+** `1.3069892237633987e+308`, `1.7976931348623157e+308`
+
+** `2.220446049250313e-16`, `5e-324`
+
+** `Infinity`
+
+** `NaN`
+
+** What we can do with numbers
+
+## fragments
+
+Math, mostly.
+
+##.
+
+** Operators on numbers
+
+## fragments
+
+`+`
+
+`-`
+
+`*`
+
+`/`
+
+`%`
+
+`**`
+
+##.
+
+** 1 + 2 ⟹ 3
+
+** 5 * 10 ⟹ 50
+
+** 50 / 10 ⟹ 5
+
+** 13 / 7 ⟹ 1.8571428571428572
+
+** 0.1 + 0.5 ⟹ 0.6
+
+** 0.1 + 0.2 ⟹ 0.30000000000000004
+
+## fragments
+
+wtf?!
+
+##.
+
+** 23 % 12 ⟹ 11
+
+** 2 ** 8 ⟹ 256
+
+** 2 ** 55 ⟹ 36028797018963970
+
+## fragments
+
+Uh, oh. That’s not right.
+
+Should be 36028797018963968
+
+##.
+
+** 2**70 ⟹ 1.1805916207174113e+21
+
+
+** 1 + 2 * 3 ⟹ 7
+
+** (1 + 2) * 3 ⟹ 9

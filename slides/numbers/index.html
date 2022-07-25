@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+        <link rel='stylesheet' href='/reveal/dist/reset.css'>
+        <link rel='stylesheet' href='/reveal/dist/reveal.css'>
+        <link rel='stylesheet' href='/reveal/dist/theme/black.css'>
+        <link rel='stylesheet' href='/reveal/dist/custom.css'>
+        <link rel='stylesheet' href='/reveal/plugin/highlight/monokai.css'>
+        <title>Numbers</title>
+    </head>
+    <body>
+        <div class='reveal'>
+            <div class='slides'>
+                <section>
+                    <h1>Numbers</h1>
+                    <p>Our first data type!</p>
+                </section>
+                <section>
+                    <h2>Three ways of looking at numbers</h2>
+                    <p class='fragment'>(And every other data type.)</p>
+                    <ol>
+                        <li class='fragment'>
+                        <p>How they are represented internally</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>The syntax for writing them in our langauge</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>What we can do with them</p>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h2>How numbers are represented internally</h2>
+                    <p class='fragment'>We don’t really have to worry about it.</p>
+                    <p class='fragment'>(Most of the time.)</p>
+                </section>
+                <section>
+                    <h2>How we write numbers</h2>
+                </section>
+                <section>
+                    <h2><code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>1000000</code>, <code>9007199254740991</code></h2>
+                </section>
+                <section>
+                    <h2><code>-1</code>, <code>-2</code>, <code>-3</code>, <code>-1000000</code>, <code>-9007199254740991</code></h2>
+                </section>
+                <section>
+                    <h2><code>1_000_000_000</code></h2>
+                </section>
+                <section>
+                    <h2><code>0.0</code>, <code>1.2</code>, <code>2.718281828459045</code>, <code>3.141592653589793</code></h2>
+                </section>
+                <section>
+                    <h2><code>1.3069892237633987e+308</code>, <code>1.7976931348623157e+308</code></h2>
+                </section>
+                <section>
+                    <h2><code>2.220446049250313e-16</code>, <code>5e-324</code></h2>
+                </section>
+                <section>
+                    <h2><code>Infinity</code></h2>
+                </section>
+                <section>
+                    <h2><code>NaN</code></h2>
+                </section>
+                <section>
+                    <h2>What we can do with numbers</h2>
+                    <p class='fragment'>Math, mostly.</p>
+                </section>
+                <section>
+                    <h2>Operators on numbers</h2>
+                    <p class='fragment'><code>+</code></p>
+                    <p class='fragment'><code>-</code></p>
+                    <p class='fragment'><code>*</code></p>
+                    <p class='fragment'><code>/</code></p>
+                    <p class='fragment'><code>%</code></p>
+                    <p class='fragment'><code>**</code></p>
+                </section>
+                <section>
+                    <h2>1 + 2 ⟹ 3</h2>
+                </section>
+                <section>
+                    <h2>5 * 10 ⟹ 50</h2>
+                </section>
+                <section>
+                    <h2>50 / 10 ⟹ 5</h2>
+                </section>
+                <section>
+                    <h2>13 / 7 ⟹ 1.8571428571428572</h2>
+                </section>
+                <section>
+                    <h2>0.1 + 0.5 ⟹ 0.6</h2>
+                </section>
+                <section>
+                    <h2>0.1 + 0.2 ⟹ 0.30000000000000004</h2>
+                    <p class='fragment'>wtf?!</p>
+                </section>
+                <section>
+                    <h2>23 % 12 ⟹ 11</h2>
+                </section>
+                <section>
+                    <h2>2 ** 8 ⟹ 256</h2>
+                </section>
+                <section>
+                    <h2>2 ** 55 ⟹ 36028797018963970</h2>
+                    <p class='fragment'>Uh, oh. That’s not right.</p>
+                    <p class='fragment'>Should be 36028797018963968</p>
+                </section>
+                <section>
+                    <h2>2**70 ⟹ 1.1805916207174113e+21</h2>
+                </section>
+                <section>
+                    <h2>1 + 2 * 3 ⟹ 7</h2>
+                </section>
+                <section>
+                    <h2>(1 + 2) * 3 ⟹ 9</h2>
+                </section>
+            </div>
+        </div>
+        <script src='/reveal/dist/reveal.js'></script>
+        <script src='/reveal/plugin/notes/notes.js'></script>
+        <script src='/reveal/plugin/markdown/markdown.js'></script>
+        <script src='/reveal/plugin/highlight/highlight.js'></script>
+        <script>// More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+              hash: true,
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });</script>
+    </body>
+</html>
