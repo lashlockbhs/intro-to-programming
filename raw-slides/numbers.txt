@@ -28,25 +28,59 @@ Our first data type!
 
 ## fragments
 
-We don’t really have to worry about it.
+We don’t really have to worry about it. 🎉
 
-(Most of the time.)
+(Most of the time.) 🤨
 
 ##.
 
 ** How we write numbers
 
-** `0`, `1`, `2`, `3`, `1000000`, `9007199254740991`
+** `0`
 
-** `-1`, `-2`, `-3`, `-1000000`, `-9007199254740991`
+** `1`
+
+** `2`
+
+** `3`
+
+** `1000000000`
 
 ** `1_000_000_000`
 
-** `0.0`, `1.2`, `2.718281828459045`, `3.141592653589793`
+** `9007199254740991`
 
-** `1.3069892237633987e+308`, `1.7976931348623157e+308`
+** `-1`
 
-** `2.220446049250313e-16`, `5e-324`
+** `-2`
+
+** `0.0`
+
+** `1.2`
+
+** `-0.5`
+
+** `2.718281828459045`
+
+## fragments
+
+(Best approximation of \em{e})
+
+##.
+
+** `3.141592653589793`
+
+## fragments
+
+(Best approximation of π)
+
+##.
+
+** `1.7976931348623157e+308`
+
+** `2.220446049250313e-16`
+
+** `5e-324`
 
 ** `Infinity`
 
@@ -60,7 +94,7 @@ Math, mostly.
 
 ##.
 
-** Operators on numbers
+** Some operators on numbers
 
 ## fragments
 
@@ -88,6 +122,12 @@ Math, mostly.
 
 ** 1 / 3 ⟹ 0.3333333333333333
 
+## fragments
+
+Note, this is an approximation.
+
+##.
+
 ** 0.1 + 0.5 ⟹ 0.6
 
 ** 0.1 + 0.2 ⟹ 0.30000000000000004
@@ -100,22 +140,23 @@ wtf?!
 
 ** 23 % 12 ⟹ 11
 
+** 52 % 7 ⟹ 3
+
 ** 2 ** 8 ⟹ 256
 
 ** 2 ** 55 ⟹ 36028797018963970
 
 ## fragments
 
-Uh, oh. That’s not right.
+Uh, oh. That’s not right. 💩
 
-Should be 36028797018963968
+Should be `36028797018963968`
 
-Would be better as 3.602879701896397e16
+Would be better as `3.602879701896397e16`
 
 ##.
 
 ** 2**70 ⟹ 1.1805916207174113e+21
-
 
 ** 1 + 2 * 3 ⟹ 7
 
