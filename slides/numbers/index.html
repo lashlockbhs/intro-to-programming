@@ -24,7 +24,7 @@
                 <section>
                     <ol>
                         <li class='fragment'>
-                        <p>How they are represented internally</p>
+                        <p>How they are represented inside the computer</p>
                         </li>
                         <li class='fragment'>
                         <p>The syntax for writing them in our langauge</p>
@@ -35,9 +35,14 @@
                     </ol>
                 </section>
                 <section>
-                    <h2>How numbers are represented internally</h2>
+                    <h2>How numbers are represented in the computer</h2>
                     <p class='fragment'>We don’t really have to worry about it. 🎉</p>
                     <p class='fragment'>(Most of the time.) 🤨</p>
+                </section>
+                <section>
+                    <h2>If you really must know</h2>
+                    <p class='fragment'>Numbers in Javascript are represented in a 64-bit binary floating point format.</p>
+                    <p class='fragment'>Basically scientific notation for computers.</p>
                 </section>
                 <section>
                     <h2>How we write numbers</h2>
@@ -61,7 +66,8 @@
                     <h2><code>1_000_000_000</code></h2>
                 </section>
                 <section>
-                    <h2><code>9007199254740991</code></h2>
+                    <h2><code>9_007_199_254_740_991</code></h2>
+                    <p class='fragment'>Nine quadrillion seven trillion one hundred ninety-nine billion two hundred fifty-four million seven hundred forty thousand nine hundred ninety-one</p>
                 </section>
                 <section>
                     <h2><code>-1</code></h2>
@@ -79,6 +85,10 @@
                     <h2><code>-0.5</code></h2>
                 </section>
                 <section>
+                    <h2><code>1.4142135623730951</code></h2>
+                    <p class='fragment'>(Best approximation of the square root of 2)</p>
+                </section>
+                <section>
                     <h2><code>2.718281828459045</code></h2>
                     <p class='fragment'>(Best approximation of <em>e</em>)</p>
                 </section>
@@ -88,6 +98,12 @@
                 </section>
                 <section>
                     <h2><code>1.7976931348623157e+308</code></h2>
+                    <p class='fragment'>(Biggest number we can represent in Javascript.)</p>
+                </section>
+                <section>
+                    <h2><code>1.7976931348623155e+308</code></h2>
+                    <p class='fragment'>(The <em>second</em> biggest number we can represent in Javascript.)</p>
+                    <p class='fragment'>The gap between it and the biggest is <code>1.99584030953472e+292</code></p>
                 </section>
                 <section>
                     <h2><code>2.220446049250313e-16</code></h2>
