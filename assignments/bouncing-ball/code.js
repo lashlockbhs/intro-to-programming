@@ -11,7 +11,7 @@ let ballSize = 15;
 //
 // drawBall(height, size) - draws the ball at the given height and size.
 //
-// now() - returns the current time in milliseconds.
+// now() - returns the number of milliseconds since the program started.
 
 // Implement this in terms of drawShadow(), drawBall() and the functions below.
 // May also need to define a variable to keep track of when each bounce starts
