@@ -16,8 +16,6 @@ const pretty = (v) => {
     case 'Function':
     case 'Number':
     case 'String':
-      return v.toString();
-
     case 'Array':
     case 'Object':
       // ideally we'd use Javascript syntax (i.e. no quotes on properties that
