@@ -10,4 +10,5 @@
  monkeylib-yamp::images
  reveal::wrap-code
  reveal::fragments
- reveal::tdc)
+ reveal::tdc
+ reveal::h2-repl)

@@ -42,7 +42,7 @@
       (when (and current (or (eql (first e) :h1) (eql (first e) :h2)))
         (push  (cons :section (nreverse current)) sections)
         (setf current ()))
-      (when (second e)
+      (when (and (second e) (not (equal (second e) "_none")))
         (push e current)))
     (when current
       (push  (cons :section (nreverse current)) sections))
@@ -59,6 +59,19 @@
 (defun tdc (doc config)
   (declare (ignore config))
   (funcall (rewriter :tdc #'(lambda (e) `(:td :align "center" ,@(rest e)))) doc))
+
+(defun h2-repl (doc config)
+  (declare (ignore config))
+  (flet ((fn (e)
+           (let* ((text (second e))
+                  (pos (and (stringp text) (search "⟹" text))))
+             (if pos
+               `(:h2
+                 (:div :class "repl"
+                       (:div (:span :class "prompt" "» ") (:span :class "fragment" ,(subseq text 0 pos)))
+                       (:div :class "fragment" ,(subseq text (1+ pos)))))
+               e))))
+    (funcall (rewriter :h2 #'fn) doc)))
 
 (defun fragmentize (e)
   "Turn the child elements into fragments. However treats lists (:ul and :ol)

@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+        <link rel='stylesheet' href='/reveal/dist/reset.css'>
+        <link rel='stylesheet' href='/reveal/dist/reveal.css'>
+        <link rel='stylesheet' href='/reveal/dist/theme/black.css'>
+        <link rel='stylesheet' href='/reveal/dist/custom.css'>
+        <link rel='stylesheet' href='/reveal/plugin/highlight/monokai.css'>
+        <title>Interfaces</title>
+    </head>
+    <body>
+        <div class='reveal'>
+            <div class='slides'>
+                <section>
+                    <h1>Interfaces</h1>
+                </section>
+                <section>
+                    <h2>In physics and math</h2>
+                    <blockquote class='fragment'>
+                    <p>“a plane surface regarded as the common boundary of two bodies”</p>
+                    </blockquote>
+                </section>
+                <section>
+                    <h2>In computers</h2>
+                    <p class='fragment'>How we interact with software.</p>
+                    <p class='fragment'>For instance, a graphical user interface (GUI) or a command line interface.</p>
+                </section>
+                <section>
+                    <h2>In programming</h2>
+                    <p class='fragment'>How code interacts with other code.</p>
+                    <p class='fragment'>Application Programming Interface (API)</p>
+                </section>
+                <section>
+                    <h2>In object oriented programming</h2>
+                    <p class='fragment'>What can we do with an object?</p>
+                    <p class='fragment'>In particular the set of publicly available methods and fields provided by an object.</p>
+                </section>
+                <section>
+                    <h2>In Java</h2>
+                    <p class='fragment'>Another way to define a type of object purely in terms of what methods it supports.</p>
+                </section>
+                <section>
+                    <h2>What is Foo?</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public void doSomething(Foo foo) {
+  foo.whatCanWeDoHere();
+}</code></pre>
+                </section>
+                <section>
+                    <h2>It might be a class</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public class Foo {
+
+  boolean whatCanWeDoHere() {
+    return true;
+  }
+
+  int maybeSomeOtherThing(int i) {
+    return 10 * i;
+  }
+
+}</code></pre>
+                </section>
+                <section>
+                    <h2>It could be an abstract class</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public abstract class Foo {
+
+  abstract boolean whatCanWeDoHere();
+
+  abstract int maybeSomeOtherThing(int i);
+
+}</code></pre>
+                </section>
+                <section>
+                    <h2>But it could be an interface</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Foo {
+
+  boolean whatCanWeDoHere();
+
+  int maybeSomeOtherThing(int i);
+
+}</code></pre>
+                </section>
+                <section>
+                    <h2>We can't instantiate interfaces directly</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>doSomething(new Foo()); // ❌</code></pre>
+                </section>
+                <section>
+                    <h2>We need to define a class that <i>implements</i> the interface</h2>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-java'>public class Bar implements Foo {
+
+  boolean whatCanWeDoHere() {...}
+
+  int maybeSomeOtherThing(int i) {...}
+
+}</code></pre>
+                    <p class='fragment'>and then</p>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-java'>doSomething(new Bar()); // 👍</code></pre>
+                </section>
+                <section>
+                    <h2>Okay, but why?</h2>
+                </section>
+                <section>
+                    <h1>#1: Plug code into an existing system</h1>
+                </section>
+                <section>
+                    <h2><code>Runnable</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>package java.lang;
+
+public interface Runnable {
+
+  public void run();
+
+}</code></pre>
+                </section>
+                <section>
+                    <h2>Our very own implementation!</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>class SayHello implements Runnable {
+
+  public void run() {
+    // Do something that takes a really long time, then ...
+    System.out.println("hello, world.");
+  }
+
+}</code></pre>
+                </section>
+                <section>
+                    <h2>We could do this</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>new SayHello().run();</code></pre>
+                    <p class='fragment'>But that'd be silly.</p>
+                </section>
+                <section>
+                    <h2>However</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>Thread t = new Thread(new SayHello());
+
+t.start();</code></pre>
+                    <p class='fragment'>Is not silly.</p>
+                </section>
+                <section>
+                    <h2><code>ActionListener</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>package java.awt.event;
+
+public interface ActionListener {
+
+  void actionPerformed(ActionEvent e);
+
+}</code></pre>
+                    <p class='fragment'>Used for things like when you press a button in a GUI</p>
+                    <p class='fragment'>(Think back to your Boggle project.)</p>
+                </section>
+                <section>
+                    <h2>Most cumbersome way to use this interface</h2>
+                    <p>Define a new class that implements the interface.</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>class MyActionListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    doWhatever();
+  }
+}</code></pre>
+                    <p class='fragment'>Then use it.</p>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-java'>button.addActionListener(new MyActionListener());</code></pre>
+                </section>
+                <section>
+                    <h2>Slightly more convenient</h2>
+                    <p>Create a new <b>annonymous</b> class that implements the interface</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>button.addActionListener(new ActionListener() {
+  public void actionPerformed(ActionEvent e) {
+    doWhatever();
+  }
+});</code></pre>
+                    <p class='fragment'>Anonymous classes were introduced in Java 1.1, in 1997, at the same as the new event model.</p>
+                </section>
+                <section>
+                    <h2>✨🎩Extra fancy! 🎩✨</h2>
+                    <p class='fragment'>Create a <b>lambda</b> that under the covers creates the class that implements the interface</p>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-java'>button.addActionListener(e -&gt; doWhatever());</code></pre>
+                    <p class='fragment'>Introduced in Java 8 in 2014.</p>
+                    <p class='fragment'>(This only works for interfaces with only a single method. More on this later.)</p>
+                </section>
+                <section>
+                    <h1>#2: Allow for multiple implementations</h1>
+                </section>
+                <section>
+                    <h2></h2>
+                    <p>We can write code that uses, for instance, Lists, without knowing exactly how they are implemented.</p>
+                </section>
+                <section>
+                    <h2><code>List</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface List&lt;E&gt; extends Collection&lt;E&gt; {
+  public void add(int, E);
+  public E get(int);
+  public E remove(int);
+  public E set(int, E);
+
+  public int indexOf(Object);
+  public int lastIndexOf(Object);
+
+  public default void sort(Comparator&lt;? super E&gt;);
+  // A bunch of other methods ...
+}</code></pre>
+                </section>
+                <section>
+                    <h2></h2>
+                    <p>There are two main List implementations in the JDK: ArrayList and LinkedList.</p>
+                    <p class='fragment'>They support the same operations with the same semantics but with different performance characteristics.</p>
+                </section>
+                <section>
+                    <h2>costs of List operations</h2>
+                    <p>
+                    <table>
+                         
+                        <tr>
+                            <td></td>
+                            <td>ArrayList</td>
+                            <td>LinkedList</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Add at end</td>
+                            <td align='center' class='fragment'>✅</td>
+                            <td align='center' class='fragment'>✅</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Iterate</td>
+                            <td align='center' class='fragment'>✅</td>
+                            <td align='center' class='fragment'>✅</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Add at front</td>
+                            <td align='center' class='fragment'>💰</td>
+                            <td align='center' class='fragment'>✅</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Remove from front</td>
+                            <td align='center' class='fragment'>💰</td>
+                            <td align='center' class='fragment'>✅</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Get element at index</td>
+                            <td align='center' class='fragment'>✅</td>
+                            <td align='center' class='fragment'>💰</td>
+                        </tr>
+                         
+                    </table>
+                    </p>
+                </section>
+                <section>
+                    <h1>#3: Let one class be more than one thing</h1>
+                </section>
+                <section>
+                    <h2><code>java.util.Collection</code></h2>
+                    <p><img src='images/collections.svg'></p>
+                </section>
+                <section>
+                    <h2><code>Collection</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Collection&lt;E&gt; extends Iterable&lt;E&gt; {
+  public boolean add(E);
+  public boolean contains(Object);
+  public boolean remove(Object);
+  public void clear();
+  public int size();
+  public boolean isEmpty();
+  // A bunch of other methods ...
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>List</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface List&lt;E&gt; extends Collection&lt;E&gt; {
+  public void add(int, E);
+  public E get(int);
+  public E remove(int);
+  public E set(int, E);
+  public int indexOf(Object);
+  public int lastIndexOf(Object);
+  public default void sort(Comparator&lt;? super E&gt;);
+
+  public static &lt;E&gt; List&lt;E&gt; copyOf(Collection&lt;? extends E&gt;);
+  public static &lt;E&gt; List&lt;E&gt; of();
+  public static &lt;E&gt; List&lt;E&gt; of(E);
+  // ... and more
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>Set</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Set&lt;E&gt; extends Collection&lt;E&gt; {
+  // These are the same as Collection but with set semantics.
+  public boolean add(E);
+  public boolean contains(Object);
+  public boolean remove(Object);
+  public void clear();
+  public int size();
+  public boolean isEmpty();
+
+  public static &lt;E&gt; Set&lt;E&gt; copyOf(Collection&lt;? extends E&gt;);
+  public static &lt;E&gt; Set&lt;E&gt; of();
+  public static &lt;E&gt; Set&lt;E&gt; of(E);
+  // ... and more
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>Queue</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Queue&lt;E&gt; extends Collection&lt;E&gt; {
+  // These throw exceptions
+  public boolean add(E);
+  public E remove();
+  public E element();
+
+  // These return special values (false or null)
+  public boolean offer(E);
+  public E poll();
+  public E peek();
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>Deque</code> (part 1)</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Deque&lt;E&gt; extends Queue&lt;E&gt; {
+  // Gives the normal Queue methods new names
+  // that indicate the end they are operating on
+  public void addLast(E);      // a.k.a. add(E)
+  public E removeFirst();      // a.k.a. remove()
+  public E getFirst();         // a.k.a. element()
+  public boolean offerLast(E); // a.k.a. offer(E)
+  public E pollFirst();        // a.k.a. poll()
+  public E peekFirst();        // a.k.a. peek()
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>Deque</code> (part 2)</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Deque&lt;E&gt; extends Queue&lt;E&gt; {
+  // And provides the corresponding methods for
+  // the other end of the queue
+  public void addFirst(E);
+  public E removeLast();
+  public E getLast();
+  public boolean offerFirst(E);
+  public E pollLast();
+  public E peekLast();
+}</code></pre>
+                </section>
+                <section>
+                    <h2><code>Deque</code> is also a Stack</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Deque&lt;E&gt; extends Queue&lt;E&gt; {
+  // Ignoring all the other methods
+  public void push(E); // a.k.a. addFirst(E)
+  public E pop(); // a.k.a. removeFirst()
+  public E peek(); // a.k.a. peekFirst()
+}</code></pre>
+                    <p class='fragment'>This is actually ridiculous.</p>
+                </section>
+                <section>
+                    <h2>How it should be</h2>
+                    <p><img src='images/collections-wish.svg'></p>
+                </section>
+                <section>
+                    <h2>Why is there no Stack interface!?</h2>
+                </section>
+                <section>
+                    <h2>Hysterical raisins</h2>
+                    <p><img src='images/josh-bloch-stack.png'></p>
+                </section>
+                <section>
+                    <h2></h2>
+                    <p>
+                    <table>
+                         
+                        <tr>
+                            <td></td>
+                            <td>ArrayList</td>
+                            <td>LinkedList</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Collection</td>
+                            <td align='center' class='fragment'>✓</td>
+                            <td align='center' class='fragment'>✓</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>List</td>
+                            <td align='center' class='fragment'>✓</td>
+                            <td align='center' class='fragment'>✓</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Queue</td>
+                            <td align='center' class='fragment'>❌</td>
+                            <td align='center' class='fragment'>✓</td>
+                        </tr>
+                         
+                        <tr>
+                            <td>Deque</td>
+                            <td align='center' class='fragment'>❌</td>
+                            <td align='center' class='fragment'>✓</td>
+                        </tr>
+                    </table>
+                    </p>
+                </section>
+                <section>
+                    <h1>#4: Thinking in terms of interfaces is good for your program design</h1>
+                </section>
+                <section>
+                    <h2>Why?</h2>
+                    <ul>
+                        <li class='fragment'>
+                        <p>Ensures you don’t rely on internals of other classes.</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>Makes testing easier.</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>Pushes you to think in terms of abstractions.</p>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Some modern amenities</h1>
+                </section>
+                <section>
+                    <h2><code>default</code> methods</h2>
+                </section>
+                <section>
+                    <h2></h2>
+                    <p>A way to provide default implementations for some methods in interface</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface SillyCollection {
+
+  // Normal abstract interface method to be implemented
+  // by classes implementing this interface
+  public void add(Object o);
+
+  // Default implementation defined only in terms
+  // of other methods in the interface.
+  public default addItems(Object[] objects) {
+    for (int i = 0; i &lt; objects.length; i++) {
+      add(objects[i]);
+    }
+  }
+}</code></pre>
+                </section>
+                <section>
+                    <h2>Functional interfaces</h2>
+                </section>
+                <section>
+                    <h2></h2>
+                    <p>An interface with just one abstract method</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>@FunctionalInterface
+public interface DoTheThing {
+
+  public int doIt(String s) throws SomeException;
+
+}</code></pre>
+                    <p class='fragment'>Can optionally be marked with <code>@FunctionalInterface</code> annotation.</p>
+                </section>
+                <section>
+                    <h2>Three way to use a functional interface</h2>
+                </section>
+                <section>
+                    <h2>With a lambda</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>DoTheThing doer = s -&gt; s.length();
+System.out.println(doer.doIt("foo"));</code></pre>
+                </section>
+                <section>
+                    <h2>With a static method reference</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>class TheAnswer {
+  public static int someStaticMethod(String s)
+    throws SomeException
+  {
+    return 42;
+  }
+}</code></pre>
+                    <p>And then:</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>DoTheThing doer = TheAnswer::someStaticMethod;
+System.out.println(doer.doIt("foo"));</code></pre>
+                </section>
+                <section>
+                    <h2>With an instance method reference</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>class TheAnswer {
+  public int someMethod(String s) throws SomeException {
+    return 42;
+  }
+}</code></pre>
+                    <p>And then:</p>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>TheAnswer ta = new TheAnswer();
+DoTheThing doer = ta::someMethod;
+System.out.println(doer.doIt("foo"));</code></pre>
+                </section>
+                <section>
+                    <h1>Some interfaces from my adventure game</h1>
+                </section>
+                <section>
+                    <h2>Attack</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Attack {
+
+  // Description of the attack itself.
+  public String description();
+
+  // Damage done by the attack.
+  public int damage();
+
+  // The result of the attack on the target.
+  public String result(Target thing);
+}</code></pre>
+                </section>
+                <section>
+                    <h2>Target</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Target {
+
+  // Actually affect the target and also let the
+  // target describe the result of the attack.
+  public String applyAttack(Attack attack);
+
+  // How the target should be described
+  public String who();
+}</code></pre>
+                    <p class='fragment'>Implemented by both <code>Player</code> and <code>Thing</code>.</p>
+                </section>
+                <section>
+                    <h2>Action</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-java'>public interface Action {
+
+  // The description of the action happening plus
+  // any immediate result.
+  public String description();
+
+  // Reactions to this action from a given Thing.
+  public default Stream&lt;Action&gt; reactions(Thing t) {
+    return Stream.empty();
+  }
+}</code></pre>
+                </section>
+                <section>
+                    <h2>With a dozen implementations</h2>
+                    <p><code>Attack</code>, <code>Close</code>, <code>Drop</code>, <code>Eat</code>, <code>Go</code>, <code>Look</code>, <code>Move</code>, <code>Open</code>, <code>Put</code>, <code>Say</code>, <code>Take</code>, and <code>Turn</code>.</p>
+                </section>
+            </div>
+        </div>
+        <script src='/reveal/dist/reveal.js'></script>
+        <script src='/reveal/plugin/notes/notes.js'></script>
+        <script src='/reveal/plugin/markdown/markdown.js'></script>
+        <script src='/reveal/plugin/highlight/highlight.js'></script>
+        <script>// More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+              hash: true,
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });</script>
+    </body>
+</html>

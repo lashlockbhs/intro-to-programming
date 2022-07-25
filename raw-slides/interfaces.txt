@@ -1,0 +1,543 @@
+-*- mode: markup; -*-
+
+* Interfaces
+
+** In physics and math
+
+## fragments
+
+  “a plane surface regarded as the common boundary of two
+  bodies”
+
+##.
+
+** In computers
+
+## fragments
+
+How we interact with software.
+
+For instance, a graphical user interface (GUI) or a command line interface.
+
+##.
+
+** In programming
+
+## fragments
+
+How code interacts with other code.
+
+Application Programming Interface (API)
+
+##.
+
+** In object oriented programming
+
+## fragments
+
+What can we do with an object?
+
+In particular the set of publicly available methods and fields provided by an
+object.
+
+##.
+
+** In Java
+
+## Fragments
+
+Another way to define a type of object purely in terms of what methods it
+supports.
+
+##.
+
+** What is Foo?
+
+   public void doSomething(Foo foo) {
+     foo.whatCanWeDoHere();
+   }
+
+** It might be a class
+
+   public class Foo {
+
+     boolean whatCanWeDoHere() {
+       return true;
+     }
+
+     int maybeSomeOtherThing(int i) {
+       return 10 * i;
+     }
+
+   }
+
+** It could be an abstract class
+
+   public abstract class Foo {
+
+     abstract boolean whatCanWeDoHere();
+
+     abstract int maybeSomeOtherThing(int i);
+
+   }
+
+** But it could be an interface
+
+   public interface Foo {
+
+     boolean whatCanWeDoHere();
+
+     int maybeSomeOtherThing(int i);
+
+   }
+
+** We can't instantiate interfaces directly
+
+   doSomething(new Foo()); // ❌
+
+** We need to define a class that \i{implements} the interface
+
+## fragments
+
+   public class Bar implements Foo {
+
+     boolean whatCanWeDoHere() {...}
+
+     int maybeSomeOtherThing(int i) {...}
+
+   }
+
+and then
+
+   doSomething(new Bar()); // 👍
+
+##.
+
+** Okay, but why?
+
+* #1: Plug code into an existing system
+
+** \code{Runnable}
+
+   package java.lang;
+
+   public interface Runnable {
+
+     public void run();
+
+   }
+
+** Our very own implementation!
+
+   class SayHello implements Runnable {
+
+     public void run() {
+       // Do something that takes a really long time, then ...
+       System.out.println("hello, world.");
+     }
+
+   }
+
+** We could do this
+
+   new SayHello().run();
+
+## fragments
+
+But that'd be silly.
+
+##.
+
+** However
+
+   Thread t = new Thread(new SayHello());
+
+   t.start();
+
+## fragments
+
+Is not silly.
+
+##.
+
+** \code{ActionListener}
+
+   package java.awt.event;
+
+   public interface ActionListener {
+
+     void actionPerformed(ActionEvent e);
+
+   }
+
+## fragments
+
+Used for things like when you press a button in a GUI
+
+(Think back to your Boggle project.)
+
+##.
+
+** Most cumbersome way to use this interface
+
+Define a new class that implements the interface.
+
+   class MyActionListener implements ActionListener {
+     public void actionPerformed(ActionEvent e) {
+       doWhatever();
+     }
+   }
+
+## fragments
+
+Then use it.
+
+   button.addActionListener(new MyActionListener());
+
+##.
+
+** Slightly more convenient
+
+Create a new \b{annonymous} class that implements the interface
+
+   button.addActionListener(new ActionListener() {
+     public void actionPerformed(ActionEvent e) {
+       doWhatever();
+     }
+   });
+
+## fragments
+
+Anonymous classes were introduced in Java 1.1, in 1997, at the same as the new
+event model.
+
+##.
+
+**✨🎩Extra fancy! 🎩✨
+
+## fragments
+
+Create a \b{lambda} that under the covers creates the class that implements the interface
+
+   button.addActionListener(e -> doWhatever());
+
+Introduced in Java 8 in 2014.
+
+(This only works for interfaces with only a single method. More on this later.)
+
+##.
+
+* #2: Allow for multiple implementations
+
+** \progn{}
+
+We can write code that uses, for instance, Lists, without knowing exactly how
+they are implemented.
+
+** \code{List}
+
+   public interface List<E> extends Collection<E> {
+     public void add(int, E);
+     public E get(int);
+     public E remove(int);
+     public E set(int, E);
+
+     public int indexOf(Object);
+     public int lastIndexOf(Object);
+
+     public default void sort(Comparator<? super E>);
+     // A bunch of other methods ...
+   }
+
+** \progn{}
+
+There are two main List implementations in the JDK: ArrayList and LinkedList.
+
+## fragments
+
+They support the same operations with the same semantics but with different
+performance characteristics.
+
+##.
+
+** costs of List operations
+
+\table{
+\tr{\td{}\td{ArrayList}\td{LinkedList}}
+\tr{\td{Add at end}\fragments{\tdc{✅}\tdc{✅}}}
+\tr{\td{Iterate}\fragments{\tdc{✅}\tdc{✅}}}
+\tr{\td{Add at front}\fragments{\tdc{💰}\tdc{✅}}}
+\tr{\td{Remove from front}\fragments{\tdc{💰}\tdc{✅}}}
+\tr{\td{Get element at index}\fragments{\tdc{✅}\tdc{💰}}}
+}
+
+* #3: Let one class be more than one thing
+
+** \code{java.util.Collection}
+
+\img{images/collections.svg}
+
+** \code{Collection}
+
+   public interface Collection<E> extends Iterable<E> {
+     public boolean add(E);
+     public boolean contains(Object);
+     public boolean remove(Object);
+     public void clear();
+     public int size();
+     public boolean isEmpty();
+     // A bunch of other methods ...
+   }
+
+** \code{List}
+
+   public interface List<E> extends Collection<E> {
+     public void add(int, E);
+     public E get(int);
+     public E remove(int);
+     public E set(int, E);
+     public int indexOf(Object);
+     public int lastIndexOf(Object);
+     public default void sort(Comparator<? super E>);
+
+     public static <E> List<E> copyOf(Collection<? extends E>);
+     public static <E> List<E> of();
+     public static <E> List<E> of(E);
+     // ... and more
+   }
+
+** \code{Set}
+
+   public interface Set<E> extends Collection<E> {
+     // These are the same as Collection but with set semantics.
+     public boolean add(E);
+     public boolean contains(Object);
+     public boolean remove(Object);
+     public void clear();
+     public int size();
+     public boolean isEmpty();
+
+     public static <E> Set<E> copyOf(Collection<? extends E>);
+     public static <E> Set<E> of();
+     public static <E> Set<E> of(E);
+     // ... and more
+   }
+
+** \code{Queue}
+
+   public interface Queue<E> extends Collection<E> {
+     // These throw exceptions
+     public boolean add(E);
+     public E remove();
+     public E element();
+
+     // These return special values (false or null)
+     public boolean offer(E);
+     public E poll();
+     public E peek();
+   }
+
+** \code{Deque} (part 1)
+
+   public interface Deque<E> extends Queue<E> {
+     // Gives the normal Queue methods new names
+     // that indicate the end they are operating on
+     public void addLast(E);      // a.k.a. add(E)
+     public E removeFirst();      // a.k.a. remove()
+     public E getFirst();         // a.k.a. element()
+     public boolean offerLast(E); // a.k.a. offer(E)
+     public E pollFirst();        // a.k.a. poll()
+     public E peekFirst();        // a.k.a. peek()
+   }
+
+** \code{Deque} (part 2)
+
+   public interface Deque<E> extends Queue<E> {
+     // And provides the corresponding methods for
+     // the other end of the queue
+     public void addFirst(E);
+     public E removeLast();
+     public E getLast();
+     public boolean offerFirst(E);
+     public E pollLast();
+     public E peekLast();
+   }
+
+** \code{Deque} is also a Stack
+
+   public interface Deque<E> extends Queue<E> {
+     // Ignoring all the other methods
+     public void push(E); // a.k.a. addFirst(E)
+     public E pop(); // a.k.a. removeFirst()
+     public E peek(); // a.k.a. peekFirst()
+   }
+
+## fragments
+
+This is actually ridiculous.
+
+##.
+
+** How it should be
+
+\img{images/collections-wish.svg}
+
+** Why is there no Stack interface!?
+
+** Hysterical raisins
+
+\img{images/josh-bloch-stack.png}
+
+** \progn{}
+
+\table{
+\tr{\td{}\td{ArrayList}\td{LinkedList}}
+\tr{\td{Collection}\fragments{\tdc{✓}\tdc{✓}}}
+\tr{\td{List}\fragments{\tdc{✓}\tdc{✓}}}
+\tr{\td{Queue}\fragments{\tdc{❌}\tdc{✓}}}
+\tr{\td{Deque}\fragments{\tdc{❌}\tdc{✓}}}}
+
+* #4: Thinking in terms of interfaces is good for your program design
+
+** Why?
+
+## fragments
+
+  - Ensures you don’t rely on internals of other classes.
+
+  - Makes testing easier.
+
+  - Pushes you to think in terms of abstractions.
+
+##.
+
+* Some modern amenities
+
+** \code{default} methods
+
+** \progn{}
+
+A way to provide default implementations for some methods in interface
+
+   public interface SillyCollection {
+
+     // Normal abstract interface method to be implemented
+     // by classes implementing this interface
+     public void add(Object o);
+
+     // Default implementation defined only in terms
+     // of other methods in the interface.
+     public default addItems(Object[] objects) {
+       for (int i = 0; i < objects.length; i++) {
+         add(objects[i]);
+       }
+     }
+   }
+
+** Functional interfaces
+
+** \progn{}
+
+An interface with just one abstract method
+
+   @FunctionalInterface
+   public interface DoTheThing {
+
+     public int doIt(String s) throws SomeException;
+
+   }
+
+## fragments
+
+Can optionally be marked with `@FunctionalInterface` annotation.
+
+##.
+
+** Three way to use a functional interface
+
+** With a lambda
+
+   DoTheThing doer = s -> s.length();
+   System.out.println(doer.doIt("foo"));
+
+** With a static method reference
+
+   class TheAnswer {
+     public static int someStaticMethod(String s)
+       throws SomeException
+     {
+       return 42;
+     }
+   }
+
+And then:
+
+   DoTheThing doer = TheAnswer::someStaticMethod;
+   System.out.println(doer.doIt("foo"));
+
+** With an instance method reference
+
+   class TheAnswer {
+     public int someMethod(String s) throws SomeException {
+       return 42;
+     }
+   }
+
+And then:
+
+   TheAnswer ta = new TheAnswer();
+   DoTheThing doer = ta::someMethod;
+   System.out.println(doer.doIt("foo"));
+
+* Some interfaces from my adventure game
+
+** Attack
+
+   public interface Attack {
+
+     // Description of the attack itself.
+     public String description();
+
+     // Damage done by the attack.
+     public int damage();
+
+     // The result of the attack on the target.
+     public String result(Target thing);
+   }
+
+** Target
+
+   public interface Target {
+
+     // Actually affect the target and also let the
+     // target describe the result of the attack.
+     public String applyAttack(Attack attack);
+
+     // How the target should be described
+     public String who();
+   }
+
+## fragments
+
+Implemented by both \code{Player} and \code{Thing}.
+
+##.
+
+** Action
+
+   public interface Action {
+
+     // The description of the action happening plus
+     // any immediate result.
+     public String description();
+
+     // Reactions to this action from a given Thing.
+     public default Stream<Action> reactions(Thing t) {
+       return Stream.empty();
+     }
+   }
+
+** With a dozen implementations
+
+`Attack`, `Close`, `Drop`, `Eat`, `Go`, `Look`, `Move`, `Open`, `Put`, `Say`,
+`Take`, and `Turn`.
