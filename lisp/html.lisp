@@ -14,9 +14,12 @@
          (:link :rel "stylesheet" :href "/reveal/dist/theme/black.css")
          (:link :rel "stylesheet" :href "/reveal/dist/custom.css")
          (:link :rel "stylesheet" :href "/reveal/plugin/highlight/monokai.css")
+         (:link :rel "stylesheet" :href "/css/logo.css")
          ,@(loop for s in styles collecting s))
         (:body
          ((:div :class "reveal")
+          ((:div :class "footer logo")
+           ((:a :href "/") "ItP"))
           ((:div :class "slides")
            ,@(split-to-slides (rest doc))))
          (:script :src "/reveal/dist/reveal.js")

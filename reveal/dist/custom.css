@@ -9,3 +9,15 @@
 span.prompt {
   color: #666;
 }
+
+.reveal .footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  font-size: 0.5em;
+  z-index: 1;
+}
+
+.reveal .footer.logo {
+  color: #888;
+}
