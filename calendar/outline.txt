@@ -28,9 +28,9 @@
 
     - Class policies
 
-      - No phones out during class. First-come, first-served access to 10 slots
-        in the Phone Spa. All other phones must stay in pocket or bag during
-        class or will be taken and not charged.
+      - No phones out during class. First-come, first-served access to the ten
+        slot Phone Spa. All other phones must stay in pocket or bag during class
+        or will be taken and not charged.
 
       - No games and no social media. Computer is for doing work and research
         related to your work.
@@ -54,11 +54,11 @@
 
         - Collaboration and dilligence (20%)
 
-          - Being a helpful partner and teammate
-
           - Being on task
 
-          - Lose points by being disruptive to others.
+          - Being a helpful to your peers when working together
+
+          - Not being disruptive to others
 
       - Homework:
 
@@ -70,7 +70,7 @@
 
       - Coding, open source, and working together:
 
-        - Write your own code. (When pairing, pair turns in the same code.)
+        - Write your own code. (When working in groups, group will turn in the same code.)
 
         - If you find useful snippets of code on the internet, cite it in a comment.
 
@@ -82,7 +82,17 @@
 
       - Programming
 
+        - Think of it like learning a language
+
+        - But also a form of problem solving
+
+        - Just as important, picking the problems to solve
+
       - Javascript
+
+        - The language of the web
+
+        - Used for a lot more than that these days.
 
       - Why Javascript?
 
@@ -92,15 +102,13 @@
 
         - Underneath, especially these days, it’s also a pretty clean language.
 
-    - Let's write a program
+    - Set up
 
       - Getting set up on Github.
 
       - Getting logged into Intro to Programming with your Github account.
 
       - What is a REPL https://intro.gigamonkeys.com/demo/repl/
-
-      - Bouncing ball: https://intro.gigamonkeys.com/assignments/bouncing-ball/
 
   - What is programming? (1)
 
@@ -124,6 +132,12 @@
 
       - Why is it fun?
 
+        - If you like creating things
+
+        - If you like solving puzzles
+
+        - If you like learning and understanding how things work
+
       - Why is it hard?
 
         - There are a lot of details that you have to get right.
@@ -146,8 +160,6 @@
 
     - Some themes
 
-      - Designing programs
-
       - Classic How to Solve It cycle:
 
         - Understand the problem.
@@ -158,123 +170,111 @@
 
         - Examine the solution and think about how it could be better.
 
+      - Breaking down problems into smaller problems
+
       - Debugging
+
+      - Abstraction
 
       - Writing clear code
 
-  - What is data? (1)
+    - Let's write a program
 
-    - What can we do with it?
+      - Getting set up on Github and on ItP site if not already.
 
-      - Render it: play a video, display text, etc.
+      - What is a REPL https://intro.gigamonkeys.com/demo/repl/
 
-      - Store it
+      - Bouncing ball: https://intro.gigamonkeys.com/assignments/bouncing-ball/
 
-      - Send and receive it
+  - Numbers (2)
 
-      - Combine and transform it to make new data
+    - First: what is data?
 
-    - What is a data type?
+      - What can we do with it?
 
-      - A set of possible values
+        - Render it: play a video, display text, etc.
 
-      - Syntax - how you write it
+        - Store it
 
-      - Operators - what you can do with it
+        - Send and receive it
 
-      - Expressions - combinations of values and operators
+        - Combine and transform it to make new data
 
-    - First three data types
+      - What is a data type?
 
-      - Numbers
+        - A set of possible values
 
-        - Possible values
+        - Syntax - how you write it
 
-        - Syntax
+        - Operators - what you can do with it
 
-        - Operators: +, -, *, /
+        - Expressions - combinations of values and operators
 
-      - Strings
+    - Numbers
 
-        - Possible values
+      - Possible values
 
-        - Syntax
+      - Syntax
 
-        - Operators: +, []
+      - Operators: +, -, *, /, %, **
 
-      - Booleans
+  - Booleans (2)
 
-        - Possible values
+    - Possible values
 
-        - Syntax
+    - Syntax
 
-        - Operators: &&, ||, !
+    - Operators: &&, ||, !
 
-      - Some operators between types
+    - Some operators between types
 
-        - Equality: ===, !==
+      - Equality: ===, !==
 
-        - Comparison: <, >, <=, >=,
+      - Comparison: <, >, <=, >=,
 
-  - Expressions
+    - Boolean bingo
 
-    - Expression games (1)
+  - Strings (2)
 
-      - Single values
+    - Possible values
 
-      - Simple homogenous experessions (e.g. 1 + 2)
+    - Syntax
 
-      - Simple heterogenous expressions (e.g. 1 < 2)
+    - Operators: +, []
 
-      - Complex homogenous expressions (e.g. 1 + 2 * 3)
+  - Variables (1)
 
-      - Complex heterogenous expressions (e.g. 1 < 2 && 4 !== 5)
-
-      - Type of holes in expressions (e.g. 10 + <hole>)
-
-      - Discuss: Precedence and grouping
-
-      - Simple expressions, multiple choice
-
-      - Complex expressions, multiple choice
-
-      - Simple and complex expressions, free response.
-
-    - Boolean bingo (1)
-
-  - Expressions
-
-    - named values (2)
+    - named values
 
       - const
 
-      - assignment
+    - The difference between variables and values.
 
-    - with literals and variables (2)
-
-    - Constructing (1)
-
-      - Given value from blocks
-
-      - Given value, free response with specific values and operators given
-
-      - Given value, free response with specific values but no operators given.
+  - Expression wrap up (1)
 
   - Functions
 
     - defining & using (1)
 
-    - numeric and boolean (3)
+    - numeric, boolean, and string (2)
 
       - Various math functions: area of circle, volume of sphere, quadratic equation.
 
       - Random logical expressions like sleep_in
 
-    - String (1)
-
       - Combining strings
 
       - Extracting characters from strings.
+
+    - composing (2)
+
+      - Breaking down big functions into smaller ones
+
+      - Building up big functions by writing pieces first.
+
+      - Writing big functions by assuming other functions which you then write.
+
+      - A little recursion, as a treat.
 
   - Project: Number guessing game (4)
 
