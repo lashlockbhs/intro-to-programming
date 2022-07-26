@@ -3,25 +3,44 @@ layout: expressions.liquid
 title: Expressions
 ---
 
+<!-- geometric formulas adapted from from https://www.cuemath.com/geometry-formulas/ -->
+
+<div class="expression" data-variables="s:positive" data-expression="4*s">
+  <h1>Perimeter of a square</h1>
+  <p>
+    The perimeter of a square is four times the length of one side. Write an
+    expression for this quantity given side <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="w:positive,h:positive" data-expression="2 * (w + h)">
+  <h1>Perimeter of a rectangle</h1>
+  <p>
+    The perimeter of a rectangle is two times its width plus its height. Write
+    an expression for this quantity given width <code>w</code> and
+    height <code>h</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:positive" data-expression="s**2">
+  <h1>Area of a square</h1>
+  <p>
+    The area of a square is the square of the length of one side. Write an
+    expression for this area given side <code>s</code>.
+  <p>
+</div>
+
 <div class="expression" data-variables="w:positive,h:positive" data-expression="w*h">
-  <h1>Area of rectangle</h1>
+  <h1>Area of a rectangle</h1>
   <p>
     The area of a rectangle is its width times its height. Write an expression
     for this area given width <code>w</code> and height <code>h</code>.
   <p>
 </div>
 
-<div class="expression" data-variables="r:positive" data-expression="Math.PI*r*r">
-  <h1>Area of circle</h1>
-  <p>
-    The area of a rectangle is π times the square of the circle’s radius.
-    Write an expression for this area given radius <code>r.</code>. You can
-    use <code>Math.PI</code> to get a good approximation of π.
-  <p>
-</div>
 
 <div class="expression" data-variables="b:positive,h:positive" data-expression="b*h/2">
-  <h1>Area of triangle</h1>
+  <h1>Area of a triangle</h1>
   <p>
     The area of a triangle is half the base time the height. Write an
     expression for this area given base <code>b</code> and
@@ -29,11 +48,126 @@ title: Expressions
   <p>
 </div>
 
-<div class="expression" data-variables="s:positive" data-expression="s**2">
-  <h1>Area of square</h1>
+<div class="expression" data-variables="b1:positive,b2:positive,h:positive" data-expression="(b1 + b2)/2 * h">
+  <h1>Area of a trapezoid</h1>
   <p>
-    The area of a square is the square of the length of one side. Write an
-    expression for this area given side <code>s</code>.
+    The area of a trapezoid is half the sum of the bases times the hight. Write
+    an expression for this area given bases <code>b1</code> and <code>b2</code>
+    and height <code>h</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive" data-expression="Math.PI*r*r">
+  <h1>Area of a circle</h1>
+  <p>
+    The area of a rectangle is π times the square of the circle’s radius.
+    Write an expression for this area given radius <code>r.</code>. You can
+    use <code>Math.PI</code> to get a good approximation of π.
+  <p>
+</div>
+
+<div class="expression" data-variables="r:positive" data-expression="Math.PI * 2 * r">
+  <h1>Circumference of a circle</h1>
+  <p>
+    The circumference of a circle is 2πr. Write an expression for this quantity
+    given radius <code>r</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,h:positive" data-expression="Math.PI * 2 * r * h">
+  <h1>The curved surface area of a cylinder </h1>
+  <p>
+    The curved surface area of a cylinder (i.e. the outside excluding the top
+    and bottom) is the circumference of its base circle times its height. Write
+    an expression for this area given a base radius of <code>r</code> and
+    height <code>h</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,h:positive" data-expression="Math.PI * 2 * r * (h + r)">
+  <h1>Total surface area of a cylinder</h1>
+  <p>
+    The total surface area of a cylinder (the curved surface area plus the top
+    and bottom) is sum of the curved surface area plus two times the area of the
+    top and bottom circles. Write an expression for this area given a base
+    radius of <code>r</code> and height <code>h</code>. You can
+    use <code>Math.PI</code> to get a good approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,h:positive" data-expression="Math.PI * r ** 2 * h">
+  <h1>Volume of a Cylinder</h1>
+  <p>
+    The volume of a circle is the area of the base circle times the height.
+    Write an expression for this volume given a base radius of <code>r</code>
+    and height <code>h</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,s:positive" data-expression="Math.PI * r * s">
+  <h1>The curved surface area of a cone from slant height</h1>
+  <p>
+    The curved surface are of a cone (i.e. the outside excluding the circular
+    base) is π times the radius of the base times the slant height. Write an
+    expression for this area given base radius <code>r</code> and slant
+    height <code>s</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,s:positive" data-expression="Math.PI * r * (r + s)">
+  <h1>Total surface area of a cone from slant height</h1>
+  <p>
+    The total surface area of a cone is its curved surface area plus the area of
+    its circular base. Write an expression for this area given base
+    radius <code>r</code> and slant height <code>s</code>. You can
+    use <code>Math.PI</code> to get a good approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,h:positive" data-expression="Math.PI * r * (r + Math.sqrt(h ** 2 + r ** 2))">
+  <h1>Total surface area of a cone from height</h1>
+  <p>
+    The total surface area of a cone can also be computed from its base radius
+    and height by computing its slant height as the square root of the sum of
+    the base radius squared and the heighth squared. Write Write an expression
+    for this area computed this way given base radius <code>r</code> and
+    height <code>h</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π. And the function <code>Math.sqrt()</code> computes the
+    square root of its arguments, e.g. <code>Math.sqrt(2) =>
+    1.4142135623730951</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive,h:positive" data-expression="Math.PI * r ** 2 * h / 3">
+  <h1>Volume of a cone</h1>
+  <p>
+    The volume of cone is the area of its circular base time a third of its height.
+    Write an expression for this volume given base radius <code>r</code> and
+    height <code>h</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive" data-expression="4 * Math.PI * r ** 2">
+  <h1>Surface area of a sphere</h1>
+  <p>
+    The surface area of a sphere is four times the area of a circle with the
+    same radius as the sphere. Write an expression for this volume given
+    radius <code>r</code>. You can use <code>Math.PI</code> to get a good
+    approximation of π.
+  </p>
+</div>
+
+<div class="expression" data-variables="r:positive" data-expression="4/3 * Math.PI * r ** 3">
+  <h1>Volume of sphere</h1>
+  <p>
+    The volume of a sphere is 4/3 times π times the radius cubed. Write an
+    expression for this volume given radius <code>r.</code>. You can
+    use <code>Math.PI</code> to get a good approximation of π.
   <p>
 </div>
 
@@ -58,13 +192,4 @@ title: Expressions
     (<code>Math.sqrt()</code> computes the square root of its arguments,
     e.g. <code>Math.sqrt(2) => 1.4142135623730951</code>.)
   </p>
-</div>
-
-<div class="expression" data-variables="r:positive" data-expression="4/3 * Math.PI * r ** 3">
-  <h1>Volume of sphere</h1>
-  <p>
-    The volume of a sphere is 4/3 times π times the radius cubed. Write an
-    expression for this volume given radius <code>r.</code>. You can
-    use <code>Math.PI</code> to get a good approximation of π.
-  <p>
 </div>
