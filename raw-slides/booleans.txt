@@ -139,7 +139,7 @@ Written `||`
 
 `true || false`
 
-Evaluates to true of either, or both, operands are true.
+Evaluates to true if either, or both, operands are true.
 
 ##.
 
@@ -200,7 +200,7 @@ What’s an expression that captures whether or not I’m hangry?
 
 Suppose `homework` is a boolean that says whether I have homework to grade and
 `newEpisodes` is a boolean that says whethere there new episodes of my favorite
-TV show.
+TV show available.
 
 What’s an expression that captures whether I will stay up late if I always stay
 up late to grade homework or to watch new episodes of my favorite show?
@@ -227,7 +227,7 @@ What’s an expression that says whether I’m awake?
 
 \fragments{\code{===}\code{ !==}}
 
-** Numeric comparisons
+** Ordering comparisons
 
 \fragments{\code{ <}\code{ >}\code{ <=}\code{ >=}}
 
