@@ -31,6 +31,10 @@ ready: pretty lint
 strict_lint:
 	npx eslint $(eslint_opts) $(eslint_strict_opts) *.js modules/*.js
 
+quick_lint:
+	npx eslint $(eslint_opts) $(shell git diff --name-only | grep '.js$$')
+
+
 serve:
 	npx @11ty/eleventy --serve
 
