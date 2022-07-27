@@ -62,7 +62,7 @@ class Files {
    * Get the file contents from Github from the default branch.
    */
   loadFromGithub(file) {
-    this.loadFromGithubOnBranch(file, this.branch);
+    return this.loadFromGithubOnBranch(file, this.branch);
   }
 
   /*
