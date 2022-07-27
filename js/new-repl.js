@@ -1,3 +1,5 @@
+import * as acorn from 'acorn';
+
 // NOTES:
 
 // 1. The Shift and Alt key (at least) are both modifiers but also change the
@@ -13,6 +15,51 @@
 // - Shift movement for selection.
 // - Token colorizing.
 
+const OPTS = { ecmaVersion: 2022 };
+
+const textNode = (s) => document.createTextNode(s);
+
+const pretty = (v) => {
+  // This could be a lot better but I'd have to write an actual recursive pretty
+  // printer.
+  if (v === null || v === undefined) {
+    return String(v);
+  }
+
+  switch (v.constructor.name) {
+    case 'Boolean':
+    case 'Function':
+    case 'Number':
+    case 'String':
+    case 'Array':
+    case 'Object':
+      // ideally we'd use Javascript syntax (i.e. no quotes on properties that
+      // don't need them but this will do for now.
+      return JSON.stringify(v);
+
+    default:
+      return `${v.constructor.name} ${JSON.stringify(v)}`;
+  }
+};
+
+const isExpression = (code) => {
+  try {
+    const p = acorn.parseExpressionAt(code, 0, OPTS);
+    if (p.end === code.length) {
+      return true;
+    }
+  } catch (e) {
+    // Fallthru to next way
+  }
+
+  try {
+    const p = acorn.parse(code, OPTS);
+    return p.body.length === 1 && p.body[0].type === 'ExpressionStatement';
+  } catch (e) {
+    return false;
+  }
+};
+
 const span = (clazz, html) => {
   const s = document.createElement('span');
   s.classList.add(clazz);
@@ -21,8 +68,14 @@ const span = (clazz, html) => {
 };
 
 class Repl {
-  constructor(div) {
-    this.div = div;
+  constructor(id) {
+    this.console = new Console((text) => this.log(text));
+
+    this.evaluate = () => {
+      throw new Error('Must set repl.evaluate');
+    };
+
+    this.div = document.getElementById(id);
     this.cursor = span('cursor', '&nbsp;');
     this.keybindings = new Keybindings();
     this.current = null;
@@ -76,19 +129,65 @@ class Repl {
   }
 
   start() {
-    this.divAndPrompt();
+    this.newPrompt();
     this.div.focus();
+  }
+
+  /*
+   * Output a log line in the repl div.
+   */
+  log(text) {
+    this.toRepl(text, 'log');
   }
 
   /*
    * Make the div containing a prompt and the cursor.
    */
-  divAndPrompt() {
+  newPrompt() {
     const div = newDivAndPrompt();
     this.addCursor(div);
     this.div.append(div);
     this.current = div;
   }
+
+  /*
+   * Emit a message to the repl.
+   */
+  message(text) {
+    this.toRepl(textNode(text), 'message');
+  }
+
+  /*
+   * Emit an error to the repl.
+   */
+  error(text) {
+    this.toRepl(textNode(text), 'error');
+  }
+
+  /*
+   * Output a value to the repl.
+   */
+  print(value) {
+    const span = document.createElement('span');
+    const arrow = document.createElement('span');
+    arrow.classList.add('output');
+    arrow.append(textNode('⇒ '));
+    span.append(arrow);
+    span.append(textNode(pretty(value)));
+    this.toRepl(span, 'value');
+  }
+
+  /*
+   * Output to the repl with a particular CSS class.
+   */
+  toRepl(text, clazz) {
+    const div = document.createElement('div');
+    div.classList.add(clazz);
+    div.append(text);
+    this.div.append(div);
+    this.newPrompt();
+  }
+
 
   addCursor(div) {
     const eol = div.querySelector('.eol');
@@ -172,11 +271,10 @@ class Repl {
   }
 
   enter() {
-    console.log(this.current.querySelector('.text').innerText);
     this.cursor.parentElement.removeChild(this.cursor);
     this.history.push(this.current);
     this.historyPosition = this.history.length; // after end of history.
-    this.divAndPrompt();
+    this.toRepl(this.current.querySelector('.text').innerText);
   }
 
   left() {
@@ -233,6 +331,37 @@ class Repl {
     this.cursor.parentElement.insertBefore(this.cursor, eol);
   }
 }
+
+/*
+ * A fake console.
+ */
+class Console {
+  constructor(logFn) {
+    this.logFn = logFn;
+  }
+
+  log(...text) {
+    this.logFn(stringify(text));
+  }
+
+  info(...text) {
+    this.logFn(`INFO: ${stringify(text)}`);
+  }
+
+  warn(...text) {
+    this.logFn(`WARN: ${stringify(text)}`);
+  }
+
+  error(...text) {
+    this.logFn(`ERROR: ${stringify(text)}`);
+  }
+
+  debug(...text) {
+    this.logFn(`DEBUG: ${stringify(text)}`);
+  }
+}
+
+const stringify = (args) => args.map(String).join(' ');
 
 ////////////////////////////////////////////////////////////////////////////////
 // Bindings
@@ -297,4 +426,6 @@ const newDivAndPrompt = () => {
   return div;
 };
 
-new Repl(document.getElementById('repl')).start();
+const replize = (id) => new Repl(id);
+
+export default replize;
