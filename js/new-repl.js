@@ -25,12 +25,17 @@ class Repl {
     this.div = div;
     this.cursor = span('cursor', '&nbsp;');
     this.keybindings = new Keybindings();
+    this.current = null;
+    this.history = [];
+    this.historyPosition = 1;
 
     this.keybindings.bind({
       Backspace: this.backspace,
       Enter: this.enter,
       ArrowLeft: this.left,
       ArrowRight: this.right,
+      ArrowUp: this.backInHistory,
+      ArrowDown: this.forwardInHistory,
       'Control-a': this.bol,
       'Control-e': this.eol,
       '(': (x) => this.openBracket(x, 'paren'),
@@ -78,12 +83,15 @@ class Repl {
    * Make the div containing a prompt and the cursor.
    */
   divAndPrompt() {
-    const div = document.createElement('div');
-    div.append(span('prompt', '»'));
-    div.append(span('bol'));
-    div.append(this.cursor);
-    div.append(span('eol'));
+    const div = newDivAndPrompt();
+    this.addCursor(div);
     this.div.append(div);
+    this.current = div;
+  }
+
+  addCursor(div) {
+    const eol = div.querySelector('.eol');
+    div.insertBefore(this.cursor, eol);
   }
 
   maybeHighlightBracket() {
@@ -162,6 +170,8 @@ class Repl {
 
   enter() {
     this.cursor.parentElement.removeChild(this.cursor);
+    this.history.push(this.current);
+    this.historyPosition = this.history.length; // after end of history.
     this.divAndPrompt();
   }
 
@@ -181,6 +191,32 @@ class Repl {
         e.parentElement.insertBefore(this.cursor, e.nextSibling);
       }
     }
+  }
+
+  backInHistory() {
+    if (this.historyPosition > 0) {
+      this.goToHistory(this.historyPosition - 1);
+    }
+  }
+
+  forwardInHistory() {
+    if (this.historyPosition < this.history.length - 1) {
+      this.goToHistory(this.historyPosition + 1);
+    } else if (this.historyPosition < this.history.length) {
+      this.historyPosition++;
+      this.makeCurrent(newDivAndPrompt());
+    }
+  }
+
+  goToHistory(pos) {
+    this.historyPosition = pos;
+    this.makeCurrent(this.history[this.historyPosition].cloneNode(true));
+  }
+
+  makeCurrent(div) {
+    this.current.replaceWith(div);
+    this.current = div;
+    this.addCursor(this.current);
   }
 
   bol() {
@@ -245,5 +281,13 @@ const isClose = (n) => hasClass(n, 'close');
 const isOpen = (n) => hasClass(n, 'open');
 
 const bracketKind = (n) => ['paren', 'square', 'curly'].find((k) => hasClass(n, k));
+
+const newDivAndPrompt = () => {
+  const div = document.createElement('div');
+  div.append(span('prompt', '»'));
+  div.append(span('bol'));
+  div.append(span('eol'));
+  return div;
+};
 
 new Repl(document.getElementById('repl')).start();
