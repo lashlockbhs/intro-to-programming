@@ -1,5 +1,3 @@
-- Finish new-repl and replace REPL with it.
-
 - Fix REPL pretty printer
 
 - Give a way to explicitly save with a comment so the branches aren't 100% "Updating".
