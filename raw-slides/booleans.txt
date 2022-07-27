@@ -292,10 +292,22 @@ Or maybe?
 
 `x === false`
 
+or
+
+`x !== true`
+
 ## fragments
 
 just write:
 
 `!x`
+
+##.
+
+* tl;dr
+
+## fragments
+
+Booleans are just another kind of value.
 
 ##.
