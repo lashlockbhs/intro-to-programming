@@ -10,10 +10,6 @@
 
 - Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
 
-- Move expressions to /expressions/ paths.
-
-- Provide saving of expressions exercises?
-
 - Add README to itp-template
 
 - Move itp-template into gigamonkeys org
