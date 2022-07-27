@@ -19,6 +19,8 @@ class Login {
     this.problemMakingRepo = null;
     this.createdRepo = false;
     this.repoURL = null;
+    this.storage = null;
+    this.onAttachToGithub = null;
   }
 
   logIn(username, profileURL) {
@@ -65,6 +67,36 @@ class Login {
     return this.isLoggedIn && this.isMember && this.problemMakingRepo === null;
   }
 
+  setupToolbar(storage, onAttachToGithub) {
+    this.storage = storage;
+    this.onAttachToGithub = onAttachToGithub;
+
+    const toolbarButtons = document.querySelector('.itp-toolbar .buttons');
+
+    const loginButton = toolbarButtons.querySelector('.github');
+    if (loginButton) {
+      loginButton.onclick = () => this.attachToGithub();
+    }
+
+    const infoToggler = icon('info-circle');
+    infoToggler.onclick = toggleInfo;
+    toolbarButtons.append(infoToggler);
+
+    $('#login').onclick = () => this.attachToGithub();
+    $('#anonymous').onclick = () => this.goAnonymous();
+    $('#banner svg.x').onclick = hideInfo;
+  }
+
+  async attachToGithub() {
+    if (this.isLoggedIn) return;
+
+    this.storage.repo = await this.connectToGithub();
+
+    if (this.onAttachToGithub) {
+      this.onAttachToGithub();
+    }
+  }
+
   async connectToGithub() {
     $('#banner').hidden = true;
 
@@ -98,7 +130,7 @@ class Login {
 
     if (repo !== null) {
       if (await repo.tryToProtectMain()) {
-        console.log("Protected main");
+        console.log('Protected main');
       } else {
         console.log("Couldn't protect main. Will try again later.");
       }
@@ -160,5 +192,27 @@ class Login {
     }
   }
 }
+
+const toggleInfo = () => {
+  if ($('#banner').hidden) {
+    showInfo();
+  } else {
+    hideInfo();
+  }
+};
+
+const showInfo = () => {
+  const b = $('#banner');
+  $$('#banner > div').forEach((e) => {
+    e.hidden = true;
+  });
+  b.querySelector('.x').style.display = 'inline';
+  b.querySelector('.info').hidden = false;
+  b.hidden = false;
+};
+
+const hideInfo = () => {
+  $('#banner').hidden = true;
+};
 
 export default Login;

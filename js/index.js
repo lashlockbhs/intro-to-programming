@@ -8,7 +8,6 @@ import testing from './modules/testing';
 import { jsonIfOk } from './modules/fetch-helpers';
 import { choice } from './modules/shuffle';
 import fruit from './modules/fruit';
-import { $$, icon } from './modules/whjqah';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -26,28 +25,6 @@ const message = (text, fade) => {
       }
     }, fade);
   }
-};
-
-const toggleInfo = () => {
-  if ($('#banner').hidden) {
-    showInfo();
-  } else {
-    hideInfo();
-  }
-};
-
-const showInfo = () => {
-  const b = $('#banner');
-  $$('#banner > div').forEach((e) => {
-    e.hidden = true;
-  });
-  b.querySelector('.x').style.display = 'inline';
-  b.querySelector('.info').hidden = false;
-  b.hidden = false;
-};
-
-const hideInfo = () => {
-  $('#banner').hidden = true;
 };
 
 // End UI manipulations
@@ -106,19 +83,6 @@ const randomFruitBomb = () => {
 };
 /* eslint-enable */
 
-const setupToolbar = (attachToGithub) => {
-  const toolbarButtons = document.querySelector('.itp-toolbar .buttons');
-
-  const login = toolbarButtons.querySelector('.github');
-  if (login) {
-    login.onclick = attachToGithub;
-  }
-
-  const infoToggler = icon('info-circle');
-  infoToggler.onclick = toggleInfo;
-  toolbarButtons.append(infoToggler);
-};
-
 const setup = async () => {
   const config = await configuration();
   const storage = await makeStorage();
@@ -149,11 +113,7 @@ const setup = async () => {
   // even edited the file. FIXME: this doesn't do anything with the machinery
   // (which probably isn't fully baked) for saving versions of files while
   // disconnected.
-  const attachToGithub = async () => {
-    if (login.isLoggedIn) return;
-
-    storage.repo = await login.connectToGithub();
-
+  const onAttachToGithub = async () => {
     const current = editor.getValue();
     const starter = await storage.loadFromWeb(filename);
     const inRepo = await storage.ensureFileInBranch(filename);
@@ -173,17 +133,13 @@ const setup = async () => {
     }
   };
 
-  setupToolbar(attachToGithub);
+  login.setupToolbar(storage, onAttachToGithub);
 
   if (storage.repo !== null) {
     storage.ensureFileInBranch(filename).then(fillEditor);
   } else {
     storage.load(filename).then(fillEditor);
   }
-
-  $('#login').onclick = attachToGithub;
-  $('#anonymous').onclick = () => login.goAnonymous();
-  $('#banner svg.x').onclick = hideInfo;
 
   $('.itp-editor .itp-run-code').onclick = reevaluateCode;
 
