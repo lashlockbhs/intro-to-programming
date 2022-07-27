@@ -194,7 +194,6 @@ class Repl {
     this.newPrompt();
   }
 
-
   addCursor(div) {
     const eol = div.querySelector('.eol');
     eol.parentElement.insertBefore(this.cursor, eol);
