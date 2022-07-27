@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+        <link rel='stylesheet' href='/reveal/dist/reset.css'>
+        <link rel='stylesheet' href='/reveal/dist/reveal.css'>
+        <link rel='stylesheet' href='/reveal/dist/theme/black.css'>
+        <link rel='stylesheet' href='/reveal/dist/custom.css'>
+        <link rel='stylesheet' href='/reveal/plugin/highlight/monokai.css'>
+        <link rel='stylesheet' href='/css/logo.css'>
+        <title>Booleans</title>
+    </head>
+    <body>
+        <div class='reveal'>
+            <div class='footer logo'>
+                <a href='/'>ItP</a>
+            </div>
+            <div class='slides'>
+                <section>
+                    <h1>Booleans</h1>
+                    <p>The simplest data type!</p>
+                </section>
+                <section>
+                    <h2>Named after this guy</h2>
+                    <p><img src='/img/360px-George_Boole_color.jpg'></p>
+                    <p>George Boole, English mathematician and logician</p>
+                </section>
+                <section>
+                    <h2>Only two values</h2>
+                    <p>
+                    <p><span class='fragment'>true</span> <span class='fragment'>false</span></p>
+                    </p>
+                </section>
+                <section>
+                    <h2>Can also think of them as</h2>
+                    <p class='fragment'>yes or no</p>
+                    <p class='fragment'>on or off</p>
+                    <p class='fragment'>etc.</p>
+                </section>
+                <section>
+                    <h2>Used with <code>if</code> …</h2>
+                    <pre><code data-trim='' data-noescape='' class='language-javascript'>if (&lt;boolean&gt;) {
+  // do something
+}</code></pre>
+                    <p class='fragment'>Yeah, we haven’t learned about <code>if</code> yet.</p>
+                </section>
+                <section>
+                    <h2>… and with <code>while</code></h2>
+                    <pre><code data-trim='' data-noescape='' class='language-javascript'>while (&lt;boolean&gt;) {
+   // do something
+}</code></pre>
+                    <p class='fragment'>Haven’t learned about <code>while</code> yet, either.</p>
+                    <p class='fragment'>We’ll get to it.</p>
+                </section>
+                <section>
+                    <h2>But they are also values in their own right</h2>
+                </section>
+                <section>
+                    <h2>We can ask our usual questons about values</h2>
+                    <ol>
+                        <li class='fragment'>
+                        <p>How they are represented inside the computer</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>The syntax for writing them in our langauge</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>What we can do with them</p>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h2>How are they represented in the computer?</h2>
+                    <p class='fragment'>This time it really doesn’t matter.</p>
+                    <p class='fragment'>I literally do not know.</p>
+                </section>
+                <section>
+                    <h2>How do we write booleans?</h2>
+                </section>
+                <section>
+                    <h2><code>true</code></h2>
+                </section>
+                <section>
+                    <h2><code>false</code></h2>
+                </section>
+                <section>
+                    <h2>That’s it.</h2>
+                    <p class='fragment'>Unlike numbers, there aren’t different ways of writing the same literal value.</p>
+                </section>
+                <section>
+                    <h2>What can we do with booleans?</h2>
+                    <p class='fragment'>Same as with numbers: combine them in expressions.</p>
+                    <p class='fragment'>But the operators are different.</p>
+                </section>
+                <section>
+                    <h2>Three logicial operators</h2>
+                    <p><span class='fragment'>AND</span><span class='fragment'>, OR</span><span class='fragment'>, and NOT</span></p>
+                    <p class='fragment'>These are the three operators defined in Boolean Algrebra by our friend George Boole.</p>
+                </section>
+                <section>
+                    <h2>And</h2>
+                    <p class='fragment'>Writen <code>&amp;&amp;</code></p>
+                    <p class='fragment'><code>true &amp;&amp; false</code></p>
+                    <p class='fragment'>Evaluates to true if, and only if, both of its operands are true.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true &amp;&amp; true </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true &amp;&amp; false </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>false &amp;&amp; true </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>false &amp;&amp; false </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>Or</h2>
+                    <p class='fragment'>Written <code>||</code></p>
+                    <p class='fragment'><code>true || false</code></p>
+                    <p class='fragment'>Evaluates to true of either, or both, operands are true.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true || true </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true || false </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>false || true </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>false || false </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>Not</h2>
+                    <p class='fragment'>Written <code>!</code></p>
+                    <p class='fragment'><code>!true</code></p>
+                    <p class='fragment'>Flips the logical value, true to false and false to true.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>!true </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>!false </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <p>Writing expressions with all literal values (<code>true</code> and <code>false</code>) is kinda silly because we could just figure out what the value is and write that.</p>
+                </section>
+                <section>
+                    <p>But they make a lot more sense when we are writing expressions in terms of named values.</p>
+                </section>
+                <section>
+                    <p>Some examples.</p>
+                </section>
+                <section>
+                    <h2>Am I hangry?</h2>
+                    <p class='fragment'>Suppose <code>hungry</code> is a boolean that says whether I’m hungry and <code>angry</code> says whether I’m angry.</p>
+                    <p class='fragment'>What’s an expression that captures whether or not I’m hangry?</p>
+                </section>
+                <section>
+                    <h2><code>hungry &amp;&amp; angry</code></h2>
+                </section>
+                <section>
+                    <h2>Do I stay up late?</h2>
+                    <p class='fragment'>Suppose <code>homework</code> is a boolean that says whether I have homework to grade and <code>newEpisodes</code> is a boolean that says whethere there new episodes of my favorite TV show.</p>
+                    <p class='fragment'>What’s an expression that captures whether I will stay up late if I always stay up late to grade homework or to watch new episodes of my favorite show?</p>
+                </section>
+                <section>
+                    <h2><code>homework || newEpisodes</code></h2>
+                </section>
+                <section>
+                    <h2>Am I awake?</h2>
+                    <p class='fragment'><code>asleep</code> is a boolean that says whether I’m asleep.</p>
+                    <p class='fragment'>What’s an expression that says whether I’m awake?</p>
+                </section>
+                <section>
+                    <h2><code>!asleep</code></h2>
+                </section>
+                <section>
+                    <h2>Operators on other types that produce boolean values</h2>
+                </section>
+                <section>
+                    <h2>Equality comparisons</h2>
+                    <p><code class='fragment'>===</code><code class='fragment'> !==</code></p>
+                </section>
+                <section>
+                    <h2>Numeric comparisons</h2>
+                    <p><code class='fragment'> &lt;</code><code class='fragment'> &gt;</code><code class='fragment'> &lt;=</code><code class='fragment'> &gt;=</code></p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>1 === 2 </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>1 !== 2 </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>10 &lt; 20 </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>10 &lt; 10 </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>10 &lt;= 10 </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>10 &lt;= (11 - 1) </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>100 &gt;= 200 </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>You can use the equality operators on booleans</h2>
+                    <p class='fragment'>But it’s very rarely needed.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true === false </span>
+                        </div>
+                        <div class='fragment'>
+                             false
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>true !== false </span>
+                        </div>
+                        <div class='fragment'>
+                             true
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <p>And definitely don’t compare the value of a boolean expression to a boolean literal.</p>
+                </section>
+                <section>
+                    <h2>Instead of</h2>
+                    <p><code>x === true</code></p>
+                    <p class='fragment'>just write:</p>
+                    <p class='fragment'><code>x</code></p>
+                </section>
+                <section>
+                    <h2>Otherwise why not write?</h2>
+                    <p class='fragment'><code>(x === true) === true</code></p>
+                    <p class='fragment'>Or maybe?</p>
+                    <p class='fragment'><code>((x === true) === true) === true</code></p>
+                    <p class='fragment'>🤔</p>
+                </section>
+                <section>
+                    <h2>And instead of</h2>
+                    <p><code>x === false</code></p>
+                    <p class='fragment'>just write:</p>
+                    <p class='fragment'><code>!x</code></p>
+                </section>
+            </div>
+        </div>
+        <script src='/reveal/dist/reveal.js'></script>
+        <script src='/reveal/plugin/notes/notes.js'></script>
+        <script src='/reveal/plugin/markdown/markdown.js'></script>
+        <script src='/reveal/plugin/highlight/highlight.js'></script>
+        <script>// More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+              hash: true,
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });</script>
+    </body>
+</html>

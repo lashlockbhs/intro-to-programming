@@ -24,7 +24,7 @@ Our first data type!
 
 ##.
 
-** How numbers are represented in the computer
+** How are numbers represented in the computer?
 
 ## fragments
 
@@ -44,7 +44,7 @@ Basically scientific notation for computers.
 
 ##.
 
-** How we write numbers
+** How do we write numbers?
 
 ** `0`
 
@@ -106,7 +106,7 @@ fifty-four million seven hundred forty thousand nine hundred ninety-one
 
 ## fragments
 
-(Biggest number we can represent in Javascript.)
+(Biggest number we can represent.)
 
 ##.
 
@@ -114,7 +114,7 @@ fifty-four million seven hundred forty thousand nine hundred ninety-one
 
 ## fragments
 
-(The \em{second} biggest number we can represent in Javascript.)
+(The \em{second} biggest number we can represent.)
 
 The gap between it and the biggest is `1.99584030953472e+292`
 
@@ -129,11 +129,28 @@ The gap between it and the biggest is `1.99584030953472e+292`
 
 ** `NaN`
 
-** What we can do with numbers
+** What can we do with numbers?
 
 ## fragments
 
 Math, mostly.
+
+##.
+
+** What does it even mean to \em{do} things with numbers?
+
+** _none
+
+A lot of programming is about combining smaller pieces into bigger pieces.
+
+** Expressions
+
+## fragments
+
+Expressions are a way of combining values (like numbers) with \em{operators} to
+produce new values.
+
+The exact operators depend on the types of the values.
 
 ##.
 
@@ -204,3 +221,45 @@ Would be better as `3.602879701896397e16`
 ** 1 + 2 * 3 ⟹ 7
 
 ** (1 + 2) * 3 ⟹ 9
+
+* Wrapping up
+
+** Two kinds of values
+
+## fragments
+
+Individual numbers are values.
+
+Expressions combine numbers to produce new values.
+
+##.
+
+** The same value can be written different ways
+
+## fragments
+
+`12345`
+
+`12_345`
+
+`12345.00`
+
+`1.2345e4`
+
+##.
+
+** Different expressions can have the same value
+
+## fragments
+
+`1`
+
+`43 / 43`
+
+`(108 - (2 ** 3)) * 0.01`
+
+##.
+
+** _none
+
+We’ll talk more later about what you can do with values.

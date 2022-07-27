@@ -1,0 +1,301 @@
+-*- mode: markup; -*-
+
+* Booleans
+
+The simplest data type!
+
+** Named after this guy
+
+\img{/img/360px-George_Boole_color.jpg}
+
+George Boole, English mathematician and logician
+
+** Only two values
+
+\p{\fragment{true} \fragment{false}}
+
+** Can also think of them as
+
+## fragments
+
+yes or no
+
+on or off
+
+etc.
+
+##.
+
+** Used with `if` …
+
+   if (<boolean>) {
+     // do something
+   }
+
+## fragments
+
+Yeah, we haven’t learned about `if` yet.
+
+##.
+
+** … and with `while`
+
+   while (<boolean>) {
+      // do something
+   }
+
+## fragments
+
+Haven’t learned about `while` yet, either.
+
+We’ll get to it.
+
+##.
+
+** But they are also values in their own right
+
+** We can ask our usual questons about values
+
+## fragments
+
+  # How they are represented inside the computer
+
+  # The syntax for writing them in our langauge
+
+  # What we can do with them
+
+##.
+
+** How are they represented in the computer?
+
+## fragments
+
+This time it really doesn’t matter.
+
+I literally do not know.
+
+##.
+
+** How do we write booleans?
+
+** `true`
+
+** `false`
+
+** That’s it.
+
+## fragments
+
+Unlike numbers, there aren’t different ways of writing the same literal value.
+
+##.
+
+** What can we do with booleans?
+
+## fragments
+
+Same as with numbers: combine them in expressions.
+
+But the operators are different.
+
+##.
+
+** Three logicial operators
+
+\fragment{AND}\fragment{, OR}\fragment{, and NOT}
+
+## fragments
+
+These are the three operators defined in Boolean Algrebra by our friend George
+Boole.
+
+##.
+
+** And
+
+## fragments
+
+Writen `&&`
+
+`true && false`
+
+Evaluates to true if, and only if, both of its operands are true.
+
+##.
+
+** true && true ⟹ true
+
+** true && false ⟹ false
+
+** false && true ⟹ false
+
+** false && false ⟹ false
+
+** Or
+
+## fragments
+
+Written `||`
+
+`true || false`
+
+Evaluates to true of either, or both, operands are true.
+
+##.
+
+** true || true ⟹ true
+
+** true || false ⟹ true
+
+** false || true ⟹ true
+
+** false || false ⟹ false
+
+** Not
+
+## fragments
+
+Written `!`
+
+`!true`
+
+Flips the logical value, true to false and false to true.
+
+##.
+
+** !true ⟹ false
+
+** !false ⟹ true
+
+** _none
+
+Writing expressions with all literal values (`true` and `false`) is kinda silly
+because we could just figure out what the value is and write that.
+
+** _none
+
+But they make a lot more sense when we are writing expressions in terms of
+named values.
+
+** _none
+
+Some examples.
+
+** Am I hangry?
+
+## fragments
+
+Suppose `hungry` is a boolean that says whether I’m hungry and `angry` says
+whether I’m angry.
+
+What’s an expression that captures whether or not I’m hangry?
+
+##.
+
+** `hungry && angry`
+
+** Do I stay up late?
+
+## fragments
+
+Suppose `homework` is a boolean that says whether I have homework to grade and
+`newEpisodes` is a boolean that says whethere there new episodes of my favorite
+TV show.
+
+What’s an expression that captures whether I will stay up late if I always stay
+up late to grade homework or to watch new episodes of my favorite show?
+
+##.
+
+** `homework || newEpisodes`
+
+** Am I awake?
+
+## fragments
+
+`asleep` is a boolean that says whether I’m asleep.
+
+What’s an expression that says whether I’m awake?
+
+##.
+
+** `!asleep`
+
+** Operators on other types that produce boolean values
+
+** Equality comparisons
+
+\fragments{\code{===}\code{ !==}}
+
+** Numeric comparisons
+
+\fragments{\code{ <}\code{ >}\code{ <=}\code{ >=}}
+
+** 1 === 2 ⟹ false
+
+** 1 !== 2 ⟹ true
+
+** 10 < 20 ⟹ true
+
+** 10 < 10 ⟹ false
+
+** 10 <= 10 ⟹ true
+
+** 10 <= (11 - 1) ⟹ true
+
+** 100 >= 200 ⟹ false
+
+** You can use the equality operators on booleans
+
+## fragments
+
+But it’s very rarely needed.
+
+##.
+
+** true === false ⟹ false
+
+** true !== false ⟹ true
+
+** _none
+
+And definitely don’t compare the value of a boolean expression to a boolean
+literal.
+
+** Instead of
+
+`x === true`
+
+## fragments
+
+just write:
+
+`x`
+
+##.
+
+** Otherwise why not write?
+
+## fragments
+
+`(x === true) === true`
+
+Or maybe?
+
+`((x === true) === true) === true`
+
+🤔
+
+##.
+
+** And instead of
+
+`x === false`
+
+## fragments
+
+just write:
+
+`!x`
+
+##.
