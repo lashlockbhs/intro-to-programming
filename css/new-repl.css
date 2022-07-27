@@ -40,3 +40,12 @@ body {
   vertical-align: top;
   width: 1.2em;
 }
+
+.highlight {
+  background: rgba(196, 128, 196, 0.7);
+  font-weight: 900;
+}
+
+.wrong-bracket {
+  background: red;
+}

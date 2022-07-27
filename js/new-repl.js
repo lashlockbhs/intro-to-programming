@@ -10,7 +10,6 @@
 // TODO:
 
 // - History on up and down arrow.
-// - Brace flashing.
 // - Shift movement for selection.
 // - Token colorizing.
 
@@ -34,6 +33,12 @@ class Repl {
       ArrowRight: this.right,
       'Control-a': this.bol,
       'Control-e': this.eol,
+      '(': (x) => this.openBracket(x, 'paren'),
+      ')': (x) => this.closeBracket(x, 'paren'),
+      '[': (x) => this.openBracket(x, 'square'),
+      ']': (x) => this.closeBracket(x, 'square'),
+      '{': (x) => this.openBracket(x, 'curly'),
+      '}': (x) => this.closeBracket(x, 'curly'),
     });
 
     this.keybindings.bindDefault(this.selfInsert);
@@ -46,6 +51,7 @@ class Repl {
 
       if (b) {
         b.call(this, x);
+        this.maybeHighlightBracket();
         e.stopPropagation();
         e.preventDefault();
       }
@@ -75,10 +81,55 @@ class Repl {
     const div = document.createElement('div');
     div.append(span('prompt', '»'));
     div.append(span('bol'));
-    // div.append(span("token")); // FIXME: actually use this.
     div.append(this.cursor);
     div.append(span('eol'));
     this.div.append(div);
+  }
+
+  maybeHighlightBracket() {
+    this.cursor.parentElement.querySelectorAll('.highlight').forEach((e) => {
+      e.classList.remove('highlight');
+      e.classList.remove('wrong-bracket');
+    });
+
+    const before = this.cursor.previousSibling;
+    const after = this.cursor.nextSibling;
+    if (isClose(before)) {
+      let closed = 0;
+      for (let n = before; !isBol(n); n = n.previousSibling) {
+        if (isClose(n)) {
+          closed++;
+        } else if (isOpen(n)) {
+          closed--;
+        }
+        if (closed === 0) {
+          before.classList.add('highlight');
+          n.classList.add('highlight');
+          if (bracketKind(before) !== bracketKind(n)) {
+            n.classList.add('wrong-bracket');
+          }
+          break;
+        }
+      }
+    }
+    if (isOpen(after)) {
+      let open = 0;
+      for (let n = after; !isEol(n); n = n.nextSibling) {
+        if (isOpen(n)) {
+          open++;
+        } else if (isClose(n)) {
+          open--;
+        }
+        if (open === 0) {
+          after.classList.add('highlight');
+          n.classList.add('highlight');
+          if (bracketKind(after) !== bracketKind(n)) {
+            n.classList.add('wrong-bracket');
+          }
+          break;
+        }
+      }
+    }
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -88,14 +139,23 @@ class Repl {
     this.cursor.parentElement.insertBefore(document.createTextNode(x.key), this.cursor);
   }
 
+  openBracket(x, kind) {
+    const p = span('open', x.key);
+    p.classList.add(kind);
+    this.cursor.parentElement.insertBefore(p, this.cursor);
+  }
+
+  closeBracket(x, kind) {
+    const p = span('close', x.key);
+    p.classList.add(kind);
+    this.cursor.parentElement.insertBefore(p, this.cursor);
+  }
+
   backspace() {
-    const last = this.cursor.previousSibling;
-    if (last.nodeType === 3) {
-      // TEXT_NODE
-      if (last.length === 1) {
-        last.parentElement.removeChild(last);
-      } else {
-        last.deleteData(last.length - 1, 1);
+    const e = this.cursor.previousSibling;
+    if (!isBol(e)) {
+      if (e.nodeType === 3 || e.nodeType === 1) {
+        e.parentElement.removeChild(e);
       }
     }
   }
@@ -107,8 +167,8 @@ class Repl {
 
   left() {
     const e = this.cursor.previousSibling;
-    if (e.nodeType === 3) {
-      if (e.length === 1) {
+    if (!isBol(e)) {
+      if (e.nodeType === 3 || e.nodeType === 1) {
         e.parentElement.insertBefore(this.cursor, e);
       }
     }
@@ -116,8 +176,8 @@ class Repl {
 
   right() {
     const e = this.cursor.nextSibling;
-    if (e.nodeType === 3) {
-      if (e.length === 1) {
+    if (!isEol(e)) {
+      if (e.nodeType === 3 || e.nodeType === 1) {
         e.parentElement.insertBefore(this.cursor, e.nextSibling);
       }
     }
@@ -173,5 +233,17 @@ class Keybindings {
     return false;
   }
 }
+
+const hasClass = (n, clazz) => n.classList && n.classList.contains(clazz);
+
+const isBol = (n) => hasClass(n, 'bol');
+
+const isEol = (n) => hasClass(n, 'eol');
+
+const isClose = (n) => hasClass(n, 'close');
+
+const isOpen = (n) => hasClass(n, 'open');
+
+const bracketKind = (n) => ['paren', 'square', 'curly'].find((k) => hasClass(n, k));
 
 new Repl(document.getElementById('repl')).start();
