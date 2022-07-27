@@ -6,9 +6,9 @@ The simplest data type!
 
 ** Named after this guy
 
-\img{/img/360px-George_Boole_color.jpg}
+\img{/img/Smaller-George_Boole_color.jpg}
 
-George Boole, English mathematician and logician
+George Boole, mid 19th century English mathematician and logician
 
 ** Only two values
 
