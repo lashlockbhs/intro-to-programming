@@ -230,6 +230,14 @@ const completedTable = () => {
 
 const login = new Login();
 
+// FIXME: should really have a toolbar module with an addButton method.
+const addSaveButton = (saveAnswers) => {
+  const toolbarButtons = document.querySelector('.itp-toolbar .buttons');
+  const saveButton = icon('save');
+  saveButton.onclick = saveAnswers;
+  toolbarButtons.append(saveButton);
+};
+
 const setup = async () => {
   const storage = await login.makeStorage();
 
@@ -249,6 +257,7 @@ const setup = async () => {
   };
 
   login.setupToolbar(onAttachToGithub);
+  addSaveButton(() => expressions.saveAnswers());
 
   if (storage.repo !== null) {
     console.log('Have storage. Could grab answers.');
