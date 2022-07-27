@@ -1,6 +1,4 @@
 import Login from './modules/login';
-import files from './modules/files';
-import github from './modules/github';
 import makeEvaluator from './modules/evaluator';
 import monaco from './modules/editor';
 import replize from './modules/repl';
@@ -39,24 +37,6 @@ const repl = replize('repl');
 // this back to a relative link. FIXME: is this still needed. I don't think so.
 const configuration = async () => fetch(`${window.location.pathname}config.json`).then(jsonIfOk);
 
-const makeStorage = async () => {
-  let branch = window.location.pathname.substring(1);
-
-  if (branch.endsWith('/')) {
-    branch = branch.substring(0, branch.length - 1);
-  }
-
-  let repo = null;
-  if (github.hasToken()) {
-    repo = await login.connectToGithub();
-  } else {
-    repo = null;
-    login.showBanner();
-  }
-
-  return files(branch, repo);
-};
-
 const maybeSetupTesting = (config) => {
   if (config.testing) {
     const testCases = config.testing.cases;
@@ -85,7 +65,7 @@ const randomFruitBomb = () => {
 
 const setup = async () => {
   const config = await configuration();
-  const storage = await makeStorage();
+  const storage = await login.makeStorage();
   const evaluator = makeEvaluator(config.iframe, config.script, repl, message);
 
   const testingCallback = maybeSetupTesting(config);
@@ -133,7 +113,7 @@ const setup = async () => {
     }
   };
 
-  login.setupToolbar(storage, onAttachToGithub);
+  login.setupToolbar(onAttachToGithub);
 
   if (storage.repo !== null) {
     storage.ensureFileInBranch(filename).then(fillEditor);

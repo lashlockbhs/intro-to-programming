@@ -1,3 +1,4 @@
+import files from './files';
 import github from './github';
 import { $$, icon, text, a, url } from './whjqah';
 
@@ -67,8 +68,7 @@ class Login {
     return this.isLoggedIn && this.isMember && this.problemMakingRepo === null;
   }
 
-  setupToolbar(storage, onAttachToGithub) {
-    this.storage = storage;
+  setupToolbar(onAttachToGithub) {
     this.onAttachToGithub = onAttachToGithub;
 
     const toolbarButtons = document.querySelector('.itp-toolbar .buttons');
@@ -190,6 +190,24 @@ class Login {
       span.append(u);
       button.replaceWith(span);
     }
+  }
+
+  async makeStorage() {
+    let branch = window.location.pathname.substring(1);
+
+    if (branch.endsWith('/')) {
+      branch = branch.substring(0, branch.length - 1);
+    }
+
+    let repo = null;
+    if (github.hasToken()) {
+      repo = await this.connectToGithub();
+    } else {
+      repo = null;
+      this.showBanner();
+    }
+    this.storage = files(branch, repo);
+    return this.storage;
   }
 }
 
