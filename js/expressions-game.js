@@ -10,7 +10,7 @@ const generators = {
 };
 
 class Expressions {
-  constructor(divs, marks, storage) {
+  constructor(divs, marks) {
     this.expressions = Array.from(divs).map((div, i) => new Expression(this, div, i));
     this.answers = [];
     this.i = 0;
@@ -19,7 +19,7 @@ class Expressions {
       e.hide();
       marks.appendChild(e.marker);
     });
-    this.storage = storage;
+    this.storage = null;
   }
 
   switchTo(exp) {
@@ -226,17 +226,16 @@ const addSaveButton = (saveAnswers) => {
 };
 
 const setup = async () => {
-  const storage = await login.makeStorage();
-
   const completed = completedTable();
   $('#completed').replaceChildren(completed.table);
 
   const expressions = new Expressions(
     $$('.expressions .expression'),
     document.querySelector('.expressions .marks'),
-    storage,
   );
   expressions.current.show();
+
+  expressions.storage = await login.makeStorage();
 
   const onAttachToGithub = async () => {
     console.log("Just attached to github. Should merge any answers in memory with what's in git.");
@@ -246,7 +245,7 @@ const setup = async () => {
   login.setupToolbar(onAttachToGithub);
   addSaveButton(() => expressions.saveAnswers());
 
-  if (storage.repo !== null) {
+  if (expressions.storage.repo !== null) {
     console.log('Have storage. Could grab answers.');
     expressions.loadAnswers(completed);
   } else {
