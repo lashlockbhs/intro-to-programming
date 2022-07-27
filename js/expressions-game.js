@@ -38,6 +38,14 @@ class Expressions {
     }
     return undefined;
   }
+
+  addAnswer(expr, answer, correct) {
+    const { name, canonical } = expr;
+    if (!(name in this.answers)) {
+      this.answers[expr.name] = { name, canonical, answers: [] };
+    }
+    this.answers[name].answers.push({ answer, correct });
+  }
 }
 
 class Expression {
@@ -47,13 +55,14 @@ class Expression {
     this.index = index;
 
     this.name = div.querySelector('h1').innerText;
+    this.canonical = div.dataset.expression;
     this.marker = icon('circle');
     this.answer = null;
 
     const input = div.dataset.variables.split(',').map((s) => s.split(':'));
     this.variables = input.map((x) => x[0]);
     this.generators = input.map((x) => generators[x[1]]);
-    this.expectedFn = new Function(this.variables, `return (${div.dataset.expression});`);
+    this.expectedFn = new Function(this.variables, `return (${this.canonical});`);
 
     this.marker.onclick = () => expressions.switchTo(this);
   }
@@ -70,6 +79,9 @@ class Expression {
     this.answer = answer;
     this.results = Array(100).fill().map(this.checker(answer));
     this.correct = this.results.every((r) => r.passed);
+
+    this.expressions.addAnswer(this, answer, this.correct);
+
     if (this.correct) {
       this.marker.childNodes[0].setAttributeNS(
         'http://www.w3.org/1999/xlink',
@@ -150,9 +162,9 @@ $('#expression-input').onchange = (e) => {
   const expr = expressions.current;
 
   try {
-    expr.check(e.target.value);
+    const correct = expr.check(e.target.value);
 
-    if (!expr.correct) {
+    if (!correct) {
       $('#results').replaceChildren(
         $(
           '<p>',
