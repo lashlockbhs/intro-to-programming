@@ -1,7 +1,8 @@
 /* eslint no-new-func: "off" */
 
-import { $, $$, icon } from './modules/whjqah';
+import Login from './modules/login';
 import makeTable from './modules/table';
+import { $, $$, icon } from './modules/whjqah';
 
 const generators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
@@ -181,3 +182,30 @@ $('#expression-input').onchange = (e) => {
     $('#results').replaceChildren(document.createTextNode(`Uh, oh! ${e.name}`));
   }
 };
+
+const login = new Login();
+
+const setup = async () => {
+  const storage = await login.makeStorage();
+
+  // For when we log in to GitHub after the user has loaded the page and maybe
+  // even edited the file. FIXME: this doesn't do anything with the machinery
+  // (which probably isn't fully baked) for saving versions of files while
+  // disconnected.
+  const onAttachToGithub = async () => {
+    // TODO: if there's a results file grab it and update our answers.
+    console.log("Just attached to github. Should merge any answers in memory with what's in git.");
+  };
+
+  login.setupToolbar(onAttachToGithub);
+
+  if (storage.repo !== null) {
+    console.log('Have storage. Could grab answers.');
+    // storage.ensureFileInBranch(filename).then(fillEditor);
+  } else {
+    console.log('No storage.');
+    // storage.load(filename).then(fillEditor);
+  }
+};
+
+setup();

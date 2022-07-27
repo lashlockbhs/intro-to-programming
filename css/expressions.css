@@ -1,4 +1,10 @@
 @import url('base.css');
+@import url('banner.css');
+@import url('toolbar.css');
+
+body {
+  background: rgba(196, 128, 196, 0.1);
+}
 
 .expressions {
   max-width: 40em;
