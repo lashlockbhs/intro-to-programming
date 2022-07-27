@@ -1,8 +1,3 @@
-- Save expressions answers into GitHub. Don't really want to save on every
-  attempt but maybe could. Basically need to keep the content in memory and
-  treat that in memory representation like the editor in index.js and get its
-  value and save it to the right branch.
-
 - Finish new-repl and replace REPL with it.
 
 - Fix REPL pretty printer
