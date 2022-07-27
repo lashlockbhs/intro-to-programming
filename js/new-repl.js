@@ -55,6 +55,7 @@ class Repl {
       const b = this.keybindings.getBinding(x);
 
       if (b) {
+        this.clearHighlights();
         b.call(this, x);
         this.maybeHighlightBracket();
         e.stopPropagation();
@@ -91,15 +92,17 @@ class Repl {
 
   addCursor(div) {
     const eol = div.querySelector('.eol');
-    div.insertBefore(this.cursor, eol);
+    eol.parentElement.insertBefore(this.cursor, eol);
   }
 
-  maybeHighlightBracket() {
+  clearHighlights() {
     this.cursor.parentElement.querySelectorAll('.highlight').forEach((e) => {
       e.classList.remove('highlight');
       e.classList.remove('wrong-bracket');
     });
+  }
 
+  maybeHighlightBracket() {
     const before = this.cursor.previousSibling;
     const after = this.cursor.nextSibling;
     if (isClose(before)) {
@@ -169,6 +172,7 @@ class Repl {
   }
 
   enter() {
+    console.log(this.current.querySelector('.text').innerText);
     this.cursor.parentElement.removeChild(this.cursor);
     this.history.push(this.current);
     this.historyPosition = this.history.length; // after end of history.
@@ -285,8 +289,11 @@ const bracketKind = (n) => ['paren', 'square', 'curly'].find((k) => hasClass(n, 
 const newDivAndPrompt = () => {
   const div = document.createElement('div');
   div.append(span('prompt', '»'));
-  div.append(span('bol'));
-  div.append(span('eol'));
+
+  const text = span('text');
+  text.append(span('bol'));
+  text.append(span('eol'));
+  div.append(text);
   return div;
 };
 
