@@ -103,6 +103,11 @@ class Expressions {
     this.answers.forEach(({ name, answer, correct }) => {
       completed.addRow([name, answer, correct ? '✅' : '❌']);
     });
+    this.expressions.forEach((expr) => {
+      if (this.answeredCorrectly(expr)) {
+        expr.fillMarker();
+      }
+    });
   }
 
   switchToNext(justLoaded) {
@@ -151,13 +156,17 @@ class Expression {
     const correct = this.results.every((r) => r.passed);
 
     if (correct) {
-      this.marker.childNodes[0].setAttributeNS(
-        'http://www.w3.org/1999/xlink',
-        'xlink:href',
-        `/img/bootstrap-icons.svg#circle-fill`,
-      );
+      this.fillMarker();
     }
     return correct;
+  }
+
+  fillMarker() {
+    this.marker.childNodes[0].setAttributeNS(
+      'http://www.w3.org/1999/xlink',
+      'xlink:href',
+      `/img/bootstrap-icons.svg#circle-fill`,
+    );
   }
 
   checker(answer) {
