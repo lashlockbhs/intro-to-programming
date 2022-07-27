@@ -57,7 +57,10 @@
 
 (defun fragments (doc config)
   (declare (ignore config))
-  (funcall (rewriter :fragments #'fragmentize) doc))
+  (funcall (>>>
+            (rewriter :fragment #'(lambda (e) `(:span :class "fragment" ,@(rest e))))
+            (rewriter :fragments #'fragmentize))
+           doc))
 
 (defun tdc (doc config)
   (declare (ignore config))
@@ -94,5 +97,5 @@ no good way to make a whole list into a fragment."
 
 (defun code-wrapper (e)
   `(:pre
-    ((:code :data-trim "" :data-noescape "" :class "language-javasscript")
+    ((:code :data-trim "" :data-noescape "" :class "language-javascript")
      ,@(rest e))))
