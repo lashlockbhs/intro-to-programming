@@ -27,6 +27,10 @@ class Table {
     });
     return row;
   }
+
+  clearAllRows() {
+    this.tbody.replaceChildren();
+  }
 }
 
 const makeTable = (columns) => new Table(columns);

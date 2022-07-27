@@ -62,9 +62,16 @@ class Files {
    * Get the file contents from Github from the default branch.
    */
   loadFromGithub(file) {
+    this.loadFromGithubOnBranch(file, this.branch);
+  }
+
+  /*
+   * Get the file contents from Github from the given branch.
+   */
+  loadFromGithubOnBranch(file, branch) {
     const path = this.gitPath(file);
     console.log(`Loading from github: ${path}`);
-    return this.repo.getFile(path, this.branch).then((file) => atob(file.content));
+    return this.repo.getFile(path, branch).then((file) => atob(file.content));
   }
 
   /*

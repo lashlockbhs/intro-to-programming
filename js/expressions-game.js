@@ -71,17 +71,7 @@ class Expressions {
       } else {
         $('#expression-input').value = '';
         completed.addRow([expr.name, answer, '✅']);
-        const n = this.next();
-        if (n) {
-          this.switchTo(n);
-          $('#results').replaceChildren();
-        } else {
-          $('#results').style.display = 'none';
-          document.querySelector('.expressions .marks').style.display = 'none';
-          document.querySelector('.expressions .questions').style.display = 'none';
-          document.querySelector('.expressions .done').hidden = false;
-          this.saveAnswers();
-        }
+        this.switchToNext(false);
       }
     } catch (e) {
       console.log(e);
@@ -103,6 +93,43 @@ class Expressions {
       JSON.stringify(this.answers, null, 2),
       'main',
     );
+  }
+
+  async loadAnswers(completed) {
+    try {
+      const text = await this.storage.loadFromGithubOnBranch('expressions.json', 'main');
+      this.answers = JSON.parse(text);
+      this.showAllAnswers(completed);
+      this.switchToNext(true);
+    } catch {
+      console.log('No answers to load.');
+    }
+  }
+
+  showAllAnswers(completed) {
+    console.log('showing answers');
+    completed.clearAllRows();
+    Object.entries(this.answers).forEach(([name, data]) => {
+      console.log(`name: ${name}`);
+      data.answers.forEach((a) => {
+        console.log(`a: ${JSON.stringify(a)}`);
+        completed.addRow([name, a.answer, a.correct ? '✅' : '❌']);
+      });
+    });
+  }
+
+  switchToNext(justLoaded) {
+    const n = this.next();
+    if (n) {
+      this.switchTo(n);
+      $('#results').replaceChildren();
+    } else {
+      $('#results').style.display = 'none';
+      document.querySelector('.expressions .marks').style.display = 'none';
+      document.querySelector('.expressions .questions').style.display = 'none';
+      document.querySelector('.expressions .done').hidden = false;
+      if (!justLoaded) this.saveAnswers();
+    }
   }
 }
 
@@ -216,23 +243,18 @@ const setup = async () => {
   );
   expressions.current.show();
 
-  // For when we log in to GitHub after the user has loaded the page and maybe
-  // even edited the file. FIXME: this doesn't do anything with the machinery
-  // (which probably isn't fully baked) for saving versions of files while
-  // disconnected.
   const onAttachToGithub = async () => {
-    // TODO: if there's a results file grab it and update our answers.
     console.log("Just attached to github. Should merge any answers in memory with what's in git.");
+    expressions.loadAnswers(completed);
   };
 
   login.setupToolbar(onAttachToGithub);
 
   if (storage.repo !== null) {
     console.log('Have storage. Could grab answers.');
-    // storage.ensureFileInBranch(filename).then(fillEditor);
+    expressions.loadAnswers(completed);
   } else {
     console.log('No storage.');
-    // storage.load(filename).then(fillEditor);
   }
 
   $('#expression-input').onchange = (e) => {
