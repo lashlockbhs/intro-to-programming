@@ -2,8 +2,11 @@
 
 (defun html (doc config)
   (let ((styles (config :styles config))
-        (scripts (config :scripts config)))
+        (scripts (config :scripts config))
+        (metadata (format nil "~&---~&tags: slides~&title: ~a~&---~&" (just-text (first (extract :h1 doc))))))
+
     `(:progn
+       (:noescape ,metadata)
        (:noescape "<!doctype html>")
        ((:html :lang "en")
         (:head

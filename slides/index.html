@@ -3,9 +3,12 @@ layout: homepage.liquid
 title: Slides
 ---
 
-  <h1>{{ title }}</h1>
+<h1>{{ title }}</h1>
 
+<p>
   <ul>
-    <li><a href="numbers/">Numbers (Week 1)</a></li>
-    <li><a href="booleans/">Booleans (Week 1)</a></li>
+    {%- for deck in collections.slides -%}
+    <li><a href="{{deck.url}}">{{ deck.data.title }}</a></li>
+    {%- endfor -%}
   </ul>
+</p>

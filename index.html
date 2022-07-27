@@ -47,10 +47,11 @@ title: BHS Intro to Programming
 </p>
 
 <p>
-  <ul>
-    <li><a href="/slides/numbers/">Numbers (week 1)</a></li>
-    <li><a href="/slides/booleans/">Booleans (week 1)</a></li>
-  </ul>
+<ul>
+{%- for deck in collections.slides -%}
+  <li><a href="{{deck.url}}">{{ deck.data.title }}</a></li>
+{%- endfor -%}
+</ul>
 </p>
 
 <p>
