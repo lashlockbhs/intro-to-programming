@@ -10,7 +10,7 @@ const generators = {
 };
 
 class Expressions {
-  constructor(divs, marks) {
+  constructor(divs, marks, storage) {
     this.expressions = Array.from(divs).map((div, i) => new Expression(this, div, i));
     this.answers = {};
     this.i = 0;
@@ -19,6 +19,7 @@ class Expressions {
       e.hide();
       marks.appendChild(e.marker);
     });
+    this.storage = storage;
   }
 
   switchTo(exp) {
@@ -37,6 +38,50 @@ class Expressions {
       }
     }
     return undefined;
+  }
+
+  checkAnswer(answer, completed) {
+    const expr = this.current;
+
+    try {
+      const correct = expr.check(answer);
+
+      this.addAnswer(expr, answer, correct);
+
+      if (!correct) {
+        $('#results').replaceChildren(
+          $(
+            '<p>',
+            `Uh, oh! ${expr.numWrong()} of ${
+              expr.results.length
+            } test cases failed. Here’s a sample.`,
+          ),
+          expr.problems(5),
+        );
+        completed.addRow([expr.name, expr.answer, '❌']);
+      } else {
+        $('#expression-input').value = '';
+        completed.addRow([expr.name, expr.answer, '✅']);
+        const n = this.next();
+        if (n) {
+          this.switchTo(n);
+          $('#results').replaceChildren();
+        } else {
+          $('#results').style.display = 'none';
+          document.querySelector('.expressions .marks').style.display = 'none';
+          document.querySelector('.expressions .questions').style.display = 'none';
+          document.querySelector('.expressions .done').hidden = false;
+          this.storage.saveToGithubOnBranch(
+            'expressions.json',
+            JSON.stringify(this.answers, null, 2),
+            'main',
+          );
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      $('#results').replaceChildren(document.createTextNode(`Uh, oh! ${e.name}`));
+    }
   }
 
   addAnswer(expr, answer, correct) {
@@ -79,8 +124,6 @@ class Expression {
     this.answer = answer;
     this.results = Array(100).fill().map(this.checker(answer));
     this.correct = this.results.every((r) => r.passed);
-
-    this.expressions.addAnswer(this, answer, this.correct);
 
     if (this.correct) {
       this.marker.childNodes[0].setAttributeNS(
@@ -147,58 +190,20 @@ const completedTable = () => {
   return t;
 };
 
-const completed = completedTable();
-
-$('#completed').replaceChildren(completed.table);
-
-const expressions = new Expressions(
-  $$('.expressions .expression'),
-  document.querySelector('.expressions .marks'),
-);
-
-expressions.current.show();
-
-$('#expression-input').onchange = (e) => {
-  const expr = expressions.current;
-
-  try {
-    const correct = expr.check(e.target.value);
-
-    if (!correct) {
-      $('#results').replaceChildren(
-        $(
-          '<p>',
-          `Uh, oh! ${expr.numWrong()} of ${
-            expr.results.length
-          } test cases failed. Here’s a sample.`,
-        ),
-        expr.problems(5),
-      );
-      completed.addRow([expr.name, expr.answer, '❌']);
-    } else {
-      $('#expression-input').value = '';
-      completed.addRow([expr.name, expr.answer, '✅']);
-      const n = expressions.next();
-      if (n) {
-        expressions.switchTo(n);
-        $('#results').replaceChildren();
-      } else {
-        $('#results').style.display = 'none';
-        document.querySelector('.expressions .marks').style.display = 'none';
-        document.querySelector('.expressions .questions').style.display = 'none';
-        document.querySelector('.expressions .done').hidden = false;
-      }
-    }
-  } catch (e) {
-    console.log(e);
-    $('#results').replaceChildren(document.createTextNode(`Uh, oh! ${e.name}`));
-  }
-};
-
 const login = new Login();
 
 const setup = async () => {
   const storage = await login.makeStorage();
+
+  const completed = completedTable();
+  $('#completed').replaceChildren(completed.table);
+
+  const expressions = new Expressions(
+    $$('.expressions .expression'),
+    document.querySelector('.expressions .marks'),
+    storage,
+  );
+  expressions.current.show();
 
   // For when we log in to GitHub after the user has loaded the page and maybe
   // even edited the file. FIXME: this doesn't do anything with the machinery
@@ -218,6 +223,10 @@ const setup = async () => {
     console.log('No storage.');
     // storage.load(filename).then(fillEditor);
   }
+
+  $('#expression-input').onchange = (e) => {
+    expressions.checkAnswer(e.target.value, completed);
+  };
 };
 
 setup();
