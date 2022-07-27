@@ -31,11 +31,7 @@ const message = (text, fade) => {
 const editor = monaco('editor');
 const repl = replize('repl');
 
-// The window.location.pathname thing below is part of our base href kludge to
-// deal with the monaco worker plugin files (see modules/editor.js). Since we've
-// likely set a <base> in our HTML we need to do this gross thing to convert
-// this back to a relative link. FIXME: is this still needed. I don't think so.
-const configuration = async () => fetch(`${window.location.pathname}config.json`).then(jsonIfOk);
+const configuration = async () => fetch('config.json').then(jsonIfOk);
 
 const maybeSetupTesting = (config) => {
   if (config.testing) {
