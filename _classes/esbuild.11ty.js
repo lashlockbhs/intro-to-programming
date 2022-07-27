@@ -2,8 +2,6 @@ const fs = require('fs');
 const esbuild = require('esbuild');
 const { NODE_ENV = 'production' } = process.env;
 
-const OUTPUT = '_site'; // has to match dir.output in .eleventy.js
-
 const monaco_workers = [
   'vs/editor/editor.worker.js',
   'vs/language/css/css.worker.js',
@@ -35,7 +33,7 @@ module.exports = class {
         '.ttf': 'file',
       },
       minify: false,
-      outdir: `${OUTPUT}/js`,
+      outdir: `${data.eleventyConfig.dir.output}/js`,
       sourcemap: true,
       target: 'es6',
     });
@@ -48,7 +46,7 @@ module.exports = class {
         '.ttf': 'file',
       },
       minify: true,
-      outdir: `${OUTPUT}/js`,
+      outdir: `${data.eleventyConfig.dir.output}/js`,
       outbase: './node_modules/monaco-editor/esm/',
       sourcemap: true,
       target: 'es6',

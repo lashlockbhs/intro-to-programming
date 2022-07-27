@@ -3,6 +3,9 @@ const pageDirs = ['assignments', 'calendar', 'demo'];
 const extensions = ['css', 'js', 'json', 'txt'];
 
 module.exports = function eleventyConfig(eleventyConfig) {
+  // Hack to make our configured output dir available to class-based templates.
+  eleventyConfig.addPlugin((ec) => ec.addGlobalData('eleventyConfig', ec));
+
   eleventyConfig.addWatchTarget('./js/');
 
   eleventyConfig.addPassthroughCopy('css');
