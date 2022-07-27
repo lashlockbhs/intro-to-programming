@@ -81,11 +81,7 @@ class Repl {
    * Output a log line in the repl div.
    */
   log(text) {
-    const div = document.createElement('div');
-    div.classList.add('log');
-    div.innerText = text;
-    this.div.append(div);
-    this.newPrompt();
+    this.toRepl(text, 'log');
   }
 
   /*
