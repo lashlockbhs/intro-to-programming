@@ -52,17 +52,23 @@ We’ll get to it.
 
 ##.
 
-** But they are also values in their own right
-
-** We can ask our usual questons about values
+** But the key thing is
 
 ## fragments
 
-  # How they are represented inside the computer
+They are just another kind of value.
 
-  # The syntax for writing them in our langauge
+##.
 
-  # What we can do with them
+** So we can ask our usual questons about values
+
+## fragments
+
+  # How are they represented inside the computer?
+
+  # What is the syntax for writing them in our langauge?
+
+  # What can we do with them?
 
 ##.
 
@@ -70,9 +76,11 @@ We’ll get to it.
 
 ## fragments
 
-This time it really doesn’t matter.
+This time it \em{really} doesn’t matter.
 
 I literally do not know.
+
+They are fully abstracted.
 
 ##.
 

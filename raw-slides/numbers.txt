@@ -16,11 +16,11 @@ Our first data type!
 
 ## fragments
 
-  # How they are represented inside the computer
+  # How they are represented inside the computer.
 
-  # The syntax for writing them in our langauge
+  # What the syntax is for writing them in our langauge.
 
-  # What we can do with them
+  # What we can do with them.
 
 ##.
 
