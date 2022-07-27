@@ -1,0 +1,61 @@
+#repl {
+  background: #fffffe;
+  overflow-y: scroll;
+  padding: 0.5em;
+}
+
+#repl:focus {
+  outline: none;
+}
+
+#repl:focus .cursor {
+  background: black;
+}
+
+#repl div {
+  padding-top: 0px;
+}
+
+span.prompt,
+span.output {
+  font-size: 1.3em;
+}
+
+#repl div.error {
+  color: #f44;
+}
+
+#repl div.message {
+  font-style: italic;
+}
+
+#repl div.value,
+div.error,
+div.message {
+  padding-bottom: 0.25em;
+}
+
+#repl div.log {
+  font-style: italic;
+}
+
+
+.cursor {
+  background: transparent;
+  display: inline-block;
+  width: 1px;
+}
+
+.prompt {
+  display: inline-block;
+  width: 1.2em;
+}
+
+.highlight {
+  background: rgba(196, 128, 196, 0.7);
+  font-weight: 900;
+}
+
+.wrong-bracket {
+  background: red;
+}

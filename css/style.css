@@ -2,6 +2,7 @@
 @import url('banner.css');
 @import url('toolbar.css');
 @import url('editor.css');
+@import url('repl.css');
 
 html {
   width: 100%;
@@ -86,43 +87,6 @@ iframe.test-cases {
 #editor,
 #repl {
   flex: 2 0 0;
-}
-
-#repl {
-  background: #fffffe;
-  overflow-y: scroll;
-  padding: 0.5em;
-}
-
-#repl div {
-  padding-top: 0px;
-}
-
-span.prompt,
-span.output {
-  font-size: 1.3em;
-}
-
-#repl div.error {
-  color: #f44;
-}
-
-#repl div.message {
-  font-style: italic;
-}
-
-#repl div.value,
-div.error,
-div.message {
-  padding-bottom: 13px;
-}
-
-#repl div.log {
-  font-style: italic;
-}
-
-*[contenteditable='true'] {
-  outline: unset;
 }
 
 .codeLink {

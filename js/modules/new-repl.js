@@ -76,6 +76,8 @@ class Repl {
     };
 
     this.div = document.getElementById(id);
+    this.div.setAttribute('autofocus', true);
+    this.div.setAttribute('tabindex', 0);
     this.cursor = span('cursor', '&nbsp;');
     this.keybindings = new Keybindings();
     this.current = null;
@@ -130,6 +132,10 @@ class Repl {
 
   start() {
     this.newPrompt();
+    this.div.focus();
+  }
+
+  focus() {
     this.div.focus();
   }
 
@@ -274,7 +280,17 @@ class Repl {
     this.cursor.parentElement.removeChild(this.cursor);
     this.history.push(this.current);
     this.historyPosition = this.history.length; // after end of history.
-    this.toRepl(this.current.querySelector('.text').innerText);
+
+    let text = this.current.querySelector('.text').innerText;
+
+    if (isExpression(text.trim())) {
+      while (text.endsWith(';')) {
+        text = text.substring(0, text.length - 1);
+      }
+      this.evaluate(`repl.print(\n${text}\n)`, 'repl');
+    } else {
+      this.evaluate(`\n${text}\nrepl.message("Ok.");`, 'repl');
+    }
   }
 
   left() {
