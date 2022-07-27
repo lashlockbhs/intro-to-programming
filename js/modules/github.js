@@ -3,6 +3,24 @@ import { Octokit } from '@octokit/core';
 
 const SCOPES = ['repo', 'user', 'read:org'];
 
+// This is basically a null set of protections, just to get rid of that
+// annoying, "You haven't protected your main branch!" warning on the website.
+// We'd kinda like to require pull requests to main except that our own code
+// wants to directly create files in main. I think in theory if this was a
+// proper GitHub App, I might be able to allow the app to do it while otherwise
+// requiring PRs. Something to investigate later.
+const mainBranchProtections = {
+  required_status_checks: null,
+  enforce_admins: true,
+  restrictions: null,
+  required_pull_request_reviews: null,
+  required_linear_history: false,
+  allow_force_pushes: false,
+  allow_deletions: false,
+  block_creations: false,
+  required_conversation_resolution: false,
+};
+
 const always = (x) => () => x;
 
 const getToken = () => sessionStorage.getItem('githubToken');
@@ -318,6 +336,21 @@ class Repo {
           return this.makeRef(ref, sha).then((r) => ({ ref: r, moved: false, created: true }));
         }
         throw e;
+      });
+  }
+
+  // It seems that the process for adding a user as an admin for their own repo
+  // happens asynchronously so immeediately after we made the repo they may not
+  // yet have the permissions needed to change the branch protection. So we'll
+  // just check that it's protected. (Kinda a bummer, I guess, that we check this
+  // every time they go to a new page. Hmmm.)
+  tryToProtectMain() {
+    return this.getBranchProtection('main')
+      .then(() => true)
+      .catch(() => {
+        this.updateBranchProtection('main', mainBranchProtections)
+          .then(() => true)
+          .catch(() => false);
       });
   }
 }

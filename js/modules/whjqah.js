@@ -20,6 +20,8 @@ function $(s, t) {
 
 const $$ = (selector) => document.querySelectorAll(selector);
 
+const text = (t) => document.createTextNode(t);
+
 /*
  * Remove all the children from the given DOM element.
  */
@@ -36,18 +38,6 @@ function clear(e) {
 function withClass(className, e) {
   e.className = className;
   return e;
-}
-
-/*
- * Find a child matching a predicate.
- */
-function findChild(e, fn) {
-  for (const c of e.children) {
-    if (fn(c)) {
-      return c;
-    }
-  }
-  return undefined;
 }
 
 /*
@@ -98,4 +88,23 @@ const githubLoginButton = () => {
   return span;
 };
 
-export { $, $$, clear, fill, findChild, findDescendant, githubLoginButton, icon, withClass };
+const el = (name, text) => {
+  const e = document.createElement(name);
+  if (text) e.innerText = text;
+  return e;
+};
+
+const a = (text, href, target) => {
+  const e = el('a', text);
+  e.setAttribute('href', href);
+  if (target) e.setAttribute('target', target);
+  return e;
+};
+
+const url = (s) => {
+  const e = el('a', s);
+  e.href = s;
+  return e;
+};
+
+export { $$, $, a, clear, fill, findDescendant, githubLoginButton, icon, text, url, withClass };
