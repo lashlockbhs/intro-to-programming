@@ -32,12 +32,21 @@ class Expressions {
     const currentIndex = this.current.index;
     for (let i = 0; i < this.expressions.length; i++) {
       const j = (i + currentIndex + 1) % this.expressions.length;
-      const exp = this.expressions[j];
-      if (!exp.correct) {
-        return exp;
+      const expr = this.expressions[j];
+      if (!this.answeredCorrectly(expr)) {
+        return expr;
       }
     }
     return undefined;
+  }
+
+  answeredCorrectly(expr) {
+    const { name } = expr;
+    if (name in this.answers) {
+      return this.answers[name].answers.some((a) => a.correct);
+    } else {
+      return false;
+    }
   }
 
   checkAnswer(answer, completed) {
@@ -58,10 +67,10 @@ class Expressions {
           ),
           expr.problems(5),
         );
-        completed.addRow([expr.name, expr.answer, '❌']);
+        completed.addRow([expr.name, answer, '❌']);
       } else {
         $('#expression-input').value = '';
-        completed.addRow([expr.name, expr.answer, '✅']);
+        completed.addRow([expr.name, answer, '✅']);
         const n = this.next();
         if (n) {
           this.switchTo(n);
@@ -71,11 +80,7 @@ class Expressions {
           document.querySelector('.expressions .marks').style.display = 'none';
           document.querySelector('.expressions .questions').style.display = 'none';
           document.querySelector('.expressions .done').hidden = false;
-          this.storage.saveToGithubOnBranch(
-            'expressions.json',
-            JSON.stringify(this.answers, null, 2),
-            'main',
-          );
+          this.saveAnswers();
         }
       }
     } catch (e) {
@@ -91,6 +96,14 @@ class Expressions {
     }
     this.answers[name].answers.push({ answer, correct });
   }
+
+  saveAnswers() {
+    this.storage.saveToGithubOnBranch(
+      'expressions.json',
+      JSON.stringify(this.answers, null, 2),
+      'main',
+    );
+  }
 }
 
 class Expression {
@@ -101,14 +114,13 @@ class Expression {
 
     this.name = div.querySelector('h1').innerText;
     this.canonical = div.dataset.expression;
-    this.marker = icon('circle');
-    this.answer = null;
 
     const input = div.dataset.variables.split(',').map((s) => s.split(':'));
     this.variables = input.map((x) => x[0]);
     this.generators = input.map((x) => generators[x[1]]);
     this.expectedFn = new Function(this.variables, `return (${this.canonical});`);
 
+    this.marker = icon('circle');
     this.marker.onclick = () => expressions.switchTo(this);
   }
 
@@ -121,18 +133,17 @@ class Expression {
   }
 
   check(answer) {
-    this.answer = answer;
     this.results = Array(100).fill().map(this.checker(answer));
-    this.correct = this.results.every((r) => r.passed);
+    const correct = this.results.every((r) => r.passed);
 
-    if (this.correct) {
+    if (correct) {
       this.marker.childNodes[0].setAttributeNS(
         'http://www.w3.org/1999/xlink',
         'xlink:href',
         `/img/bootstrap-icons.svg#circle-fill`,
       );
     }
-    return this.correct;
+    return correct;
   }
 
   checker(answer) {
