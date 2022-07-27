@@ -12,7 +12,7 @@ const generators = {
 class Expressions {
   constructor(divs, marks, storage) {
     this.expressions = Array.from(divs).map((div, i) => new Expression(this, div, i));
-    this.answers = {};
+    this.answers = [];
     this.i = 0;
     this.current = this.expressions[this.i];
     this.expressions.forEach((e) => {
@@ -41,12 +41,7 @@ class Expressions {
   }
 
   answeredCorrectly(expr) {
-    const { name } = expr;
-    if (name in this.answers) {
-      return this.answers[name].answers.some((a) => a.correct);
-    } else {
-      return false;
-    }
+    return this.answers.some(({ name, correct }) => correct && name === expr.name);
   }
 
   checkAnswer(answer, completed) {
@@ -80,11 +75,8 @@ class Expressions {
   }
 
   addAnswer(expr, answer, correct) {
-    const { name, canonical } = expr;
-    if (!(name in this.answers)) {
-      this.answers[expr.name] = { name, canonical, answers: [] };
-    }
-    this.answers[name].answers.push({ answer, correct });
+    const { name } = expr;
+    this.answers.push({ name, answer, correct });
   }
 
   saveAnswers() {
@@ -107,14 +99,9 @@ class Expressions {
   }
 
   showAllAnswers(completed) {
-    console.log('showing answers');
     completed.clearAllRows();
-    Object.entries(this.answers).forEach(([name, data]) => {
-      console.log(`name: ${name}`);
-      data.answers.forEach((a) => {
-        console.log(`a: ${JSON.stringify(a)}`);
-        completed.addRow([name, a.answer, a.correct ? '✅' : '❌']);
-      });
+    this.answers.forEach(({ name, answer, correct }) => {
+      completed.addRow([name, answer, correct ? '✅' : '❌']);
     });
   }
 
