@@ -1,8 +1,14 @@
+import * as acorn from 'acorn';
+import * as walk from 'acorn-walk';
+
+// The whole point of this code is to use Function() to evaluate code, so:
 /* eslint no-new-func: "off" */
 
 import Login from './modules/login';
 import makeTable from './modules/table';
 import { $, $$, icon } from './modules/whjqah';
+
+const ACORN_OPTS = { ecmaVersion: 2022 };
 
 const randomGenerators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
@@ -43,6 +49,29 @@ const exhaustive = (types) => {
 };
 
 const generateRandom = (types) => types.map((t) => randomGenerators[t]());
+
+////////////////////////////////////////////////////////////////////////////////
+// Type inference
+
+const inferTypes = (text) => {
+  const expr = acorn.parseExpressionAt(text, 0, ACORN_OPTS);
+  if (expr.type === 'LogicalExpression') {
+    const variables = {};
+    walk.simple(expr, {
+      Identifier(node) {
+        variables[node.name] = 'boolean';
+      },
+    });
+    return variables;
+  } else {
+    return null;
+  }
+};
+
+const parseVariables = (s) => s ? Object.fromEntries(s.split(',').map((s) => s.split(':'))) : null;
+
+// End type inference
+////////////////////////////////////////////////////////////////////////////////
 
 class Expressions {
   constructor(divs, marks) {
@@ -169,9 +198,16 @@ class Expression {
     this.name = div.querySelector('h1').innerText;
     this.canonical = div.dataset.expression;
 
-    const input = div.dataset.variables.split(',').map((s) => s.split(':'));
-    this.variables = input.map((x) => x[0]);
-    this.types = input.map((x) => x[1]);
+    const vars = parseVariables(div.dataset.variables) ?? inferTypes(this.canonical);
+
+    if (vars === null) {
+      throw new Error(
+        `No explicit variable declaration and can't infer types from ${this.canonical}`,
+      );
+    }
+
+    this.variables = Object.keys(vars);
+    this.types = Object.values(vars);
     this.expectedFn = new Function(this.variables, `return (${this.canonical});`);
 
     this.marker = icon('circle');
