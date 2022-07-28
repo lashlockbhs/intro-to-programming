@@ -4,10 +4,45 @@ import Login from './modules/login';
 import makeTable from './modules/table';
 import { $, $$, icon } from './modules/whjqah';
 
-const generators = {
+const randomGenerators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
   number: () => -100 + Math.random() * 2 * 100,
+  boolean: () => Math.random() < 0.5,
 };
+
+const allValues = {
+  boolean: [true, false],
+};
+
+/*
+ * Generate (at most) n test cases. For some combinations of types we can
+ * exhaustively generate all possible sets of arguments otherwise we generate a
+ * set of n random cases.
+ */
+const testCases = (types, n) => {
+  if (types.every((t) => t in allValues) && cardinality(types) <= n) {
+    return exhaustive(types);
+  } else {
+    return Array(n)
+      .fill()
+      .map(() => generateRandom(types));
+  }
+};
+
+const cardinality = (types) => types.reduce((acc, t) => acc * allValues[t].length, 1);
+
+const exhaustive = (types) => {
+  if (types.length === 0) {
+    return [];
+  } else if (types.length === 1) {
+    return allValues[types[0]].map((v) => [v]);
+  } else {
+    const rest = exhaustive(types.slice(1));
+    return allValues[types[0]].flatMap((v) => rest.map((r) => [v, ...r]));
+  }
+};
+
+const generateRandom = (types) => types.map((t) => randomGenerators[t]());
 
 class Expressions {
   constructor(divs, marks) {
@@ -136,7 +171,7 @@ class Expression {
 
     const input = div.dataset.variables.split(',').map((s) => s.split(':'));
     this.variables = input.map((x) => x[0]);
-    this.generators = input.map((x) => generators[x[1]]);
+    this.types = input.map((x) => x[1]);
     this.expectedFn = new Function(this.variables, `return (${this.canonical});`);
 
     this.marker = icon('circle');
@@ -152,7 +187,7 @@ class Expression {
   }
 
   check(answer) {
-    this.results = Array(100).fill().map(this.checker(answer));
+    this.results = testCases(this.types, 1024).map(this.checker(answer));
     const correct = this.results.every((r) => r.passed);
 
     if (correct) {
@@ -172,8 +207,7 @@ class Expression {
   checker(answer) {
     const fn = Function(this.variables, `return (${answer});`);
 
-    return () => {
-      const args = this.generators.map((g) => g());
+    return (args) => {
       const expected = this.expectedFn(...args);
       try {
         const got = fn(...args);
@@ -206,15 +240,22 @@ class Expression {
 }
 
 const equal = (a, b) => {
-  if (Number.isInteger(a) && Number.isInteger(b)) {
-    return a === b;
-  } else {
+  if (a === b) {
+    // Actually the same, we're good.
+    return true;
+  } else if (typeof a !== typeof b) {
+    // We're strict about types.
+    return false;
+  } else if (isFloat(a) || isFloat(b)) {
     // Check non integers by relative tolerance.
     const relError = Math.abs(a - b) / Math.abs((a + b) / 2);
-    // This is probably way too conservative
-    return relError <= 0.00001;
+    return relError <= 0.00001; // This may be way too conservative
+  } else {
+    return false;
   }
 };
+
+const isFloat = (n) => typeof n === 'number' && !Number.isInteger(n);
 
 const completedTable = () => {
   const t = makeTable();
