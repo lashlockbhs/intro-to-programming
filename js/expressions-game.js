@@ -1,5 +1,4 @@
-import * as acorn from 'acorn';
-import * as walk from 'acorn-walk';
+import { inferTypes } from './modules/type-inference';
 
 // The whole point of this code is to use Function() to evaluate code, so:
 /* eslint no-new-func: "off" */
@@ -8,11 +7,10 @@ import Login from './modules/login';
 import makeTable from './modules/table';
 import { $, $$, icon } from './modules/whjqah';
 
-const ACORN_OPTS = { ecmaVersion: 2022 };
-
 const randomGenerators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
   number: () => -100 + Math.random() * 2 * 100,
+  notZero: () => (1 + Math.floor(Math.random() * 100)) * (Math.random() < 0.5 ? 1 : -1),
   boolean: () => Math.random() < 0.5,
 };
 
@@ -50,25 +48,8 @@ const exhaustive = (types) => {
 
 const generateRandom = (types) => types.map((t) => randomGenerators[t]());
 
-////////////////////////////////////////////////////////////////////////////////
-// Type inference
-
-const inferTypes = (text) => {
-  const expr = acorn.parseExpressionAt(text, 0, ACORN_OPTS);
-  if (expr.type === 'LogicalExpression') {
-    const variables = {};
-    walk.simple(expr, {
-      Identifier(node) {
-        variables[node.name] = 'boolean';
-      },
-    });
-    return variables;
-  } else {
-    return null;
-  }
-};
-
-const parseVariables = (s) => s ? Object.fromEntries(s.split(',').map((s) => s.split(':'))) : null;
+const parseVariables = (s) =>
+  s ? Object.fromEntries(s.split(',').map((s) => s.split(':'))) : null;
 
 // End type inference
 ////////////////////////////////////////////////////////////////////////////////
@@ -144,11 +125,13 @@ class Expressions {
   }
 
   saveAnswers() {
-    this.storage.saveToGithubOnBranch(
-      'expressions.json',
-      JSON.stringify(this.answers, null, 2),
-      'main',
-    );
+    if (this.storage.reop) {
+      this.storage.saveToGithubOnBranch(
+        'expressions.json',
+        JSON.stringify(this.answers, null, 2),
+        'main',
+      );
+    }
   }
 
   async loadAnswers(completed) {
