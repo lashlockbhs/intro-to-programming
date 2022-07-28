@@ -86,7 +86,6 @@ table.problems td {
 th.problem,
 td.problem {
   text-align: left;
-  width: 60%;
 }
 
 th.answer,
@@ -97,5 +96,8 @@ td.answer {
 th.ok,
 td.ok {
   text-align: center;
-  width: 5%;
+}
+
+th.ok {
+  width: fit-content;
 }
