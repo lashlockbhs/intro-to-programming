@@ -27,10 +27,20 @@ title: BHS Intro to Programming
   <ul>
     <li><a href="/demo/repl/">Play with a REPL</a></li>
     <li><a href="/assignments/bouncing-ball">Bouncing ball</a></li>
-    <li><a href="/assignments/geometry-expressions/">Geometry expressions</a>
-    <li><a href="/assignments/test-cases-01">Testing</a></li>
   </ul>
 </p>
+
+<h1>Expression problem sets</h1>
+
+<p>
+  <ul>
+    {%- for set in collections.expressions -%}
+    <li><a href="{{set.url}}">{{ set.data.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+</p>
+
+<h1>Class calendar</h1>
 
 <p>
   I also have a tentative <a href="calendar/">class calendar</a>. Obviously
@@ -40,19 +50,23 @@ title: BHS Intro to Programming
   working on this and probably will be up until the first day of school.
 </p>
 
+<h1>Slides</h1>
+
 <p>
   I haven’t made a bunch of slides yet but as I do, I’ll add them here. Note,
   they probably won’t make a ton of sense without me talking over them. So come
-  to class, or hope I make a video.
+  to class. Or hope I make a video.
 </p>
 
 <p>
-<ul>
-{%- for deck in collections.slides -%}
-  <li><a href="{{deck.url}}">{{ deck.data.title }}</a></li>
-{%- endfor -%}
-</ul>
+  <ul>
+    {%- for deck in collections.slides -%}
+    <li><a href="{{deck.url}}">{{ deck.data.title }}</a></li>
+    {%- endfor -%}
+  </ul>
 </p>
+
+<h1>Games</h1>
 
 <p>
   Finally, same games. Don't expect wildy immersive game play but these will
