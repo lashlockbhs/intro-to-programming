@@ -181,6 +181,7 @@ class Repl {
     span.append(arrow);
     span.append(textNode(pretty(value)));
     this.toRepl(span, 'value');
+    this.newPrompt();
   }
 
   /*
@@ -191,7 +192,6 @@ class Repl {
     div.classList.add(clazz);
     div.append(text);
     this.div.append(div);
-    this.newPrompt();
   }
 
   addCursor(div) {
