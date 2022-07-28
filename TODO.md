@@ -1,3 +1,7 @@
+- Fix pasting into REPL
+
+- Make fake Console methods into properties so .forEach(console.log) works.
+
 - Fix REPL pretty printer
 
 - Give a way to explicitly save with a comment so the branches aren't 100% "Updating".
