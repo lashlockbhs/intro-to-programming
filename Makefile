@@ -32,7 +32,7 @@ strict_lint:
 	npx eslint $(eslint_opts) $(eslint_strict_opts) *.js modules/*.js
 
 quick_lint:
-	npx eslint $(eslint_opts) $(shell git diff --name-only | grep '.js$$')
+	npx eslint $(eslint_opts) --fix $(shell git diff --name-only | grep '.js$$')
 
 
 serve:
