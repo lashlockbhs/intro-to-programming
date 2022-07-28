@@ -1,4 +1,4 @@
-const pageDirs = ['assignments', 'calendar', 'demo'];
+const pageDirs = ['assignments', 'calendar', 'demo', 'expressions'];
 
 const extensions = ['css', 'js', 'json', 'txt'];
 
