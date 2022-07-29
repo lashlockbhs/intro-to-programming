@@ -82,7 +82,7 @@ class Repl {
     this.keybindings = new Keybindings();
     this.current = null;
     this.history = [];
-    this.historyPosition = 1;
+    this.historyPosition = 0;
 
     this.keybindings.bind({
       Backspace: this.backspace,
