@@ -1,7 +1,7 @@
 import Login from './modules/login';
 import makeEvaluator from './modules/evaluator';
 import monaco from './modules/editor';
-import replize from './modules/new-repl';
+import replize from './modules/repl';
 import testing from './modules/testing';
 import { jsonIfOk } from './modules/fetch-helpers';
 import { choice } from './modules/shuffle';
