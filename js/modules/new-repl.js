@@ -120,7 +120,7 @@ class Repl {
 
     this.div.onpaste = (e) => {
       const data = e.clipboardData.getData('text/plain');
-      data.forEach((c) => {
+      [...data].forEach((c) => {
         const x = { key: c, ctrlKey: false, metaKey: false, altKey: false };
         const b = this.keybindings.getBinding(x);
         if (b) {
@@ -168,6 +168,7 @@ class Repl {
    */
   error(text) {
     this.toRepl(textNode(text), 'error');
+    this.newPrompt();
   }
 
   /*
