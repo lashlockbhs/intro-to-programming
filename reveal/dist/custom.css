@@ -21,3 +21,7 @@ span.prompt {
 .reveal .footer.logo {
   color: #888;
 }
+
+.reveal code {
+  font-weight: 900;
+}

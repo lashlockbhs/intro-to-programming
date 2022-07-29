@@ -1,7 +1,9 @@
 ---
 tags: slides
 title: Strings
+date: 2022-08-21
 ---
+
 <!doctype html>
 <html lang='en'>
     <head>
@@ -23,6 +25,178 @@ title: Strings
             <div class='slides'>
                 <section>
                     <h1>Strings</h1>
+                    <p>Also known as text.</p>
+                </section>
+                <section>
+                    <h2>Think a string of pearls</h2>
+                    <p><img src='/img/pearls.png'></p>
+                </section>
+                <section>
+                    <h2>Or a string of ponies</h2>
+                    <p><img src='/img/ponies.jpeg'></p>
+                </section>
+                <section>
+                    <h2>Strings are yet another kind of value</h2>
+                    <p class='fragment'>So we can ask our usual questons</p>
+                </section>
+                <section>
+                    <h2>How are strings represented in the computer?</h2>
+                </section>
+                <section>
+                    <p>As with other data types in Javascript, it is mostly abstracted.</p>
+                    <p class='fragment'>But a string is a collection of “code points” which roughly correspond to the individual characters.</p>
+                    <p class='fragment'>The length of the string is also part of its internal representation.</p>
+                </section>
+                <section>
+                    <h2>How do we write strings?</h2>
+                    <p class='fragment'>Two ways to write true literal strings.</p>
+                </section>
+                <section>
+                    <h2><code>"foo"</code></h2>
+                </section>
+                <section>
+                    <h2><code>'foo'</code></h2>
+                </section>
+                <section>
+                    <p>Note that the quotation marks are <em>not</em> part of the string.</p>
+                    <p class='fragment'>Both <code>"foo"</code> and <code>'foo'</code> are three characters long.</p>
+                    <p class='fragment'>They also represent the same value despite being written differently.</p>
+                </section>
+                <section>
+                    <h2>Escapes</h2>
+                    <p class='fragment'>Sometimes we need to include characters in a string that aren’t part of the syntax.</p>
+                    <p class='fragment'>I.e. we need to <em>escape</em> from the normal syntax.</p>
+                </section>
+                <section>
+                    <h2><code>'foo\nbar'</code></h2>
+                    <p>This string is seven characters long.</p>
+                    <p>The <code>\n</code> represents a “newline” character.</p>
+                </section>
+                <section>
+                    <h2>Sadly escaping begets more escaping</h2>
+                </section>
+                <section>
+                    <h2><code>'foo\\nbar'</code></h2>
+                    <p>This string is eight characters long.</p>
+                    <p>The <code>\\</code> represents a single <code>\</code> character and the <code>n</code> is just an n.</p>
+                </section>
+                <section>
+                    <h2>What can we do with strings?</h2>
+                    <ul>
+                        <li class='fragment'>
+                        <p>Smoosh them together</p>
+                        </li>
+                        <li class='fragment'>
+                        <p>Take them apart</p>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>The <code>+</code> operator works on strings</h2>
+                    <p>Also known as “concatenation”</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'foo' + 'bar' </span>
+                        </div>
+                        <div class='fragment'>
+                             'foobar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>⚠️ Watch out though ⚠️</h2>
+                    <p>When asked to add different types of values, and one of them is a string, it will convert the other one to a string and then concatenate them.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>1 + '0' </span>
+                        </div>
+                        <div class='fragment'>
+                             '10'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <p>But the other arithmetic operators will convert strings to numbers in mixed expressions.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>1 * '0' </span>
+                        </div>
+                        <div class='fragment'>
+                             0
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>What can I say?</h2>
+                    <p>Javascript is messy.</p>
+                    <p><img src='/img/mess.gif'></p>
+                </section>
+                <section>
+                    <h2>Taking apart strings</h2>
+                </section>
+                <section>
+                    <h2><code>[]</code> operator</h2>
+                    <p class='fragment'>Called “square brackets” or the “index” operator.</p>
+                    <p class='fragment'>Allows us to select a single character out of a string.</p>
+                    <p class='fragment'>Unlike operators like <code>+</code> and <code>*</code>, it doesn’t go between its operands.</p>
+                    <p class='fragment'>Also its operands are not the same type.</p>
+                </section>
+                <section>
+                    <h2><em>string</em><code>[</code><em>index</em><code>]</code></h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'abc'[0] </span>
+                        </div>
+                        <div class='fragment'>
+                             'a'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'abc'[1] </span>
+                        </div>
+                        <div class='fragment'>
+                             'b'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'abc'[2] </span>
+                        </div>
+                        <div class='fragment'>
+                             'c'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2><code>substring</code> method.</h2>
+                </section>
+                <section>
+                    <h2>Template strings</h2>
                 </section>
             </div>
         </div>

@@ -1,3 +1,152 @@
 -*- mode: markup; -*-
 
 * Strings
+
+Also known as text.
+
+** Think a string of pearls
+
+\img{/img/pearls.png}
+
+** Or a string of ponies
+
+\img{/img/ponies.jpeg}
+
+** Strings are yet another kind of value
+
+## fragments
+
+So we can ask our usual questons
+
+##.
+
+** How are strings represented in the computer?
+
+** _none
+
+As with other data types in Javascript, it is mostly abstracted.
+
+## fragments
+
+But a string is a collection of “code points” which roughly correspond to the
+individual characters.
+
+The length of the string is also part of its internal representation.
+
+##.
+
+** How do we write strings?
+
+## fragments
+
+Two ways to write true literal strings.
+
+##.
+
+** `"foo"`
+
+** `'foo'`
+
+** _none
+
+Note that the quotation marks are \em{not} part of the string.
+
+## fragments
+
+Both `"foo"` and `'foo'` are three characters long.
+
+They also represent the same value despite being written differently.
+
+##.
+
+** Escapes
+
+## fragments
+
+Sometimes we need to include characters in a string that aren’t part of the
+syntax.
+
+I.e. we need to \em{escape} from the normal syntax.
+
+##.
+
+** `'foo\nbar'`
+
+This string is seven characters long.
+
+The `\n` represents a “newline” character.
+
+** Sadly escaping begets more escaping
+
+** `'foo\\nbar'`
+
+This string is eight characters long.
+
+The `\\` represents a single `\` character and the `n` is just an n.
+
+
+** What can we do with strings?
+
+## fragments
+
+  - Smoosh them together
+
+  - Take them apart
+
+##.
+
+** The `+` operator works on strings
+
+Also known as “concatenation”
+
+** 'foo' + 'bar' ⟹ 'foobar'
+
+** ⚠️ Watch out though ⚠️
+
+When asked to add different types of values, and one of them is a string, it
+will convert the other one to a string and then concatenate them.
+
+** 1 + '0' ⟹ '10'
+
+** _none
+
+But the other arithmetic operators will convert strings to numbers in mixed
+expressions.
+
+** 1 * '0' ⟹ 0
+
+** What can I say?
+
+Javascript is messy.
+
+\img{/img/mess.gif}
+
+** Taking apart strings
+
+** `[]` operator
+
+## fragments
+
+Called “square brackets” or the “index” operator.
+
+Allows us to select a single character out of a string.
+
+Unlike operators like `+` and `*`, it doesn’t go between its operands.
+
+Also its operands are not the same type.
+
+##.
+
+** \em{string}`[`\em{index}`]`
+
+** 'abc'\[0\] ⟹ 'a'
+
+** 'abc'\[1\] ⟹ 'b'
+
+** 'abc'\[2\] ⟹ 'c'
+
+** `substring` method.
+
+
+
+** Template strings
