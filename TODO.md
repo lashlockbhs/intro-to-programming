@@ -1,5 +1,3 @@
-- Fix pasting into REPL
-
 - Make fake Console methods into properties so .forEach(console.log) works.
 
 - Fix REPL pretty printer
