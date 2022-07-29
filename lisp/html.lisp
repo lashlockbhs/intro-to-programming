@@ -1,12 +1,13 @@
 (in-package :reveal)
 
 (defun html (doc config)
-  (let ((styles (config :styles config))
-        (scripts (config :scripts config))
-        (metadata (format nil "~&---~&tags: slides~&title: ~a~&---~&" (just-text (first (extract :h1 doc))))))
+  (let* ((styles (config :styles config))
+        ;;(scripts (config :scripts config)
+         (title (just-text (first (extract :h1 doc))))
+         (date (cdr (assoc (keywordize title) (rest (assoc :dates config))))))
 
     `(:progn
-       (:noescape ,metadata)
+       (:noescape ,(metadata title date))
        (:noescape "<!doctype html>")
        ((:html :lang "en")
         (:head
@@ -40,6 +41,13 @@
               plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
             });")))))))
 
+(defun metadata (title date)
+  (with-output-to-string (s)
+    (format s "~&---")
+    (format s "~&tags: slides")
+    (format s "~&title: ~a" title)
+    (format s "~&date: ~a" date)
+    (format s "~&---~2%")))
 
 (defun split-to-slides (doc)
   (let ((sections ())

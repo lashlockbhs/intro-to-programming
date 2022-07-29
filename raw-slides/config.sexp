@@ -12,3 +12,7 @@
  reveal::fragments
  reveal::tdc
  reveal::h2-repl)
+
+(:dates
+ (:numbers . "2022-08-17")
+ (:booleans . "2022-08-19"))
