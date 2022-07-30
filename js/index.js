@@ -122,8 +122,6 @@ const setup = async () => {
   $('.itp-editor .minibuffer').onclick = () => {
     $('.itp-editor .minibuffer').innerText = '';
   };
-
-  repl.focus();
 };
 
 setup();

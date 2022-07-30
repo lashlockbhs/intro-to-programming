@@ -130,12 +130,9 @@ class Repl {
     };
   }
 
-  start() {
+  restart() {
+    this.div.replaceChildren();
     this.newPrompt();
-    this.div.focus();
-  }
-
-  focus() {
     this.div.focus();
   }
 

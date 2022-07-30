@@ -25,7 +25,7 @@ class Evaluator {
     this.repl.evaluate = (code, source) => this.evaluate(code, source);
     this.message = message;
     this.iframe = null;
-    this.resetIframe(() => repl.start());
+    this.resetIframe();
     this.fromRepl = false;
   }
 
@@ -74,7 +74,10 @@ class Evaluator {
     // add it to the document or at some later point. But we don't want to run
     // the after callback until all the setup in this function is complete.
     // Which is exactly what queueMicrotask is for, it seems. So here we are.
-    f.onload = () => queueMicrotask(after);
+    f.onload = () => {
+      if (after) queueMicrotask(after);
+      queueMicrotask(() => this.repl.restart());
+    }
 
     Object.entries(this.config).forEach(([k, v]) => {
       f.setAttribute(k, v);
