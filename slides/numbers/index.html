@@ -46,19 +46,28 @@ date: 2022-08-17
                 </section>
                 <section>
                     <h2>What values can be represented?</h2>
+                    <p class='fragment'>Numbers are infinite.</p>
+                    <p class='fragment'>Computers are finite.</p>
+                    <p class='fragment'>What to do?</p>
                 </section>
                 <section>
-                    <h2>How are numbers represented in the computer?</h2>
+                    <h2>Like many things in computers, we compromise</h2>
+                    <p class='fragment'>Javascript uses a format that is well supported by modern computers, called binary floating point.</p>
+                    <p class='fragment'>Basically scientific notation for computers.</p>
+                </section>
+                <section>
+                    <h2>Good general purpose format</h2>
+                    <p class='fragment'>It can represent integer values from -2<sup>53</sup> to 2<sup>53</sup> (-9,007,199,254,740,992 to 9,007,199,254,740,992)</p>
+                    <p class='fragment'>It can represent decimal values and very large numbers with approximately 15 decimal digits of precision.</p>
+                    <p class='fragment'>It can also represent very small numbers near zero with greater precision.</p>
+                </section>
+                <section>
+                    <h2>What does this mean for us?</h2>
                     <p class='fragment'>We don’t really have to worry about it. 🎉</p>
                     <p class='fragment'>(Most of the time.) 🤨</p>
                 </section>
                 <section>
-                    <h2>If you really must know</h2>
-                    <p class='fragment'>Numbers in Javascript are represented in a 64-bit binary floating point format.</p>
-                    <p class='fragment'>Basically scientific notation for computers.</p>
-                </section>
-                <section>
-                    <h2>How do we write numbers?</h2>
+                    <h1>How do we write numbers?</h1>
                 </section>
                 <section>
                     <h2><code>0</code></h2>
@@ -79,8 +88,8 @@ date: 2022-08-17
                     <h2><code>1_000_000_000</code></h2>
                 </section>
                 <section>
-                    <h2><code>9_007_199_254_740_991</code></h2>
-                    <p class='fragment'>Nine quadrillion seven trillion one hundred ninety-nine billion two hundred fifty-four million seven hundred forty thousand nine hundred ninety-one</p>
+                    <h2><code>9_007_199_254_740_992</code></h2>
+                    <p class='fragment'>Nine quadrillion seven trillion one hundred ninety-nine billion two hundred fifty-four million seven hundred forty thousand nine hundred ninety-two</p>
                 </section>
                 <section>
                     <h2><code>-1</code></h2>

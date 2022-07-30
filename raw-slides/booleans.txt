@@ -12,15 +12,15 @@ George Boole, mid 19th century English mathematician and logician
 
 ** Only two values
 
-\p{\fragment{true} \fragment{false}}
+\p{\fragment{true}\fragment{ & }\fragment{false}}
 
 ** Can also think of them as
 
 ## fragments
 
-yes or no
+yes & no
 
-on or off
+on & off
 
 etc.
 
@@ -64,7 +64,7 @@ They are just another kind of value.
 
 ## fragments
 
-  # How are they represented inside the computer?
+  # What values can be represented?
 
   # What is the syntax for writing them in our langauge?
 
@@ -72,11 +72,15 @@ They are just another kind of value.
 
 ##.
 
+** What values can be represented?
+
+As we said before, true and false.
+
 ** How are they represented in the computer?
 
 ## fragments
 
-This time it \em{really} doesn’t matter.
+It doesn’t matter.
 
 I literally do not know.
 
