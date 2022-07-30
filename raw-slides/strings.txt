@@ -121,8 +121,8 @@ Also known as “concatenation”
 
 ** ⚠️ Watch out though ⚠️
 
-When asked to add different types of values, and one of them is a string, it
-will convert the other one to a string and then concatenate them.
+When asked to add different types of values, and one of them is a string,
+Javascript will convert the other one to a string and then concatenate them.
 
 ** 1 + '0' ⟹ '10'
 
@@ -246,3 +246,52 @@ Second argument is implicitly `s.length`.
 ** s.substring(3) ⟹ 'bar'
 
 ** s.substring(3, s.length) ⟹ 'bar'
+
+** 💩 A warning about emoji 💩
+
+## fragments
+
+I mentioned earlier that strings can only contain “Unicode” characters.
+
+Good news, is Unicode was designed to encompass almost all characters used in
+human languges, past and present.
+
+That includes emoji.
+
+##.
+
+** Unfortunately …
+
+** _none
+
+## fragments
+
+Characters are just numbers.
+
+And strings are lists of numbers.
+
+Emoji are represented by bigger numbers than “normal” characters.
+
+So emoji (and a bunch of other characters) actually take up two spots in a string.
+
+##.
+
+
+** '😀😀😀'.length ⟹ 6
+
+** '😀😀😀'\[0\] ⟹ '\uD83D'
+
+## fragments
+
+wtf?!
+
+That `\uD83D` is another escape, this time representing the first half of the
+number representing the 😀 emoji.
+
+##.
+
+** _none
+
+This can happen with other characters than emoji but probably not ones you are
+likely to use unless you are also studying archaic languages or using extremely
+obscure Chinese characters.

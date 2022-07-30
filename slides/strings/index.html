@@ -112,7 +112,7 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2>⚠️ Watch out though ⚠️</h2>
-                    <p>When asked to add different types of values, and one of them is a string, it will convert the other one to a string and then concatenate them.</p>
+                    <p>When asked to add different types of values, and one of them is a string, Javascript will convert the other one to a string and then concatenate them.</p>
                 </section>
                 <section>
                     <h2>
@@ -328,6 +328,50 @@ date: 2022-08-21
                         </div>
                     </div>
                     </h2>
+                </section>
+                <section>
+                    <h2>💩 A warning about emoji 💩</h2>
+                    <p class='fragment'>I mentioned earlier that strings can only contain “Unicode” characters.</p>
+                    <p class='fragment'>Good news, is Unicode was designed to encompass almost all characters used in human languges, past and present.</p>
+                    <p class='fragment'>That includes emoji.</p>
+                </section>
+                <section>
+                    <h2>Unfortunately …</h2>
+                </section>
+                <section>
+                    <p class='fragment'>Characters are just numbers.</p>
+                    <p class='fragment'>And strings are lists of numbers.</p>
+                    <p class='fragment'>Emoji are represented by bigger numbers than “normal” characters.</p>
+                    <p class='fragment'>So emoji (and a bunch of other characters) actually take up two spots in a string.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'😀😀😀'.length </span>
+                        </div>
+                        <div class='fragment'>
+                             6
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'😀😀😀'[0] </span>
+                        </div>
+                        <div class='fragment'>
+                             '\uD83D'
+                        </div>
+                    </div>
+                    </h2>
+                    <p class='fragment'>wtf?!</p>
+                    <p class='fragment'>That <code>\uD83D</code> is another escape, this time representing the first half of the number representing the 😀 emoji.</p>
+                </section>
+                <section>
+                    <p>This can happen with other characters than emoji but probably not ones you are likely to use unless you are also studying archaic languages or using extremely obscure Chinese characters.</p>
                 </section>
             </div>
         </div>
