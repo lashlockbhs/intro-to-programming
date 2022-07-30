@@ -16,13 +16,15 @@ Our first data type!
 
 ## fragments
 
-  # How they are represented inside the computer.
+  # What values can be represented.
 
   # What the syntax is for writing them in our langauge.
 
   # What we can do with them.
 
 ##.
+
+** What values can be represented?
 
 ** How are numbers represented in the computer?
 

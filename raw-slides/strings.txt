@@ -28,8 +28,9 @@ As with other data types in Javascript, it is mostly abstracted.
 
 ## fragments
 
-But a string is a collection of “code points” which roughly correspond to the
-individual characters.
+But a string is a linear arrangement of characters.
+
+Roughly speaking these characters are things like letters and numbers.
 
 The length of the string is also part of its internal representation.
 
@@ -121,13 +122,13 @@ Javascript is messy.
 
 \img{/img/mess.gif}
 
-** Taking apart strings
+* Taking apart strings
 
 ** `[]` operator
 
 ## fragments
 
-Called “square brackets” or the “index” operator.
+The “index” operator.
 
 Allows us to select a single character out of a string.
 
@@ -144,6 +145,10 @@ Also its operands are not the same type.
 ** 'abc'\[1\] ⟹ 'b'
 
 ** 'abc'\[2\] ⟹ 'c'
+
+** _none
+
+Note that the values are also strings, just one character long.
 
 ** `substring` method.
 
