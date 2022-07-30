@@ -20,27 +20,25 @@ So we can ask our usual questons
 
 ##.
 
-** How are strings represented in the computer?
+* What values can be represented?
 
 ** _none
 
-As with other data types in Javascript, it is mostly abstracted.
+Basically any text (letters, numbers, etc.)
 
 ## fragments
 
-But a string is a linear arrangement of characters.
+There is a limit on the length: 2\sup{53} - 1.
 
-Roughly speaking these characters are things like letters and numbers.
-
-The length of the string is also part of its internal representation.
+And can only represent characters in the Unicode character set.
 
 ##.
 
-** How do we write strings?
+* How do we write strings?
 
 ## fragments
 
-Two ways to write true literal strings.
+Two ways to write literal strings.
 
 ##.
 
@@ -67,24 +65,43 @@ They also represent the same value despite being written differently.
 Sometimes we need to include characters in a string that aren’t part of the
 syntax.
 
-I.e. we need to \em{escape} from the normal syntax.
+For instance a literal string has to be written on one line but text can contain
+line breaks.
+
+Thus we need a way to \em{escape} from the normal syntax.
 
 ##.
 
 ** `'foo\nbar'`
 
-This string is seven characters long.
+## fragments
 
-The `\n` represents a “newline” character.
+This string is seven characters long and does not contain an ‘n’.
+
+The two characters `\n` in the syntax represent a single “newline” character in
+the value.
+
+##.
 
 ** Sadly escaping begets more escaping
 
+## fragments
+
+What if we want to write a string containing a `\`?
+
+Now we need to escape the `\`.
+
+##.
+
 ** `'foo\\nbar'`
+
+## fragments
 
 This string is eight characters long.
 
-The `\\` represents a single `\` character and the `n` is just an n.
+The `\\` represents a single \ character and the `n` is just an n.
 
+##.
 
 ** What can we do with strings?
 
@@ -118,9 +135,13 @@ expressions.
 
 ** What can I say?
 
+## fragments
+
 Javascript is messy.
 
 \img{/img/mess.gif}
+
+##.
 
 * Taking apart strings
 
@@ -140,18 +161,88 @@ Also its operands are not the same type.
 
 ** \em{string}`[`\em{index}`]`
 
+The \em{string} operand is a string.
+
+And the \em{index} operand is a number.
+
+And it evaluates to a one-character string.
+
 ** 'abc'\[0\] ⟹ 'a'
 
 ** 'abc'\[1\] ⟹ 'b'
 
 ** 'abc'\[2\] ⟹ 'c'
 
-** _none
+** The `length` property.
 
-Note that the values are also strings, just one character long.
+Some values in Javascript have “properties” that contain other values.
+
+Strings have a `length` property that says how long they are.
+
+Properties are accessed with a `.` and the name of the property.
+
+** 'foobar'.length ⟹ 6
+
+** Valid indices for a string `s`
+
+## fragments
+
+Are between `0` and `s.length - 1`
+
+This is called a zero-based index.
+
+Programmers like counting from zero.
+
+You'll get used to it.
+
+##.
+
+** Methods preview
+
+Some values in Javascript have special properties called “methods”.
+
+Methods are bits of functionality attached to the value.
+
+`value.methodName(arguments)`
 
 ** `substring` method.
 
+## fragments
 
+Sometimes we want a bigger chunk of a string.
 
-** Template strings
+Strings have a `substring` method for this.
+
+##.
+
+** Extracts a substring
+
+## fragments
+
+From a starting index (inclusive) to an end index (exclusive)
+
+`s.substring(`\em{start index}`, `\em{end index}`)`
+
+or
+
+`s.substring(`\em{start index}`)`
+
+Second argument is implicitly `s.length`.
+
+##.
+
+** `s = 'foobar'`
+
+** s.substring(0) ⟹ 'foobar'
+
+** s.substring(1) ⟹ 'oobar'
+
+** s.substring(s.length - 1) ⟹ 'r'
+
+** s.substring(s.length) ⟹ ''
+
+** s.substring(0, 3) ⟹ 'foo'
+
+** s.substring(3) ⟹ 'bar'
+
+** s.substring(3, s.length) ⟹ 'bar'

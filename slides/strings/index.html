@@ -40,17 +40,16 @@ date: 2022-08-21
                     <p class='fragment'>So we can ask our usual questons</p>
                 </section>
                 <section>
-                    <h2>How are strings represented in the computer?</h2>
+                    <h1>What values can be represented?</h1>
                 </section>
                 <section>
-                    <p>As with other data types in Javascript, it is mostly abstracted.</p>
-                    <p class='fragment'>But a string is a linear arrangement of characters.</p>
-                    <p class='fragment'>Roughly speaking these characters are things like letters and numbers.</p>
-                    <p class='fragment'>The length of the string is also part of its internal representation.</p>
+                    <p>Basically any text (letters, numbers, etc.)</p>
+                    <p class='fragment'>There is a limit on the length: 2<sup>53</sup> - 1.</p>
+                    <p class='fragment'>And can only represent characters in the Unicode character set.</p>
                 </section>
                 <section>
-                    <h2>How do we write strings?</h2>
-                    <p class='fragment'>Two ways to write true literal strings.</p>
+                    <h1>How do we write strings?</h1>
+                    <p class='fragment'>Two ways to write literal strings.</p>
                 </section>
                 <section>
                     <h2><code>"foo"</code></h2>
@@ -66,20 +65,23 @@ date: 2022-08-21
                 <section>
                     <h2>Escapes</h2>
                     <p class='fragment'>Sometimes we need to include characters in a string that aren’t part of the syntax.</p>
-                    <p class='fragment'>I.e. we need to <em>escape</em> from the normal syntax.</p>
+                    <p class='fragment'>For instance a literal string has to be written on one line but text can contain line breaks.</p>
+                    <p class='fragment'>Thus we need a way to <em>escape</em> from the normal syntax.</p>
                 </section>
                 <section>
                     <h2><code>'foo\nbar'</code></h2>
-                    <p>This string is seven characters long.</p>
-                    <p>The <code>\n</code> represents a “newline” character.</p>
+                    <p class='fragment'>This string is seven characters long and does not contain an ‘n’.</p>
+                    <p class='fragment'>The two characters <code>\n</code> in the syntax represent a single “newline” character in the value.</p>
                 </section>
                 <section>
                     <h2>Sadly escaping begets more escaping</h2>
+                    <p class='fragment'>What if we want to write a string containing a <code>\</code>?</p>
+                    <p class='fragment'>Now we need to escape the <code>\</code>.</p>
                 </section>
                 <section>
                     <h2><code>'foo\\nbar'</code></h2>
-                    <p>This string is eight characters long.</p>
-                    <p>The <code>\\</code> represents a single <code>\</code> character and the <code>n</code> is just an n.</p>
+                    <p class='fragment'>This string is eight characters long.</p>
+                    <p class='fragment'>The <code>\\</code> represents a single \ character and the <code>n</code> is just an n.</p>
                 </section>
                 <section>
                     <h2>What can we do with strings?</h2>
@@ -141,8 +143,8 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2>What can I say?</h2>
-                    <p>Javascript is messy.</p>
-                    <p><img src='/img/mess.gif'></p>
+                    <p class='fragment'>Javascript is messy.</p>
+                    <p class='fragment'><img src='/img/mess.gif'></p>
                 </section>
                 <section>
                     <h1>Taking apart strings</h1>
@@ -156,6 +158,9 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2><em>string</em><code>[</code><em>index</em><code>]</code></h2>
+                    <p>The <em>string</em> operand is a string.</p>
+                    <p>And the <em>index</em> operand is a number.</p>
+                    <p>And it evaluates to a one-character string.</p>
                 </section>
                 <section>
                     <h2>
@@ -194,13 +199,135 @@ date: 2022-08-21
                     </h2>
                 </section>
                 <section>
-                    <p>Note that the values are also strings, just one character long.</p>
+                    <h2>The <code>length</code> property.</h2>
+                    <p>Some values in Javascript have “properties” that contain other values.</p>
+                    <p>Strings have a <code>length</code> property that says how long they are.</p>
+                    <p>Properties are accessed with a <code>.</code> and the name of the property.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'foobar'.length </span>
+                        </div>
+                        <div class='fragment'>
+                             6
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>Valid indices for a string <code>s</code></h2>
+                    <p class='fragment'>Are between <code>0</code> and <code>s.length - 1</code></p>
+                    <p class='fragment'>This is called a zero-based index.</p>
+                    <p class='fragment'>Programmers like counting from zero.</p>
+                    <p class='fragment'>You'll get used to it.</p>
+                </section>
+                <section>
+                    <h2>Methods preview</h2>
+                    <p>Some values in Javascript have special properties called “methods”.</p>
+                    <p>Methods are bits of functionality attached to the value.</p>
+                    <p><code>value.methodName(arguments)</code></p>
                 </section>
                 <section>
                     <h2><code>substring</code> method.</h2>
+                    <p class='fragment'>Sometimes we want a bigger chunk of a string.</p>
+                    <p class='fragment'>Strings have a <code>substring</code> method for this.</p>
                 </section>
                 <section>
-                    <h2>Template strings</h2>
+                    <h2>Extracts a substring</h2>
+                    <p class='fragment'>From a starting index (inclusive) to an end index (exclusive)</p>
+                    <p class='fragment'><code>s.substring(</code><em>start index</em><code>, </code><em>end index</em><code>)</code></p>
+                    <p class='fragment'>or</p>
+                    <p class='fragment'><code>s.substring(</code><em>start index</em><code>)</code></p>
+                    <p class='fragment'>Second argument is implicitly <code>s.length</code>.</p>
+                </section>
+                <section>
+                    <h2><code>s = 'foobar'</code></h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(0) </span>
+                        </div>
+                        <div class='fragment'>
+                             'foobar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(1) </span>
+                        </div>
+                        <div class='fragment'>
+                             'oobar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(s.length - 1) </span>
+                        </div>
+                        <div class='fragment'>
+                             'r'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(s.length) </span>
+                        </div>
+                        <div class='fragment'>
+                             ''
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(0, 3) </span>
+                        </div>
+                        <div class='fragment'>
+                             'foo'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(3) </span>
+                        </div>
+                        <div class='fragment'>
+                             'bar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(3, s.length) </span>
+                        </div>
+                        <div class='fragment'>
+                             'bar'
+                        </div>
+                    </div>
+                    </h2>
                 </section>
             </div>
         </div>
