@@ -154,6 +154,7 @@ class Repl {
     this.addCursor(div);
     this.div.append(div);
     this.current = div;
+    this.cursor.scrollIntoView();
   }
 
   /*
@@ -290,6 +291,7 @@ class Repl {
       this.evaluate(`repl.print(\n${text}\n)`, 'repl');
     } else {
       this.evaluate(`\n${text}\nrepl.message("Ok.");`, 'repl');
+      this.newPrompt();
     }
   }
 
