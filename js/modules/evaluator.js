@@ -77,7 +77,7 @@ class Evaluator {
     f.onload = () => {
       if (after) queueMicrotask(after);
       queueMicrotask(() => this.repl.restart());
-    }
+    };
 
     Object.entries(this.config).forEach(([k, v]) => {
       f.setAttribute(k, v);
