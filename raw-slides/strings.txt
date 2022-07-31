@@ -253,10 +253,10 @@ Second argument is implicitly `s.length`.
 
 I mentioned earlier that strings can only contain “Unicode” characters.
 
-Good news, is Unicode was designed to encompass almost all characters used in
+Good news is Unicode was designed to encompass almost all characters used in
 human languges, past and present.
 
-That includes emoji.
+🎉 That includes emoji. 🎉
 
 ##.
 
@@ -272,7 +272,7 @@ And strings are lists of numbers.
 
 Emoji are represented by bigger numbers than “normal” characters.
 
-So emoji (and a bunch of other characters) actually take up two spots in a string.
+So emoji (and some other characters) actually take up two spots in a string.
 
 ##.
 
