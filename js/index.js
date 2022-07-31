@@ -92,20 +92,23 @@ const setup = async () => {
   const onAttachToGithub = async () => {
     const current = editor.getValue();
     const starter = await storage.loadFromWeb(filename);
-    const inRepo = await storage.ensureFileInBranch(filename);
 
-    if (current === starter && inRepo !== starter) {
-      // I.e. we loaded the page, got the starter, and then logged in
-      // immediately. Switch to repo version.
-      fillEditor(inRepo);
-    } else if (current !== starter && current !== inRepo) {
-      // We loaded the page, messed about with the code, and then logged in.
-      // Don't really need to do anything since we're just going to leave things
-      // as they are. However might be nice to ask if they want to revert to
-      // what's in the repo. Or show a diff. Or whatever. If they then evaluate
-      // the code it will be saved, stomping the latet verson in git. Of course,
-      // old versions are recoverable from git though not presently through this
-      // code UI.
+    if (login.isMember && !login.pending) {
+      const inRepo = await storage.ensureFileInBranch(filename);
+
+      if (current === starter && inRepo !== starter) {
+        // I.e. we loaded the page, got the starter, and then logged in
+        // immediately. Switch to repo version.
+        fillEditor(inRepo);
+      } else if (current !== starter && current !== inRepo) {
+        // We loaded the page, messed about with the code, and then logged in.
+        // Don't really need to do anything since we're just going to leave things
+        // as they are. However might be nice to ask if they want to revert to
+        // what's in the repo. Or show a diff. Or whatever. If they then evaluate
+        // the code it will be saved, stomping the latet verson in git. Of course,
+        // old versions are recoverable from git though not presently through this
+        // code UI.
+      }
     }
   };
 

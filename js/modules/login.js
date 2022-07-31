@@ -17,6 +17,7 @@ class Login {
     this.username = null;
     this.profileURL = null;
     this.isMember = false;
+    this.pending = true;
     this.problemMakingRepo = null;
     this.createdRepo = false;
     this.repoURL = null;
@@ -65,7 +66,7 @@ class Login {
   }
 
   get ok() {
-    return this.isLoggedIn && this.isMember && this.problemMakingRepo === null;
+    return this.isLoggedIn && this.isMember && !this.pending && this.problemMakingRepo === null;
   }
 
   setupToolbar(onAttachToGithub) {
@@ -107,23 +108,28 @@ class Login {
 
     let repo = null;
 
-    if (await gh.membership(GITHUB_ORG)) {
+    const member = await gh.membership(GITHUB_ORG);
+
+    if (member) {
       this.isMember = true;
+      this.pending = member.state === 'pending';
 
-      try {
-        repo = await gh.orgRepos(GITHUB_ORG).getRepo(this.username);
-      } catch (e) {
+      if (!this.pending) {
         try {
-          repo = await gh
-            .orgRepos(GITHUB_ORG)
-            .makeRepoFromTemplate(this.username, TEMPLATE_OWNER, TEMPLATE_REPO);
-
-          // Record that we created the repo now so we can show a banner about it.
-          this.createdRepo = true;
+          repo = await gh.orgRepos(GITHUB_ORG).getRepo(this.username);
         } catch (e) {
-          console.log(e); // So I can debug if student runs into this.
-          this.problemMakingRepo = e;
-          repo = null;
+          try {
+            repo = await gh
+              .orgRepos(GITHUB_ORG)
+              .makeRepoFromTemplate(this.username, TEMPLATE_OWNER, TEMPLATE_REPO);
+
+            // Record that we created the repo now so we can show a banner about it.
+            this.createdRepo = true;
+          } catch (e) {
+            console.log(e); // So I can debug if student runs into this.
+            this.problemMakingRepo = e;
+            repo = null;
+          }
         }
       }
     }
@@ -139,7 +145,7 @@ class Login {
 
     this.showLoggedIn();
 
-    if (repo === null || this.createdRepo) {
+    if (repo === null || this.createdRepo || this.pending) {
       this.showBanner();
     }
 
@@ -167,6 +173,8 @@ class Login {
           navigator.clipboard.writeText(this.profileURL);
         };
         b.querySelector('.not-a-member').hidden = false;
+      } else if (this.isMember && this.pending) {
+        b.querySelector('.pending-member').hidden = false;
       } else if (this.problemMakingRepo) {
         b.querySelector('.x').style.display = 'inline';
         b.querySelector('.problem-with-repo').hidden = false;
