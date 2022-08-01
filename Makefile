@@ -38,19 +38,15 @@ quick_lint:
 serve:
 	npx @11ty/eleventy --serve
 
-publish: clean stash all
+publish: clean all
 	./publish.sh _site
-	git stash pop
 
 clean:
 	rm -rf ./_site
 	find . -name '*~' -delete
 
-stash:
-	git stash push -u
-
 pristine:
 	git clean -fdx
 
 
-.PHONY: setup pretty tidy lint fixmes ready strict_lint serve publish clean stash pristine
+.PHONY: setup pretty tidy lint fixmes ready strict_lint serve publish clean pristine

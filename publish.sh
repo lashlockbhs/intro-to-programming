@@ -7,12 +7,22 @@ set -x
 builddir="${1%/}/"
 
 webdir=~/web/intro.gigamonkeys.com/
+mkdir -p "$webdir"
 
 sha=$(git log --pretty=tformat:%H -1);
 
-mkdir -p "$webdir"
+stashed="no"
+if [ -z "$(git status --porcelain)" ]; then
+    stashed="yes"
+    git stash push -u
+fi
+
 rsync --exclude .git --recursive --delete "$builddir" "$webdir"
 cd "$webdir"
 git add -A .
 git commit -m "Publish $sha" .
 git push
+
+if [ "$stashed" == "yes" ]; then
+    git stash pop
+fi
