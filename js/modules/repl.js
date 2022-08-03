@@ -1,4 +1,5 @@
 import * as acorn from 'acorn';
+import pretty from './pretty-printer/';
 
 // NOTES:
 
@@ -18,29 +19,6 @@ import * as acorn from 'acorn';
 const OPTS = { ecmaVersion: 2022 };
 
 const textNode = (s) => document.createTextNode(s);
-
-const pretty = (v) => {
-  // This could be a lot better but I'd have to write an actual recursive pretty
-  // printer.
-  if (v === null || v === undefined) {
-    return String(v);
-  }
-
-  switch (v.constructor.name) {
-    case 'Boolean':
-    case 'Function':
-    case 'Number':
-    case 'String':
-    case 'Array':
-    case 'Object':
-      // ideally we'd use Javascript syntax (i.e. no quotes on properties that
-      // don't need them but this will do for now.
-      return JSON.stringify(v);
-
-    default:
-      return `${v.constructor.name} ${JSON.stringify(v)}`;
-  }
-};
 
 const isExpression = (code) => {
   try {

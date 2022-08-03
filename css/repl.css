@@ -37,6 +37,7 @@ div.message {
 
 #repl div.log {
   font-style: italic;
+  white-space: pre;
 }
 
 .cursor {
