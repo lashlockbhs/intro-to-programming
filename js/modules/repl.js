@@ -333,25 +333,27 @@ class Console {
     this.logFn = logFn;
   }
 
-  log(...text) {
+  // These actually shouldn't be methods so we can do things like
+  // array.forEach(console.log)
+  log = (...text) => {
     this.logFn(stringify(text));
-  }
+  };
 
-  info(...text) {
+  info = (...text) => {
     this.logFn(`INFO: ${stringify(text)}`);
-  }
+  };
 
-  warn(...text) {
+  warn = (...text) => {
     this.logFn(`WARN: ${stringify(text)}`);
-  }
+  };
 
-  error(...text) {
+  error = (...text) => {
     this.logFn(`ERROR: ${stringify(text)}`);
-  }
+  };
 
-  debug(...text) {
+  debug = (...text) => {
     this.logFn(`DEBUG: ${stringify(text)}`);
-  }
+  };
 }
 
 const stringify = (args) => args.map(String).join(' ');
