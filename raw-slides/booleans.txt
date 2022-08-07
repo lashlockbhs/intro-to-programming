@@ -186,8 +186,23 @@ because we could just figure out what the value is and write that.
 
 ** _none
 
+## fragments
+
 But they make a lot more sense when we are writing expressions in terms of
 named values.
+
+We’ll talk a lot more about variables later.
+
+For now just know that we can use a name to refer to a value in the place of a
+literal value.
+
+##.
+
+** _none
+
+E.g.
+
+`const happy = true`
 
 ** _none
 

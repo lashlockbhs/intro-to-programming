@@ -46,6 +46,7 @@ date: 2022-08-21
                     <p>Basically any text (letters, numbers, etc.)</p>
                     <p class='fragment'>There is a limit on the length: 2<sup>53</sup> - 1.</p>
                     <p class='fragment'>And can only represent characters in the Unicode character set.</p>
+                    <p class='fragment'>(More on Unicode later.)</p>
                 </section>
                 <section>
                     <h1>How do we write strings?</h1>
@@ -200,9 +201,9 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2>The <code>length</code> property.</h2>
-                    <p>Some values in Javascript have “properties” that contain other values.</p>
-                    <p>Strings have a <code>length</code> property that says how long they are.</p>
-                    <p>Properties are accessed with a <code>.</code> and the name of the property.</p>
+                    <p class='fragment'>Some values in Javascript have “properties” that contain other values.</p>
+                    <p class='fragment'>Strings have a <code>length</code> property that says how long they are.</p>
+                    <p class='fragment'>Properties are accessed with a <code>.</code> and the name of the property.</p>
                 </section>
                 <section>
                     <h2>
@@ -339,7 +340,7 @@ date: 2022-08-21
                     <h2>Unfortunately …</h2>
                 </section>
                 <section>
-                    <p class='fragment'>Characters are just numbers.</p>
+                    <p>Characters are just numbers.</p>
                     <p class='fragment'>And strings are lists of numbers.</p>
                     <p class='fragment'>Emoji are represented by bigger numbers than “normal” characters.</p>
                     <p class='fragment'>So emoji (and some other characters) actually take up two spots in a string.</p>
@@ -371,7 +372,41 @@ date: 2022-08-21
                     <p class='fragment'>That <code>\uD83D</code> is another escape, this time representing the first half of the number representing the 😀 emoji.</p>
                 </section>
                 <section>
-                    <p>This can happen with other characters than emoji but probably not ones you are likely to use unless you are also studying archaic languages or using extremely obscure Chinese characters.</p>
+                    <p>This can happen with characters other than emoji but probably not ones you are likely to use unless you are also studying archaic languages or using extremely obscure Chinese characters.</p>
+                </section>
+                <section>
+                    <h2>Some other useful String methods</h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'foo'.toUpperCase() </span>
+                        </div>
+                        <div class='fragment'>
+                             'FOO'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'FOO'.toLowerCase() </span>
+                        </div>
+                        <div class='fragment'>
+                             'foo'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2><code>f = 'foo'</code></h2>
+                </section>
+                <section>
+                    <pre><code data-trim='' data-noescape='' class='language-javascript'>f[0].toUpperCase() + f.substring(1)
+'Foo'</code></pre>
                 </section>
             </div>
         </div>

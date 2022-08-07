@@ -32,6 +32,8 @@ There is a limit on the length: 2\sup{53} - 1.
 
 And can only represent characters in the Unicode character set.
 
+(More on Unicode later.)
+
 ##.
 
 * How do we write strings?
@@ -175,11 +177,15 @@ And it evaluates to a one-character string.
 
 ** The `length` property.
 
+## fragments
+
 Some values in Javascript have “properties” that contain other values.
 
 Strings have a `length` property that says how long they are.
 
 Properties are accessed with a `.` and the name of the property.
+
+##.
 
 ** 'foobar'.length ⟹ 6
 
@@ -264,9 +270,9 @@ human languges, past and present.
 
 ** _none
 
-## fragments
-
 Characters are just numbers.
+
+## fragments
 
 And strings are lists of numbers.
 
@@ -292,6 +298,19 @@ number representing the 😀 emoji.
 
 ** _none
 
-This can happen with other characters than emoji but probably not ones you are
+This can happen with characters other than emoji but probably not ones you are
 likely to use unless you are also studying archaic languages or using extremely
 obscure Chinese characters.
+
+** Some other useful String methods
+
+** 'foo'.toUpperCase() ⟹ 'FOO'
+
+** 'FOO'.toLowerCase() ⟹ 'foo'
+
+** `f = 'foo'`
+
+** _none
+
+   f[0].toUpperCase() + f.substring(1)
+   'Foo'
