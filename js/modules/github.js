@@ -77,6 +77,9 @@ class Github {
     this.octokit = octokit;
     this.user = user;
     this.userRepos = new RepoOwner(octokit, this.user.login);
+    if (user == 'gigamonkey') {
+      localStorage.setItem('showOutlineDetails', 'yes');
+    }
   }
 
   membership(org) {
@@ -361,7 +364,7 @@ class Repo {
 const hasToken = () => getToken() !== null;
 
 /*
- * Connect to Github, get the current, and wrap it all up in a wrapper object.
+ * Connect to Github, get the current user, and wrap it all up in a wrapper object.
  */
 const connect = async (siteId, retries = 3) => {
   // Retry in case our token has gone bad, e.g. been revoked in which case we

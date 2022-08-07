@@ -156,7 +156,9 @@ const scheduled = (tr, item, days) => {
   const cell = td(item.title, { class: c, colspan: days });
   tr.appendChild(cell);
   cell[ITEM] = item;
-  cell.onclick = showDetails;
+  if (localStorage.getItem('showOutlineDetails') === 'yes') {
+    cell.onclick = showDetails;
+  }
 };
 
 const fillDetails = (item, div) => {
@@ -194,6 +196,11 @@ const showDetails = (e) => {
   details.replaceChildren();
   fillDetails(e.target[ITEM], details);
   details.style.display = 'block';
+  e.stopPropagation();
+};
+
+const hideDetails = (e) => {
+  details.style.display = 'none';
 };
 
 const vacationRow = (v) => tr(td(v.vacationString(), { colspan: '100%' }), { class: 'vacation' });
@@ -217,8 +224,11 @@ const element = (tag, content, attributes = {}) => {
   return e;
 };
 
-details.onclick = () => {
-  details.style.display = 'none';
+window.document.documentElement.onclick = () => {
+  console.log(`display: ${details.style.display}`);
+  if (details.style.display !== 'none') {
+    details.style.display = 'none';
+  }
 };
 
 window.onkeydown = (e) => {
