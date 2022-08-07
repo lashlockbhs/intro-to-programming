@@ -1,7 +1,11 @@
 #!/bin/bash
 
 set -eou pipefail
-set -x
+
+if [ -z "${1+x}" ]; then
+    echo "Must supply builddir."
+    exit 1;
+fi
 
 # Ensure dir ends in trailing slash for rsync.
 builddir="${1%/}/"
