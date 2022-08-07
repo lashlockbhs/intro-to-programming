@@ -1,7 +1,3 @@
-- Make fake Console methods into properties so .forEach(console.log) works.
-
-- Fix REPL pretty printer
-
 - Give a way to explicitly save with a comment so the branches aren't 100% "Updating".
 
 - Add link to branch (or to create PR) from assignment pages. (Could maybe be
@@ -10,13 +6,7 @@
 
 - Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
 
-- Add README to itp-template
-
-- Move itp-template into gigamonkeys org
-
-- Rename gigamonkeys org or make new one.
-
-- Kick out testers
+- Switch code to use bhs-intro-to-programming org and the template repo in there.
 
 - Move "Saving" indicator into web page.
 
