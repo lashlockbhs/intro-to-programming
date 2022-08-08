@@ -6,8 +6,6 @@
 
 - Break out DOM manipulation stuff into module. (And harmonize with with whjqah.js)
 
-- Switch code to use bhs-intro-to-programming org and the template repo in there.
-
 - Move "Saving" indicator into web page.
 
 - Work on responsive design, esp. for games.

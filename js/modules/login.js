@@ -2,9 +2,9 @@ import files from './files';
 import github from './github';
 import { $$, icon, text, a, url } from './whjqah';
 
-const GITHUB_ORG = 'gigamonkeys'; // FIXME: load this from config file from website.
-const TEMPLATE_OWNER = 'gigamonkey';
-const TEMPLATE_REPO = 'itp-template';
+const GITHUB_ORG = 'bhs-intro-to-programming';
+const TEMPLATE_OWNER = GITHUB_ORG;
+const TEMPLATE_REPO = 'template';
 
 const KEY = 'anonymousUntil';
 const TTL = 15 * 60 * 1000; // fifteen minutes in milliseconds.
