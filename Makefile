@@ -1,3 +1,6 @@
+# Remove make's default rules.
+.SUFFIXES:
+
 SHELL := bash -O globstar
 
 # Tool setup
