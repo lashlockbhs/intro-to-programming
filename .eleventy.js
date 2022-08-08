@@ -27,6 +27,6 @@ module.exports = function eleventyConfig(eleventyConfig) {
       layouts: '_layouts',
       output: '_site',
     },
-    templateFormats: ['md', '11ty.js', 'html'],
+    templateFormats: ['11ty.js', 'html'],
   };
 };
