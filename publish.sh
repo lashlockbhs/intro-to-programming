@@ -3,7 +3,7 @@
 set -eou pipefail
 
 if [ -z "${1+x}" ]; then
-    echo "Must supply builddir."
+    echo "Must supply non-empty build dir."
     exit 1;
 fi
 
