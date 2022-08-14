@@ -22,7 +22,7 @@
 
       - You to me. Index card with:
 
-        - Preferred name on one side in big letters
+        - Preferred name and on one side in big letters. Also your pronouns if you would like.
 
         - Answers to questions on the board on the other side.
 
@@ -33,8 +33,6 @@
           - Do you have any prior experience programming? If so describe briefly.
 
           - Where did you go to middle school?
-
-          - Pronouns if you don't want me to guess
 
         - When you're done, put the card name side up on your desk.
 
@@ -49,7 +47,7 @@
 
       - Grades:
 
-        - Portfolio (~60%)
+        - Portfolio (~40%)
 
           - The collection of all the code you wrote over the year.
 
@@ -59,12 +57,12 @@
           - You will also get to pick a small number of programs as the best
             representation of your work.
 
-        - Journal (~20%)
+        - Journal (~40%)
 
           - Daily journal of what you worked on, what problems you ran into, and
             how you got unstuck.
 
-        - Collaboration and dilligence (!20%)
+        - Collaboration and dilligence (~20%)
 
           - Being on task
 
@@ -115,6 +113,8 @@
         - Underneath, especially these days, it’s also a pretty clean language.
 
     - Set up
+
+      - Log into https://help.gigamonkeys.com with student Google account.
 
       - Getting set up on Github.
 
