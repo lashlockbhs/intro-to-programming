@@ -21,35 +21,31 @@ module.exports = class {
   }
 
   async render(data) {
+    const baseBuildConfig = {
+      bundle: true,
+      loader: { '.ttf': 'file' },
+      outdir: `${data.eleventyConfig.dir.output}/js`,
+      sourcemap: true,
+      target: 'es6',
+    };
+
     // Build our own JS code.
     const jsFiles = await fs.promises
       .readdir('js')
       .then((files) => files.filter((f) => f.endsWith('.js')));
 
     await esbuild.build({
+      ...baseBuildConfig,
       entryPoints: jsFiles.map((f) => `js/${f}`),
-      bundle: true,
-      loader: {
-        '.ttf': 'file',
-      },
       minify: false,
-      outdir: `${data.eleventyConfig.dir.output}/js`,
-      sourcemap: true,
-      target: 'es6',
     });
 
     // Build the dynamically loaded Monaco worker code.
     await esbuild.build({
+      ...baseBuildConfig,
       entryPoints: monaco_workers.map((f) => `node_modules/monaco-editor/esm/${f}`),
-      bundle: true,
-      loader: {
-        '.ttf': 'file',
-      },
       minify: true,
-      outdir: `${data.eleventyConfig.dir.output}/js`,
       outbase: './node_modules/monaco-editor/esm/',
-      sourcemap: true,
-      target: 'es6',
     });
   }
 };
