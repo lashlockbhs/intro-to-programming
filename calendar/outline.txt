@@ -288,7 +288,7 @@
 
       - A little recursion, as a treat.
 
-  - Project: First test problem set (numbers, booleans, and strings) (4)
+  - Project: Writing functions with numbers, booleans, and strings (4)
 
   - Variables (1)
 
