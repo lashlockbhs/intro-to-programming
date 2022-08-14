@@ -20,3 +20,19 @@ h1 {
 li {
   padding-top: 0.25em;
 }
+
+
+.secondary h1 {
+  font-size: 2rem;
+  padding: 0.5em 0 0.25em;
+}
+
+.secondary h2 {
+  font-size: 1.5rem;
+  padding: 0.5em 0 0.25em;
+}
+
+.secondary h3 {
+  font-size: 1.0rem;
+  padding: 0.5em 0 0.25em;
+}
