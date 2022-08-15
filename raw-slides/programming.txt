@@ -14,6 +14,10 @@ An exercise in picking problems to solve.
 
 ##.
 
+** Who can program?
+
+* Anyone
+
 ** Javascript
 
 ## fragments
@@ -24,7 +28,7 @@ It’s incredibly popular and widely used.
 
 It’s a real language. Thus it has warts and oddities.
 
-Underneath, especially these days, it’s also a pretty clean language.
+But it has a clean core.
 
 ##.
 
@@ -36,7 +40,7 @@ If you like creating things.
 
 If you like solving puzzles.
 
-If you like learning and understanding how things work.
+If you like understanding how things work.
 
 ##.
 
@@ -61,6 +65,8 @@ Understand, at least a bit, how all this stuff around us works.
 Build tools to make your life better.
 
 ##.
+
+* Finally
 
 ** If you're not stuck, you're not programming.
 
