@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eou pipefail
+set -x
 
 if [ -z "${1+x}" ]; then
     echo "Must supply non-empty build dir."
@@ -16,9 +17,9 @@ mkdir -p "$webdir"
 sha=$(git log --pretty=tformat:%H -1);
 
 stashed="no"
-if [ -z "$(git status --porcelain)" ]; then
-    stashed="yes"
+if [ -n "$(git status --porcelain)" ]; then
     git stash push -u
+    stashed="yes"
 fi
 
 rsync --exclude .git --recursive --delete "$builddir" "$webdir"
