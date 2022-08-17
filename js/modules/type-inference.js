@@ -53,7 +53,9 @@ const showAncestors = (expr) => {
 const inferTypes = (text) => {
   const expr = acorn.parseExpressionAt(text, 0, ACORN_OPTS);
 
-  if (expr.type === 'LogicalExpression') {
+  if (expr.type === 'Literal') {
+    return {};
+  } else if (expr.type === 'LogicalExpression') {
     const variables = {};
     walk.simple(expr, {
       Identifier(node) {

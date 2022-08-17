@@ -24,7 +24,9 @@ const allValues = {
  * set of n random cases.
  */
 const testCases = (types, n) => {
-  if (types.every((t) => t in allValues) && cardinality(types) <= n) {
+  if (types.length === 0) {
+    return [];
+  } else if (types.every((t) => t in allValues) && cardinality(types) <= n) {
     return exhaustive(types);
   } else {
     return Array(n)
@@ -48,8 +50,13 @@ const exhaustive = (types) => {
 
 const generateRandom = (types) => types.map((t) => randomGenerators[t]());
 
-const parseVariables = (s) =>
-  s ? Object.fromEntries(s.split(',').map((s) => s.split(':'))) : null;
+const parseVariables = (s) => {
+  if (typeof s === 'string') {
+    return s === '' ? {} : Object.fromEntries(s.split(',').map((s) => s.split(':')));
+  } else {
+    return  null;
+  }
+}
 
 // End type inference
 ////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +198,9 @@ class Expression {
 
     this.variables = Object.keys(vars);
     this.types = Object.values(vars);
-    this.expectedFn = new Function(this.variables, `return (${this.canonical});`);
+    this.expectedFn = this.variables.length === 0
+      ? new Function(`return (${this.canonical});`)
+      : new Function(this.variables, `return (${this.canonical});`);
 
     this.marker = icon('circle');
     this.marker.onclick = () => expressions.switchTo(this);
@@ -206,7 +215,13 @@ class Expression {
   }
 
   check(answer) {
-    this.results = testCases(this.types, 1024).map(this.checker(answer));
+    const cases = testCases(this.types, 1024);
+
+    if (cases.length === 0) {
+      this.results = [ this.checker(answer)([]) ];
+    } else {
+      this.results = cases.map(this.checker(answer));
+    }
     const correct = this.results.every((r) => r.passed);
 
     if (correct) {
