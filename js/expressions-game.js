@@ -125,7 +125,7 @@ class Expressions {
   }
 
   saveAnswers() {
-    if (this.storage.reop) {
+    if (this.storage.repo) {
       this.storage.saveToGithubOnBranch(
         'expressions.json',
         JSON.stringify(this.answers, null, 2),
