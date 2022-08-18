@@ -1,0 +1,49 @@
+-*- mode: markup; -*-
+
+* AMA
+
+** Did you make the decision to buy these macs or did someone else buy them?
+
+** Would you say that computer programing is fun?
+
+** Do you know how to crack wpa2 networks without brute forcing it?
+
+** \empty{}
+
+\img{/img/security.png}
+
+** When did you start programming? How long have you been programming? How did you first get into programming? Why did you choose programming?
+
+** What was your first programming job? What jobs have you had that involved programming?
+
+** What languages are good for what jobs?
+
+** What's your favorite coding language?
+
+** What's your "greatest achievement" in coding?
+
+** More of an observation than a question
+
+## fragments
+
+The lesson on Tuesday was very fast and hard to understand. I don't know how to
+read the code you are writing and I don't know what => or {} or const or let
+mean.
+
+\em{Totally fair}
+
+##.
+
+** What are we gonna learn?
+
+** Do you think a hotdog is a sandwich?
+
+## fragments
+
+I will refer you to https://cuberule.com/
+
+Hotdogs are tacos.
+
+And potato chips are toast.
+
+##.
