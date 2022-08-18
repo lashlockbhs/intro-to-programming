@@ -46,10 +46,12 @@ mean.
 
 ## fragments
 
-I will refer you to https://cuberule.com/
+I will refer you to [https://cuberule.com/|https://cuberule.com/]
 
 Hot dogs are tacos.
 
 And potato chips are toast.
 
 ##.
+
+[https://cuberule.com/] <https://cuberule.com/>

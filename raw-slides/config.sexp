@@ -7,6 +7,7 @@
 (:title :auto)
 
 (:preprocessors
+ monkeylib-yamp::links
  monkeylib-yamp:images
  reveal::wrap-code
  reveal::fragments
