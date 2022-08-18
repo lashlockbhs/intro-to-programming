@@ -1,0 +1,25 @@
+---
+layout: canvas.liquid
+title: Bouncing Ball
+---
+  <div class="column big">
+    <p>
+      Welcome to your first programming exercise. This is very freeform. The
+      comments in the initial code explain the functions and variables you have
+      available.
+    </p>
+
+    <div id="container" class="row">
+      {% include 'editor' %}
+
+      <div id="right">
+
+        <!-- placeholder for the iframe that will hold the canvas we'll draw on. -->
+        <iframe></iframe>
+
+        <h2>REPL</h2>
+        <div id="repl"></div>
+        {% include 'codelink' %}
+      </div>
+    </div>
+  </div>

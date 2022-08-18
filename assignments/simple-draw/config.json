@@ -1,0 +1,11 @@
+{
+  "files": ["code.js"],
+  "iframe": {
+    "src": "frame/index.html",
+    "hidden": false,
+    "class": "canvas",
+    "scrolling": "no",
+    "width": "502",
+    "height": "602"
+  }
+}
