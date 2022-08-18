@@ -22,6 +22,8 @@ if [ -n "$(git status --porcelain)" ]; then
     stashed="yes"
 fi
 
+make clean all
+
 rsync --exclude .git --recursive --delete "$builddir" "$webdir"
 cd "$webdir"
 git add -A .

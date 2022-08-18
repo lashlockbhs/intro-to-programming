@@ -41,7 +41,7 @@ quick_lint:
 serve:
 	npx @11ty/eleventy --serve
 
-publish: clean all
+publish:
 	./publish.sh _site
 
 clean:
