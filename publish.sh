@@ -25,10 +25,11 @@ fi
 make clean all
 
 rsync --exclude .git --recursive --delete "$builddir" "$webdir"
-cd "$webdir"
+pushd "$webdir"
 git add -A .
 git commit -m "Publish $sha" .
 git push
+popd
 
 if [ "$stashed" == "yes" ]; then
     git stash pop
