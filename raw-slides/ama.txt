@@ -38,11 +38,17 @@ mean.
 
 ** Do you think a hotdog is a sandwich?
 
+** \empty{}
+
+\img{/img/hotdog.png}
+
+** \empty{}
+
 ## fragments
 
 I will refer you to https://cuberule.com/
 
-Hotdogs are tacos.
+Hot dogs are tacos.
 
 And potato chips are toast.
 
