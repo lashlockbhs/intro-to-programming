@@ -196,7 +196,7 @@
 
       - Bouncing ball: https://intro.gigamonkeys.com/assignments/bouncing-ball/
 
-  - Numbers (2)
+  - Numbers (3)
 
     - First: what is data?
 
@@ -259,8 +259,6 @@
       - const
 
     - The difference between variables and values.
-
-  - Expression wrap up (1)
 
   - Functions
 
