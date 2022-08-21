@@ -3,16 +3,16 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 
-const drawLine = (x1, y1, x2, y2, color, width=1) => {
+const drawLine = (x1, y1, x2, y2, color, width = 1) => {
   ctx.strokeStyle = color;
   ctx.lineWidth = width;
   ctx.beginPath();
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.stroke();
-}
+};
 
-const drawCircle = (x, y, r, color, lineWidth=1) => {
+const drawCircle = (x, y, r, color, lineWidth = 1) => {
   ctx.strokeStyle = color;
   ctx.lineWidth = lineWidth;
   ctx.beginPath();
@@ -20,7 +20,7 @@ const drawCircle = (x, y, r, color, lineWidth=1) => {
   ctx.stroke();
 };
 
-const drawRect = (x, y, width, height, color, lineWidth=1) => {
+const drawRect = (x, y, width, height, color, lineWidth = 1) => {
   ctx.strokeStyle = color;
   ctx.lineWidth = lineWidth;
   ctx.strokeRect(x, y, width, height);

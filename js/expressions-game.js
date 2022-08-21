@@ -54,9 +54,9 @@ const parseVariables = (s) => {
   if (typeof s === 'string') {
     return s === '' ? {} : Object.fromEntries(s.split(',').map((s) => s.split(':')));
   } else {
-    return  null;
+    return null;
   }
-}
+};
 
 // End type inference
 ////////////////////////////////////////////////////////////////////////////////
@@ -198,9 +198,10 @@ class Expression {
 
     this.variables = Object.keys(vars);
     this.types = Object.values(vars);
-    this.expectedFn = this.variables.length === 0
-      ? new Function(`return (${this.canonical});`)
-      : new Function(this.variables, `return (${this.canonical});`);
+    this.expectedFn =
+      this.variables.length === 0
+        ? new Function(`return (${this.canonical});`)
+        : new Function(this.variables, `return (${this.canonical});`);
 
     this.marker = icon('circle');
     this.marker.onclick = () => expressions.switchTo(this);
@@ -218,7 +219,7 @@ class Expression {
     const cases = testCases(this.types, 1024);
 
     if (cases.length === 0) {
-      this.results = [ this.checker(answer)([]) ];
+      this.results = [this.checker(answer)([])];
     } else {
       this.results = cases.map(this.checker(answer));
     }
