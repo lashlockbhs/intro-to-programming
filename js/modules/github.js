@@ -77,6 +77,8 @@ class Github {
     this.octokit = octokit;
     this.user = user;
     this.userRepos = new RepoOwner(octokit, this.user.login);
+
+    // This is a total kludge unrelated to github.
     if (user == 'gigamonkey') {
       localStorage.setItem('showOutlineDetails', 'yes');
     }
@@ -112,6 +114,15 @@ class RepoOwner {
   constructor(octokit, owner) {
     this.octokit = octokit;
     this.owner = owner;
+  }
+
+  // N.B. this method only works if the owner is an org.
+  async listRepos() {
+    const url = 'GET /orgs/{owner}/repos';
+    return this.octokit
+      .request(url, { owner: this.owner })
+      .then(if200)
+      .then((data) => data.map((d) => new Repo(this.octokit, d)));
   }
 
   async getRepo(name) {
@@ -164,12 +175,16 @@ class Repo {
   }
 
   fileExists(path, ref) {
-    return this.getFile(path, ref).then(always(true)).catch(if404(false));
+    return this.requestFile('HEAD', path, ref).then(always(true)).catch(if404(false));
   }
 
   getFile(path, ref) {
+    return this.requestFile('GET', path, ref);
+  }
+
+  requestFile(method, path, ref) {
     const { owner, name } = this;
-    const url = 'GET /repos/{owner}/{name}/contents/{path}';
+    const url = `${method} /repos/{owner}/{name}/contents/{path}`;
     return this.octokit
       .request(url, {
         owner,
