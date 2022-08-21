@@ -116,7 +116,8 @@ class Login {
 
       if (!this.pending) {
         try {
-          repo = await gh.orgRepos(GITHUB_ORG).getRepo(this.username);
+          const repoName = new URLSearchParams(window.location.search).get('repo') || this.username;
+          repo = await gh.orgRepos(GITHUB_ORG).getRepo(repoName);
         } catch (e) {
           try {
             repo = await gh
