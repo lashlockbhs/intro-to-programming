@@ -19,9 +19,8 @@ const CHOICES = [BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals].flatMap
 );
 
 class Bingo {
-  constructor(size, easy, choices, board, score, question) {
+  constructor(size, choices, board, score, question) {
     this.size = size;
-    this.easy = easy;
     this.choices = choices;
     this.board = board;
     this.score = score;
@@ -106,7 +105,7 @@ class Bingo {
 
     const trues = values.reduce((acc, v) => acc + (v ? 1 : 0), 0);
     const falses = values.length - trues;
-    this.currentQuestion = { ...q, want: want(trues, falses, this.easy) };
+    this.currentQuestion = { ...q, want: want(trues, falses, this.bingos < 4) };
     this.renderQuestion();
   }
 
@@ -220,5 +219,5 @@ const makeUnabsolute = (e) => {
   e.style.removeProperty('top');
 };
 
-const bingo = new Bingo(4, true, shuffled(CHOICES), $('#board'), $('#score'), $('#question'));
+const bingo = new Bingo(4, shuffled(CHOICES), $('#board'), $('#score'), $('#question'));
 bingo.newGame();
