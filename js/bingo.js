@@ -19,18 +19,43 @@ const CHOICES = [BooleanAnd, BooleanOr, BooleanEquals, BooleanNotEquals].flatMap
 );
 
 class Bingo {
-  constructor(size, easy, choices) {
+  constructor(size, easy, choices, board, score, question) {
     this.size = size;
     this.easy = easy;
-    this.rows = Array(size).fill(0);
-    this.columns = Array(size).fill(0);
+    this.choices = choices;
+    this.board = board;
+    this.score = score;
+    this.question = question;
+    this.bingos = 0;
+    this.cells = [];
+  }
+
+  newGame() {
+    this.rows = Array(this.size).fill(0);
+    this.columns = Array(this.size).fill(0);
     this.diagonals = Array(2).fill(0);
     this.cells = [];
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        this.cells.push(new Cell(r, c, choices[r * 4 + c], this));
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
+        this.cells.push(new Cell(r, c, this.choices[r * 4 + c], this));
       }
     }
+    bingo.fillBoard();
+    bingo.updateScore();
+    bingo.nextQuestion();
+  }
+
+  bingo(num) {
+    const label = num === 2 ? 'Double Bingo!' : num === 3 ? 'Triple Bingo!' : 'Bingo!';
+
+    const h1 = document.createElement('h1');
+    h1.appendChild(document.createTextNode(label));
+    this.question.replaceChildren(document.createTextNode('You win!'));
+    this.board.replaceChildren(h1);
+
+    this.bingos += num;
+    this.updateScore();
+    setTimeout(() => this.newGame(), 1000);
   }
 
   track(row, col) {
@@ -45,30 +70,53 @@ class Bingo {
   }
 
   hasBingo() {
-    return (
-      this.rows.some((r) => r === this.size) ||
-      this.columns.some((c) => c === this.size) ||
-      this.diagonals.some((d) => d === this.size)
-    );
+    const full = (x) => x === this.size;
+
+    const bingos =
+      this.rows.filter(full).length +
+      this.columns.filter(full).length +
+      this.diagonals.filter(full).length;
+
+    if (bingos > 0) {
+      this.bingo(bingos);
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  fillBoard(board) {
+  fillBoard() {
+    this.board.replaceChildren();
     for (let r = 0; r < this.size; r++) {
       const row = $('<div>');
       for (let c = 0; c < this.size; c++) {
         row.appendChild(this.cells[r * 4 + c].html);
       }
-      board.appendChild(row);
+      this.board.appendChild(row);
     }
+  }
+
+  updateScore() {
+    this.score.replaceChildren(document.createTextNode(`Bingos: ${this.bingos}`));
   }
 
   nextQuestion() {
     const q = { a: flip(), b: flip() };
     const values = this.cells.filter((c) => c.open).map((c) => c.evaluate(q));
+
     const trues = values.reduce((acc, v) => acc + (v ? 1 : 0), 0);
     const falses = values.length - trues;
-    this.question = { ...q, want: want(trues, falses, this.easy) };
-    renderQuestion(this.question);
+    this.currentQuestion = { ...q, want: want(trues, falses, this.easy) };
+    this.renderQuestion();
+  }
+
+  renderQuestion() {
+    const q = this.currentQuestion;
+    const ab = $('<p>');
+    const v = $('<p>');
+    ab.innerHTML = `<code>a</code> is <code>${q.a}</code>; <code>b</code> is <code>${q.b}</code>`;
+    v.innerHTML = `Looking for <code>${q.want}</code>.`;
+    this.question.replaceChildren(ab, v);
   }
 }
 
@@ -107,14 +155,13 @@ class Cell {
 
   clicked() {
     if (this.open) {
-      const q = this.bingo.question;
-      if (this.evaluate(q) === q.want) {
+      const q = this.bingo.currentQuestion;
+      const v = this.evaluate(q);
+      if (v === q.want || true) {
         this.open = false;
         this.html.classList.add('correct');
         this.bingo.track(this.row, this.col);
-        if (this.bingo.hasBingo()) {
-          $('#question').innerText = 'Bingo!';
-        } else {
+        if (!this.bingo.hasBingo()) {
           this.bingo.nextQuestion();
         }
       } else {
@@ -173,14 +220,5 @@ const makeUnabsolute = (e) => {
   e.style.removeProperty('top');
 };
 
-const renderQuestion = (q) => {
-  const ab = $('<p>');
-  const v = $('<p>');
-  ab.innerHTML = `<code>a</code> is <code>${q.a}</code>; <code>b</code> is <code>${q.b}</code>`;
-  v.innerHTML = `Looking for <code>${q.want}</code>.`;
-  $('#question').replaceChildren(ab, v);
-};
-
-const bingo = new Bingo(4, true, shuffled(CHOICES));
-bingo.fillBoard($('#board'));
-bingo.nextQuestion();
+const bingo = new Bingo(4, true, shuffled(CHOICES), $('#board'), $('#score'), $('#question'));
+bingo.newGame();

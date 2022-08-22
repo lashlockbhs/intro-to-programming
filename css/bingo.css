@@ -6,6 +6,11 @@
   padding: 20px;
 }
 
+#score {
+  font-size: 24px;
+  text-align: right;
+}
+
 #question {
   font-size: 25px;
   text-align: center;
