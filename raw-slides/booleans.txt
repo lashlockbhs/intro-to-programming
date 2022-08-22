@@ -202,7 +202,7 @@ literal value.
 
 E.g.
 
-`const happy = true`
+`happy = true`
 
 ** _none
 
@@ -254,13 +254,13 @@ What’s an expression that says whether I’m awake?
 
 \fragments{\code{===}\code{ !==}}
 
-** Ordering comparisons
-
-\fragments{\code{ <}\code{ >}\code{ <=}\code{ >=}}
-
 ** 1 === 2 ⟹ false
 
 ** 1 !== 2 ⟹ true
+
+** Ordering comparisons
+
+\fragments{\code{ <}\code{ >}\code{ <=}\code{ >=}}
 
 ** 10 < 20 ⟹ true
 
