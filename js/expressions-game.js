@@ -129,6 +129,7 @@ class Expressions {
   addAnswer(expr, answer, correct) {
     const { name } = expr;
     this.answers.push({ name, answer, correct });
+    this.saveAnswers();
   }
 
   saveAnswers() {
@@ -174,7 +175,6 @@ class Expressions {
       document.querySelector('.expressions .marks').style.display = 'none';
       document.querySelector('.expressions .questions').style.display = 'none';
       document.querySelector('.expressions .done').hidden = false;
-      if (!justLoaded) this.saveAnswers();
     }
   }
 }
