@@ -193,7 +193,7 @@ Properties are accessed with a `.` and the name of the property.
 
 ## fragments
 
-Are between `0` and `s.length - 1`
+Are between `0` and `s.length - 1`, inclusive.
 
 This is called a zero-based index.
 
