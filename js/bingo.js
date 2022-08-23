@@ -156,7 +156,7 @@ class Cell {
     if (this.open) {
       const q = this.bingo.currentQuestion;
       const v = this.evaluate(q);
-      if (v === q.want || true) {
+      if (v === q.want) {
         this.open = false;
         this.html.classList.add('correct');
         this.bingo.track(this.row, this.col);
