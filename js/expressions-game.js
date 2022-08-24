@@ -62,8 +62,9 @@ const parseVariables = (s) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 class Expressions {
-  constructor(divs, marks) {
+  constructor(divs, completed, marks) {
     this.expressions = Array.from(divs).map((div, i) => new Expression(this, div, i));
+    this.completed = completed;
     this.answers = [];
     this.i = 0;
     this.current = this.expressions[this.i];
@@ -96,7 +97,7 @@ class Expressions {
     return this.answers.some(({ name, correct }) => correct && name === expr.name);
   }
 
-  checkAnswer(answer, completed) {
+  checkAnswer(answer) {
     const expr = this.current;
 
     try {
@@ -114,10 +115,10 @@ class Expressions {
           ),
           expr.problems(5),
         );
-        completed.addRow([expr.name, answer, '❌']);
+        this.completed.addRow([expr.name, answer, '❌']);
       } else {
         $('#expression-input').value = '';
-        completed.addRow([expr.name, answer, '✅']);
+        this.completed.addRow([expr.name, answer, '✅']);
         this.switchToNext(false);
       }
     } catch (e) {
@@ -128,7 +129,8 @@ class Expressions {
 
   addAnswer(expr, answer, correct) {
     const { name } = expr;
-    this.answers.push({ name, answer, correct });
+    const timestamp = Date.now();
+    this.answers.push({ name, answer, correct, timestamp });
     this.saveAnswers();
   }
 
@@ -142,25 +144,36 @@ class Expressions {
     }
   }
 
-  async loadAnswers(completed) {
+  // Wipe out all current answers and save a new empty answers file. Should
+  // probabyl only allow this after they finish the problem set.
+  resetAnswers() {
+    this.answers = [];
+    this.saveAnswers();
+    this.switchFromDone();
+    this.showAllAnswers();
+  }
+
+  async loadAnswers() {
     try {
       const text = await this.storage.loadFromGithubOnBranch('expressions.json', 'main');
       this.answers = JSON.parse(text);
-      this.showAllAnswers(completed);
+      this.showAllAnswers();
       this.switchToNext(true);
     } catch {
       console.log('No answers to load.');
     }
   }
 
-  showAllAnswers(completed) {
-    completed.clearAllRows();
+  showAllAnswers() {
+    this.completed.clearAllRows();
     this.answers.forEach(({ name, answer, correct }) => {
-      completed.addRow([name, answer, correct ? '✅' : '❌']);
+      this.completed.addRow([name, answer, correct ? '✅' : '❌']);
     });
     this.expressions.forEach((expr) => {
       if (this.answeredCorrectly(expr)) {
         expr.fillMarker();
+      } else {
+        expr.emptyMarker();
       }
     });
   }
@@ -171,11 +184,26 @@ class Expressions {
       this.switchTo(n);
       $('#results').replaceChildren();
     } else {
-      $('#results').style.display = 'none';
-      document.querySelector('.expressions .marks').style.display = 'none';
-      document.querySelector('.expressions .questions').style.display = 'none';
-      document.querySelector('.expressions .done').hidden = false;
+      this.switchToDone();
     }
+  }
+
+  switchToDone() {
+    const correct = this.answers.reduce((acc, a) => acc + (a.correct ? 1 : 0), 0);
+    const accuracy = Math.round((100 * correct) / this.answers.length);
+
+    $('#results').style.display = 'none';
+    document.querySelector('.expressions .marks').style.display = 'none';
+    document.querySelector('.expressions .questions').style.display = 'none';
+    $('#accuracy').innerHTML = `Accuracy: ${accuracy}%`;
+    document.querySelector('.expressions .done').hidden = false;
+  }
+
+  switchFromDone() {
+    $('#results').style.display = 'block';
+    document.querySelector('.expressions .marks').style.display = 'flex';
+    document.querySelector('.expressions .questions').style.display = 'block';
+    document.querySelector('.expressions .done').hidden = true;
   }
 }
 
@@ -236,6 +264,14 @@ class Expression {
       'http://www.w3.org/1999/xlink',
       'xlink:href',
       `/img/bootstrap-icons.svg#circle-fill`,
+    );
+  }
+
+  emptyMarker() {
+    this.marker.childNodes[0].setAttributeNS(
+      'http://www.w3.org/1999/xlink',
+      'xlink:href',
+      `/img/bootstrap-icons.svg#circle`,
     );
   }
 
@@ -316,6 +352,7 @@ const setup = async () => {
 
   const expressions = new Expressions(
     $$('.expressions .expression'),
+    completed,
     document.querySelector('.expressions .marks'),
   );
   expressions.current.show();
@@ -324,7 +361,7 @@ const setup = async () => {
 
   const onAttachToGithub = async () => {
     console.log("Just attached to github. Should merge any answers in memory with what's in git.");
-    expressions.loadAnswers(completed);
+    expressions.loadAnswers();
   };
 
   login.setupToolbar(onAttachToGithub);
@@ -332,14 +369,16 @@ const setup = async () => {
 
   if (expressions.storage.repo !== null) {
     console.log('Have storage. Could grab answers.');
-    expressions.loadAnswers(completed);
+    expressions.loadAnswers();
   } else {
     console.log('No storage.');
   }
 
   $('#expression-input').onchange = (e) => {
-    expressions.checkAnswer(e.target.value, completed);
+    expressions.checkAnswer(e.target.value);
   };
+
+  $('#reset').onclick = () => expressions.resetAnswers();
 };
 
 setup();
