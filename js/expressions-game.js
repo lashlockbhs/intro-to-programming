@@ -7,11 +7,22 @@ import Login from './modules/login';
 import makeTable from './modules/table';
 import { $, $$, icon } from './modules/whjqah';
 
+const randomStrings = [
+  'foo',
+  'bar',
+  'baz',
+  'banana',
+  'grue',
+  'orange',
+];
+
+
 const randomGenerators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
   number: () => -100 + Math.random() * 2 * 100,
   notZero: () => (1 + Math.floor(Math.random() * 100)) * (Math.random() < 0.5 ? 1 : -1),
   boolean: () => Math.random() < 0.5,
+  string: () => randomStrings[Math.floor(Math.random() * randomStrings.length)],
 };
 
 const allValues = {
@@ -300,7 +311,7 @@ class Expression {
       .filter((r) => !r.passed)
       .slice(0, limit)
       .forEach((r) => {
-        t.addRow([...r.args, r.expected, r.got ?? r.e]);
+        t.addRow([...r.args, JSON.stringify(r.expected), JSON.stringify(r.got) ?? r.e]);
       });
     return t.table;
   }

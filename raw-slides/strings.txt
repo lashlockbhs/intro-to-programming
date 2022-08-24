@@ -163,11 +163,30 @@ Also its operands are not the same type.
 
 ** \em{string}`[`\em{index}`]`
 
+## fragments
+
 The \em{string} operand is a string.
 
-And the \em{index} operand is a number.
+The \em{index} operand is a number.
 
-And it evaluates to a one-character string.
+Expression evaluates to a one-character string.
+
+##.
+
+
+** Note: indexes start at 0
+
+## fragments
+
+The index of the first character is `0`.
+
+This is called a zero-based index.
+
+Programmers like counting from zero.
+
+You'll get used to it.
+
+##.
 
 ** 'abc'\[0\] ⟹ 'a'
 
@@ -179,7 +198,7 @@ And it evaluates to a one-character string.
 
 ## fragments
 
-Some values in Javascript have “properties” that contain other values.
+Some values in Javascript have “properties” that hold other values.
 
 Strings have a `length` property that says how long they are.
 
@@ -193,13 +212,7 @@ Properties are accessed with a `.` and the name of the property.
 
 ## fragments
 
-Are between `0` and `s.length - 1`, inclusive.
-
-This is called a zero-based index.
-
-Programmers like counting from zero.
-
-You'll get used to it.
+If the index of the first character is `0` what is the last valid index?
 
 ##.
 
@@ -314,3 +327,5 @@ obscure Chinese characters.
 
    f[0].toUpperCase() + f.substring(1)
    'Foo'
+
+** Questions?

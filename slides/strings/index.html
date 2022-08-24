@@ -159,9 +159,16 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2><em>string</em><code>[</code><em>index</em><code>]</code></h2>
-                    <p>The <em>string</em> operand is a string.</p>
-                    <p>And the <em>index</em> operand is a number.</p>
-                    <p>And it evaluates to a one-character string.</p>
+                    <p class='fragment'>The <em>string</em> operand is a string.</p>
+                    <p class='fragment'>The <em>index</em> operand is a number.</p>
+                    <p class='fragment'>Expression evaluates to a one-character string.</p>
+                </section>
+                <section>
+                    <h2>Note: indexes start at 0</h2>
+                    <p class='fragment'>The index of the first character is <code>0</code>.</p>
+                    <p class='fragment'>This is called a zero-based index.</p>
+                    <p class='fragment'>Programmers like counting from zero.</p>
+                    <p class='fragment'>You'll get used to it.</p>
                 </section>
                 <section>
                     <h2>
@@ -201,7 +208,7 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2>The <code>length</code> property.</h2>
-                    <p class='fragment'>Some values in Javascript have “properties” that contain other values.</p>
+                    <p class='fragment'>Some values in Javascript have “properties” that hold other values.</p>
                     <p class='fragment'>Strings have a <code>length</code> property that says how long they are.</p>
                     <p class='fragment'>Properties are accessed with a <code>.</code> and the name of the property.</p>
                 </section>
@@ -219,10 +226,7 @@ date: 2022-08-21
                 </section>
                 <section>
                     <h2>Valid indices for a string <code>s</code></h2>
-                    <p class='fragment'>Are between <code>0</code> and <code>s.length - 1</code>, inclusive.</p>
-                    <p class='fragment'>This is called a zero-based index.</p>
-                    <p class='fragment'>Programmers like counting from zero.</p>
-                    <p class='fragment'>You'll get used to it.</p>
+                    <p class='fragment'>If the index of the first character is <code>0</code> what is the last valid index?</p>
                 </section>
                 <section>
                     <h2>Methods preview</h2>
@@ -407,6 +411,9 @@ date: 2022-08-21
                 <section>
                     <pre><code data-trim='' data-noescape='' class='language-javascript'>f[0].toUpperCase() + f.substring(1)
 'Foo'</code></pre>
+                </section>
+                <section>
+                    <h2>Questions?</h2>
                 </section>
             </div>
         </div>
