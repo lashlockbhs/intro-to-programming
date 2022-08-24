@@ -328,4 +328,6 @@ obscure Chinese characters.
    f[0].toUpperCase() + f.substring(1)
    'Foo'
 
-** https://intro.gigamonkeys.com/expressions/strings/
+** Try it yourself
+
+https://intro.gigamonkeys.com/expressions/strings/
