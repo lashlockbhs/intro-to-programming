@@ -1,0 +1,130 @@
+---
+title: Strings
+date: 2022-08-24
+---
+
+<div class="expression" data-expression="'foobar'">
+  <h1>Concatenate (smoosh) strings</h1>
+  <p>
+    Write an expression the evaluates to the concatenation of the
+    strings <code>'foo'</code> and <code>'bar'</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="'f'">
+  <h1>Indexing</h1>
+  <p>
+    What is the value of <code>'foo'[0]</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="3">
+  <h1>Length</h1>
+  <p>
+    What is the value of <code>'foo'.length</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="7">
+  <h1>Another length</h1>
+  <p>
+    What is the value of <code>'foo\nbar'.length</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="8">
+  <h1>And one more</h1>
+  <p>
+    What is the value of <code>'foo\\nbar'.length</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="'o'">
+  <h1>More indexing</h1>
+  <p>
+    What is the value of <code>'foo'['foo'.length - 1]</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="'FOO'">
+  <h1>UPPER CASE</h1>
+  <p>
+    What is the value of <code>'foo'.toUpperCase()</code>?
+  </p>
+</div>
+
+<div class="expression" data-expression="'foo'">
+  <h1>lower case</h1>
+  <p>
+    What is the value of <code>'FOO'.toLowerCase()</code>?
+  </p>
+</div>
+
+<!-- with variables -->
+
+<div class="expression" data-variables="s1:string,s2:string" data-expression="s1 + s2">
+  <h1>Concatenate (smoosh) strings</h1>
+  <p>
+    Write an expression the evaluates to the concatenation of the values of the
+    string variables <code>s1</code> and <code>s2</code>.
+  </p>
+</div>
+
+
+<div class="expression" data-variables="s:string" data-expression="s[0]">
+  <h1>First character</h1>
+  <p>
+    Write an expression the evaluates to the first character of the value of the
+    string variable <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s.substring(1)">
+  <h1>All but first</h1>
+  <p>
+    Write an expression the evaluates to a string containing all but the first
+    character of the string in variable <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s.substring(0,3)">
+  <h1>First three</h1>
+  <p>
+    Write an expression the evaluates to a string containing the first three
+    character of the string in variable <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s.substring(1, s.length - 1)">
+  <h1>All but first and last</h1>
+  <p>
+    Write an expression the evaluates to a string containing all but the first
+    and last character of the string in variable <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s.substring(s.length - 3)">
+  <h1>Last three</h1>
+  <p>
+    Write an expression the evaluates to a string containing the last three
+    character of the string in variable <code>s</code>.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s[0].toUpperCase() + s.substring(1)">
+  <h1>Capitalize</h1>
+  <p>
+    Write an expression the evaluates to the the value of the string
+    variable <code>s</code> with the first letter capitalized and the remaining
+    letters in lower case.
+  </p>
+</div>
+
+<div class="expression" data-variables="s:string" data-expression="s.substring(0,3).toUpperCase() + s.substring(3)">
+  <h1>Capitalize first three</h1>
+  <p>
+    Write an expression the evaluates to the the value of the string
+    variable <code>s</code> with the first three letters capitalized and the
+    remaining letters in lower case.
+  </p>
+</div>
