@@ -101,3 +101,8 @@ td.ok {
 th.ok {
   width: fit-content;
 }
+
+#accuracy {
+  padding-top: 0.5em;
+  font-size: 0.5em;
+}
