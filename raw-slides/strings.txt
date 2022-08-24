@@ -330,4 +330,4 @@ obscure Chinese characters.
 
 ** Try it yourself
 
-https://intro.gigamonkeys.com/expressions/strings/
+\link{https://intro.gigamonkeys.com/expressions/strings/}
