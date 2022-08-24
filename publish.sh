@@ -11,7 +11,7 @@ fi
 # Ensure dir ends in trailing slash for rsync.
 builddir="${1%/}/"
 
-webdir=~/web/intro.gigamonkeys.com/
+webdir=/tmp/intro.gigamonkeys.com/
 mkdir -p "$webdir"
 
 sha=$(git log --pretty=tformat:%H -1);
