@@ -200,8 +200,9 @@ class Expressions {
   }
 
   switchToDone() {
-    const correct = this.answers.reduce((acc, a) => acc + (a.correct ? 1 : 0), 0);
-    const accuracy = Math.round((100 * correct) / this.answers.length);
+    //const correct = this.answers.reduce((acc, a) => acc + (a.correct ? 1 : 0), 0);
+    //const accuracy = Math.round((100 * correct) / this.answers.length);
+    const accuracy = averageAccuracy(this.answers);
 
     $('#results').style.display = 'none';
     document.querySelector('.expressions .marks').style.display = 'none';
@@ -217,6 +218,19 @@ class Expressions {
     document.querySelector('.expressions .done').hidden = true;
   }
 }
+
+const averageAccuracy = (answers) => {
+  const qs = {};
+  answers.forEach((a) => {
+    if (!(a.name in qs)) {
+      qs[a.name] = {correct: 0, incorrect: 0};
+    }
+    qs[a.name][a.correct ? 'correct' : 'incorrect']++;
+  });
+  console.log('here');
+  const perQuestion = Object.values(qs).map((q) => q.correct / (q.correct + q.incorrect));
+  return 100 * (perQuestion === 0 ? 0 : perQuestion.reduce((acc, v) => acc + v, 0) / perQuestion.length);
+};
 
 class Expression {
   constructor(expressions, div, index) {
