@@ -37,5 +37,7 @@ const drawFallingTriangle = (x, time) => {
     drawTriangle(x1, y1, x2, y2, x3, y3, 'pink', 3);
 }
 
-// Leave this code here.
+// Leave this code here or the animation won't run. Also don't change the name
+// of drawFrame either here or where it is defined. (Or, if you must, change it
+// the same way in both places.)
 animate(drawFrame);
