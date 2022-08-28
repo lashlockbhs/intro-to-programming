@@ -28,6 +28,16 @@ class Table {
     return row;
   }
 
+  addRowAtTop(values) {
+    const row = this.tbody.insertRow(0);
+    values.forEach((value, i) => {
+      const cell = row.insertCell();
+      cell.className = this.columnClasses[i];
+      cell.append(value);
+    });
+    return row;
+  }
+
   clearAllRows() {
     this.tbody.replaceChildren();
   }

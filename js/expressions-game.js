@@ -1,21 +1,13 @@
-import { inferTypes } from './modules/type-inference';
-
 // The whole point of this code is to use Function() to evaluate code, so:
 /* eslint no-new-func: "off" */
 
 import Login from './modules/login';
 import makeTable from './modules/table';
 import { $, $$, icon } from './modules/whjqah';
+import { inferTypes } from './modules/type-inference';
+import { shuffle } from './modules/shuffle';
 
-const randomStrings = [
-  'foo',
-  'bar',
-  'baz',
-  'banana',
-  'grue',
-  'orange',
-];
-
+const randomStrings = ['foo', 'bar', 'baz', 'banana', 'grue', 'orange', 'FOO', 'SpOnGe BoB'];
 
 const randomGenerators = {
   positive: () => 1 + Math.floor(Math.random() * 100),
@@ -27,6 +19,7 @@ const randomGenerators = {
 
 const allValues = {
   boolean: [true, false],
+  string: randomStrings,
 };
 
 /*
@@ -74,11 +67,14 @@ const parseVariables = (s) => {
 
 class Expressions {
   constructor(divs, completed, marks) {
-    this.expressions = Array.from(divs).map((div, i) => new Expression(this, div, i));
+    const divArray = Array.from(divs);
+    if ($('#shuffleExpressions')) {
+      shuffle(divArray);
+    }
+    this.expressions = divArray.map((div, i) => new Expression(this, div, i));
     this.completed = completed;
     this.answers = [];
-    this.i = 0;
-    this.current = this.expressions[this.i];
+    this.current = this.expressions[0];
     this.expressions.forEach((e) => {
       e.hide();
       marks.appendChild(e.marker);
@@ -95,7 +91,7 @@ class Expressions {
   next() {
     const currentIndex = this.current.index;
     for (let i = 0; i < this.expressions.length; i++) {
-      const j = (i + currentIndex + 1) % this.expressions.length;
+      const j = (i + currentIndex) % this.expressions.length;
       const expr = this.expressions[j];
       if (!this.answeredCorrectly(expr)) {
         return expr;
@@ -124,12 +120,12 @@ class Expressions {
               expr.results.length
             } test cases failed. Here’s a sample.`,
           ),
-          expr.problems(5),
+          expr.problems(8),
         );
-        this.completed.addRow([expr.name, answer, '❌']);
+        this.completed.addRowAtTop([expr.name, answer, '❌']);
       } else {
         $('#expression-input').value = '';
-        this.completed.addRow([expr.name, answer, '✅']);
+        this.completed.addRowAtTop([expr.name, answer, '✅']);
         this.switchToNext(false);
       }
     } catch (e) {
@@ -139,9 +135,9 @@ class Expressions {
   }
 
   addAnswer(expr, answer, correct) {
-    const { name } = expr;
+    const { name, canonical } = expr;
     const timestamp = Date.now();
-    this.answers.push({ name, answer, correct, timestamp });
+    this.answers.push({ name, canonical, answer, correct, timestamp });
     this.saveAnswers();
   }
 
@@ -159,9 +155,11 @@ class Expressions {
   // probabyl only allow this after they finish the problem set.
   resetAnswers() {
     this.answers = [];
+    this.current = this.expressions[0];
     this.saveAnswers();
     this.switchFromDone();
     this.showAllAnswers();
+    this.switchToNext(false);
   }
 
   async loadAnswers() {
@@ -178,7 +176,7 @@ class Expressions {
   showAllAnswers() {
     this.completed.clearAllRows();
     this.answers.forEach(({ name, answer, correct }) => {
-      this.completed.addRow([name, answer, correct ? '✅' : '❌']);
+      this.completed.addRowAtTop([name, answer, correct ? '✅' : '❌']);
     });
     this.expressions.forEach((expr) => {
       if (this.answeredCorrectly(expr)) {
@@ -204,6 +202,7 @@ class Expressions {
     //const accuracy = Math.round((100 * correct) / this.answers.length);
     const accuracy = averageAccuracy(this.answers);
 
+    this.current.hide();
     $('#results').style.display = 'none';
     document.querySelector('.expressions .marks').style.display = 'none';
     document.querySelector('.expressions .questions').style.display = 'none';
@@ -223,13 +222,14 @@ const averageAccuracy = (answers) => {
   const qs = {};
   answers.forEach((a) => {
     if (!(a.name in qs)) {
-      qs[a.name] = {correct: 0, incorrect: 0};
+      qs[a.name] = { correct: 0, incorrect: 0 };
     }
     qs[a.name][a.correct ? 'correct' : 'incorrect']++;
   });
-  console.log('here');
   const perQuestion = Object.values(qs).map((q) => q.correct / (q.correct + q.incorrect));
-  return 100 * (perQuestion === 0 ? 0 : perQuestion.reduce((acc, v) => acc + v, 0) / perQuestion.length);
+  return (
+    100 * (perQuestion === 0 ? 0 : perQuestion.reduce((acc, v) => acc + v, 0) / perQuestion.length)
+  );
 };
 
 class Expression {
@@ -399,11 +399,21 @@ const setup = async () => {
     console.log('No storage.');
   }
 
-  $('#expression-input').onchange = (e) => {
-    expressions.checkAnswer(e.target.value);
+  $('#expression-input').onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      expressions.checkAnswer(e.target.value);
+    }
   };
 
   $('#reset').onclick = () => expressions.resetAnswers();
+
+  document.querySelectorAll('.questions code').forEach(
+    (e) =>
+      (e.onclick = () => {
+        $('#expression-input').value += e.innerText;
+        $('#expression-input').focus();
+      }),
+  );
 };
 
 setup();
