@@ -75,8 +75,8 @@ class Evaluator {
     // the after callback until all the setup in this function is complete.
     // Which is exactly what queueMicrotask is for, it seems. So here we are.
     f.onload = () => {
-      if (after) queueMicrotask(after);
       queueMicrotask(() => this.repl.restart());
+      if (after) queueMicrotask(after);
     };
 
     Object.entries(this.config).forEach(([k, v]) => {
