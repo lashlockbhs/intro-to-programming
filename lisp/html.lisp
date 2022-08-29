@@ -4,7 +4,7 @@
   (let* ((styles (config :styles config))
         ;;(scripts (config :scripts config)
          (title (just-text (first (extract :h1 doc))))
-         (date (cdr (assoc (keywordize title) (rest (assoc :dates config))))))
+         (date (cdr (assoc (slugify title) (rest (assoc :dates config))))))
 
     `(:progn
        (:noescape ,(metadata title date))
@@ -41,6 +41,9 @@
               plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
             });")))))))
 
+(defun slugify (title)
+  (keywordize (substitute #\- #\Space title)))
+
 (defun metadata (title date)
   (with-output-to-string (s)
     (format s "~&---")
@@ -54,12 +57,12 @@
         (current ()))
     (dolist (e doc)
       (when (and current (or (eql (first e) :h1) (eql (first e) :h2)))
-        (push  (cons :section (nreverse current)) sections)
+        (push (cons :section (nreverse current)) sections)
         (setf current ()))
       (when (and (second e) (not (equal (second e) "_none")))
         (push e current)))
     (when current
-      (push  (cons :section (nreverse current)) sections))
+      (push (cons :section (nreverse current)) sections))
     (nreverse sections)))
 
 (defun wrap-code (doc config)
