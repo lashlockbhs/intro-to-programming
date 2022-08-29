@@ -244,7 +244,7 @@
 
     - Boolean bingo
 
-  - Strings (2)
+  - Strings (3)
 
     - Possible values
 
@@ -252,59 +252,59 @@
 
     - Operators: +, []
 
-  - Variables (1)
+  - Functions & Variables (5)
 
-    - named values
+    - Variables
 
-      - const
+      - named values
 
-    - The difference between variables and values.
+        - const
 
-  - Functions
+      - The difference between variables and values.
 
-    - defining & using (1)
+      - Binding vs assignment
 
-    - numeric, boolean, and string (2)
+      - Function parameters
 
-      - Various math functions: area of circle, volume of sphere, quadratic equation.
+      - Constant
 
-      - Random logical expressions like sleep_in
+        - Names for values
 
-      - Combining strings
+        - Used to simplify expressions
 
-      - Extracting characters from strings.
+      - Changing
 
-    - composing (2)
+        - Names that can change
 
-      - Breaking down big functions into smaller ones
+      - Scope of variables.
 
-      - Building up big functions by writing pieces first.
+    - Functions
 
-      - Writing big functions by assuming other functions which you then write.
+      - defining & using
 
-      - A little recursion, as a treat.
+      - numeric, boolean, and string
+
+        - Various math functions: area of circle, volume of sphere, quadratic equation.
+
+        - Random logical expressions like sleep_in
+
+        - Combining strings
+
+        - Extracting characters from strings.
+
+      - composing
+
+        - Breaking down big functions into smaller ones
+
+        - Building up big functions by writing pieces first.
+
+        - Writing big functions by assuming other functions which you then write.
+
+        - A little recursion, as a treat.
 
   - Project: Writing functions with numbers, booleans, and strings (4)
 
-  - Variables (1)
-
-    - Binding vs assignment
-
-    - Function parameters
-
-    - Constant
-
-      - Names for values
-
-      - Used to simplify expressions
-
-    - Changing
-
-      - Names that can change
-
-    - Scope of variables.
-
-  - Control constructs (2)
+  - Control constructs (5)
 
     - if
 
@@ -315,12 +315,6 @@
     - for
 
     - break
-
-  - More about strings (2)
-
-    - length property
-
-    - substring() method
 
   - Arrays
 
