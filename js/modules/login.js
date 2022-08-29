@@ -84,7 +84,7 @@ class Login {
     toolbarButtons.append(infoToggler);
 
     $('#login').onclick = () => this.attachToGithub();
-    $('#anonymous').onclick = () => this.goAnonymous();
+    // $('#anonymous').onclick = () => this.goAnonymous();
     $('#banner svg.x').onclick = hideInfo;
   }
 
