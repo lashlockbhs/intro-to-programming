@@ -404,8 +404,11 @@ const setup = async () => {
       expressions.checkAnswer(e.target.value);
     }
   };
-
-  $('#reset').onclick = () => expressions.resetAnswers();
+  if ($('#shuffleExpressions')) {
+    $('#reset').remove();
+  } else {
+    $('#reset').onclick = () => expressions.resetAnswers();
+  }
 
   document.querySelectorAll('.questions code').forEach(
     (e) =>
