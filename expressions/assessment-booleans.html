@@ -1,0 +1,171 @@
+---
+title: "Assessment Booleans"
+date: 2022-08-30
+hidden: true
+---
+
+<span id="shuffleExpressions" hidden="true"></span>
+
+<div class="expression" data-expression="enoughSleep && keepingUp">
+  <h1>Doing well?</h1>
+  <p>
+    Someone is doing well if they are getting enough sleep and also keeping up
+    with their schoolwork. Write an expression that expresses whether someone is
+    doing well given two boolean values <code>enoughSleep</code>
+    and <code>keepingUp</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="enoughSleep && !justWorkedOut">
+  <h1>Energetic?</h1>
+  <p>
+    Someone is feeling energetic if they are getting enough sleep and aren't
+    exhausted from having just worked out. Write an expression that expresses
+    whether someone is energetic given two boolean
+    values <code>enoughSleep</code> and <code>justWorkedOut</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!enoughSleep && lotsOfWork">
+  <h1>Dragging?</h1>
+  <p>
+    Someone is really dragging if they haven’t gotten enough sleep and have lots
+    of work to do. Write an expression that says whether someone is dragging,
+    given two boolean values <code>enoughSleep</code>
+    and <code>lotsOfWork</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!enoughSleep && !eatenEnough">
+  <h1>Super beat?</h1>
+  <p>
+    Someone is super beat if they haven’t gotten enough sleep and haven’t had
+    enough to eat. Write an expression that says whether someone is super beat
+    given two boolean values <code>enoughSleep</code>
+    and <code>eatenEnough</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="isSenior || invitedBySenior">
+  <h1>Can go to prom?</h1>
+  <p>
+    Roughly speaking, someone can go to Senior Prom if they are a senior or if
+    they are invited by a senior. Write an expression that says whether someone
+    can go to prom given the two boolean values <code>isSenior</code>
+    and <code>invitedBySenior</code>. (In a later problem set we’ll deal with
+    the more complex reality of the prom exclusion list.)
+  </p>
+</div>
+
+<div class="expression" data-expression="done || !fun">
+  <h1>Having fun?</h1>
+  <p>
+    If someone is working on something for their own reasons they don’t need to
+    keep going if it’s not fun any more. So they will stop when they’re done or
+    when it’s not fun anymore. Write an expression that says whether they should
+    stop given the two boolean values <code>done</code> and <code>fun</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!fun || tired">
+  <h1>Not feeling it?</h1>
+  <p>
+    Someeone is working on something and aren’t that into it so they’ll quit if
+    it’s not fun. And even if it is fun but they’re feeling tired they’ll also
+    call it quits. Write an expression that says whether they’ll stop given the
+    two boolean values <code>fun</code> and <code>tired</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!sleepy || !dark">
+  <h1>Time to sleep?</h1>
+  <p>
+    Someone is unable to go to sleep unless it’s totally dark. Also they
+    obviously can’t sleep when they’re not sleepy. Write an expression that says
+    whether they’re awake given the boolean values <code>sleepy</code>
+    and <code>dark</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!storeOpen || linesTooLong">
+  <h1>Will we skip our trip to the store?</h1>
+  <p>
+    We want to go shopping but we obviously won’t if the store isn’t open. But
+    we’ll also wait for another day if the lines are too long. Write an
+    expression that says whether we’ll skip our planned shopping trip given the
+    two boolean values <code>storeOpen</code> and <code>linesTooLong</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!storeOpen || !isASale">
+  <h1>Wait for a sale?</h1>
+  <p>
+    Now we want to go shopping, but only if the store is having a sale. As
+    before we obviously won’t go if the store isn’t open but we’ll also skip the
+    trip if the store isn’t having a sale. Write an expression using the two
+    boolean values <code>storeOpen</code> and <code>isASale</code> that says
+    whether we’ll hold off on our trip to the store.
+  </p>
+</div>
+
+<div class="expression" data-expression="member && !outSick">
+  <h1>Coming to bookclub?</h1>
+  <p>
+    The book club meets today. We’d expect someone to be at book club if they’re
+    a member as long as they’re not out sick from school. Write an expression
+    that says whether we expect someone to be at book club given the two boolean
+    values <code>member</code> and <code>outSick</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="fast && strong">
+  <h1>Ready for some football?</h1>
+  <p>
+    The football team is very picky and will only allow people on the team who
+    are both fast and strong. Write an expression in terms of the two boolean
+    values <code>fast</code> and <code>strong</code> that says whether someone
+    has a chance to be on the team.
+  </p>
+</div>
+
+<div class="expression" data-expression="fireLit || !haveMatches">
+  <h1>Lighting a fire?</h1>
+  <p>
+    You’re on a camping trip and you’re trying to light a fire. Unfortunately
+    you’re having some trouble and are running out of matches. You’ll stop
+    trying when the fire is lit or when you run out of matches, whichever comes
+    first. Write an expressian that says whether you can stop trying using the
+    two boolean values <code>fireLit</code> and <code>haveMatches</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!hungry && interested">
+  <h1>Can pay attention?</h1>
+  <p>
+    It can be hard to pay attention if you’re distracted by being hungry. And
+    obviously it also hard to pay attention to things that you’re not interested
+    in. Write an expression that says whether you can pay attention to something
+    given the two boolean values <code>hungry</code>
+    and <code>interested</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="inTheClass || isProctor">
+  <h1>In the room where it happens?</h1>
+  <p>
+    A student should be in our classroom during our class only if they’re in the
+    class or are a student proctor. Write an expression that says whether a
+    student should be in the classroom during our class given the two boolean
+    values <code>inTheClass</code> and <code>isProctor</code>.
+  </p>
+</div>
+
+<div class="expression" data-expression="!afraidOfTheDark && !afraidOfSpiders">
+  <h1>Can go into creepy crawly cave?</h1>
+  <p>
+    There’s a dark cave full of spiders. You should only go in if you’re not
+    afraid of th>e dark nor of spiders. Write a boolean expression using the two
+    values <code>afraidOfTheDark</code> and <code>afraidOfSpiders</code> that
+    says whether you could go into the cave.
+  </p>
+</div>
