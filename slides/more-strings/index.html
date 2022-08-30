@@ -1,0 +1,303 @@
+---
+tags: slides
+title: More about strings
+date: 2022-08-30
+---
+
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+        <link rel='stylesheet' href='/reveal/dist/reset.css'>
+        <link rel='stylesheet' href='/reveal/dist/reveal.css'>
+        <link rel='stylesheet' href='/reveal/dist/theme/black.css'>
+        <link rel='stylesheet' href='/reveal/dist/custom.css'>
+        <link rel='stylesheet' href='/reveal/plugin/highlight/monokai.css'>
+        <link rel='stylesheet' href='/css/logo.css'>
+        <title>More about strings</title>
+    </head>
+    <body>
+        <div class='reveal'>
+            <div class='footer logo'>
+                <a href='/'>ItP</a>
+            </div>
+            <div class='slides'>
+                <section>
+                    <h1>More about strings</h1>
+                </section>
+                <section>
+                    <h2>Three aspects</h2>
+                    <p class='fragment'>Operators</p>
+                    <p class='fragment'>Properties</p>
+                    <p class='fragment'>Methods</p>
+                </section>
+                <section>
+                    <h2>Operators</h2>
+                    <p class='fragment'>Things written with punctuation characters.</p>
+                    <p class='fragment'>For numbers we know the basic math operators</p>
+                    <p class='fragment'><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, and <code>**</code>.</p>
+                </section>
+                <section>
+                    <h2>Strings support two operators</h2>
+                    <p class='fragment'><code>+</code> and <code>[]</code></p>
+                </section>
+                <section>
+                    <h2><code>+</code></h2>
+                    <p class='fragment'>“Concatenation”, a.k.a. “smooshing together”, a.k.a. “adding”.</p>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-javascript'>s1 = 'foo'
+s2 = 'bar'
+s1 + s2 ⟹ 'foobar'</code></pre>
+                </section>
+                <section>
+                    <h2>You can <code>+</code> non-strings to strings</h2>
+                    <p><code>'My favorite number is ' + 32</code></p>
+                    <p>⟹ <code>'My favorite number is 32'</code></p>
+                </section>
+                <section>
+                    <h2><code>[]</code></h2>
+                    <p class='fragment'>The “index” operator. For accessing individual characters of a string.</p>
+                    <pre class='fragment'><code data-trim='' data-noescape='' class='language-javascript'>s = 'bar'
+s[0] ⟹ 'b'
+s[1] ⟹ 'a'
+s[2] ⟹ 'r'</code></pre>
+                </section>
+                <section>
+                    <h2><code>str[i]</code></h2>
+                    <p class='fragment'><code>str</code> has to be a string.</p>
+                    <p class='fragment'><code>i</code> has to be a whole number.</p>
+                    <p class='fragment'>Expression as a whole evaluates to a string.</p>
+                </section>
+                <section>
+                    <h2>Really important!</h2>
+                    <p class='fragment'>Be very clear about the types of values involved.</p>
+                    <p class='fragment'>The value to the left of the <code>[]</code> is a <em>string</em>.</p>
+                    <p class='fragment'>The value between the <code>[</code> and <code>]</code> is a <em>number</em>.</p>
+                    <p class='fragment'>And the result of evaluating the expression is a <em>string</em>.</p>
+                </section>
+                <section>
+                    <h2>Properties</h2>
+                    <p class='fragment'>Properties are named values attached to other values.</p>
+                    <p class='fragment'>Strings have one property: <code>length</code></p>
+                    <p class='fragment'>Properties are accessed with a <code>.</code> and the name of the property.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'foobar'.length </span>
+                        </div>
+                        <div class='fragment'>
+                             6
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>We can use <code>length</code> to determine valid indices of an arbitrary string.</h2>
+                    <p class='fragment'>From <code>0</code> to <code>s.length - 1</code>, inclusive.</p>
+                </section>
+                <section>
+                    <h2>Really important!</h2>
+                    <p class='fragment'><code>s.length</code> is a <b>number</b>!</p>
+                    <p class='fragment'>In general it’s important to be clear about the types of values.</p>
+                </section>
+                <section>
+                    <h2>Methods</h2>
+                    <p class='fragment'>Bits of functionality attached to a value.</p>
+                    <p class='fragment'>Methods are <em>called</em> on values.</p>
+                    <p class='fragment'>They may also take arguments.</p>
+                    <p class='fragment'>Many methods produce new values when called.</p>
+                </section>
+                <section>
+                    <h2><code>value.method(a, b)</code></h2>
+                    <p class='fragment'>Value can be any expression.</p>
+                    <p class='fragment'>Method is whatever the name of the method is.</p>
+                    <p class='fragment'>a and b, separated by commas, represent two arguments the method expects.</p>
+                    <p class='fragment'>There might be more or less than the two shown here.</p>
+                </section>
+                <section>
+                    <h2><code>substring()</code></h2>
+                    <p class='fragment'>The <code>substring()</code> method on strings extracts a part of the string.</p>
+                    <p class='fragment'>Takes one or two arguments.</p>
+                </section>
+                <section>
+                    <h2><code>s.substring(i)</code></h2>
+                    <p class='fragment'>Extracts the substring from index <code>i</code> to the end of the string.</p>
+                </section>
+                <section>
+                    <h2><code>s.substring(i, end)</code></h2>
+                    <p class='fragment'>Extracts the substring from index <code>i</code> up to, but not including, <code>end</code>.</p>
+                </section>
+                <section>
+                    <h2>These are equivalent</h2>
+                    <p class='fragment'><code>s.substring(i)</code></p>
+                    <p class='fragment'>and</p>
+                    <p class='fragment'><code>s.substring(i, s.length)</code></p>
+                </section>
+                <section>
+                    <h2><code>s = 'foobar'</code></h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(1) </span>
+                        </div>
+                        <div class='fragment'>
+                             'oobar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h3>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(s.length - 1) </span>
+                        </div>
+                        <div class='fragment'>
+                             'r'
+                        </div>
+                    </div>
+                    </h3>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(0, 3) </span>
+                        </div>
+                        <div class='fragment'>
+                             'foo'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(3) </span>
+                        </div>
+                        <div class='fragment'>
+                             'bar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h3>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(3, s.length) </span>
+                        </div>
+                        <div class='fragment'>
+                             'bar'
+                        </div>
+                    </div>
+                    </h3>
+                </section>
+                <section>
+                    <h3>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(3, s.length-1) </span>
+                        </div>
+                        <div class='fragment'>
+                             'ob'
+                        </div>
+                    </div>
+                    </h3>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(s.length) </span>
+                        </div>
+                        <div class='fragment'>
+                             ''
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>s.substring(0) </span>
+                        </div>
+                        <div class='fragment'>
+                             'foobar'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2><code>toUpperCase()</code></h2>
+                    <p class='fragment'>Called on a string, returns a string that is the original string but converted to all upper-case letters.</p>
+                    <p class='fragment'>Note: does not take any arguments.</p>
+                    <p class='fragment'>But you still need <code>()</code> after the name when you call it.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'foo'.toUpperCase() </span>
+                        </div>
+                        <div class='fragment'>
+                             'FOO'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2><code>toLowerCase()</code></h2>
+                    <p class='fragment'>Called on a string, returns a string that is the original string but converted to all lower-case letters.</p>
+                    <p class='fragment'>Note: also does not take any arguments.</p>
+                    <p class='fragment'>And you still need <code>()</code> after the name when you call it.</p>
+                </section>
+                <section>
+                    <h2>
+                    <div class='repl'>
+                        <div>
+                            <span class='prompt'>» </span><span class='fragment'>'FOO'.toLowerCase() </span>
+                        </div>
+                        <div class='fragment'>
+                             'foo'
+                        </div>
+                    </div>
+                    </h2>
+                </section>
+                <section>
+                    <h2>Chaining methods</h2>
+                    <p class='fragment'><em>If</em> <code>s</code> <em>is a string</em></p>
+                    <p class='fragment'><code>s.substring(1)</code> <em>is also a string</em></p>
+                    <p class='fragment'><code>s.substring(1).toUpperCase()</code></p>
+                </section>
+                <section>
+                    <h2>Can use any string expression</h2>
+                    <p class='fragment'><code>‘foo’ + ‘bar’.toUpperCase()</code>
+                    <br>
+                    <code>⟹ 'fooBAR'</code></p>
+                    <p class='fragment'><code>(‘foo’ + ‘bar’).toUpperCase()</code>
+                    <br>
+                    <code>⟹ 'FOOBAR'</code></p>
+                </section>
+            </div>
+        </div>
+        <script src='/reveal/dist/reveal.js'></script>
+        <script src='/reveal/plugin/notes/notes.js'></script>
+        <script src='/reveal/plugin/markdown/markdown.js'></script>
+        <script src='/reveal/plugin/highlight/highlight.js'></script>
+        <script>// More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+              hash: true,
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });</script>
+    </body>
+</html>

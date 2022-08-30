@@ -1,0 +1,260 @@
+-*- mode: markup; -*-
+
+* More about strings
+
+** Three aspects
+
+## fragments
+
+Operators
+
+Properties
+
+Methods
+
+##.
+
+** Operators
+
+## fragments
+
+Things written with punctuation characters.
+
+For numbers we know the basic math operators
+
+`+`, `-`, `*`, `/`, `%`, and `**`.
+
+##.
+
+** Strings support two operators
+
+## fragments
+
+`+` and `[]`
+
+##.
+
+** `+`
+
+## fragments
+
+“Concatenation”, a.k.a. “smooshing together”, a.k.a. “adding”.
+
+   s1 = 'foo'
+   s2 = 'bar'
+   s1 + s2 ⟹ 'foobar'
+
+##.
+
+** You can `+` non-strings to strings
+
+`'My favorite number is ' + 32`
+
+⟹ `'My favorite number is 32'`
+
+** `[]`
+
+## fragments
+
+The “index” operator. For accessing individual characters of a string.
+
+   s = 'bar'
+   s[0] ⟹ 'b'
+   s[1] ⟹ 'a'
+   s[2] ⟹ 'r'
+
+##.
+
+** `str[i]`
+
+## fragments
+
+`str` has to be a string.
+
+`i` has to be a whole number.
+
+Expression as a whole evaluates to a string.
+
+##.
+
+** Really important!
+
+## fragments
+
+Be very clear about the types of values involved.
+
+The value to the left of the `[]` is a \em{string}.
+
+The value between the `[` and `]` is a \em{number}.
+
+And the result of evaluating the expression is a \em{string}.
+
+##.
+
+** Properties
+
+## fragments
+
+Properties are named values attached to other values.
+
+Strings have one property: `length`
+
+Properties are accessed with a `.` and the name of the property.
+
+##.
+
+** 'foobar'.length ⟹ 6
+
+** We can use `length` to determine valid indices of an arbitrary string.
+
+## fragments
+
+From `0` to `s.length - 1`, inclusive.
+
+##.
+
+** Really important!
+
+## fragments
+
+`s.length` is a \b{number}!
+
+In general it’s important to be clear about the types of values.
+
+##.
+
+** Methods
+
+## fragments
+
+Bits of functionality attached to a value.
+
+Methods are \em{called} on values.
+
+They may also take arguments.
+
+Many methods produce new values when called.
+
+##.
+
+** `value.method(a, b)`
+
+## fragments
+
+Value can be any expression.
+
+Method is whatever the name of the method is.
+
+a and b, separated by commas, represent two arguments the method expects.
+
+There might be more or less than the two shown here.
+
+##.
+
+** `substring()`
+
+## fragments
+
+The `substring()` method on strings extracts a part of the string.
+
+Takes one or two arguments.
+
+##.
+
+** `s.substring(i)`
+
+## fragments
+
+Extracts the substring from index `i` to the end of the string.
+
+##.
+
+** `s.substring(i, end)`
+
+## fragments
+
+Extracts the substring from index `i` up to, but not including, `end`.
+
+##.
+
+** These are equivalent
+
+## fragments
+
+`s.substring(i)`
+
+and
+
+`s.substring(i, s.length)`
+
+##.
+
+** `s = 'foobar'`
+
+** s.substring(1) ⟹ 'oobar'
+
+*** s.substring(s.length - 1) ⟹ 'r'
+
+** s.substring(0, 3) ⟹ 'foo'
+
+** s.substring(3) ⟹ 'bar'
+
+*** s.substring(3, s.length) ⟹ 'bar'
+
+*** s.substring(3, s.length-1) ⟹ 'ob'
+
+** s.substring(s.length) ⟹ ''
+
+** s.substring(0) ⟹ 'foobar'
+
+** `toUpperCase()`
+
+## fragments
+
+Called on a string, returns a string that is the original string but converted
+to all upper-case letters.
+
+Note: does not take any arguments.
+
+But you still need `()` after the name when you call it.
+
+##.
+
+** 'foo'.toUpperCase() ⟹ 'FOO'
+
+** `toLowerCase()`
+
+## fragments
+
+Called on a string, returns a string that is the original string but converted
+to all lower-case letters.
+
+Note: also does not take any arguments.
+
+And you still need `()` after the name when you call it.
+
+##.
+
+** 'FOO'.toLowerCase() ⟹ 'foo'
+
+** Chaining methods
+
+## fragments
+
+\em{If} `s` \em{is a string}
+
+`s.substring(1)` \em{is also a string}
+
+`s.substring(1).toUpperCase()`
+
+##.
+
+** Can use any string expression
+
+## fragments
+
+`‘foo’ + ‘bar’.toUpperCase()`\br{}`⟹ 'fooBAR'`
+
+`(‘foo’ + ‘bar’).toUpperCase()`\br{}`⟹ 'FOOBAR'`
+
+##.

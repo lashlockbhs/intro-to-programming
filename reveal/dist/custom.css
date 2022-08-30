@@ -25,3 +25,7 @@ span.prompt {
 .reveal code {
   font-weight: 900;
 }
+
+.reveal pre {
+  font-size: 1.5em;
+}

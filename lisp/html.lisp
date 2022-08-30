@@ -56,7 +56,7 @@
   (let ((sections ())
         (current ()))
     (dolist (e doc)
-      (when (and current (or (eql (first e) :h1) (eql (first e) :h2)))
+      (when (and current (member (first e) '(:h1 :h2 :h3)))
         (push (cons :section (nreverse current)) sections)
         (setf current ()))
       (when (and (second e) (not (equal (second e) "_none")))
@@ -92,6 +92,20 @@
                        (:div :class "fragment" ,(subseq text (1+ pos)))))
                e))))
     (funcall (rewriter :h2 #'fn) doc)))
+
+(defun h3-repl (doc config)
+  (declare (ignore config))
+  (flet ((fn (e)
+           (let* ((text (second e))
+                  (pos (and (stringp text) (search "⟹" text))))
+             (if pos
+               `(:h3
+                 (:div :class "repl"
+                       (:div (:span :class "prompt" "» ") (:span :class "fragment" ,(subseq text 0 pos)))
+                       (:div :class "fragment" ,(subseq text (1+ pos)))))
+               e))))
+    (funcall (rewriter :h3 #'fn) doc)))
+
 
 (defun fragmentize (e)
   "Turn the child elements into fragments. However treats lists (:ul and :ol)
