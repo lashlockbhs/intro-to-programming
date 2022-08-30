@@ -51,6 +51,9 @@ const editor = (id) => {
     ...disableIntellisense,
   });
 
+  // This is the magic to set the tabsize apparently.
+  e.getModel().updateOptions({ tabSize: 2 });
+
   // This seems to be the way to make the editor resize when the window resizes.
   window.addEventListener('resize', () => e.layout({ width: 0, height: 0 }));
 
